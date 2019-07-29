@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { hot } from 'react-hot-loader/root';
-import Layout from './Layout';
+import AppRouter from './AppRouter';
 
-const Hot = hot(Layout);
+const App = hot(AppRouter);
 
-ReactDOM.render(<Hot />, document.querySelector('#app'));
+ReactDOM.render(<App />, document.querySelector('#app'));
