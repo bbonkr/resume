@@ -1,14 +1,21 @@
-import React, { Fragment } from 'react';
-import { Button } from 'antd';
+import React, { Fragment, useEffect } from 'react';
+import { Button, Card, Divider } from 'antd';
+import Data from '../data/bbon.json';
+import ContentWrapper from '../components/ContentWrapper';
 
 const Bio = () => {
     return (
-        <Fragment>
-            <h1>Bio</h1>
-            <div>
-                <Button>Hello</Button>
-            </div>
-        </Fragment>
+        <ContentWrapper>
+            <Card>
+                <Card.Meta title="Bio" />
+                <Divider dashed={true} />
+                <div>
+                    {Data.bio.contents.map((v, i) => {
+                        return <p key={i}>{v}</p>;
+                    })}
+                </div>
+            </Card>
+        </ContentWrapper>
     );
 };
 

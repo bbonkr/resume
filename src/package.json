@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "webpack-dev-server --hot",
         "build": "cross-env NODE_ENV=production webpack",
-        "deploy": "echo deploy to ../docs"
+        "deploy": "npm run build && gulp"
     },
     "keywords": [],
     "author": "",
@@ -26,6 +26,8 @@
         "babel-loader": "^8.0.6",
         "cross-env": "^5.2.0",
         "css-loader": "^3.1.0",
+        "gulp": "^4.0.2",
+        "gulp-cli": "^2.2.0",
         "react-hot-loader": "^4.12.10",
         "style-loader": "^0.23.1",
         "webpack": "^4.38.0",
