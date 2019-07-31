@@ -42,6 +42,9 @@ const LeftMenu = ({ onClickMenuItem }) => {
                 <Menu.Item key="portfolio">
                     <Link to="/portfolio/">Portfolio</Link>
                 </Menu.Item>
+                <Menu.Item key="techstack">
+                    <Link to="/techstack/">Tech Stack</Link>
+                </Menu.Item>
             </Menu>
         </Fragment>
     );
