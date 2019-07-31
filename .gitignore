@@ -331,3 +331,6 @@ ASALocalRun/
 
 # mac file
 .DS_Store
+
+# temp build output
+src/**/dist/

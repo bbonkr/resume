@@ -9,11 +9,6 @@ const Home = () => {
     return (
         <ContentWrapper>
             <Card>
-                <Card.Meta
-                    title={<h1>{homeData.title}</h1>}
-                    description={homeData.subtitle}
-                />
-                <Divider dashed={true} />
                 <p>{homeData.intro}</p>
 
                 {homeData.links && homeData.links.length > 0 && (
