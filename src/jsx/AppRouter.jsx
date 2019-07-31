@@ -6,13 +6,23 @@ import {
     Route,
     Link,
 } from 'react-router-dom';
-import { Layout, Menu, Icon, Avatar, Divider, Drawer } from 'antd';
+import {
+    Layout,
+    Menu,
+    Icon,
+    Avatar,
+    Divider,
+    Drawer,
+    BackTop,
+    Affix,
+} from 'antd';
 import styled from 'styled-components';
 import Home from './Home';
 import Bio from './Bio';
 import Education from './Education';
 import Career from './Career';
 import Portfolio from './Portfolio';
+import TechStack from './TechStack';
 import LeftMenu from '../components/LeftMenu';
 import Name from '../components/Name';
 
@@ -116,7 +126,9 @@ const AppRouter = ({ location, history }) => {
                             </HeaderTitle>
                         </div>
                     </Layout.Header>
+
                     <Layout.Content>
+                        <BackTop />
                         <Route path="/" exact component={() => <Home />} />
                         <Route path="/bio/" component={() => <Bio />} />
                         <Route
@@ -125,8 +137,12 @@ const AppRouter = ({ location, history }) => {
                         />
                         <Route path="/career/" component={() => <Career />} />
                         <Route
-                            path="/portfolio"
+                            path="/portfolio/"
                             component={() => <Portfolio />}
+                        />
+                        <Route
+                            path="/techstack/"
+                            component={() => <TechStack />}
                         />
                     </Layout.Content>
                     {/* <Layout.Footer>Footer</Layout.Footer> */}

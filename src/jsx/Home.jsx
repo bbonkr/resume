@@ -1,7 +1,8 @@
-import React from 'react';
-import { Card, Divider } from 'antd';
+import React, { Fragment } from 'react';
+import { Card, Divider, Icon } from 'antd';
 import ContentWrapper from '../components/ContentWrapper';
 import Data from '../data/bbon.json';
+import LinkAnchor from '../components/LinkAnchor';
 
 const homeData = Data.home;
 
@@ -18,11 +19,12 @@ const Home = () => {
                             {homeData.links.map((link, linkIndex) => {
                                 return (
                                     <li key={`${linkIndex}`}>
-                                        <a
+                                        <LinkAnchor
+                                            title={link.title}
                                             href={link.href}
-                                            target="{link.target || '_blank'}">
-                                            {link.title}
-                                        </a>
+                                            icon={link.icon || 'link'}
+                                            target={link.target}
+                                        />
                                     </li>
                                 );
                             })}

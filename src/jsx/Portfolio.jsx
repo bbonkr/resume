@@ -3,6 +3,7 @@ import { Button, Card, Divider, Tag } from 'antd';
 import styled from 'styled-components';
 import Data from '../data/bbon.json';
 import ContentWrapper from '../components/ContentWrapper';
+import LinkAnchor from '../components/LinkAnchor.jsx';
 const InlineList = styled.ul`
     & > li {
         display: inline-block;
@@ -64,11 +65,20 @@ const Portfolio = () => {
                                             {v.links.map((link, linkIndex) => {
                                                 return (
                                                     <li key={`${linkIndex}`}>
-                                                        <a
+                                                        <LinkAnchor
+                                                            title={link.title}
+                                                            href={link.href}
+                                                            icon={
+                                                                link.icon ||
+                                                                'home'
+                                                            }
+                                                            target={link.target}
+                                                        />
+                                                        {/* <a
                                                             href={link.href}
                                                             target="_blank">
                                                             {link.title}
-                                                        </a>
+                                                        </a> */}
                                                     </li>
                                                 );
                                             })}
