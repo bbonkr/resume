@@ -46,7 +46,7 @@ $ npm run deploy
 /src/public/ 디렉터리의 파일을 변경하십시오.
 
 - favicon.ico 사이트 아이콘
-- bbon-icon.png 사이트 아이콘
+- icon.png 사이트 아이콘
 - me-300x300.png 사용자 이미지
 
 index.html 파일의 내용을 변경하십시오.

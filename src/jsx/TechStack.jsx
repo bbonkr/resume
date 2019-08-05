@@ -1,6 +1,7 @@
 import React from 'react';
 import ContentWrapper from '../components/ContentWrapper';
 import { Card, Divider, Rate, Row, Col, Icon } from 'antd';
+import RateCardList from '../components/RateCardList';
 import Data from '../data/bbon.json';
 const { categories } = Data.techStack;
 
@@ -10,6 +11,7 @@ const TechStack = () => {
             <Card>
                 <Card.Meta title={<h1>Tech Stack</h1>} />
                 <Divider dashed={true} />
+                <RateCardList data={categories} />
 
                 {categories &&
                     categories.length > 0 &&
