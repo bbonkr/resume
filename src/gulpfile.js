@@ -3,18 +3,19 @@ const path = require('path');
 
 const copyDist = () => {
     return src(path.join('dist/*.*')).pipe(
-        dest(path.normalize('../docs/dist/')),
+        dest(path.normalize('../docs/')),
     );
 };
 
 const copyPublic = () => {
     return src(path.join('public/*.*')).pipe(
-        dest(path.normalize('../docs/public/')),
+        dest(path.normalize('../docs/')),
     );
 };
 
 const copyHtml = () => {
-    return src(path.join('index.html')).pipe(dest(path.normalize('../docs/')));
+    return src(path.join('index.html'))
+        .pipe(dest(path.normalize('../docs/')));
 };
 
 exports.default = series(copyDist, copyPublic, copyHtml);
