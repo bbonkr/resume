@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Card, Timeline, Divider, PageHeader } from 'antd';
-import ContentWrapper from '../components/ContentWrapper';
-import Data from '../data/bbon.json';
+import ContentWrapper from '~/components/ContentWrapper';
+import Data from '~/data/bbon.json';
 
 const Education = () => {
     return (

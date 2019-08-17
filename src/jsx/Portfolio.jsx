@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
 import { Button, Card, Divider, Tag } from 'antd';
 import styled from 'styled-components';
-import Data from '../data/bbon.json';
-import ContentWrapper from '../components/ContentWrapper';
-import LinkAnchor from '../components/LinkAnchor.jsx';
+import Data from '~/data/bbon.json';
+import ContentWrapper from '~/components/ContentWrapper';
+import LinkAnchor from '~/components/LinkAnchor.jsx';
+
 const InlineList = styled.ul`
     & > li {
         display: inline-block;

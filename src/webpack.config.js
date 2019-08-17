@@ -17,10 +17,10 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/react'],
-                    plugins: ['react-hot-loader/babel'],
-                },
+                // options: {
+                //     presets: ['@babel/preset-env', '@babel/react'],
+                //     plugins: ['react-hot-loader/babel'],
+                // },
                 exclude: path.join(__dirname, 'node_modules'),
             },
             {
