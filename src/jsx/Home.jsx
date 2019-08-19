@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Card, Divider, Icon } from 'antd';
 import ContentWrapper from '~/components/ContentWrapper';
-import Data from '~/data/bbon.json';
+import Data from '~/data/data.json';
 import LinkAnchor from '~/components/LinkAnchor';
 
 const homeData = Data.home;

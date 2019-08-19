@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Button, Card, Divider, Tag } from 'antd';
 import styled from 'styled-components';
-import Data from '~/data/bbon.json';
+import Data from '~/data/data.json';
 import ContentWrapper from '~/components/ContentWrapper';
 import LinkAnchor from '~/components/LinkAnchor.jsx';
 

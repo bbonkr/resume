@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Avatar, Anchor, Affix } from 'antd';
 import Name from './Name';
-import Data from '~/data/bbon.json';
+import Data from '~/data/data.json';
 
 const LeftMenu = ({ onClickMenuItem }) => {
     const onClickMenu = item => {

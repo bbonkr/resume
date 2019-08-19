@@ -41,7 +41,7 @@ $ npm run deploy
 
 ## 사용
 
-포크<small>Fork</small> 후 /src/data/bbon.json 의 내용을 변경하십시오.
+포크<small>Fork</small> 후 /src/data/data.json 의 내용을 변경하십시오.
 
 /src/public/ 디렉터리의 파일을 변경하십시오.
 

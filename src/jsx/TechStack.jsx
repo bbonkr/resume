@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Divider, Rate, Row, Col, Icon } from 'antd';
 import ContentWrapper from '~/components/ContentWrapper';
 import RateCardList from '~/components/RateCardList';
-import Data from '~/data/bbon.json';
+import Data from '~/data/data.json';
 const { categories } = Data.techStack;
 
 const TechStack = () => {
