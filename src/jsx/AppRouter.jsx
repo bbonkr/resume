@@ -23,10 +23,10 @@ import Education from './Education';
 import Career from './Career';
 import Portfolio from './Portfolio';
 import TechStack from './TechStack';
-import LeftMenu from '../components/LeftMenu';
-import Name from '../components/Name';
+import LeftMenu from '~/components/LeftMenu';
+import Name from '~/components/Name';
 
-import Data from '../data/bbon.json';
+import Data from '~/data/data.json';
 import 'antd/dist/antd.css';
 
 const AppLayout = styled(Layout)`

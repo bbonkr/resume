@@ -1,8 +1,8 @@
 import React, { Fragment, useEffect } from 'react';
 import { Button, Card, Divider } from 'antd';
-import RateCardList from '../components/RateCardList';
-import Data from '../data/bbon.json';
-import ContentWrapper from '../components/ContentWrapper';
+import RateCardList from '~/components/RateCardList';
+import Data from '~/data/data.json';
+import ContentWrapper from '~/components/ContentWrapper';
 
 const Bio = () => {
     return (

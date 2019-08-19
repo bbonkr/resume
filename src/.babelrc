@@ -1,0 +1,23 @@
+{
+    "presets": ["@babel/preset-env", "@babel/react"],
+    "plugins": [
+        ["react-hot-loader/babel"],
+        ["babel-plugin-root-import", {
+            "rootPathPrefix":"~",
+            "rootPathSuffix":"./"
+        }]
+        
+    ],
+    "env": {
+        "development": {
+            "presets": [
+                ["@babel/preset-react", { "development": true }],
+            ]
+          },
+          "production":{
+            "presets": [
+                ["@babel/preset-react", { "development": false }],
+            ]
+          }
+    }
+}

@@ -1,8 +1,8 @@
 import React from 'react';
-import ContentWrapper from '../components/ContentWrapper';
 import { Card, Divider, Rate, Row, Col, Icon } from 'antd';
-import RateCardList from '../components/RateCardList';
-import Data from '../data/bbon.json';
+import ContentWrapper from '~/components/ContentWrapper';
+import RateCardList from '~/components/RateCardList';
+import Data from '~/data/data.json';
 const { categories } = Data.techStack;
 
 const TechStack = () => {
