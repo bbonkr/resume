@@ -66,6 +66,51 @@
     ],
     "portfolio": [
         {
+            "date": "2019-10",
+            "title": "Blog Service #2",
+            "state": "완료",
+            "description": "마크다운으로 글을 작성하는 블로그 서비스입니다.  Nodejs 백엔드와 React 프론트엔드를 타입스크립트로 작성했습니다.",
+            "features": [
+                "Nodejs Backend",
+                "express.js",
+                "passport.js",
+                "Sequelize.js",
+                "React Frontend",
+                "Next.js",
+                "Styled Component",
+                "Redux",
+                "Redux-saga"
+            ],
+            "links": [
+                {
+                    "title": "데모 사이트",
+                    "href": "https://blog-service.bbon.me/",
+                    "icon": "home"
+                },
+                {
+                    "title": "GitHub: Blog service backend",
+                    "href": "https://github.com/bbonkr/blog-node-backend",
+                    "icon": "github"
+                },
+                {
+                    "title": "GitHub: Blog service frontend",
+                    "href": "https://github.com/bbonkr/react-blog-frontend",
+                    "icon": "github"
+                }
+            ],
+            "tags": [
+                "nodejs",
+                "express.js",
+                "passport.js",
+                "sequelize",
+                "react",
+                "next.js",
+                "redux",
+                "redux-saga",
+                "styled-component"
+            ]
+        },
+        {
             "date": "2019-04",
             "title": "너와 나의 점수판",
             "state": "완료",
