@@ -13,7 +13,7 @@ const TechStack = () => {
                 <Divider dashed={true} />
                 <RateCardList data={categories} />
 
-                {categories &&
+                {/* {categories &&
                     categories.length > 0 &&
                     categories.map(category => {
                         return (
@@ -63,7 +63,7 @@ const TechStack = () => {
                                 </Row>
                             </div>
                         );
-                    })}
+                    })} */}
             </Card>
         </ContentWrapper>
     );
