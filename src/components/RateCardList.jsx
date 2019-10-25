@@ -27,7 +27,7 @@ const RateCardList = memo(({ data }) => {
                                                 name={item.name}
                                                 description={item.description}
                                                 score={item.score}
-                                                icon={icon | 'heart'}
+                                                icon={icon || 'heart'}
                                             />
                                         </Col>
                                     );
