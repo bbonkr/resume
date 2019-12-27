@@ -1,24 +1,26 @@
 import React, { Fragment, useEffect } from 'react';
 import { Button, Card, Divider } from 'antd';
-import RateCardList from '~/components/RateCardList';
-import Data from '~/data/data.json';
-import ContentWrapper from '~/components/ContentWrapper';
+import { RateCardList } from '../components/RateCardList';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { Bio as BioModel } from '../interfaces/Data';
 
-const Bio = () => {
+interface BioProps {
+    record: BioModel;
+}
+
+export const Bio: React.FC<BioProps> = ({ record }) => {
     return (
         <ContentWrapper>
             <Card>
                 <Card.Meta title="Bio" />
                 <Divider dashed={true} />
                 <div>
-                    {Data.bio.contents.map((v, i) => {
+                    {record.contents.map((v, i) => {
                         return <p key={i}>{v}</p>;
                     })}
                 </div>
-                <RateCardList data={Data.bio.sections} />
+                {/* <RateCardList data={Data.bio.sections} /> */}
             </Card>
         </ContentWrapper>
     );
 };
-
-export default Bio;

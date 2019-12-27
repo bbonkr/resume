@@ -1,28 +1,42 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Avatar, Anchor, Affix } from 'antd';
-import Name from './Name';
-import Data from '~/data/data.json';
+import { Name } from './Name';
+import { ClickParam } from 'antd/lib/menu';
+import { Me as MeModel } from '../interfaces/Data';
 
-const LeftMenu = ({ onClickMenuItem }) => {
-    const onClickMenu = item => {
+interface LeftMenuProps {
+    me: MeModel;
+    /**
+     * 메뉴 항목 클릭
+     *
+     * @memberof LeftMenuPros
+     */
+    onClickMenuItem?: () => void;
+}
+
+export const LeftMenu: React.FC<LeftMenuProps> = ({ me, onClickMenuItem }) => {
+    const onClickMenu = (param: ClickParam): void => {
         if (onClickMenuItem) {
-            onClickMenuItem(item);
+            // onClickMenuItem(param);
+            onClickMenuItem();
         }
     };
+
     return (
         <Fragment>
             <div style={{ padding: '0.7rem 2.0rem', textAlign: 'center' }}>
-                {Data.me.photo && <Avatar src={Data.me.photo} size="large" />}
+                {me.photo && <Avatar src={me.photo} size="large" />}
             </div>
 
             <div
                 style={{
                     textAlign: 'center',
-                }}>
+                }}
+            >
                 <p>
                     안녕하세요. <br />
-                    <Name name={Data.me.name} /> 입니다.
+                    <Name name={me.name} /> 입니다.
                 </p>
             </div>
 
@@ -49,5 +63,3 @@ const LeftMenu = ({ onClickMenuItem }) => {
         </Fragment>
     );
 };
-
-export default LeftMenu;

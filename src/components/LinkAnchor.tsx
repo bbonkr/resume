@@ -1,7 +1,14 @@
 import React, { Fragment } from 'react';
 import { Icon } from 'antd';
 
-const LinkAnchor = ({ title, href, icon, target }) => {
+interface LinkAnchorProps {
+    title: string;
+    href: string;
+    icon: string;
+    target?: string;
+}
+
+export const LinkAnchor: React.FC<LinkAnchorProps> = ({ title, href, icon, target }) => {
     return (
         <a href={href} title={title} target={target || '_blank'}>
             {icon && (
@@ -19,5 +26,3 @@ const LinkAnchor = ({ title, href, icon, target }) => {
         </a>
     );
 };
-
-export default LinkAnchor;

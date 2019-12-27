@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 import { Card, Timeline, Divider, PageHeader } from 'antd';
-import ContentWrapper from '~/components/ContentWrapper';
-import Data from '~/data/data.json';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { Career as CareerModel } from '../interfaces/Data';
 
-const Career = () => {
+interface CareerProps {
+    records: CareerModel[];
+}
+
+export const Career: React.FC<CareerProps> = ({ records }) => {
     return (
         <ContentWrapper>
             <Card>
                 <Card.Meta title={<h1>Career</h1>} />
                 <Divider dashed={true} />
                 <Timeline>
-                    {Data.career
+                    {records
                         .sort((a, b) => {
                             if (a.date > b.date) {
                                 return -1;
@@ -29,8 +33,16 @@ const Career = () => {
                                     </h3>
                                     {/* <p>{v.state}</p> */}
                                     <p>{v.description}</p>
-                                    {v.link && (
-                                        <a href={v.link.href}>{v.link.title}</a>
+                                    {v.links && (
+                                        <ul>
+                                            {v.links.map(link => {
+                                                return (
+                                                    <li>
+                                                        <a href={link.href}>{link.title}</a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
                                     )}
                                 </Timeline.Item>
                             );
@@ -40,5 +52,3 @@ const Career = () => {
         </ContentWrapper>
     );
 };
-
-export default Career;

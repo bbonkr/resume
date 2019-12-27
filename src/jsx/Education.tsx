@@ -1,16 +1,20 @@
 import React, { useEffect } from 'react';
 import { Card, Timeline, Divider, PageHeader } from 'antd';
-import ContentWrapper from '~/components/ContentWrapper';
-import Data from '~/data/data.json';
+import { Education as EducationModel } from '../interfaces/Data';
+import { ContentWrapper } from '../components/ContentWrapper';
 
-const Education = () => {
+interface EducationProps {
+    records: EducationModel[];
+}
+
+export const Education: React.FC<EducationProps> = ({ records }) => {
     return (
         <ContentWrapper>
             <Card>
                 <Card.Meta title={<h1>Education</h1>} />
                 <Divider dashed={true} />
                 <Timeline>
-                    {Data.education
+                    {records
                         .sort((a, b) => {
                             if (a.date > b.date) {
                                 return -1;
@@ -29,8 +33,16 @@ const Education = () => {
                                     </h3>
                                     {/* <p>{v.state}</p> */}
                                     <p>{v.description}</p>
-                                    {v.link && (
-                                        <a href={v.link.href}>{v.link.title}</a>
+                                    {v.links && v.links.length > 0 && (
+                                        <ul>
+                                            {v.links.map(link => {
+                                                return (
+                                                    <li>
+                                                        <a href={link.href}>{link.title}</a>
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
                                     )}
                                 </Timeline.Item>
                             );
@@ -40,5 +52,3 @@ const Education = () => {
         </ContentWrapper>
     );
 };
-
-export default Education;

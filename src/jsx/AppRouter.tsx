@@ -1,33 +1,19 @@
 import React, { useState, useCallback } from 'react';
-import {
-    BrowserRouter as Router,
-    HashRouter,
-    withRouter,
-    Route,
-    Link,
-} from 'react-router-dom';
-import {
-    Layout,
-    Menu,
-    Icon,
-    Avatar,
-    Divider,
-    Drawer,
-    BackTop,
-    Affix,
-} from 'antd';
+import { BrowserRouter as Router, HashRouter, withRouter, Route, Link } from 'react-router-dom';
+import { Layout, Menu, Icon, Avatar, Divider, Drawer, BackTop, Affix } from 'antd';
 import styled from 'styled-components';
-import Home from './Home';
-import Bio from './Bio';
-import Education from './Education';
-import Career from './Career';
-import Portfolio from './Portfolio';
-import TechStack from './TechStack';
-import LeftMenu from '~/components/LeftMenu';
-import Name from '~/components/Name';
+import { Home } from './Home';
+import { Bio } from './Bio';
+import { Education } from './Education';
+import { Career } from './Career';
+import { Portfolio } from './Portfolio';
+import { TechStack } from './TechStack';
+import { LeftMenu } from '../components/LeftMenu';
+import { Name } from '../components/Name';
 
-import Data from '~/data/data.json';
+import { data } from '../data/data';
 import 'antd/dist/antd.css';
+import { CollapseType } from 'antd/lib/layout/Sider';
 
 const AppLayout = styled(Layout)`
     min-height: 100vh;
@@ -49,16 +35,16 @@ const HeaderTitle = styled.h1`
     line-height: 64px;
 `;
 
-const AppRouter = ({ location, history }) => {
+export const AppRouter = () => {
     const [siderCollapsed, setSiderCollapsed] = useState(false);
     const [responsivebroken, setResponsiveBroken] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
 
-    const onToggleSider = () => {
+    const handleToggleSider = () => {
         setShowDrawer(true);
     };
 
-    const onBreakpoint = broken => {
+    const handleBreakpoint = (broken: boolean): void => {
         // console.log('onBreakpoint', broken);
         setResponsiveBroken(broken);
         setSiderCollapsed(broken);
@@ -67,18 +53,18 @@ const AppRouter = ({ location, history }) => {
         }
     };
 
-    const onCollapseSider = (collapsed, type) => {
+    const handleCollapseSider = (collapsed: boolean, type: CollapseType): void => {
         // console.log(collapsed, type);
     };
 
-    const onClickMenuItem = item => {
+    const handleClickMenuItem = (): void => {
         // console.log('menu item: ', item);
         // console.log('history: ', history);
 
         setShowDrawer(false);
     };
 
-    const onCloaseDrawer = () => {
+    const handleCloaseDrawer = (e: any): void => {
         setShowDrawer(false);
     };
 
@@ -92,9 +78,10 @@ const AppRouter = ({ location, history }) => {
                     collapsedWidth="0"
                     collapsible
                     collapsed={siderCollapsed}
-                    onBreakpoint={onBreakpoint}
-                    onCollapse={onCollapseSider}>
-                    <LeftMenu onClickMenuItem={onClickMenuItem} />
+                    onBreakpoint={handleBreakpoint}
+                    onCollapse={handleCollapseSider}
+                >
+                    <LeftMenu me={data.me} onClickMenuItem={handleClickMenuItem} />
                 </LeftSider>
                 <Layout>
                     <Layout.Header style={{ background: '#fff', padding: 0 }}>
@@ -103,47 +90,35 @@ const AppRouter = ({ location, history }) => {
                                 float: 'left',
                                 padding: '0 0.9rem',
                                 display: 'block',
-                            }}>
+                            }}
+                        >
                             &nbsp;
                         </div>
                         {responsivebroken && (
                             <div style={{ float: 'left' }}>
                                 <ToggleIcon
                                     className="trigger"
-                                    type={
-                                        siderCollapsed
-                                            ? 'menu-unfold'
-                                            : 'menu-fold'
-                                    }
-                                    onClick={onToggleSider}
+                                    type={siderCollapsed ? 'menu-unfold' : 'menu-fold'}
+                                    onClick={handleToggleSider}
                                 />
                             </div>
                         )}
 
                         <div style={{ float: 'left', padding: '0 0.9rem' }}>
                             <HeaderTitle>
-                                안녕하세요. <Name name={Data.me.name} /> 입니다.
+                                안녕하세요. <Name name={data.me.name} /> 입니다.
                             </HeaderTitle>
                         </div>
                     </Layout.Header>
 
                     <Layout.Content>
                         <BackTop />
-                        <Route path="/" exact component={() => <Home />} />
-                        <Route path="/bio/" component={() => <Bio />} />
-                        <Route
-                            path="/education/"
-                            component={() => <Education />}
-                        />
-                        <Route path="/career/" component={() => <Career />} />
-                        <Route
-                            path="/portfolio/"
-                            component={() => <Portfolio />}
-                        />
-                        <Route
-                            path="/techstack/"
-                            component={() => <TechStack />}
-                        />
+                        <Route path="/" exact component={() => <Home record={data.home} />} />
+                        <Route path="/bio/" component={() => <Bio record={data.bio} />} />
+                        <Route path="/education/" component={() => <Education records={data.education} />} />
+                        <Route path="/career/" component={() => <Career records={data.career} />} />
+                        <Route path="/portfolio/" component={() => <Portfolio records={data.portfolio} />} />
+                        <Route path="/techstack/" component={() => <TechStack records={data.techStack} />} />
                     </Layout.Content>
                     {/* <Layout.Footer>Footer</Layout.Footer> */}
                     <Drawer
@@ -151,14 +126,13 @@ const AppRouter = ({ location, history }) => {
                         bodyStyle={{ padding: '0' }}
                         closable={false}
                         maskClosable={true}
-                        onClose={onCloaseDrawer}
-                        visible={showDrawer}>
-                        <LeftMenu onClickMenuItem={onClickMenuItem} />
+                        onClose={handleCloaseDrawer}
+                        visible={showDrawer}
+                    >
+                        <LeftMenu me={data.me} onClickMenuItem={handleClickMenuItem} />
                     </Drawer>
                 </Layout>
             </AppLayout>
         </HashRouter>
     );
 };
-
-export default AppRouter;
