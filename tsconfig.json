@@ -18,7 +18,8 @@
         "strict": true,
         "target": "es5",
         "removeComments": true,
-        "preserveConstEnums": true
+        "preserveConstEnums": true,
+        "outDir": "docs/dist/"
     },
     "exclude": ["./node_modules/**/*"],
     "include": ["./src/**/*"]

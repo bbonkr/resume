@@ -56,4 +56,12 @@ module.exports = {
         path: path.join(__dirname, 'docs/dist'),
         publicPath: '/dist/',
     },
+    devServer: {
+        port: 3000,
+        contentBase: path.resolve('docs'),
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        publicPath: '/',
+    },
 };
