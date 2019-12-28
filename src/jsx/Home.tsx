@@ -1,22 +1,24 @@
 import React, { Fragment } from 'react';
 import { Card, Divider, Icon } from 'antd';
-import ContentWrapper from '~/components/ContentWrapper';
-import Data from '~/data/data.json';
-import LinkAnchor from '~/components/LinkAnchor';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { LinkAnchor } from '../components/LinkAnchor';
+import { Home as HomeModel } from '../interfaces/Data';
 
-const homeData = Data.home;
+interface HomeProps {
+    record: HomeModel;
+}
 
-const Home = () => {
+export const Home: React.FC<HomeProps> = ({ record }) => {
     return (
         <ContentWrapper>
             <Card>
-                <p>{homeData.intro}</p>
+                <p>{record.intro}</p>
 
-                {homeData.links && homeData.links.length > 0 && (
+                {record.links && record.links.length > 0 && (
                     <div>
                         <h4>관련 사이트</h4>
                         <ul>
-                            {homeData.links.map((link, linkIndex) => {
+                            {record.links.map((link, linkIndex) => {
                                 return (
                                     <li key={`${linkIndex}`}>
                                         <LinkAnchor
@@ -35,5 +37,3 @@ const Home = () => {
         </ContentWrapper>
     );
 };
-
-export default Home;

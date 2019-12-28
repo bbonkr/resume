@@ -1,17 +1,22 @@
 import React from 'react';
 import { Card, Divider, Rate, Row, Col, Icon } from 'antd';
-import ContentWrapper from '~/components/ContentWrapper';
-import RateCardList from '~/components/RateCardList';
-import Data from '~/data/data.json';
-const { categories } = Data.techStack;
+import { ContentWrapper } from '../components/ContentWrapper';
+import { RateCardList } from '../components/RateCardList';
+// import Data from '~/data/data.json';
+import { TechSection as TechSectionModel } from '../interfaces/Data';
+// const { categories } = Data.techStack;
 
-const TechStack = () => {
+interface TechStackProps {
+    records: TechSectionModel[];
+}
+
+export const TechStack: React.FC<TechStackProps> = ({ records }) => {
     return (
         <ContentWrapper>
             <Card>
                 <Card.Meta title={<h1>Tech Stack</h1>} />
                 <Divider dashed={true} />
-                <RateCardList data={categories} />
+                <RateCardList records={records} />
 
                 {/* {categories &&
                     categories.length > 0 &&
@@ -68,5 +73,3 @@ const TechStack = () => {
         </ContentWrapper>
     );
 };
-
-export default TechStack;

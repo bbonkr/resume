@@ -1,13 +1,18 @@
 import React, { Fragment, memo } from 'react';
 import { Row, Col } from 'antd';
-import RateCard from './RateCard';
+import { RateCard } from './RateCard';
+import { TechSection as TechSectionModel } from '../interfaces/Data';
 
-const RateCardList = memo(({ data }) => {
+interface RateCardListProps {
+    records: TechSectionModel[];
+}
+
+export const RateCardList: React.FC<RateCardListProps> = memo(({ records }) => {
     return (
         <Fragment>
-            {!!data &&
-                data.length > 0 &&
-                data.map(category => {
+            {!!records &&
+                records.length > 0 &&
+                records.map(category => {
                     const { name, items, icon } = category;
                     return (
                         <div key={name} style={{ marginBottom: '2.0rem' }}>
@@ -22,7 +27,8 @@ const RateCardList = memo(({ data }) => {
                                             key={item.name}
                                             style={{
                                                 marginTop: '0.7rem',
-                                            }}>
+                                            }}
+                                        >
                                             <RateCard
                                                 name={item.name}
                                                 description={item.description}
@@ -39,5 +45,3 @@ const RateCardList = memo(({ data }) => {
         </Fragment>
     );
 });
-
-export default RateCardList;

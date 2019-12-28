@@ -1,23 +1,30 @@
 import React, { useEffect } from 'react';
 import { Button, Card, Divider, Tag } from 'antd';
 import styled from 'styled-components';
-import Data from '~/data/data.json';
-import ContentWrapper from '~/components/ContentWrapper';
-import LinkAnchor from '~/components/LinkAnchor.jsx';
+import { ContentWrapper } from '../components/ContentWrapper';
+import { LinkAnchor } from '../components/LinkAnchor';
+
+// import Data from '~/data/data.json';
+import { Portfolio as PortfolioModel } from '../interfaces/Data';
 
 const InlineList = styled.ul`
     & > li {
         display: inline-block;
     }
 `;
-const Portfolio = () => {
+
+interface PortfolioProps {
+    records: PortfolioModel[];
+}
+
+export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
     return (
         <ContentWrapper>
             <Card>
                 <Card.Meta title={<h1>Portfolio</h1>} />
                 <Divider dashed={true} />
 
-                {Data.portfolio
+                {records
                     .sort((a, b) => {
                         if (a.date > b.date) {
                             return -1;
@@ -29,9 +36,7 @@ const Portfolio = () => {
                     })
                     .map((v, i) => {
                         return (
-                            <Card
-                                key={`${i}`}
-                                style={{ marginBottom: '0.6rem' }}>
+                            <Card key={`${i}`} style={{ marginBottom: '0.6rem' }}>
                                 <Card.Meta
                                     title={v.title}
                                     description={
@@ -46,16 +51,9 @@ const Portfolio = () => {
                                     <div>
                                         <h4>요약</h4>
                                         <ul>
-                                            {v.features.map(
-                                                (feature, featureIndex) => {
-                                                    return (
-                                                        <li
-                                                            key={`${featureIndex}`}>
-                                                            {feature}
-                                                        </li>
-                                                    );
-                                                },
-                                            )}
+                                            {v.features.map((feature, featureIndex) => {
+                                                return <li key={`${featureIndex}`}>{feature}</li>;
+                                            })}
                                         </ul>
                                     </div>
                                 )}
@@ -69,10 +67,7 @@ const Portfolio = () => {
                                                         <LinkAnchor
                                                             title={link.title}
                                                             href={link.href}
-                                                            icon={
-                                                                link.icon ||
-                                                                'home'
-                                                            }
+                                                            icon={link.icon || 'home'}
                                                             target={link.target}
                                                         />
                                                         {/* <a
@@ -107,5 +102,3 @@ const Portfolio = () => {
         </ContentWrapper>
     );
 };
-
-export default Portfolio;
