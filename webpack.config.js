@@ -51,7 +51,7 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({ dev: !isProduction }),
         new HtmlWebPackPlugin({
             template: 'src/index.html',
-            filename: '../index.html',
+            filename: 'docs/index.html',
             inject: false,
         }),
     ],
