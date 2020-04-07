@@ -6,7 +6,7 @@ const path = require('path');
 // };
 
 const copyPublic = () => {
-    return src(path.join('public/*.*')).pipe(dest(path.normalize('docs/')));
+    return src(path.join(__dirname, 'public', '*.*')).pipe(dest(path.join(__dirname, 'docs', 'public')));
 };
 
 // const copyHtml = () => {
