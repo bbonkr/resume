@@ -334,3 +334,5 @@ ASALocalRun/
 
 # temp build output
 src/**/dist/
+
+docs/
