@@ -19,13 +19,26 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.tsx?$/,
+            //     exclude: /node_modules/,
+            //     use: [
+            //         {
+            //             loader: 'ts-loader',
+            //             options: {
+            //                 transpileOnly: true,
+            //                 experimentalWatchApi: true,
+            //             },
+            //         },
+            //     ],
+            // },
             {
                 test: /\.(j|t)sx?$/,
                 loader: 'babel-loader',
-                // options: {
-                //     presets: ['@babel/preset-env', '@babel/react'],
-                //     plugins: ['react-hot-loader/babel'],
-                // },
+                options: {
+                    presets: ['@babel/preset-env', '@babel/react'],
+                    plugins: ['react-hot-loader/babel'],
+                },
                 exclude: /node_modules/,
             },
             {
@@ -51,8 +64,8 @@ module.exports = {
         new webpack.LoaderOptionsPlugin({ dev: !isProduction }),
         new HtmlWebPackPlugin({
             template: 'src/index.html',
-            filename: 'docs/index.html',
-            inject: false,
+            filename: '../index.html',
+            // inject: true,
         }),
     ],
     output: {

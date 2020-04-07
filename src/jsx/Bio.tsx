@@ -3,6 +3,7 @@ import { Button, Card, Divider } from 'antd';
 import { RateCardList } from '../components/RateCardList';
 import { ContentWrapper } from '../components/ContentWrapper';
 import { Bio as BioModel } from '../interfaces/Data';
+import ReactMarkdown from 'react-markdown';
 
 interface BioProps {
     record: BioModel;
@@ -14,9 +15,12 @@ export const Bio: React.FC<BioProps> = ({ record }) => {
             <Card>
                 <Card.Meta title="Bio" />
                 <Divider dashed={true} />
+
                 <div>
                     {record.contents.map((v, i) => {
-                        return <p key={i}>{v}</p>;
+                        // console.log(v);
+                        // return <p>{v}</p>;
+                        return <ReactMarkdown key={i} source={v} />;
                     })}
                 </div>
                 {/* <RateCardList data={Data.bio.sections} /> */}
