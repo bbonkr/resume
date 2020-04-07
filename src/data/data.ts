@@ -26,11 +26,13 @@ export const data: Data = {
     },
     bio: {
         contents: [
-            '12년 근무중 .NET 응용프로그램 개발팀으로 8년, 기술연구소에서 4년 근무했습니다. ',
-            '백엔드는 ASP.NET Core, 모바일 응용프로그램은 Android /iOS 로 접근하기 보다 Xamarin.Forms 로 크로스 플랫폼으로 진행하는 것을 선호합니다.',
-            '최근 Node.js 백엔드와 React 프론트엔드에 관심을 갖고 있습니다.',
-            '업무진행은 능동적으로 처리하는 것을 선호하며, 대화가 잘 되는 팀과 함께 일을 진행해보고 싶습니다.',
-            '서비스 기획이 준비되고, 해당 서비스의 분석, 설계, 구현이 필요한 팀을 찾고 있습니다. 최소 기능 제품으로 시작해서 마지막까지 팀원과 함게 하고 싶습니다.',
+            `
+12년 근무중 **.NET 응용프로그램 개발팀**으로 8년, **기술연구소**에서 4년 근무했습니다. \n
+백엔드는 ASP.NET Core, 모바일 응용프로그램은 Android /iOS 로 접근하기 보다 Xamarin.Forms 로 크로스 플랫폼으로 진행하는 것을 선호합니다.\n
+최근 Node.js 백엔드와 React 프론트엔드에 관심을 갖고 있습니다.\n
+업무진행은 능동적으로 처리하는 것을 선호하며, 대화가 잘 되는 팀과 함께 일을 진행해보고 싶습니다.\n
+서비스 기획이 준비되고, 해당 서비스의 분석, 설계, 구현이 필요한 팀을 찾고 있습니다.\n
+최소 기능 제품으로 시작해서 마지막까지 팀원과 함게 하고 싶습니다.`,
         ],
     },
 
@@ -68,6 +70,28 @@ export const data: Data = {
     ],
     portfolio: [
         {
+            date: '2020-03',
+            title: '공적 마스크 안내',
+            state: '완료',
+            description: '공적 마스크 구입 요일을 안내하는 모바일 응용프로그램입니다.',
+            features: ['Android', 'React Native', 'Expo', 'Google Play'],
+            links: [
+                {
+                    title: '구글 플레이',
+                    href: 'https://play.google.com/store/apps/details?id=kr.bbon.whendoibuyamask',
+                    icon: 'android',
+                    target: '_blank',
+                },
+                {
+                    title: 'GitHub: When do I buy a mask',
+                    href: 'https://github.com/bbonkr/when-do-i-buy-a-mask',
+                    icon: 'github',
+                    target: '_blank',
+                },
+            ],
+            tags: ['react-native', 'expo', 'google-play', 'typescript'],
+        },
+        {
             date: '2019-10',
             title: 'Blog Service #2',
             state: '완료',
@@ -89,16 +113,19 @@ export const data: Data = {
                     title: '데모 사이트',
                     href: 'https://blog-service.bbon.me/',
                     icon: 'home',
+                    target: '_blank',
                 },
                 {
                     title: 'GitHub: Blog service backend',
                     href: 'https://github.com/bbonkr/blog-node-backend',
                     icon: 'github',
+                    target: '_blank',
                 },
                 {
                     title: 'GitHub: Blog service frontend',
                     href: 'https://github.com/bbonkr/react-blog-frontend',
                     icon: 'github',
+                    target: '_blank',
                 },
             ],
             tags: [
@@ -124,12 +151,14 @@ export const data: Data = {
                     title: 'Google Play',
                     href: 'https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard',
                     icon: 'android',
+                    target: '_blank',
                 },
                 {
                     title: 'Microsoft Store',
                     href:
                         'https://www.microsoft.com/ko-kr/p/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90/9p7vpgxbgpwj',
                     icon: 'windows',
+                    target: '_blank',
                 },
             ],
             tags: ['xamarin', 'android', 'uwp', 'google-play', 'microsoft-store'],

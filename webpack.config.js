@@ -19,13 +19,26 @@ module.exports = {
     },
     module: {
         rules: [
+            // {
+            //     test: /\.tsx?$/,
+            //     exclude: /node_modules/,
+            //     use: [
+            //         {
+            //             loader: 'ts-loader',
+            //             options: {
+            //                 transpileOnly: true,
+            //                 experimentalWatchApi: true,
+            //             },
+            //         },
+            //     ],
+            // },
             {
                 test: /\.(j|t)sx?$/,
                 loader: 'babel-loader',
-                // options: {
-                //     presets: ['@babel/preset-env', '@babel/react'],
-                //     plugins: ['react-hot-loader/babel'],
-                // },
+                options: {
+                    presets: ['@babel/preset-env', '@babel/react'],
+                    plugins: ['react-hot-loader/babel'],
+                },
                 exclude: /node_modules/,
             },
             {
@@ -52,7 +65,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: 'src/index.html',
             filename: '../index.html',
-            inject: false,
+            // inject: true,
         }),
     ],
     output: {
