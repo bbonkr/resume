@@ -1,8 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-
+const dotenv = require('dotenv');
 const isProduction = process.env.NODE_ENV === 'production';
+
+dotenv.config();
 
 module.exports = {
     name: 'build resume',
@@ -19,19 +21,6 @@ module.exports = {
     },
     module: {
         rules: [
-            // {
-            //     test: /\.tsx?$/,
-            //     exclude: /node_modules/,
-            //     use: [
-            //         {
-            //             loader: 'ts-loader',
-            //             options: {
-            //                 transpileOnly: true,
-            //                 experimentalWatchApi: true,
-            //             },
-            //         },
-            //     ],
-            // },
             {
                 test: /\.(j|t)sx?$/,
                 loader: 'babel-loader',
@@ -45,27 +34,19 @@ module.exports = {
                 test: /\.css$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
             },
-            // {
-            //     test: /\.tsx?$/,
-            //     // loader: 'ts-loader',
-            //     // options: {
-            //     //     configFile: 'tsconfig.client.json',
-            //     // },
-            //     loader: 'awesome-typescript-loader',
-            //     options: {
-            //         configFileName: 'tsconfig.json',
-            //     },
-            //     // exclude: path.join(__dirname, 'node_modules'),
-            //     // exclude: /node_moduels/,
-            // },
         ],
     },
     plugins: [
         new webpack.LoaderOptionsPlugin({ dev: !isProduction }),
+        new webpack.DefinePlugin({
+            GAID: JSON.stringify(process.env.GAID),
+        }),
         new HtmlWebPackPlugin({
-            template: 'src/index.html',
+            template: 'src/index.ejs',
             filename: '../index.html',
-            // inject: true,
+            templateParameters: {
+                gaid: process.env.GAID,
+            },
         }),
     ],
     output: {
