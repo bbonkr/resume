@@ -26,10 +26,10 @@ export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
 
                 {records
                     .sort((a, b) => {
-                        if (a.date > b.date) {
+                        if (a.period > b.period) {
                             return -1;
                         }
-                        if (a.date < b.date) {
+                        if (a.period < b.period) {
                             return 1;
                         }
                         return 0;
@@ -41,7 +41,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
                                     title={v.title}
                                     description={
                                         <div>
-                                            {v.date} <small>{v.state}</small>
+                                            {v.period} <small>{v.state}</small>
                                         </div>
                                     }
                                 />
