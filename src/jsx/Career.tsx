@@ -16,10 +16,10 @@ export const Career: React.FC<CareerProps> = ({ records }) => {
                 <Timeline>
                     {records
                         .sort((a, b) => {
-                            if (a.date > b.date) {
+                            if (a.period > b.period) {
                                 return -1;
                             }
-                            if (b.date > a.date) {
+                            if (b.period > a.period) {
                                 return 1;
                             }
                             return 0;
@@ -27,7 +27,7 @@ export const Career: React.FC<CareerProps> = ({ records }) => {
                         .map((v, i) => {
                             return (
                                 <Timeline.Item key={i}>
-                                    <p>{v.date}</p>
+                                    <p>{v.period}</p>
                                     <h3>
                                         {v.title} <small>{v.state}</small>
                                     </h3>

@@ -1,12 +1,10 @@
-import React, { Fragment, useEffect } from 'react';
-import { Button, Card, Divider } from 'antd';
-import { RateCardList } from '../components/RateCardList';
+import React from 'react';
+import { Card, Divider } from 'antd';
 import { ContentWrapper } from '../components/ContentWrapper';
-import { Bio as BioModel } from '../interfaces/Data';
 import ReactMarkdown from 'react-markdown';
 
 interface BioProps {
-    record: BioModel;
+    record: string;
 }
 
 export const Bio: React.FC<BioProps> = ({ record }) => {
@@ -15,15 +13,9 @@ export const Bio: React.FC<BioProps> = ({ record }) => {
             <Card>
                 <Card.Meta title="Bio" />
                 <Divider dashed={true} />
-
                 <div>
-                    {record.contents.map((v, i) => {
-                        // console.log(v);
-                        // return <p>{v}</p>;
-                        return <ReactMarkdown key={i} source={v} />;
-                    })}
+                    <ReactMarkdown source={record} />;
                 </div>
-                {/* <RateCardList data={Data.bio.sections} /> */}
             </Card>
         </ContentWrapper>
     );

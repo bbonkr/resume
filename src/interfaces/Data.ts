@@ -1,7 +1,7 @@
 export interface Data {
     me: Me;
     home: Home;
-    bio: Bio;
+    bio: string;
     education: Education[];
     career: Career[];
     portfolio: Portfolio[];
@@ -22,12 +22,12 @@ export interface Home {
     links: Link[];
 }
 
-export interface Bio {
-    contents: string[];
-}
+// export interface Bio {
+//     contents: string[];
+// }
 
 export interface Education {
-    date: string;
+    period: string;
     title: string;
     state: '입학' | '졸업';
     description: string;
@@ -40,7 +40,7 @@ export interface Me {
 }
 
 export interface Career {
-    date: string;
+    period: string;
     title: string;
     state: '입사' | '퇴사';
     description: string;
@@ -48,7 +48,7 @@ export interface Career {
 }
 
 export interface Portfolio {
-    date: string;
+    period: string;
     title: string;
     state: '완료' | '진행중';
     description: string;
