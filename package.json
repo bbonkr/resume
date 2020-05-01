@@ -1,7 +1,7 @@
 {
     "name": "resume",
     "version": "1.0.0",
-    "description": "",
+    "description": "공개 이력서",
     "main": "index.js",
     "scripts": {
         "dev": "gulp && cross-env NODE_ENV=development webpack && cross-env NODE_ENV=development webpack-dev-server --open --mode development",

@@ -62,6 +62,20 @@ export const data: Data = {
             description: '기술연구소',
             links: [],
         },
+        {
+            period: '2019-11',
+            title: '(주)리블리뷰',
+            state: '입사',
+            description: '개발팀',
+            links: [],
+        },
+        {
+            period: '2020-03',
+            title: '(주)리블리뷰',
+            state: '퇴사',
+            description: '개발팀',
+            links: [],
+        },
     ],
     portfolio: [
         {
