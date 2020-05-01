@@ -4,6 +4,6 @@ interface NameProps {
     name: string;
 }
 
-export const Name: React.FC<NameProps> = ({ name }) => {
+export const Name = ({ name }: NameProps) => {
     return <span>&lt;{name} /&gt;</span>;
 };

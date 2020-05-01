@@ -7,7 +7,7 @@ interface RateCardListProps {
     records: TechSectionModel[];
 }
 
-export const RateCardList: React.FC<RateCardListProps> = memo(({ records }) => {
+export const RateCardList = memo(({ records }: RateCardListProps) => {
     return (
         <Fragment>
             {!!records &&

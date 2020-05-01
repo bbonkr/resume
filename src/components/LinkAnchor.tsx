@@ -8,7 +8,7 @@ interface LinkAnchorProps {
     target?: string;
 }
 
-export const LinkAnchor: React.FC<LinkAnchorProps> = ({ title, href, icon, target }) => {
+export const LinkAnchor = ({ title, href, icon, target }: LinkAnchorProps) => {
     return (
         <a href={href} title={title} target={target || '_blank'}>
             {icon && (

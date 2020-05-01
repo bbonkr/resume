@@ -2,6 +2,8 @@
 
 공개 이력서 저장소입니다.
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/11c14056-8c11-4fa3-98c5-c2187a67bb08/deploy-status)](https://app.netlify.com/sites/awesome-volhard-162d49/deploys)
+
 ## 준비
 
 ```bash
@@ -34,7 +36,7 @@ $ npm run build
 $ npm run deploy
 ```
 
-../docs 디렉터리의 변경사항을 master 브랜치의 docs 디렉터리에 반영하면 https://bbon.me/resume 페이지에서 확인할 수 있습니다.
+> GitHub pages 를 사용하는 경우 ../docs 디렉터리의 변경사항을 master 브랜치의 docs 디렉터리에 반영하면 https://bbon.me/resume 페이지에서 확인할 수 있습니다.
 
 ## 사용
 

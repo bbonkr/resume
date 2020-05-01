@@ -8,7 +8,7 @@ interface RateCardProps {
     score: number;
 }
 
-export const RateCard: React.FC<RateCardProps> = memo(({ name, description, icon, score }) => {
+export const RateCard = memo(({ name, description, icon, score }: RateCardProps) => {
     return (
         <Card>
             <Card.Meta title={<h3>{name}</h3>} description={description} />

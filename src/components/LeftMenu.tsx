@@ -15,10 +15,9 @@ interface LeftMenuProps {
     onClickMenuItem?: () => void;
 }
 
-export const LeftMenu: React.FC<LeftMenuProps> = ({ me, onClickMenuItem }) => {
+export const LeftMenu = ({ me, onClickMenuItem }: LeftMenuProps) => {
     const onClickMenu = (param: ClickParam): void => {
         if (onClickMenuItem) {
-            // onClickMenuItem(param);
             onClickMenuItem();
         }
     };
