@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, HashRouter, withRouter, Route, Link } from 'react-router-dom';
-import { Layout, Menu, Icon, Avatar, Divider, Drawer, BackTop, Affix } from 'antd';
+import { Layout, Menu, Avatar, Divider, Drawer, BackTop, Affix } from 'antd';
+import Icon from '@ant-design/icons';
 import styled from 'styled-components';
 import { Home } from './Home';
 import { Bio } from './Bio';
