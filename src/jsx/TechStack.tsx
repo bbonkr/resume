@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Divider, Rate, Row, Col, Icon } from 'antd';
+
 import { ContentWrapper } from '../components/ContentWrapper';
 import { RateCardList } from '../components/RateCardList';
 // import Data from '~/data/data.json';
@@ -13,12 +13,12 @@ interface TechStackProps {
 export const TechStack: React.FC<TechStackProps> = ({ records }) => {
     return (
         <ContentWrapper>
-            <Card>
-                <Card.Meta title={<h1>Tech Stack</h1>} />
-                <Divider dashed={true} />
-                <RateCardList records={records} />
+            {/* <Card> */}
+            {/* <Card.Meta title={<h1>Tech Stack</h1>} /> */}
+            {/* <Divider dashed={true} /> */}
+            {/* <RateCardList records={records} /> */}
 
-                {/* {categories &&
+            {/* {categories &&
                     categories.length > 0 &&
                     categories.map(category => {
                         return (
@@ -69,7 +69,7 @@ export const TechStack: React.FC<TechStackProps> = ({ records }) => {
                             </div>
                         );
                     })} */}
-            </Card>
+            {/* </Card> */}
         </ContentWrapper>
     );
 };

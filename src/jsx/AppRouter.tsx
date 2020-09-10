@@ -1,8 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter as Router, HashRouter, withRouter, Route, Link } from 'react-router-dom';
-import { Layout, Menu, Avatar, Divider, Drawer, BackTop, Affix } from 'antd';
-import Icon from '@ant-design/icons';
-import styled from 'styled-components';
 import { Home } from './Home';
 import { Bio } from './Bio';
 import { Education } from './Education';
@@ -11,30 +8,7 @@ import { Portfolio } from './Portfolio';
 import { TechStack } from './TechStack';
 import { LeftMenu } from '../components/LeftMenu';
 import { Name } from '../components/Name';
-
 import { data } from '../data/data';
-import 'antd/dist/antd.css';
-import { CollapseType } from 'antd/lib/layout/Sider';
-
-const AppLayout = styled(Layout)`
-    min-height: 100vh;
-`;
-
-const LeftSider = styled(Layout.Sider)`
-    min-height: 100vh;
-`;
-
-const ToggleIcon = styled(Icon)`
-    font-size: 1.4rem;
-    line-height: 64px;
-    cursor: pointer;
-    transition: color 0.3s;
-`;
-
-const HeaderTitle = styled.h1`
-    font-size: 1.4rem;
-    line-height: 64px;
-`;
 
 export const AppRouter = () => {
     const [siderCollapsed, setSiderCollapsed] = useState(false);
@@ -54,9 +28,9 @@ export const AppRouter = () => {
         }
     };
 
-    const handleCollapseSider = (collapsed: boolean, type: CollapseType): void => {
-        // console.log(collapsed, type);
-    };
+    // const handleCollapseSider = (collapsed: boolean, type: CollapseType): void => {
+    //     // console.log(collapsed, type);
+    // };
 
     const handleClickMenuItem = (): void => {
         // console.log('menu item: ', item);
@@ -71,8 +45,8 @@ export const AppRouter = () => {
 
     return (
         <HashRouter>
-            <AppLayout>
-                <LeftSider
+            {/* <AppLayout> */}
+            {/* <LeftSider
                     theme="light"
                     trigger={null}
                     breakpoint="lg"
@@ -83,8 +57,8 @@ export const AppRouter = () => {
                     onCollapse={handleCollapseSider}
                 >
                     <LeftMenu me={data.me} onClickMenuItem={handleClickMenuItem} />
-                </LeftSider>
-                <Layout>
+                </LeftSider> */}
+            {/* <Layout>
                     <Layout.Header style={{ background: '#fff', padding: 0 }}>
                         <div
                             style={{
@@ -120,9 +94,9 @@ export const AppRouter = () => {
                         <Route path="/career/" component={() => <Career records={data.career} />} />
                         <Route path="/portfolio/" component={() => <Portfolio records={data.portfolio} />} />
                         <Route path="/techstack/" component={() => <TechStack records={data.techStack} />} />
-                    </Layout.Content>
-                    {/* <Layout.Footer>Footer</Layout.Footer> */}
-                    <Drawer
+                    </Layout.Content> */}
+            {/* <Layout.Footer>Footer</Layout.Footer> */}
+            {/* <Drawer
                         placement="left"
                         bodyStyle={{ padding: '0' }}
                         closable={false}
@@ -131,9 +105,9 @@ export const AppRouter = () => {
                         visible={showDrawer}
                     >
                         <LeftMenu me={data.me} onClickMenuItem={handleClickMenuItem} />
-                    </Drawer>
-                </Layout>
-            </AppLayout>
+                    </Drawer> */}
+            {/* </Layout> */}
+            {/* </AppLayout> */}
         </HashRouter>
     );
 };

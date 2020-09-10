@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, Divider } from 'antd';
 import { ContentWrapper } from '../components/ContentWrapper';
 import ReactMarkdown from 'react-markdown';
 
@@ -10,13 +9,13 @@ interface BioProps {
 export const Bio: React.FC<BioProps> = ({ record }) => {
     return (
         <ContentWrapper>
-            <Card>
+            {/* <Card>
                 <Card.Meta title="Bio" />
                 <Divider dashed={true} />
                 <div>
                     <ReactMarkdown source={record} />;
                 </div>
-            </Card>
+            </Card> */}
         </ContentWrapper>
     );
 };

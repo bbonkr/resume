@@ -1,5 +1,4 @@
 import React, { Fragment, memo } from 'react';
-import { Row, Col } from 'antd';
 import { RateCard } from './RateCard';
 import { TechSection as TechSectionModel } from '../interfaces/Data';
 
@@ -12,12 +11,12 @@ export const RateCardList = memo(({ records }: RateCardListProps) => {
         <Fragment>
             {!!records &&
                 records.length > 0 &&
-                records.map(category => {
+                records.map((category) => {
                     const { name, items, icon } = category;
                     return (
                         <div key={name} style={{ marginBottom: '2.0rem' }}>
                             <h3>{name}</h3>
-                            <Row type="flex" justify="start" gutter={16}>
+                            {/* <Row type="flex" justify="start" gutter={16}>
                                 {items.map(item => {
                                     return (
                                         <Col
@@ -38,7 +37,7 @@ export const RateCardList = memo(({ records }: RateCardListProps) => {
                                         </Col>
                                     );
                                 })}
-                            </Row>
+                            </Row> */}
                         </div>
                     );
                 })}

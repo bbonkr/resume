@@ -8,7 +8,8 @@ export const data: Data = {
     home: {
         title: '안녕하세요. 구본철입니다.',
         subtitle: '응용프로그램 개발자',
-        intro: '저는 응용프로그램 개발자입니다. 필요한 기능을 설계하고 구현하는 것을 좋아합니다. ❤️',
+        intro:
+            '저는 응용프로그램 개발자입니다. 필요한 기능을 설계하고 구현하는 것을 좋아합니다. ❤️',
         links: [
             { title: '블로그', href: 'http://bbon.kr', icon: 'home' },
             {
@@ -153,8 +154,12 @@ export const data: Data = {
             period: '2019-04',
             title: '너와 나의 점수판',
             state: '완료',
-            description: 'Xamarin.Forms 로 작성된 응용프로그램을 Google Play, Microsoft Store 에 게시합니다.',
-            features: ['언어 지원 en-US, ko-KR', '앱 내 구매 In-app purchase (현재 사용하지 않습니다.)'],
+            description:
+                'Xamarin.Forms 로 작성된 응용프로그램을 Google Play, Microsoft Store 에 게시합니다.',
+            features: [
+                '언어 지원 en-US, ko-KR',
+                '앱 내 구매 In-app purchase (현재 사용하지 않습니다.)',
+            ],
             links: [
                 {
                     title: 'Google Play',
@@ -238,13 +243,22 @@ export const data: Data = {
                     icon: 'github',
                 },
             ],
-            tags: ['nodejs', 'sequelize', 'react', 'next.js', 'redux', 'redux-saga', 'styled-component'],
+            tags: [
+                'nodejs',
+                'sequelize',
+                'react',
+                'next.js',
+                'redux',
+                'redux-saga',
+                'styled-component',
+            ],
         },
         {
             period: '2019-07',
             title: '너와 나의 점수판 React Native',
             state: '완료',
-            description: 'React Native 를 사용해서 Xamarin.Forms 로 작성된 응용프로그램을 재작성합니다.',
+            description:
+                'React Native 를 사용해서 Xamarin.Forms 로 작성된 응용프로그램을 재작성합니다.',
             features: ['언어 지원 en-US, ko-KR', 'React Native'],
             links: [
                 {

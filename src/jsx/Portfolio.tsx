@@ -1,17 +1,9 @@
 import React, { useEffect } from 'react';
-import { Button, Card, Divider, Tag } from 'antd';
-import styled from 'styled-components';
 import { ContentWrapper } from '../components/ContentWrapper';
 import { LinkAnchor } from '../components/LinkAnchor';
 
 // import Data from '~/data/data.json';
 import { Portfolio as PortfolioModel } from '../interfaces/Data';
-
-const InlineList = styled.ul`
-    & > li {
-        display: inline-block;
-    }
-`;
 
 interface PortfolioProps {
     records: PortfolioModel[];
@@ -20,7 +12,7 @@ interface PortfolioProps {
 export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
     return (
         <ContentWrapper>
-            <Card>
+            {/* <Card>
                 <Card.Meta title={<h1>Portfolio</h1>} />
                 <Divider dashed={true} />
 
@@ -70,11 +62,6 @@ export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
                                                             icon={link.icon || 'home'}
                                                             target={link.target}
                                                         />
-                                                        {/* <a
-                                                            href={link.href}
-                                                            target="_blank">
-                                                            {link.title}
-                                                        </a> */}
                                                     </li>
                                                 );
                                             })}
@@ -98,7 +85,7 @@ export const Portfolio: React.FC<PortfolioProps> = ({ records }) => {
                             </Card>
                         );
                     })}
-            </Card>
+            </Card> */}
         </ContentWrapper>
     );
 };

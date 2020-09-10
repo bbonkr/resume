@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Card, Divider, Icon } from 'antd';
 import { ContentWrapper } from '../components/ContentWrapper';
 import { LinkAnchor } from '../components/LinkAnchor';
 import { Home as HomeModel } from '../interfaces/Data';
@@ -11,7 +10,7 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ record }) => {
     return (
         <ContentWrapper>
-            <Card>
+            {/* <Card>
                 <p>{record.intro}</p>
 
                 {record.links && record.links.length > 0 && (
@@ -33,7 +32,7 @@ export const Home: React.FC<HomeProps> = ({ record }) => {
                         </ul>
                     </div>
                 )}
-            </Card>
+            </Card> */}
         </ContentWrapper>
     );
 };
