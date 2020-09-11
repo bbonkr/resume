@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { PageWrapper } from '../PageWrapper';
 
 export const MainLayout: React.FC = ({ children }) => {
     useEffect(() => {
@@ -40,12 +41,5 @@ export const MainLayout: React.FC = ({ children }) => {
             }
         };
     }, []);
-    return (
-        <div
-            className="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom"
-            data-sidebar-type="overlayed-sm-and-down"
-        >
-            {children}
-        </div>
-    );
+    return <div>{children}</div>;
 };

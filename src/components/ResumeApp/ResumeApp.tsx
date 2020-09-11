@@ -6,6 +6,8 @@ import { ContentWrapper } from '../ContentWrapper/';
 import { Header } from '../Header';
 import { Footer } from '../Footer';
 import { Content } from '../Content';
+import { LeftPane } from '../LeftPane';
+import { RightPane } from '../RightPane';
 
 export const ResumeApp = () => {
     useEffect(() => {
@@ -19,20 +21,18 @@ export const ResumeApp = () => {
         }
 
         halfmoon.onDOMContentLoaded();
+
+        halfmoon.toggleDarkMode();
     }, []);
 
     return (
         <MainLayout>
-            <React.Fragment>
-                <Header />
-                <SideBar />
-                <ContentWrapper>
-                    <Content title={'🎉 Hello World'}>
-                        <p>Hello wolrd</p>
-                    </Content>
-                </ContentWrapper>
-                <Footer />
-            </React.Fragment>
+            <ContentWrapper>
+                <div className="row">
+                    <LeftPane />
+                    <RightPane />
+                </div>
+            </ContentWrapper>
         </MainLayout>
     );
 };

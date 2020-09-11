@@ -303,22 +303,27 @@ export const data: Data = {
             items: [
                 {
                     name: 'C#',
-                    description: '~v7',
+                    description: '',
                     score: 5.0,
                 },
                 {
                     name: 'Javascript',
-                    description: '~es8',
+                    description: '',
                     score: 4.5,
                 },
                 {
+                    name: 'Typescript',
+                    description: '',
+                    score: 4.0,
+                },
+                {
                     name: 'Python',
-                    description: 'v3.7.x',
+                    description: '',
                     score: 3.0,
                 },
                 {
                     name: 'SQL',
-                    description: 'ansi',
+                    description: '',
                     score: 4.0,
                 },
             ],
@@ -329,37 +334,43 @@ export const data: Data = {
             items: [
                 {
                     name: '.NET Framework',
-                    description: '~v4.8',
+                    description: '',
                     score: 5.0,
                     href: 'https://dotnet.microsoft.com/',
                 },
                 {
                     name: '.NET Core',
-                    description: '~2.2',
+                    description: '',
                     score: 4.0,
                     href: 'https://dotnet.microsoft.com/',
                 },
                 {
                     name: 'Xamarin.Forms',
-                    description: '~v4.1',
+                    description: '',
                     score: 4.0,
                     href: 'https://docs.microsoft.com/ko-kr/xamarin/',
                 },
                 {
+                    name: 'Node.js',
+                    description: '',
+                    score: 3.5,
+                    href: '',
+                },
+                {
                     name: 'React',
-                    description: '~v16.8',
+                    description: '',
                     score: 3.5,
                     href: 'https://reactjs.org/',
                 },
                 {
                     name: 'Express',
-                    description: '~v4.17',
+                    description: '',
                     score: 3.0,
                     href: 'https://expressjs.com/',
                 },
                 {
                     name: 'Django',
-                    description: '~v2.0',
+                    description: '',
                     score: 2.5,
                     href: 'https://www.djangoproject.com/',
                 },

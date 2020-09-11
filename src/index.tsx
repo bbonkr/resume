@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom';
 import { ResumeApp } from './components/ResumeApp';
 
 import 'halfmoon/css/halfmoon.min.css';
-
 // const App = hot(ResumeApp);
 
 ReactDOM.render(<ResumeApp />, document.querySelector('#app'));
