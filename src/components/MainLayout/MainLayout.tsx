@@ -42,8 +42,8 @@ export const MainLayout: React.FC = ({ children }) => {
     }, []);
     return (
         <div
-            className="page-wrapper with-sidebar with-navbar with-navbar-fixed-bottom"
-            data-sidebar-type="full-height"
+            className="page-wrapper with-navbar with-sidebar with-navbar-fixed-bottom"
+            data-sidebar-type="overlayed-sm-and-down"
         >
             {children}
         </div>
