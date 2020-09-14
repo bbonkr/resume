@@ -6,7 +6,7 @@ export declare global {
     }
 
     interface Window {
-        gtag: (action: string, gaId: string, parameter: PageViewParameter) => void;
+        gtag: (action: string, gaId: string, parameter?: PageViewParameter) => void;
         GAID: string;
     }
 }
