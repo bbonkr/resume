@@ -1,8 +1,8 @@
 {
     "name": "resume",
-    "version": "1.0.0",
+    "version": "2.0.0",
     "description": "공개 이력서",
-    "main": "docs/dist/index.js",
+    "main": "docs/dist/app.js",
     "scripts": {
         "dev": "webpack-dev-server --config webpack.config.dev.js --mode development",
         "build:dev": "webpack --config webpack.config.dev.js",
@@ -10,9 +10,13 @@
         "build": "cross-env NODE_ENV=production npm run build:prod",
         "lint": "eslint --ext .ts,.tsx src/ --quiet --fix"
     },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
+    "keywords": [
+        "react",
+        "typescript",
+        "resume"
+    ],
+    "author": "Pon Cheol Ku <dev@bbon.kr> (http://bbon.kr)",
+    "license": "MIT",
     "dependencies": {
         "halfmoon": "^1.0.4",
         "react": "^16.13.1",
