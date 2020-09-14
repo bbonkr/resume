@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
 import halfmoon from 'halfmoon';
 import { MainLayout } from '../MainLayout';
-import { SideBar } from '../SideBar';
 import { ContentWrapper } from '../ContentWrapper/';
-import { Header } from '../Header';
-import { Footer } from '../Footer';
-import { Content } from '../Content';
 import { LeftPane } from '../LeftPane';
 import { RightPane } from '../RightPane';
+
+import { data } from '../../data/data';
 
 export const ResumeApp = () => {
     useEffect(() => {
@@ -29,8 +27,8 @@ export const ResumeApp = () => {
         <MainLayout>
             <ContentWrapper>
                 <div className="row">
-                    <LeftPane />
-                    <RightPane />
+                    <LeftPane record={data} />
+                    <RightPane record={data} />
                 </div>
             </ContentWrapper>
         </MainLayout>

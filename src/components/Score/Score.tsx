@@ -11,7 +11,11 @@ export const Score = ({ score, max, icon }: ScoreProps) => {
                 .fill(0)
                 .map((x, index) => {
                     const className = score >= index + 1 ? 'text-primary' : 'text-mute';
-                    return <span className={`${className}`}>{icon}</span>;
+                    return (
+                        <span key={`icon-${index + 1}`} className={`${className}`}>
+                            {icon}
+                        </span>
+                    );
                 })}
         </span>
     );

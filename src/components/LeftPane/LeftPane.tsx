@@ -1,15 +1,19 @@
 import React from 'react';
-import { data } from '../../data/data';
+import { Data } from '../../interfaces/Data';
 import { Bio } from '../Bio';
 import { MainPicture } from '../MainPicture';
 import { Skill } from '../Skill';
 
-export const LeftPane = () => {
+interface LeftPaneProps {
+    record: Data;
+}
+
+export const LeftPane = ({ record }: LeftPaneProps) => {
     return (
         <div className="col-md-4 text-center h-auto overflow-auto">
-            <MainPicture record={data} />
-            <Bio record={data} />
-            <Skill record={data} />
+            <MainPicture record={record} />
+            <Bio record={record} />
+            <Skill record={record} />
         </div>
     );
 };

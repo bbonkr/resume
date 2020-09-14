@@ -15,12 +15,12 @@ export const Skill = ({ record }: SkillProps) => {
                 .filter((x, index) => index === 0)
                 .map((item) => {
                     return (
-                        <div>
+                        <div key={item.name}>
                             <h4>{item.name}</h4>
                             <dl>
                                 {item.items.map((x) => {
                                     return (
-                                        <React.Fragment>
+                                        <React.Fragment key={x.name}>
                                             <dt>{x.name}</dt>
                                             <dd>
                                                 <Score score={x.score} max={5} icon={<FaStar />} />

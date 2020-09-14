@@ -2,16 +2,16 @@ export interface Data {
     me: Me;
     home: Home;
     bio: string;
-    education: Education[];
-    career: Career[];
-    portfolio: Portfolio[];
+    education: ContentData[];
+    career: ContentData[];
+    portfolio: ContentData[];
     techStack: TechSection[];
 }
 
 export interface Link {
     title: string;
     href: string;
-    icon: string;
+    icon?: 'home' | 'blog' | 'github' | 'mail' | 'site' | 'android' | 'ios' | 'windows' | '';
     target?: string;
 }
 
@@ -42,7 +42,7 @@ export interface Me {
 export interface Career {
     period: string;
     title: string;
-    state: '입사' | '퇴사';
+    state: '입사' | '퇴사' | '완료';
     description: string;
     links: Link[];
 }
@@ -68,4 +68,14 @@ export interface Tech {
     description: string;
     score: number;
     href?: string;
+}
+
+export interface ContentData {
+    period: string;
+    title: string;
+    state?: string;
+    description?: string;
+    features?: string[];
+    tags?: string[];
+    links?: Link[];
 }
