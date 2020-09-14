@@ -2,9 +2,11 @@ const webpack = require('webpack');
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const dotenv = require('dotenv');
-const isProduction = process.env.NODE_ENV === 'production';
+const CopyPlugin = require('copy-webpack-plugin');
 
 dotenv.config();
+
+const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
     name: 'build resume',
@@ -12,24 +14,39 @@ module.exports = {
     mode: isProduction ? 'production' : 'development',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
-        alias: {
-            'react-dom': '@hot-loader/react-dom',
-        },
+        // alias: {
+        //     'react-dom': '@hot-loader/react-dom',
+        // },
     },
     entry: {
-        app: path.join(__dirname, 'src', 'jsx', 'index'),
+        app: path.join(__dirname, 'src', 'index'),
     },
     module: {
         rules: [
             {
-                test: /\.(j|t)sx?$/,
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env', '@babel/react'],
-                    plugins: ['react-hot-loader/babel'],
-                },
+                test: /\.tsx?$/,
+                use: [
+                    !isProduction && {
+                        loader: 'babel-loader',
+                        options: {
+                            plugins: ['react-refresh/babel'],
+                        },
+                    },
+                    'ts-loader',
+                ].filter(Boolean),
                 exclude: /node_modules/,
             },
+            // {
+            //     test: /\.jsx?$/,
+            //     loader: 'babel-loader',
+            //     options: {
+            //         presets: ['@babel/preset-env', '@babel/preset-react'],
+            //         plugins: [
+            //             // 'react-hot-loader/babel'
+            //         ],
+            //     },
+            //     exclude: /node_modules/,
+            // },
             {
                 test: /\.css$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
@@ -43,23 +60,24 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: 'src/index.ejs',
+            // template: 'src/index.html',
             filename: '../index.html',
             templateParameters: {
                 gaid: process.env.GAID,
             },
+        }),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: 'public',
+                    to: '../public',
+                },
+            ],
         }),
     ],
     output: {
         filename: '[name].js',
         path: path.join(__dirname, 'docs/dist'),
         publicPath: '/dist/',
-    },
-    devServer: {
-        port: 3000,
-        contentBase: path.resolve('docs'),
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        publicPath: '/',
     },
 };
