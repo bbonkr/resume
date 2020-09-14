@@ -5,9 +5,10 @@ import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 
 interface GenericLinkProps {
     record: Link;
+    className?: string;
 }
 
-export const GenericLink = ({ record }: GenericLinkProps) => {
+export const GenericLink = ({ record, className }: GenericLinkProps) => {
     const renderIcon = () => {
         if (record.icon) {
             switch (record.icon) {
@@ -32,7 +33,7 @@ export const GenericLink = ({ record }: GenericLinkProps) => {
         return undefined;
     };
     return (
-        <a href={record.href} target={record.target || '_blank'}>
+        <a className={className ?? ''} href={record.href} target={record.target || '_blank'}>
             {renderIcon()} {record.title}
             {(!record.target || record.target !== '_self') && (
                 <span className="ml-5">

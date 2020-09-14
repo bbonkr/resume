@@ -10,13 +10,13 @@ interface HomeProps {
 export const Home = ({ record }: HomeProps) => {
     const { home } = record;
     return (
-        <div className="card">
+        <div className="card mx-0">
             <h3 className="card-title">
                 {record.home.title} <small>{record.home.subtitle}</small>
             </h3>
             <ReactMarkdown source={record.home.intro} />
 
-            <div className="d-flex flex-row justify-content-center">
+            <div className="d-flex flex-row justify-content-center flex-wrap">
                 {home.links.map((x) => {
                     return (
                         <div className="mr-20" key={x.href}>

@@ -2,17 +2,17 @@ export interface Data {
     me: Me;
     home: Home;
     bio: string;
-    education: ContentData[];
-    career: ContentData[];
-    portfolio: ContentData[];
-    techStack: TechSection[];
+    education: ContentData;
+    career: ContentData;
+    portfolio: ContentData;
+    skillStack: TechSection[];
 }
 
 export interface Link {
     title: string;
     href: string;
     icon?: 'home' | 'blog' | 'github' | 'mail' | 'site' | 'android' | 'ios' | 'windows' | '';
-    target?: string;
+    target?: string | '_blank' | '_self';
 }
 
 export interface Home {
@@ -22,16 +22,8 @@ export interface Home {
     links: Link[];
 }
 
-// export interface Bio {
-//     contents: string[];
-// }
-
-export interface Education {
-    period: string;
-    title: string;
+export interface Education extends ContentDataRecord {
     state: '입학' | '졸업';
-    description: string;
-    links: Link[];
 }
 
 export interface Me {
@@ -39,22 +31,12 @@ export interface Me {
     photo: string;
 }
 
-export interface Career {
-    period: string;
-    title: string;
+export interface Career extends ContentDataRecord {
     state: '입사' | '퇴사' | '완료';
-    description: string;
-    links: Link[];
 }
 
-export interface Portfolio {
-    period: string;
-    title: string;
+export interface Portfolio extends ContentDataRecord {
     state: '완료' | '진행중';
-    description: string;
-    features: string[];
-    tags: string[];
-    links: Link[];
 }
 
 export interface TechSection {
@@ -70,7 +52,12 @@ export interface Tech {
     href?: string;
 }
 
-export interface ContentData {
+interface ContentData {
+    title: string;
+    records: ContentDataRecord[];
+}
+
+export interface ContentDataRecord {
     period: string;
     title: string;
     state?: string;

@@ -11,7 +11,7 @@ interface SkillProps {
 export const Skill = ({ record }: SkillProps) => {
     return (
         <Content title="Skill" className="text-left">
-            {record.techStack
+            {record.skillStack
                 .filter((x, index) => index === 0)
                 .map((item) => {
                     return (
