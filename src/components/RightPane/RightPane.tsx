@@ -17,7 +17,7 @@ export const RightPane = ({ record }: RightPaneProps) => {
                 <CardContent {...record.education} />
                 <CardContent {...record.career} />
                 <CardContent {...record.portfolio} />
-                <SkillStack title={'Skills'} records={record.skillStack} />
+                <SkillStack {...record.skillStack} />
             </Content>
         </div>
     );

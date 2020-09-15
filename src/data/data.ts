@@ -8,8 +8,43 @@ export const data: Data = {
     home: {
         title: '안녕하세요. 구본철입니다.',
         subtitle: '응용프로그램 개발자',
-        intro:
-            '저는 응용프로그램 개발자입니다. 필요한 기능을 설계하고 구현하는 것을 좋아합니다. ❤️',
+        intro: `
+### 개발자
+
+부산의 솔루션 개발기업에서 개발자 경력을 시작했습니다. 
+
+대학교 업무를 위한 ERP 시스템을 Microsoft 의 .NET Framework 기반 응용프로그램 작성하여 납품하는 것을 주요 사업으로 진행하는 기업입니다. 
+
+입사후 8년간 솔루션 개발팀에서 대학교에 파견되어 프로젝트를 진행했습니다. 
+
+### 방송통신대학교
+
+입사후, 불평등한 대우가 싫어 낮에는 프로젝트를 진행하고 늦은 밤에 온라인 강의를 통해 학사 졸업장을 획득하였습니다. 
+
+컴퓨터 과학 전공에서 얻은 지식은 없어도 무관할 수 있으나, 있으면 더 좋은 소프트웨어의 기반이 될 수 있다는 것을 알게되었습니다.
+
+### 기술연구소
+
+사내 기술연구소를 설립되면서, 선임 연구원으로 선택되어 기존에 진행하던 프로젝트와는 다른 업무와 기술을 사용할 수 있게 되었습니다. 
+
+저에게는 매우 좋은 기회였고, 많은 것을 배울 수 있었습니다. 
+
+그 중 클라우드와 모바일 응용프로그램에 대한 작업 기회가 생긴 것이 가장 좋았습니다.
+
+### 퇴사
+
+주변에서 12년간 근무하는 것에 대한 이야기와 편하게 업무를 진행할 수 있는데, 어려움을 감수하고 새롭게 시작하는 것에 대한 이야기를 많이 들었습니다. 
+
+하지만, 편하게 업무를 진행하는 것보다 앞으로 나아가고 싶었습니다. 
+
+힘들고 어렵더라도 새로운 일에 도전하고 싶어 퇴사를 결정하게 되었습니다.
+        `,
+        bio: `
+2007년 3월부터 부산 소재 대학교 업무 솔루션 개발 기업에서 프로젝트를 진행했습니다.
+
+2019년 3월부터 스타트업 개발자, 프리랜서 개발자로 활동하고 있습니다.
+
+[블로그](https://bbon.kr/)에 글을 게시하고, [코드를 지속적으로 작성](https://github.com/bbonkr)하고 있습니다.`,
         links: [
             { title: '블로그', href: 'http://bbon.kr', icon: 'home' },
             {
@@ -25,15 +60,8 @@ export const data: Data = {
             },
         ],
     },
-    bio: `12년 근무중 **.NET 응용프로그램 개발팀**으로 8년, **기술연구소**에서 4년 근무했습니다. \n
-백엔드는 ASP.NET Core, 모바일 응용프로그램은 Android /iOS 로 접근하기 보다 Xamarin.Forms 로 크로스 플랫폼으로 진행하는 것을 선호합니다.\n
-최근 Node.js 백엔드와 React 프론트엔드에 관심을 갖고 있습니다.\n
-업무진행은 능동적으로 처리하는 것을 선호하며, 대화가 잘 되는 팀과 함께 일을 진행해보고 싶습니다.\n
-서비스 기획이 준비되고, 해당 서비스의 분석, 설계, 구현이 필요한 팀을 찾고 있습니다.\n
-최소 기능 제품으로 시작해서 마지막까지 팀원과 함게 하고 싶습니다.`,
-
     education: {
-        title: 'Educations',
+        title: '교육',
         records: [
             {
                 period: '2008-03',
@@ -52,7 +80,7 @@ export const data: Data = {
         ],
     },
     career: {
-        title: 'Career',
+        title: '경험',
         records: [
             {
                 period: '2007-03',
@@ -92,8 +120,58 @@ export const data: Data = {
         ],
     },
     portfolio: {
-        title: 'Portfolio',
+        title: '미니 프로젝트',
         records: [
+            {
+                period: '2020-09',
+                state: '완료',
+                title: '@bbon/filedownload',
+                description: '파일 다운로드 코드 조각입니다.',
+                features: ['typescript', 'npm'],
+                tags: ['typescript', 'npm'],
+                links: [
+                    {
+                        title: '@bbonkr/filedownload',
+                        href: 'https://www.npmjs.com/package/@bbon/filedownload',
+                        icon: 'npm',
+                        target: '_blank',
+                    },
+                    {
+                        title: '@bbonkr/filedownload',
+                        href: 'https://github.com/bbonkr/bbon-filedownload',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Demo: filedownload',
+                        href: 'https://bbon.me/bbon-filedownload-sample/',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
+                period: '2020-04',
+                title: '@bbon/fomatter',
+                description: '값을 형식화된 문자열로 처리하기 위한 기능을 제공합니다.',
+                features: ['typescript', 'npm'],
+                state: '완료',
+                tags: ['typescript', 'npm'],
+                links: [
+                    {
+                        title: 'npm: @bbon/formatter',
+                        href: 'https://www.npmjs.com/package/@bbon/formatter',
+                        icon: 'npm',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GitHub: @bbon/formatter',
+                        href: 'https://github.com/bbonkr/bbon-formatter',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                ],
+            },
             {
                 period: '2020-03',
                 title: '공적 마스크 안내',
@@ -116,6 +194,23 @@ export const data: Data = {
                     },
                 ],
                 tags: ['react-native', 'expo', 'google-play', 'typescript'],
+            },
+            {
+                period: '2020-02',
+                state: '완료',
+                title: 'Rename App: Electron',
+                description:
+                    '일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.',
+                features: ['입력값으로 치환', '앞에 추가', '뒤에 추기', '정규식으로 치환'],
+                tags: ['electron', 'react', 'typescript', 'windows', 'macos'],
+                links: [
+                    {
+                        title: 'GitHub: renameapp',
+                        href: 'https://github.com/bbonkr/renameapp',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                ],
             },
             {
                 period: '2019-10',
@@ -225,7 +320,14 @@ export const data: Data = {
                     {
                         title: 'nuget.org: kr.bbon.Xamarin.Forms',
                         href: 'https://www.nuget.org/packages/kr.bbon.Xamarin.Forms',
-                        icon: '',
+                        icon: 'nuget',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GitHub: kr.bbon.Xamarin.Forms',
+                        href: 'https://github.com/bbonkr/kr.bbon.Xamarin.Forms',
+                        icon: 'github',
+                        target: '_blank',
                     },
                 ],
                 tags: ['.net-standard', 'xamarin', 'nuget', 'open-source', 'github'],
@@ -313,105 +415,108 @@ export const data: Data = {
             },
         ],
     },
-    skillStack: [
-        {
-            name: 'Programming Languages',
-            icon: 'star',
-            items: [
-                {
-                    name: 'C#',
-                    description: '',
-                    score: 5.0,
-                },
-                {
-                    name: 'Javascript',
-                    description: '',
-                    score: 4.5,
-                },
-                {
-                    name: 'Typescript',
-                    description: '',
-                    score: 4.0,
-                },
-                {
-                    name: 'Python',
-                    description: '',
-                    score: 3.0,
-                },
-                {
-                    name: 'SQL',
-                    description: '',
-                    score: 4.0,
-                },
-            ],
-        },
-        {
-            name: 'Frameworks',
-            icon: 'like',
-            items: [
-                {
-                    name: '.NET Framework',
-                    description: '',
-                    score: 5.0,
-                    href: 'https://dotnet.microsoft.com/',
-                },
-                {
-                    name: '.NET Core',
-                    description: '',
-                    score: 4.0,
-                    href: 'https://dotnet.microsoft.com/',
-                },
-                {
-                    name: 'Xamarin.Forms',
-                    description: '',
-                    score: 4.0,
-                    href: 'https://docs.microsoft.com/ko-kr/xamarin/',
-                },
-                {
-                    name: 'Node.js',
-                    description: '',
-                    score: 3.5,
-                    href: '',
-                },
-                {
-                    name: 'React',
-                    description: '',
-                    score: 3.5,
-                    href: 'https://reactjs.org/',
-                },
-                {
-                    name: 'Express',
-                    description: '',
-                    score: 3.0,
-                    href: 'https://expressjs.com/',
-                },
-                {
-                    name: 'Django',
-                    description: '',
-                    score: 2.5,
-                    href: 'https://www.djangoproject.com/',
-                },
-            ],
-        },
-        {
-            name: 'Cloud Platforms Experience',
-            items: [
-                {
-                    name: 'Azure',
-                    description: '',
-                    score: 2.0,
-                },
-                {
-                    name: 'AWS',
-                    description: '',
-                    score: 1.5,
-                },
-                {
-                    name: 'Google Cloud',
-                    description: '',
-                    score: 1.5,
-                },
-            ],
-        },
-    ],
+    skillStack: {
+        title: '',
+        records: [
+            {
+                name: '프로그램 언어',
+                icon: 'star',
+                items: [
+                    {
+                        name: 'C#',
+                        description: '',
+                        score: 5.0,
+                    },
+                    {
+                        name: 'Javascript',
+                        description: '',
+                        score: 4.5,
+                    },
+                    {
+                        name: 'Typescript',
+                        description: '',
+                        score: 4.0,
+                    },
+                    {
+                        name: 'Python',
+                        description: '',
+                        score: 3.0,
+                    },
+                    {
+                        name: 'SQL',
+                        description: '',
+                        score: 4.0,
+                    },
+                ],
+            },
+            {
+                name: '프레임워크',
+                icon: 'like',
+                items: [
+                    {
+                        name: '.NET Framework',
+                        description: '',
+                        score: 5.0,
+                        href: 'https://dotnet.microsoft.com/',
+                    },
+                    {
+                        name: '.NET Core',
+                        description: '',
+                        score: 4.0,
+                        href: 'https://dotnet.microsoft.com/',
+                    },
+                    {
+                        name: 'Xamarin.Forms',
+                        description: '',
+                        score: 4.0,
+                        href: 'https://docs.microsoft.com/ko-kr/xamarin/',
+                    },
+                    {
+                        name: 'Node.js',
+                        description: '',
+                        score: 3.5,
+                        href: '',
+                    },
+                    {
+                        name: 'React',
+                        description: '',
+                        score: 3.5,
+                        href: 'https://reactjs.org/',
+                    },
+                    {
+                        name: 'Express',
+                        description: '',
+                        score: 3.0,
+                        href: 'https://expressjs.com/',
+                    },
+                    {
+                        name: 'Django',
+                        description: '',
+                        score: 2.5,
+                        href: 'https://www.djangoproject.com/',
+                    },
+                ],
+            },
+            {
+                name: '클라우드 경험',
+                items: [
+                    {
+                        name: 'Azure',
+                        description: '',
+                        score: 3.0,
+                    },
+                    {
+                        name: 'AWS',
+                        description: '',
+                        score: 2.5,
+                    },
+                    {
+                        name: 'Google Cloud',
+                        description: '',
+                        score: 2.5,
+                    },
+                ],
+            },
+        ],
+    },
 };

@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import { TechSection } from '../../interfaces/Data';
+import { SkillSection } from '../../interfaces/Data';
 import { Score } from '../Score';
 
 interface SkillStackProps {
     title: string;
-    records: TechSection[];
+    records: SkillSection[];
 }
 
 export const SkillStack = ({ title, records }: SkillStackProps) => {
