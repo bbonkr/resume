@@ -3,6 +3,7 @@ export interface Data {
     home: Home;
     education: ContentData;
     career: ContentData;
+    project: ContentData;
     portfolio: ContentData;
     skillStack: SkillContentData;
 }
@@ -27,10 +28,10 @@ export interface Link {
 
 export interface Home {
     title: string;
-    subtitle: string;
-    intro: string;
-    bio: string;
-    links: Link[];
+    subtitle?: string;
+    intro?: string;
+    bio?: string;
+    links?: Link[];
 }
 
 export interface Education extends ContentDataRecord {
@@ -52,7 +53,7 @@ export interface Portfolio extends ContentDataRecord {
 
 export interface SkillContentData {
     title: string;
-    records: SkillSection[];
+    records?: SkillSection[];
 }
 
 export interface SkillSection {
@@ -70,7 +71,7 @@ export interface SkillItem {
 
 interface ContentData {
     title: string;
-    records: ContentDataRecord[];
+    records?: ContentDataRecord[];
 }
 
 export interface ContentDataRecord {

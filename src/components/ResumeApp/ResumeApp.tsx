@@ -4,12 +4,13 @@ import { MainLayout } from '../MainLayout';
 import { ContentWrapper } from '../ContentWrapper/';
 import { LeftPane } from '../LeftPane';
 import { RightPane } from '../RightPane';
-
 import { data } from '../../data/data';
+import { Footer } from '../Footer';
 
 export const ResumeApp = () => {
     useEffect(() => {
         const bodyEl = document.querySelector('body');
+
         if (bodyEl) {
             bodyEl.setAttribute(
                 'class',
@@ -30,6 +31,8 @@ export const ResumeApp = () => {
                     <LeftPane record={data} />
                     <RightPane record={data} />
                 </div>
+
+                <Footer record={data} />
             </ContentWrapper>
         </MainLayout>
     );

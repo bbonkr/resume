@@ -1,5 +1,11 @@
 import { Data } from '../interfaces/Data';
 
+const workAt = {
+    i: '(주)아이OO',
+    r: '(주)리블OO',
+    a: '에어OO',
+};
+
 export const data: Data = {
     me: {
         name: '구본철',
@@ -80,42 +86,223 @@ export const data: Data = {
         ],
     },
     career: {
-        title: '경험',
+        title: '근무 경험',
         records: [
             {
                 period: '2007-03',
-                title: '(주)아이OO',
+                title: workAt.i,
                 state: '입사',
-                description: '솔루션개발부',
+                description: `
+솔루션개발부에 근무
+
+SI 프로젝트 참여
+
+사내 프레임워크 관리
+`,
                 links: [],
             },
             {
                 period: '2019-03',
-                title: '(주)아이OO',
+                title: workAt.i,
                 state: '퇴사',
                 description: '기술연구소',
                 links: [],
             },
             {
                 period: '2019-11',
-                title: '(주)리블OO',
+                title: workAt.r,
                 state: '입사',
                 description: '개발팀',
                 links: [],
             },
             {
                 period: '2020-03',
-                title: '(주)리블OO',
+                title: workAt.r,
                 state: '퇴사',
                 description: '개발팀',
                 links: [],
             },
             {
                 period: '2020-05~2020-07',
-                title: '에어OO',
+                title: workAt.a,
                 state: '완료',
                 description: '프론트엔드 개발',
                 links: [],
+            },
+        ],
+    },
+    project: {
+        title: '업무 경험',
+        records: [
+            {
+                period: '2020-05~2020-07',
+                title: '제주여행 최저가 제공 서비스',
+                description: `
+제주 여행 최저가 예약 서비스 스타트업에서 프론트엔드 개발을 담당했습니다.
+
+기획 단계에서 모바일 응용프로그램처럼 디자인이 결정되어, 동작이 자연스럽지 않게 개발되었습니다.
+
+Node.js 기반으로 동작하고, Typescript 를 사용하는 React 응용프로그램을 Next.js 프레임워크 기반으로 작성했습니다.
+
+Azure DevOps 에서 버전제어를 관리하고, Azure Pipeline 을 사용해서 Azure WebApp 으로 게시합니다.`,
+                tags: [
+                    workAt.a,
+                    '프리랜서',
+                    '프론트엔드',
+                    'React',
+                    'Next.js',
+                    'Azure DevOps',
+                    'Azure WebApp',
+                    'Azure Pipeline',
+                    'Node.js',
+                ],
+            },
+            {
+                period: '2019-11~2020-03',
+                title: '쇼핑몰 플랫폼 구축',
+                description: `
+제주 쇼핑몰 플랫폼 스타트업에서 풀스택 개발을 담당했습니다.
+
+기획 단계가 끝나지 않아 프로젝트를 더 이상 진행할 수 없어 퇴사했습니다.
+
+Typescript 로 Node.js 백엔드를 작성했습니다.
+TypeORM 을 사용해서 데이터 액세스를 처리했습니다.
+
+관리자 사이트는 백엔드 RESTful API 를 사용하는 React 응용프로그램으로 작성했습니다.
+
+사용자용 모바일 응용프로그램은 Typescript 로 React Native 기반으로 하고, Expo 프레임워크를 사용했습니다.`,
+                tags: [
+                    workAt.r,
+                    'Typescript',
+                    'Node.js',
+                    'React',
+                    'React Native',
+                    'Expo',
+                    'Docker',
+                    'Jenkins',
+                ],
+            },
+            {
+                period: '2017-12~2018-08',
+                title: '챗봇 빌더',
+                description: `
+질문과 답변 데이터베이스를 구축하고, 사용자 입력 질문을 자연어 처리를 통해 유효한 답변을 제공하기 위한 기술 연구 개발 프로젝트를 담당했습니다.
+
+Azure QnA Service 로 구현한 후, QnA Service 를 참조해서 Azure Search Service 를 사용하도록 변경했습니다.
+                `,
+                tags: [
+                    workAt.i,
+                    '연구개발',
+                    'ASP.NET Core',
+                    '.NET Core',
+                    'Azure SQL Database',
+                    'Azure Search Service',
+                    'Azure QnA Service',
+                    'Azure LUIS',
+                    'Azure DevOps',
+                ],
+            },
+            {
+                period: '2016-07~2017-10',
+                title: '스마트 아이디 카드',
+                description: `
+고객사의 사용자 정보를 기반으로 모바일 신분증을 제공하는 플랫폼 구축 프로젝트를 담당했습니다.
+
+중앙관리사이트는 Azure WebApp 으로 동작합니다.
+
+고객사 데이터를 모바일 응용프로그램에 제공하기 위한 웹 응용프로그램은 고객사 내에서 동작합니다.
+
+모바일 응용프로그램을 공용으로 사용하고, 사용자는 최초 고객사 코드로 중앙관리사이트에서 데이터 처리를 위한 웹 응용프로그램 구성을 제공받습니다.
+
+웹 응용프로그램은 ASP.NET Core 로 작성되었습니다.
+
+모바일 응용프로그램은 Xamarin으로 작성해서 Google Play, App Store 에 게시했습니다.
+
+중앙 관리사이트는 Azure Pipeline으로 CI/CD 를 구성했습니다.
+
+모바일 응용프로그램은 App Center로 CI/CD를 구성했습니다.`,
+                tags: [
+                    workAt.i,
+                    '연구개발',
+                    'ASP.NET core',
+                    '.NET Core',
+                    'Azure SQL Database',
+                    'Azure DevOps',
+                    'Azure Pipeline',
+                    'Xamarin',
+                    'App Center',
+                ],
+            },
+            {
+                period: '2015-10',
+                title: '.NET Framework Migration 컨설팅',
+                description: `고객사 .NET Framework 업그레이드를 위한 컨설팅`,
+                tags: [workAt.i, '컨설팅', '.NET Framework'],
+            },
+            {
+                period: '2014-04~2014-10',
+                title: 'Microsoft Exchange Server 사용량 분석 서비스',
+                description: `
+Microsoft Exchange Server 상태 정보를 수집하는 Windows Service
+
+수집된 정보를 분석해서 필요한 데이터를 제공하는 ASP.NET MVC 웹 응용프로그램`,
+                tags: [
+                    workAt.i,
+                    '연구개발',
+                    '.NET Framework',
+                    'ASP.NET',
+                    'Microsoft Exchange Server',
+                    'Windows Service',
+                    '데이터 수집',
+                    '데이터 분석',
+                ],
+            },
+            {
+                period: '2014-03~2014-05',
+                title: 'HR-AD 데이터 연계 서비스',
+                description: `
+HR 데이터를 기반으로 Microsoft Active Directory 사용자 및 조직 정보를 관리합니다.
+
+기술
+
+- Windows Service 형식의 데몬으로 실행되며, 지정된 시각에 데이터를 처리`,
+                tags: [
+                    workAt.i,
+                    '연구개발',
+                    'Microsoft SQL Server',
+                    'Microsoft Active Directory',
+                    'T-SQL',
+                    'Windows Service',
+                ],
+            },
+            {
+                period: '2014-02~2014-03',
+                title: '전자우편 송수신 보고 서비스',
+                description: `
+Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계를 제공
+
+기술
+
+- Microsoft Exchange Server 의 Message Tracing Log 수집, 분석
+- Exchange Web Service API 사용
+- Windows Service 형식의 데몬으로 실행
+`,
+                tags: [workAt.i, '연구개발', 'Microsoft Exchange Server', 'Windows Service'],
+            },
+            {
+                period: '2012-09~2013-10',
+                title: '평택 국제대학교 종합정보시스템 구축',
+
+                description: `
+개발팀 소속으로 프로젝트 진행
+
+기술
+
+- .NET Framework 기반의 Windows Forms 데스크톱 응용프로그램
+- ASP.NET Web Forms 웹 응용프로그램
+- 사내 프레임워크 유지 관리                
+                `,
+                tags: [workAt.i, 'SI', '.NET Framework', 'Windows Forms', 'ASP.NET'],
             },
         ],
     },

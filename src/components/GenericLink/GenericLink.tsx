@@ -46,10 +46,15 @@ export const GenericLink = ({ record, className }: GenericLinkProps) => {
         return undefined;
     };
     return (
-        <a className={className ?? ''} href={record.href} target={record.target || '_blank'}>
-            {renderIcon()} {record.title}
+        <a
+            className={`d-flex flex-row flex-justify-center flex-align-baseline ${className ?? ''}`}
+            href={record.href}
+            target={record.target || '_blank'}
+        >
+            {record.icon && <span className="mr-5">{renderIcon()}</span>}{' '}
+            <span className="mr-5">{record.title}</span>
             {(!record.target || record.target !== '_self') && (
-                <span className="ml-5">
+                <span>
                     <FaExternalLinkAlt />
                 </span>
             )}

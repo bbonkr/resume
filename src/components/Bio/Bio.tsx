@@ -15,15 +15,17 @@ export const Bio = ({ record }: BioProps) => {
         <Content title={title.toUpperCase()} className="text-left">
             <ReactMarkdown source={home.bio} />
 
-            <div className="d-flex flex-row justify-content-center flex-wrap">
-                {home.links.map((x) => {
-                    return (
-                        <div className="mr-20" key={x.href}>
-                            <GenericLink record={x} />
-                        </div>
-                    );
-                })}
-            </div>
+            {home.links && home.links.length > 0 && (
+                <div className="d-flex flex-row justify-content-center flex-wrap">
+                    {home.links.map((x) => {
+                        return (
+                            <div className="mr-20" key={x.href}>
+                                <GenericLink record={x} />
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
         </Content>
     );
 };
