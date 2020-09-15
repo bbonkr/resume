@@ -36,7 +36,7 @@ $ npm run build
 $ npm run deploy
 ```
 
-> GitHub pages 를 사용하는 경우 ../docs 디렉터리의 변경사항을 master 브랜치의 docs 디렉터리에 반영하면 https://bbon.me/resume 페이지에서 확인할 수 있습니다.
+> GitHub pages 를 사용하는 경우 ../docs 디렉터리의 변경사항을 master 브랜치의 docs 디렉터리에 반영하면 깃허브 페이지로 확인할 수 있습니다.
 
 ## 사용
 
@@ -50,5 +50,8 @@ public/ 디렉터리의 파일을 변경하십시오.
 
 index.html 파일의 내용을 변경하십시오.
 
--   Google Analytics 관련 코드
 -   meta 정보
+
+환경변수 또는 .env 파일
+
+-   Google Analytics 관련 코드 `GAID=UA-XXXXXXXX-X`

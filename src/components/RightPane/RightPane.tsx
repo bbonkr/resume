@@ -13,11 +13,11 @@ export const RightPane = ({ record }: RightPaneProps) => {
         <div className="col-md-8">
             <Content>
                 <Home record={record} />
-
+                <SkillStack {...record.skillStack} />
                 <CardContent {...record.education} />
                 <CardContent {...record.career} />
+                <CardContent {...record.project} />
                 <CardContent {...record.portfolio} />
-                <SkillStack title={'Skills'} records={record.skillStack} />
             </Content>
         </div>
     );

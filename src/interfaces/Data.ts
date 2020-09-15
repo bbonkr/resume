@@ -1,25 +1,37 @@
 export interface Data {
     me: Me;
     home: Home;
-    bio: string;
     education: ContentData;
     career: ContentData;
+    project: ContentData;
     portfolio: ContentData;
-    skillStack: TechSection[];
+    skillStack: SkillContentData;
 }
 
 export interface Link {
     title: string;
     href: string;
-    icon?: 'home' | 'blog' | 'github' | 'mail' | 'site' | 'android' | 'ios' | 'windows' | '';
+    icon?:
+        | 'home'
+        | 'blog'
+        | 'github'
+        | 'mail'
+        | 'site'
+        | 'android'
+        | 'ios'
+        | 'windows'
+        | 'npm'
+        | 'nuget'
+        | '';
     target?: string | '_blank' | '_self';
 }
 
 export interface Home {
     title: string;
-    subtitle: string;
-    intro: string;
-    links: Link[];
+    subtitle?: string;
+    intro?: string;
+    bio?: string;
+    links?: Link[];
 }
 
 export interface Education extends ContentDataRecord {
@@ -39,13 +51,18 @@ export interface Portfolio extends ContentDataRecord {
     state: '완료' | '진행중';
 }
 
-export interface TechSection {
-    name: string;
-    icon?: string;
-    items: Tech[];
+export interface SkillContentData {
+    title: string;
+    records?: SkillSection[];
 }
 
-export interface Tech {
+export interface SkillSection {
+    name: string;
+    icon?: string;
+    items: SkillItem[];
+}
+
+export interface SkillItem {
     name: string;
     description: string;
     score: number;
@@ -54,7 +71,7 @@ export interface Tech {
 
 interface ContentData {
     title: string;
-    records: ContentDataRecord[];
+    records?: ContentDataRecord[];
 }
 
 export interface ContentDataRecord {

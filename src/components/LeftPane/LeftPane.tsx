@@ -13,7 +13,7 @@ export const LeftPane = ({ record }: LeftPaneProps) => {
         <div className="col-md-4 text-center h-auto overflow-auto">
             <MainPicture record={record} />
             <Bio record={record} />
-            <Skill record={record} />
+            <Skill {...record.skillStack} />
         </div>
     );
 };
