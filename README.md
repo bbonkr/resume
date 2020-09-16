@@ -54,4 +54,4 @@ index.html 파일의 내용을 변경하십시오.
 
 환경변수 또는 .env 파일
 
--   Google Analytics 관련 코드 `GAID=UA-XXXXXXXX-X`
+-   Google Analytics 식별자 `GAID=UA-XXXXXXXX-X`
