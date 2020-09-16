@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import halfmoon from 'halfmoon';
 
 export const MainLayout: React.FC = ({ children }) => {
+    const location = useLocation();
+
     useEffect(() => {
         const googleAnalyticsScriptLoaded = () => {
             if (window && typeof window.ga === 'function') {
@@ -38,5 +42,15 @@ export const MainLayout: React.FC = ({ children }) => {
             }
         };
     }, []);
-    return <div>{children}</div>;
+
+    useEffect(() => {
+        console.info('ga send pageview', location.pathname, window.GAID);
+        if (window && window.GAID && typeof window.ga === 'function') {
+            window.ga('send', ['pageview', location.pathname]);
+            console.info('ga send pageview', location.pathname);
+        }
+        halfmoon.deactivateAllDropdownToggles();
+    }, [location]);
+
+    return <div className="page-wrapper">{children}</div>;
 };

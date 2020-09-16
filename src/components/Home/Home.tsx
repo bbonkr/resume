@@ -16,15 +16,18 @@ export const Home = ({ record }: HomeProps) => {
             </h3>
             <ReactMarkdown source={record.home.intro} />
             {home.links && home.links.length > 0 && (
-                <div className="d-flex flex-row justify-content-center flex-wrap">
-                    {home.links.map((x) => {
-                        return (
-                            <div className="mr-20" key={x.href}>
-                                <GenericLink record={x} />
-                            </div>
-                        );
-                    })}
-                </div>
+                <React.Fragment>
+                    <hr />
+                    <div className="d-flex flex-row justify-content-center flex-wrap mt-10">
+                        {home.links.map((x) => {
+                            return (
+                                <div className="mr-20" key={x.href}>
+                                    <GenericLink record={x} />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </React.Fragment>
             )}
         </div>
     );

@@ -1,55 +1,73 @@
-import React from 'react';
+import React, { useState } from 'react';
 import halfmoon from 'halfmoon';
+import { FaBars, FaAngleDown, FaSun, FaMoon } from 'react-icons/fa';
+import { Data } from '../../interfaces/Data';
+import { Link, useLocation } from 'react-router-dom';
+import { ThemeButton } from '../ThemeButton';
 
-export const Header = () => {
-    const handleToggleSideBar = () => {
-        halfmoon.toggleSidebar();
-    };
+interface HeaderProps {
+    record: Data;
+}
+interface RouteData {
+    title: string;
+    path: string;
+}
+const routes: RouteData[] = [
+    {
+        title: 'Introduction',
+        path: '/introduction',
+    },
+    {
+        title: 'Skill',
+        path: '/skill',
+    },
+    {
+        title: 'Education',
+        path: '/education',
+    },
+    {
+        title: 'Work',
+        path: '/work',
+    },
+    {
+        title: 'Project',
+        path: '/project',
+    },
+    {
+        title: 'Portfolio',
+        path: '/portfolio',
+    },
+];
+
+export const Header = ({ record }: HeaderProps) => {
+    const location = useLocation();
+
     return (
-        <nav className="navbar">
-            {/* <!-- Navbar content (with toggle sidebar button) --> */}
-            <div className="navbar-content">
-                <button className="btn btn-action" type="button" onClick={handleToggleSideBar}>
-                    <i className="fa fa-bars" aria-hidden="true"></i>
-                    <span className="sr-only">Toggle sidebar</span>
-                    {/* <!-- sr-only = show only on screen readers --> */}
-                </button>
-            </div>
-            {/* <!-- Navbar brand --> */}
-            <a href="#" className="navbar-brand">
-                <img src="/public/me.png" alt="It's me! Pon Cheol Ku" />
-                Brand
-            </a>
-            {/* <!-- Navbar text --> */}
-            <span className="navbar-text text-monospace">v3.0</span>
-            {/* <!-- text-monospace = font-family shifted to monospace --> */}
-            {/* <!-- Navbar nav --> */}
+        <nav className="navbar flex-shrink-0">
+            <Link to="/" className="navbar-brand">
+                <img src="/images/me.png" alt="It's me! Pon Cheol Ku" />
+                구본철 이력서
+            </Link>
+
             <ul className="navbar-nav d-none d-md-flex">
-                {/* <!-- d-none = display: none, d-md-flex = display: flex on medium screens and up (width > 768px) --> */}
-                <li className="nav-item active">
-                    <a href="#" className="nav-link">
-                        Docs
-                    </a>
-                </li>
-                <li className="nav-item">
-                    <a href="#" className="nav-link">
-                        Products
-                    </a>
-                </li>
+                {routes.map((route) => {
+                    return (
+                        <li
+                            key={route.path}
+                            className={`nav-item ${
+                                route.path === location.pathname ? 'active' : ''
+                            }`}
+                        >
+                            <Link to={route.path} className="nav-link">
+                                {route.title}
+                            </Link>
+                        </li>
+                    );
+                })}
             </ul>
-            {/* <!-- Navbar form (inline form) --> */}
-            <form className="form-inline d-none d-md-flex ml-auto" action="..." method="...">
-                {/* <!-- d-none = display: none, d-md-flex = display: flex on medium screens and up (width > 768px), ml-auto = margin-left: auto --> */}
-                <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Email address"
-                    required={true}
-                />
-                <button className="btn btn-primary" type="submit">
-                    Sign up
-                </button>
-            </form>
+            <div className="navbar-nav d-none d-md-flex ml-auto">
+                <ThemeButton />
+            </div>
             {/* <!-- Navbar content (with the dropdown menu) --> */}
             <div className="navbar-content d-md-none ml-auto">
                 {/* <!-- d-md-none = display: none on medium screens and up (width > 768px), ml-auto = margin-left: auto --> */}
@@ -60,35 +78,26 @@ export const Header = () => {
                         type="button"
                         id="navbar-dropdown-toggle-btn-1"
                     >
-                        Menu
-                        <i className="fa fa-angle-down" aria-hidden="true"></i>
+                        <FaBars />
                     </button>
                     <div
                         className="dropdown-menu dropdown-menu-right w-200"
                         aria-labelledby="navbar-dropdown-toggle-btn-1"
                     >
-                        {/* <!-- w-200 = width: 20rem (200px) --> */}
-                        <a href="#" className="dropdown-item">
-                            Docs
-                        </a>
-                        <a href="#" className="dropdown-item">
-                            Products
-                        </a>
+                        {routes.map((route) => {
+                            return (
+                                <Link
+                                    key={route.path}
+                                    to={route.path}
+                                    className="dropdown-item active"
+                                >
+                                    {route.title}
+                                </Link>
+                            );
+                        })}
                         <div className="dropdown-divider"></div>
-                        <div className="dropdown-content">
-                            <form action="..." method="...">
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Email address"
-                                        required={true}
-                                    />
-                                </div>
-                                <button className="btn btn-primary btn-block" type="submit">
-                                    Sign up
-                                </button>
-                            </form>
+                        <div className="dropdown-item">
+                            <ThemeButton />
                         </div>
                     </div>
                 </div>

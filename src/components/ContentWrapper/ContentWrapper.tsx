@@ -14,11 +14,6 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({ onScroll, childr
             contentWrapperRef.current.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
         }
     };
-    useEffect(() => {
-        if (window && typeof window.ga === 'function') {
-            window.ga('send', 'pageview');
-        }
-    }, [window && window.location && window.location.href]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -49,7 +44,10 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({ onScroll, childr
     }, []);
 
     return (
-        <div className="content-wrapper" ref={contentWrapperRef}>
+        <div
+            className="content-wrapper d-flex flex-column flex-justify-between"
+            ref={contentWrapperRef}
+        >
             {children}
             <ScrollToTop show={showScrollToTop} onClick={handleScrollTop} />
         </div>

@@ -9,7 +9,7 @@ const workAt = {
 export const data: Data = {
     me: {
         name: '구본철',
-        photo: '/public/me.png',
+        photo: '/images/me.png',
     },
     home: {
         title: '안녕하세요. 구본철입니다.',
