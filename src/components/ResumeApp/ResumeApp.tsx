@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import halfmoon from 'halfmoon';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 import { MainLayout } from '../MainLayout';
 import { ContentWrapper } from '../ContentWrapper/';
 import { LeftPane } from '../LeftPane';

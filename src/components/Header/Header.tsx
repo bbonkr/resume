@@ -41,12 +41,15 @@ const routes: RouteData[] = [
 
 export const Header = ({ record }: HeaderProps) => {
     const location = useLocation();
+    const {
+        me: { name, photo },
+    } = record;
 
     return (
         <nav className="navbar flex-shrink-0">
             <Link to="/" className="navbar-brand">
-                <img src="/images/me.png" alt="It's me! Pon Cheol Ku" />
-                구본철 이력서
+                <img src={photo} alt="It's me! Pon Cheol Ku" />
+                {name} 이력서
             </Link>
 
             <ul className="navbar-nav d-none d-md-flex">
