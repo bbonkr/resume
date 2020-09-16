@@ -44,10 +44,8 @@ export const MainLayout: React.FC = ({ children }) => {
     }, []);
 
     useEffect(() => {
-        console.info('ga send pageview', location.pathname, window.GAID);
         if (window && window.GAID && typeof window.ga === 'function') {
             window.ga('send', ['pageview', location.pathname]);
-            console.info('ga send pageview', location.pathname);
         }
         halfmoon.deactivateAllDropdownToggles();
     }, [location]);
