@@ -7,7 +7,7 @@ interface FooterProps {
 }
 export const Footer = ({ record }: FooterProps) => {
     return (
-        <nav className="navbar navbar-static-bottom">
+        <nav className="navbar navbar-static-bottom flex-shrink-0">
             <div className="container-fluid">
                 {record.home.links && record.home.links.length > 0 && (
                     <ul className="navbar-nav ml-auto hidden-sm-and-down">

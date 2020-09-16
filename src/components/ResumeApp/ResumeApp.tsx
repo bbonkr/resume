@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import halfmoon from 'halfmoon';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { MainLayout } from '../MainLayout';
 import { ContentWrapper } from '../ContentWrapper/';
 import { LeftPane } from '../LeftPane';
 import { RightPane } from '../RightPane';
 import { data } from '../../data/data';
 import { Footer } from '../Footer';
+import { Header } from '../Header';
 
 export const ResumeApp = () => {
     useEffect(() => {
@@ -20,20 +22,20 @@ export const ResumeApp = () => {
         }
 
         halfmoon.onDOMContentLoaded();
-
-        halfmoon.toggleDarkMode();
     }, []);
 
     return (
-        <MainLayout>
-            <ContentWrapper>
-                <div className="row">
-                    <LeftPane record={data} />
-                    <RightPane record={data} />
-                </div>
-
-                <Footer record={data} />
-            </ContentWrapper>
-        </MainLayout>
+        <Router>
+            <MainLayout>
+                <ContentWrapper>
+                    <Header record={data} />
+                    <div className="row flex-grow-1">
+                        <LeftPane record={data} />
+                        <RightPane record={data} />
+                    </div>
+                    <Footer record={data} />
+                </ContentWrapper>
+            </MainLayout>
+        </Router>
     );
 };

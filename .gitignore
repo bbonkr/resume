@@ -336,3 +336,4 @@ ASALocalRun/
 src/**/dist/
 
 docs/
+.env

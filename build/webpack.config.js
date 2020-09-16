@@ -8,18 +8,17 @@ dotenv.config();
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+const projectRootDir = path.resolve(__dirname, '..');
+
 module.exports = {
     name: 'build resume',
     devtool: isProduction ? 'hidden-source-map' : 'eval',
     mode: isProduction ? 'production' : 'development',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
-        // alias: {
-        //     'react-dom': '@hot-loader/react-dom',
-        // },
     },
     entry: {
-        app: path.join(__dirname, 'src', 'index'),
+        app: path.join(projectRootDir, 'src', 'index'),
     },
     module: {
         rules: [
@@ -36,17 +35,6 @@ module.exports = {
                 ].filter(Boolean),
                 exclude: /node_modules/,
             },
-            // {
-            //     test: /\.jsx?$/,
-            //     loader: 'babel-loader',
-            //     options: {
-            //         presets: ['@babel/preset-env', '@babel/preset-react'],
-            //         plugins: [
-            //             // 'react-hot-loader/babel'
-            //         ],
-            //     },
-            //     exclude: /node_modules/,
-            // },
             {
                 test: /\.css$/,
                 use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
@@ -60,7 +48,6 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: 'src/index.ejs',
-            // template: 'src/index.html',
             filename: '../index.html',
             templateParameters: {
                 gaid: process.env.GAID,
@@ -69,15 +56,15 @@ module.exports = {
         new CopyPlugin({
             patterns: [
                 {
-                    from: 'public',
-                    to: '../public',
+                    from: path.join(projectRootDir, 'public'),
+                    to: '../',
                 },
             ],
         }),
     ],
     output: {
         filename: '[name].js',
-        path: path.join(__dirname, 'docs/dist'),
+        path: path.join(projectRootDir, 'docs/dist'),
         publicPath: '/dist/',
     },
 };
