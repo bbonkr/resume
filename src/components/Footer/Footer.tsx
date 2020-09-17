@@ -1,13 +1,16 @@
 import React from 'react';
 import { Data } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';
+import { ScrollToTop } from '../ScrollToTop';
 
 interface FooterProps {
     record: Data;
+    onClickScrollToTop?: () => void;
 }
-export const Footer = ({ record }: FooterProps) => {
+
+export const Footer = ({ record, onClickScrollToTop }: FooterProps) => {
     return (
-        <nav className="navbar navbar-static-bottom flex-shrink-0">
+        <nav className="navbar navbar-fixed-bottom">
             <div className="container-fluid">
                 {record.home.links && record.home.links.length > 0 && (
                     <ul className="navbar-nav ml-auto hidden-sm-and-down">
@@ -21,7 +24,14 @@ export const Footer = ({ record }: FooterProps) => {
                     </ul>
                 )}
 
-                <span className="navbar-text">&copy; {record.me.name}, All rights reserved</span>
+                <span className="navbar-text ml-auto">
+                    &copy; {record.me.name}, All rights reserved
+                </span>
+                <ScrollToTop
+                    containerClassName="navbar-content"
+                    show
+                    onClick={onClickScrollToTop}
+                />
             </div>
         </nav>
     );
