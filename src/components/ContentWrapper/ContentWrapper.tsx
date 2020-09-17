@@ -1,19 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { Position } from '../../interfaces';
+import { Data } from '../../interfaces';
+import { Footer } from '../Footer';
+import { Header } from '../Header';
 import { ScrollToTop } from '../ScrollToTop';
 
 interface ContentWrapperProps {
+    record: Data;
+    scrollPosition: Position;
     onScroll?: (left: number, top: number) => void;
 }
 
-export const ContentWrapper: React.FC<ContentWrapperProps> = ({ onScroll, children }) => {
+export const ContentWrapper: React.FC<ContentWrapperProps> = ({
+    children,
+    record,
+    scrollPosition,
+    onScroll,
+}) => {
     const contentWrapperRef = useRef<HTMLDivElement>(null);
     const [showScrollToTop, setShowScrollToTop] = useState(false);
-
-    const handleScrollTop = () => {
-        if (contentWrapperRef.current) {
-            contentWrapperRef.current.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
-        }
-    };
 
     useEffect(() => {
         const handleScroll = () => {
@@ -43,13 +48,17 @@ export const ContentWrapper: React.FC<ContentWrapperProps> = ({ onScroll, childr
         };
     }, []);
 
+    useEffect(() => {
+        if (scrollPosition.top + scrollPosition.left === 0) {
+            if (contentWrapperRef.current) {
+                contentWrapperRef.current.scrollTo({ left: 0, top: 0, behavior: 'smooth' });
+            }
+        }
+    }, [scrollPosition]);
+
     return (
-        <div
-            className="content-wrapper d-flex flex-column flex-justify-between"
-            ref={contentWrapperRef}
-        >
+        <div className="content-wrapper" ref={contentWrapperRef}>
             {children}
-            <ScrollToTop show={showScrollToTop} onClick={handleScrollTop} />
         </div>
     );
 };

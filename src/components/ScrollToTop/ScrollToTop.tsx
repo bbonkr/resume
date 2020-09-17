@@ -19,15 +19,14 @@ export const ScrollToTop = ({
     buttonContent,
     onClick,
 }: ScrollToTopProps) => {
+    if (!show) {
+        return <React.Fragment></React.Fragment>;
+    }
+
     return (
         <div
             className={`${containerClassName ?? ''}`}
             style={{
-                position: 'fixed',
-                bottom: '68px',
-                right: '38px',
-                visibility: show ? 'visible' : 'hidden',
-                zIndex: 100,
                 ...(containerStyle ?? {}),
             }}
         >

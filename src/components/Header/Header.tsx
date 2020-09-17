@@ -46,7 +46,7 @@ export const Header = ({ record }: HeaderProps) => {
     } = record;
 
     return (
-        <nav className="navbar flex-shrink-0">
+        <nav className="navbar">
             <Link to="/" className="navbar-brand">
                 <img src={photo} alt="It's me! Pon Cheol Ku" />
                 {name} 이력서
