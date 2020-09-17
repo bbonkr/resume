@@ -33,7 +33,7 @@ export const ResumeApp = () => {
                         <LeftPane record={data} />
                         <RightPane record={data} />
                     </div>
-                    <Footer record={data} />
+                    {/* <Footer record={data} /> */}
                 </ContentWrapper>
             </MainLayout>
         </Router>

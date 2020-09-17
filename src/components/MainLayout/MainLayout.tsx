@@ -15,6 +15,6 @@ export const MainLayout: React.FC = ({ children }) => {
         ReactGa.pageview(location.pathname);
         halfmoon.deactivateAllDropdownToggles();
     }, [location]);
-
+    //
     return <div className="page-wrapper">{children}</div>;
 };
