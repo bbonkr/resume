@@ -310,6 +310,29 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         title: '미니 프로젝트',
         records: [
             {
+                period: '2020-11',
+                state: '완료',
+                title: '@bbon/css-to-jss',
+                description:
+                    '프로젝트에 포함된 css 파일을 css-in-js 적용을 위한 `<style jsx>` 코드로 변환하는 CLI 도구입니다.',
+                features: ['typescript', 'npm', 'cli'],
+                links: [
+                    {
+                        title: '@bbon/css-to-jss',
+                        href: 'https://www.npmjs.com/package/@bbon/css-to-jss',
+                        icon: 'npm',
+                        target: '_blank',
+                    },
+                    {
+                        title: '@bbon/css-to-jss',
+                        href: 'https://github.com/bbonkr/css-to-jss',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                ],
+                tags: ['typescript', 'npm', 'cli'],
+            },
+            {
                 period: '2020-09',
                 state: '완료',
                 title: '@bbon/filedownload',
