@@ -13,7 +13,7 @@ export const Bio = ({ record }: BioProps) => {
     const { home } = record;
     return (
         <Content title={title.toUpperCase()} className="text-left">
-            <ReactMarkdown source={home.bio} />
+            <ReactMarkdown source={home.bio ?? ''} />
 
             {home.links && home.links.length > 0 && (
                 <div className="d-flex flex-row justify-content-center flex-wrap">
