@@ -14,7 +14,7 @@ export const Home = ({ record }: HomeProps) => {
             <h3 className="card-title">
                 {record.home.title} <small>{record.home.subtitle}</small>
             </h3>
-            <ReactMarkdown source={record.home.intro} />
+            <ReactMarkdown source={record.home.intro ?? ''} />
             {home.links && home.links.length > 0 && (
                 <React.Fragment>
                     <hr />
