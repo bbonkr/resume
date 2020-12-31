@@ -44,6 +44,12 @@ export const data: Data = {
 하지만, 편하게 업무를 진행하는 것보다 앞으로 나아가고 싶었습니다. 
 
 힘들고 어렵더라도 새로운 일에 도전하고 싶어 퇴사를 결정하게 되었습니다.
+
+### 스타트업
+
+새로운 서비스를 시작하시는 스타트업 개발팀과 협업하고 있습니다.
+
+웹 프론트엔드 업무를 리액트로 구현하는 작업을 주로 진행합니다.
         `,
         bio: `
 2007년 3월부터 부산 소재 대학교 업무 솔루션 개발 기업에서 프로젝트를 진행했습니다.
@@ -383,6 +389,28 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 ],
             },
             {
+                period: '2020-04',
+                title: 'GUID Generator',
+                description: 'GUID 생성기',
+                features: ['GUID 생성', 'GUID 스타일 적용'],
+                state: '완료',
+                tags: ['react', 'typescript'],
+                links: [
+                    {
+                        title: 'GitHub: guid-generator',
+                        href: 'https://github.com/bbonkr/guid-generator',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GUID Generator',
+                        href: 'https://guid.bbon.me/',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
                 period: '2020-03',
                 title: '공적 마스크 안내',
                 state: '완료',
@@ -418,6 +446,50 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         title: 'GitHub: renameapp',
                         href: 'https://github.com/bbonkr/renameapp',
                         icon: 'github',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
+                period: '2020-01',
+                state: '완료',
+                title: 'HELP ME! Display:flex',
+                description: 'Help for display flex',
+                features: ['display:flex'],
+                tags: ['css', 'display', 'flex'],
+                links: [
+                    {
+                        title: 'GitHub: display-flex',
+                        href: 'https://github.com/bbonkr/display-flex',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'HELP ME! display:flex',
+                        href: 'https://flexbox.bbon.me/',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
+                period: '2019-12',
+                state: '완료',
+                title: 'JSON fomatter',
+                description: 'JSON 내용을 보기 좋게 출력합니다.',
+                features: ['JSON Format'],
+                tags: ['json', 'react', 'typescript'],
+                links: [
+                    {
+                        title: 'GitHub: json-formatter',
+                        href: 'https://github.com/bbonkr/json-formatter',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'json-formatter',
+                        href: 'https://json-formatter.bbon.me/',
+                        icon: 'site',
                         target: '_blank',
                     },
                 ],
