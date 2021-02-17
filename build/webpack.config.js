@@ -25,13 +25,23 @@ module.exports = {
             {
                 test: /\.tsx?$/,
                 use: [
-                    !isProduction && {
+                    {
                         loader: 'babel-loader',
                         options: {
-                            plugins: ['react-refresh/babel'],
+                            presets: [
+                                '@babel/preset-env',
+                                '@babel/preset-react',
+                                '@babel/preset-typescript',
+                            ],
+                            plugins: [
+                                !isProduction && 'react-refresh/babel',
+                                isProduction && [
+                                    'transform-remove-console',
+                                    { exclude: ['error', 'warn'] },
+                                ],
+                            ].filter(Boolean),
                         },
                     },
-                    'ts-loader',
                 ].filter(Boolean),
                 exclude: /node_modules/,
             },

@@ -32,6 +32,8 @@ export const ResumeApp = () => {
         }
 
         halfmoon.onDOMContentLoaded();
+
+        console.info('🌈 App started. 🌠');
     }, []);
 
     return (
