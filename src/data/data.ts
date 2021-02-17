@@ -316,6 +316,30 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         title: '미니 프로젝트',
         records: [
             {
+                period: '2021-02',
+                state: '완료',
+                title: 'kr.bbon.EntityFrameworkCore.Extensions',
+                description:
+                    'Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.',
+                features: ['Nuget 패키지로 제공', 'EntityFramework 확장'],
+                tags: ['nuget', 'dotnet', 'c#', 'entifyframework'],
+                links: [
+                    {
+                        title: 'nuget.org: kr.bbon.EntityFrameworkCore.Extensions',
+                        href:
+                            'https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions',
+                        icon: 'nuget',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GitHub: kr.bbon.EntityFrameworkCore.Extensions',
+                        href: 'https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
                 period: '2020-11',
                 state: '완료',
                 title: '@bbon/css-to-jss',
