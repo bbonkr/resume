@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import halfmoon from 'halfmoon';
-import { FaBars, FaAngleDown, FaSun, FaMoon } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import { Data } from '../../interfaces/Data';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeButton } from '../ThemeButton';
@@ -44,6 +44,10 @@ export const Header = ({ record }: HeaderProps) => {
     const {
         me: { name, photo },
     } = record;
+
+    const handleClickMenuItem = () => {
+        halfmoon.deactivateAllDropdownToggles();
+    };
 
     return (
         <nav className="navbar">
@@ -93,6 +97,7 @@ export const Header = ({ record }: HeaderProps) => {
                                     key={route.path}
                                     to={route.path}
                                     className="dropdown-item active"
+                                    onClick={handleClickMenuItem}
                                 >
                                     {route.title}
                                 </Link>

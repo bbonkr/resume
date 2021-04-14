@@ -11,6 +11,7 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
+import halfmoon from 'halfmoon';
 
 interface GenericLinkProps {
     record: Link;
@@ -45,11 +46,17 @@ export const GenericLink = ({ record, className }: GenericLinkProps) => {
         }
         return undefined;
     };
+
+    const handleClick = () => {
+        halfmoon.deactivateAllDropdownToggles();
+    };
+
     return (
         <a
             className={`d-flex flex-row flex-justify-center flex-align-baseline ${className ?? ''}`}
             href={record.href}
             target={record.target || '_blank'}
+            onClick={handleClick}
         >
             {record.icon && <span className="mr-5">{renderIcon()}</span>}{' '}
             <span className="mr-5">{record.title}</span>
