@@ -11,28 +11,33 @@ interface FooterProps {
 export const Footer = ({ record, onClickScrollToTop }: FooterProps) => {
     return (
         <nav className="navbar navbar-fixed-bottom">
-            <div className="container-fluid">
-                {record.home.links && record.home.links.length > 0 && (
-                    <ul className="navbar-nav ml-auto hidden-sm-and-down">
-                        {record.home.links.map((link) => {
-                            return (
-                                <li key={link.href} className="nav-item">
-                                    <GenericLink className="nav-link" record={link} />
-                                </li>
-                            );
-                        })}
-                    </ul>
-                )}
-
-                <span className="navbar-text ml-auto">
-                    &copy; {record.me.name}, All rights reserved
-                </span>
-                <ScrollToTop
-                    containerClassName="navbar-content"
-                    show
-                    onClick={onClickScrollToTop}
-                />
+            <div className="navbar-content">
+                <div className="dropdown dropup with-arrow">
+                    <button
+                        id="btn-contact-dropdown"
+                        className="btn"
+                        data-toggle="dropdown"
+                        type="button"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                    >
+                        Contact
+                        <i className="fa fa-angle-down ml-5" aria-hidden="true"></i>
+                    </button>
+                    <div
+                        className="dropdown-menu dropdown-menu-left"
+                        aria-labelledby="btn-contact-dropdown"
+                    >
+                        {record.home.links?.map((link) => (
+                            <GenericLink key={link.href} className="dropdown-item" record={link} />
+                        ))}
+                    </div>
+                </div>
             </div>
+            <span className="navbar-text ml-auto">
+                &copy; {record.me.name}, All rights reserved
+            </span>
+            <ScrollToTop containerClassName="navbar-content" show onClick={onClickScrollToTop} />
         </nav>
     );
 };
