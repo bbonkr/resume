@@ -4,14 +4,12 @@ import { FaBars } from 'react-icons/fa';
 import { Data } from '../../interfaces/Data';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeButton } from '../ThemeButton';
+import { RouteData } from '../../interfaces';
 
 interface HeaderProps {
     record: Data;
 }
-interface RouteData {
-    title: string;
-    path: string;
-}
+
 const routes: RouteData[] = [
     {
         title: 'Introduction',

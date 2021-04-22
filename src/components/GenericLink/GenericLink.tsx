@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from '../../interfaces/Data';
+import React, { PropsWithChildren } from 'react';
+import { Link as LinkModel } from '../../interfaces/Data';
 import {
     FaBlog,
     FaHome,
@@ -11,14 +11,18 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
-import halfmoon from 'halfmoon';
+import { Link } from 'react-router-dom';
 
 interface GenericLinkProps {
-    record: Link;
+    record: LinkModel;
     className?: string;
 }
 
-export const GenericLink = ({ record, className }: GenericLinkProps) => {
+export const GenericLink = ({
+    record,
+    className,
+    children,
+}: PropsWithChildren<GenericLinkProps>) => {
     const renderIcon = () => {
         if (record.icon) {
             switch (record.icon) {
@@ -48,21 +52,30 @@ export const GenericLink = ({ record, className }: GenericLinkProps) => {
     };
 
     const handleClick = () => {
-        halfmoon.deactivateAllDropdownToggles();
+        const collapseElement = document.querySelector('#navbarCollapse');
+        if (collapseElement) {
+            collapseElement.classList.remove('show');
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
 
-    return (
+    return record.href.startsWith('/') ? (
+        <Link to={record.href} className={`${className ?? ''}`} onClick={handleClick}>
+            {record.title}
+            {children}
+        </Link>
+    ) : (
         <a
-            className={`d-flex flex-row flex-justify-center flex-align-baseline ${className ?? ''}`}
+            className={`${className ?? ''}`}
             href={record.href}
             target={record.target || '_blank'}
             onClick={handleClick}
         >
-            {record.icon && <span className="mr-5">{renderIcon()}</span>}{' '}
-            <span className="mr-5">{record.title}</span>
+            {record.icon && <span className="me-1 fs-6">{renderIcon()}</span>}{' '}
+            <span className="me-1">{record.title}</span>
             {(!record.target || record.target !== '_self') && (
                 <span>
-                    <FaExternalLinkAlt />
+                    <FaExternalLinkAlt className="fs-6" />
                 </span>
             )}
         </a>

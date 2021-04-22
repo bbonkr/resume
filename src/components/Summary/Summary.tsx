@@ -2,24 +2,20 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { Data } from '../../interfaces/Data';
 import { Bio } from '../Bio';
+import { Container } from '../Layouts';
 import { MainPicture } from '../MainPicture';
 import { Skill } from '../Skill';
 
-interface LeftPaneProps {
+interface SummaryProps {
     record: Data;
 }
 
-export const LeftPane = ({ record }: LeftPaneProps) => {
-    const location = useLocation();
+export const Summary = ({ record }: SummaryProps) => {
     return (
-        <div
-            className={`col-md-4 text-center h-auto overflow-auto ${
-                location.pathname !== '/' ? 'hidden-sm-and-down' : ''
-            }`}
-        >
+        <Container fullWidth className="d-flex flex-column align-items-center p-0">
             <MainPicture record={record} />
             <Bio record={record} />
             <Skill {...record.skillStack} />
-        </div>
+        </Container>
     );
 };

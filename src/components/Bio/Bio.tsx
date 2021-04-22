@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Data } from '../../interfaces/Data';
-import { Content } from '../Content';
+import { Container } from '../Layouts';
 import { GenericLink } from '../GenericLink';
 
 interface BioProps {
@@ -12,20 +12,26 @@ export const Bio = ({ record }: BioProps) => {
     const title = 'about me';
     const { home } = record;
     return (
-        <Content title={title.toUpperCase()} className="text-left">
-            <ReactMarkdown source={home.bio ?? ''} />
+        <Container
+            title={title.toUpperCase()}
+            fullWidth
+            className="mt-3 d-flex flex-column justify-content-center align-items-center"
+        >
+            <ReactMarkdown source={home.bio ?? ''} className="text-start" />
 
             {home.links && home.links.length > 0 && (
-                <div className="d-flex flex-row justify-content-center flex-wrap">
-                    {home.links.map((x) => {
-                        return (
-                            <div className="mr-20" key={x.href}>
-                                <GenericLink record={x} />
-                            </div>
-                        );
-                    })}
+                <div className="d-flex justify-content-center">
+                    <ul className="list-inline">
+                        {home.links.map((x) => {
+                            return (
+                                <li className="list-inline-item" key={x.href}>
+                                    <GenericLink record={x} className="btn btn-secondary btn-sm" />
+                                </li>
+                            );
+                        })}
+                    </ul>
                 </div>
             )}
-        </Content>
+        </Container>
     );
 };
