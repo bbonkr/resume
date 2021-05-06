@@ -1,10 +1,7 @@
 import React from 'react';
-import halfmoon from 'halfmoon';
 
 export const SideBar = () => {
-    const handleClickOverlay = () => {
-        halfmoon.toggleSidebar();
-    };
+    const handleClickOverlay = () => {};
     return (
         <React.Fragment>
             <div className="sidebar-overlay" onClick={handleClickOverlay}></div>

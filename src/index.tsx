@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { ResumeApp } from './components/ResumeApp';
 
-import 'halfmoon/css/halfmoon.min.css';
+import 'bulma/css/bulma.css';
 
 ReactDOM.render(
     <React.StrictMode>

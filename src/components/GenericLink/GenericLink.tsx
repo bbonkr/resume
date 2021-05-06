@@ -11,7 +11,6 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
-import halfmoon from 'halfmoon';
 
 interface GenericLinkProps {
     record: Link;
@@ -47,9 +46,7 @@ export const GenericLink = ({ record, className }: GenericLinkProps) => {
         return undefined;
     };
 
-    const handleClick = () => {
-        halfmoon.deactivateAllDropdownToggles();
-    };
+    const handleClick = () => {};
 
     return (
         <a

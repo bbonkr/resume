@@ -1,5 +1,4 @@
 import React from 'react';
-import halfmoon from 'halfmoon';
 import { FaBars } from 'react-icons/fa';
 import { Data } from '../../interfaces/Data';
 import { Link, useLocation } from 'react-router-dom';
@@ -45,9 +44,7 @@ export const Header = ({ record }: HeaderProps) => {
         me: { name, photo },
     } = record;
 
-    const handleClickMenuItem = () => {
-        halfmoon.deactivateAllDropdownToggles();
-    };
+    const handleClickMenuItem = () => {};
 
     return (
         <nav className="navbar">
