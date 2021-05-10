@@ -1,18 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import { HashRouter as Router } from 'react-router-dom';
-import { MainLayout } from '../MainLayout';
-import { ContentWrapper } from '../ContentWrapper/';
-import { LeftPane } from '../LeftPane';
-import { RightPane } from '../RightPane';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { data } from '../../data/data';
-import { Position } from '../../interfaces';
+import { Position, RouteData } from '../../interfaces';
 import { Footer } from '../Footer';
 // import { Header } from '../Header';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
-import { Header, Container } from '../Layouts';
+import { Header, Container, Content } from '../Layouts';
+// import { Content } from '../Content';
+// import { Content } from '../Content';
+import { Home } from '../Home';
+import { SkillStack } from '../SkillStack';
+import { CardContent } from '../CardContent';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
+
+const routes: RouteData[] = [
+    {
+        title: 'Introduction',
+        path: '/introduction',
+    },
+    {
+        title: 'Skill',
+        path: '/skill',
+    },
+    {
+        title: 'Education',
+        path: '/education',
+    },
+    {
+        title: 'Work',
+        path: '/work',
+    },
+    {
+        title: 'Project',
+        path: '/project',
+    },
+    {
+        title: 'Portfolio',
+        path: '/portfolio',
+    },
+];
 
 export const ResumeApp = () => {
     const [scrollPosition, setScrollPosition] = useState<Position>({ top: 0, left: 0 });
@@ -47,15 +75,43 @@ export const ResumeApp = () => {
         <Router>
             {theme ? (
                 <>
-                    <Header />
-                    <Container>
-                        {/* <Header record={data} /> */}
-                        <ContentWrapper record={data} scrollPosition={scrollPosition}>
-                            <div className="row flex-grow-1">
-                                <LeftPane record={data} />
-                                <RightPane record={data} />
-                            </div>
-                        </ContentWrapper>
+                    <Header record={data} menuRoutes={routes} />
+                    <Container classNames={['pt-6']}>
+                        <Switch>
+                            <Route exact path="/">
+                                <Home record={data} />
+                                <SkillStack {...data.skillStack} />
+                                <CardContent {...data.education} />
+                                <CardContent {...data.career} />
+                                <CardContent {...data.project} />
+                                <CardContent {...data.portfolio} />
+                            </Route>
+                            <Route exact path="/introduction">
+                                <Home record={data} />
+                            </Route>
+
+                            <Route exact path="/skill">
+                                <SkillStack {...data.skillStack} />
+                            </Route>
+
+                            <Route exact path="/education">
+                                <CardContent {...data.education} />
+                            </Route>
+
+                            <Route exact path="/work">
+                                <CardContent {...data.career} />
+                            </Route>
+
+                            <Route exact path="/project">
+                                <CardContent {...data.project} />
+                            </Route>
+
+                            <Route exact path="/portfolio">
+                                <CardContent {...data.portfolio} />
+                            </Route>
+                            <Redirect from="*" to="/" />
+                        </Switch>
+
                         <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
                     </Container>
                 </>

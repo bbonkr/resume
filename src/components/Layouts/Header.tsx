@@ -1,10 +1,20 @@
 import React, { useEffect, useState } from 'react';
+import { Data, RouteData } from '../../interfaces';
+import { GenericLink } from '../GenericLink';
 
-export const Header = () => {
+interface HeaderProps {
+    record: Data;
+    menuRoutes: RouteData[];
+}
+
+export const Header = ({ record, menuRoutes }: HeaderProps) => {
     const [navbarMenuIsActive, setNavbarMenuIsActive] = useState(false);
-    const handleClickMenu = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        event.preventDefault();
+    const handleClickMenu = () => {
+        setNavbarMenuIsActive((prevState) => false);
+    };
 
+    const handleToggleMenu = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        event.preventDefault();
         setNavbarMenuIsActive((prevState) => !prevState);
     };
 
@@ -85,17 +95,21 @@ export const Header = () => {
                 style={{ zIndex: 1001 }}
             >
                 <div className="navbar-brand">
-                    <a className="navbar-item" href="https://bulma.io">
-                        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
-                    </a>
+                    <GenericLink
+                        record={{ href: '/', title: '' }}
+                        className="navbar-item"
+                        onClick={handleClickMenu}
+                    >
+                        <img src={record.me.photo} width="auto" height="28" />
+                    </GenericLink>
 
                     <a
                         role="button"
                         className={`navbar-burger ${navbarMenuIsActive ? 'is-active' : ''}`}
                         aria-label="menu"
                         aria-expanded="false"
-                        data-target="navbarBasicExample"
-                        onClick={handleClickMenu}
+                        data-target="navbarMainHeader"
+                        onClick={handleToggleMenu}
                     >
                         <span aria-hidden="true"></span>
                         <span aria-hidden="true"></span>
@@ -104,12 +118,23 @@ export const Header = () => {
                 </div>
 
                 <div
-                    id="navbarBasicExample"
+                    id="navbarMainHeader"
                     className={`navbar-menu ${navbarMenuIsActive ? 'is-active' : ''}`}
                     onBlurCapture={() => setNavbarMenuIsActive((_) => false)}
                 >
                     <div className="navbar-start">
-                        <a className="navbar-item">Home</a>
+                        {menuRoutes.map((menu) => {
+                            return (
+                                <GenericLink
+                                    className="navbar-item"
+                                    record={{ href: menu.path, title: menu.title }}
+                                    key={menu.path}
+                                    onClick={handleClickMenu}
+                                />
+                            );
+                        })}
+
+                        {/* <a className="navbar-item">Home</a>
 
                         <a className="navbar-item">Documentation</a>
 
@@ -123,7 +148,7 @@ export const Header = () => {
                                 <hr className="navbar-divider" />
                                 <a className="navbar-item">Report an issue</a>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div className="navbar-end">

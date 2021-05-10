@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from '../../interfaces/Data';
+import React, { PropsWithChildren } from 'react';
 import {
     FaBlog,
     FaHome,
@@ -11,13 +10,21 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
+import { Link } from 'react-router-dom';
+import { Link as LinkModel } from '../../interfaces';
 
 interface GenericLinkProps {
-    record: Link;
+    record: LinkModel;
     className?: string;
+    onClick?: (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
-export const GenericLink = ({ record, className }: GenericLinkProps) => {
+export const GenericLink = ({
+    record,
+    className,
+    children,
+    onClick,
+}: PropsWithChildren<GenericLinkProps>) => {
     const renderIcon = () => {
         if (record.icon) {
             switch (record.icon) {
@@ -46,21 +53,33 @@ export const GenericLink = ({ record, className }: GenericLinkProps) => {
         return undefined;
     };
 
-    const handleClick = () => {};
+    const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (onClick) {
+            onClick(event);
+        }
+    };
 
-    return (
+    return record.href.startsWith('/') ? (
+        <Link to={record.href} className={className} onClick={handleClick}>
+            {children ?? record.title}
+        </Link>
+    ) : (
         <a
-            className={`d-flex flex-row flex-justify-center flex-align-baseline ${className ?? ''}`}
+            className={`${className ?? ''}`}
             href={record.href}
             target={record.target || '_blank'}
             onClick={handleClick}
         >
-            {record.icon && <span className="mr-5">{renderIcon()}</span>}{' '}
-            <span className="mr-5">{record.title}</span>
-            {(!record.target || record.target !== '_self') && (
-                <span>
-                    <FaExternalLinkAlt />
-                </span>
+            {children ?? (
+                <React.Fragment>
+                    {record.icon && <span className="mr-1">{renderIcon()}</span>}{' '}
+                    <span className="mr-1">{record.title}</span>
+                    {(!record.target || record.target !== '_self') && (
+                        <span>
+                            <FaExternalLinkAlt />
+                        </span>
+                    )}
+                </React.Fragment>
             )}
         </a>
     );

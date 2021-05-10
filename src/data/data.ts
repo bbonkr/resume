@@ -73,7 +73,7 @@ export const data: Data = {
         ],
     },
     education: {
-        title: '교육',
+        title: 'Education',
         records: [
             {
                 period: '2008-03',
@@ -92,7 +92,7 @@ export const data: Data = {
         ],
     },
     career: {
-        title: '근무 경험',
+        title: 'Work',
         records: [
             {
                 period: '2007-03',
@@ -138,7 +138,7 @@ SI 프로젝트 참여
         ],
     },
     project: {
-        title: '업무 경험',
+        title: 'Project',
         records: [
             {
                 period: '2020-05~2020-07',
@@ -313,7 +313,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         ],
     },
     portfolio: {
-        title: '미니 프로젝트',
+        title: 'Portfolio',
         records: [
             {
                 period: '2021-02',
@@ -722,7 +722,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         ],
     },
     skillStack: {
-        title: '',
+        title: 'Skill',
         records: [
             {
                 name: '프로그램 언어',
