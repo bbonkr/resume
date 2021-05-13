@@ -1,68 +1,147 @@
 import React, { useEffect, useState } from 'react';
-import halfmoon from 'halfmoon';
-import { HashRouter as Router } from 'react-router-dom';
-import { MainLayout } from '../MainLayout';
-import { ContentWrapper } from '../ContentWrapper/';
-import { LeftPane } from '../LeftPane';
-import { RightPane } from '../RightPane';
+import { Helmet } from 'react-helmet';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { data } from '../../data/data';
-import { Position } from '../../interfaces';
-import { Footer } from '../Footer';
-import { Header } from '../Header';
+import { Position, RouteData } from '../../interfaces';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
+import { Header, Container, Footer, GoogleAnalyticsProviderWithRouter } from '../Layouts';
+import { Home } from '../Home';
+import { SkillStack } from '../SkillStack';
+import { CardContent } from '../CardContent';
+import { Summary } from '../Summary';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
+
+const routes: RouteData[] = [
+    {
+        title: 'Introduction',
+        path: '/introduction',
+    },
+    {
+        title: 'Skill',
+        path: '/skill',
+    },
+    {
+        title: 'Education',
+        path: '/education',
+    },
+    {
+        title: 'Work',
+        path: '/work',
+    },
+    {
+        title: 'Project',
+        path: '/project',
+    },
+    {
+        title: 'Portfolio',
+        path: '/portfolio',
+    },
+    {
+        title: 'Certificate',
+        path: '/certificate',
+    },
+];
 
 export const ResumeApp = () => {
     const [scrollPosition, setScrollPosition] = useState<Position>({ top: 0, left: 0 });
     const [theme, setTheme] = useState<Theme>(undefined);
     const handleClickScrollTop = () => {
-        setScrollPosition((prevState) => ({
-            ...prevState,
-            top: 0,
-            left: 0,
-        }));
+        // setScrollPosition((prevState) => ({
+        //     ...prevState,
+        //     top: 0,
+        //     left: 0,
+        // }));
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
 
     useEffect(() => {
-        const bodyEl = document.querySelector('body');
-
-        if (bodyEl) {
-            bodyEl.setAttribute(
-                'class',
-                'with-custom-webkit-scrollbars with-custom-css-scrollbars',
-            );
-            bodyEl.setAttribute('data-set-preferred-theme-onload', 'true');
-        }
-
-        halfmoon.onDOMContentLoaded();
         smoothscroll.polyfill();
 
-        const currentTheme = halfmoon.readCookie('halfmoon_preferredMode');
-        console.info('halfmoon_preferredMode: ', currentTheme);
-        setTheme((_) => (currentTheme as Theme) ?? 'light-mode');
-
-        if (currentTheme === 'dark-mode' && halfmoon.darkModeOn === 'no') {
-            halfmoon.toggleDarkMode();
-        }
-
         console.info('🌈 App started. 🌠');
+
+        setTheme((_) => 'light-mode');
     }, []);
 
     return (
         <Router>
+            <Helmet titleTemplate={`%s | ${data.me.name} 이력서`} />
             {theme ? (
-                <MainLayout>
-                    <Header record={data} />
-                    <ContentWrapper record={data} scrollPosition={scrollPosition}>
-                        <div className="row flex-grow-1">
-                            <LeftPane record={data} />
-                            <RightPane record={data} />
-                        </div>
-                    </ContentWrapper>
+                <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
+                    <Header record={data} menuRoutes={routes} />
+                    <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
+                        <Switch>
+                            <Route exact path="/">
+                                <Summary record={data} title="안녕하세요" />
+                            </Route>
+                            <Route exact path="/introduction">
+                                <Home
+                                    record={data}
+                                    useHero
+                                    heroColor="is-link"
+                                    title={'Introduction'}
+                                />
+                            </Route>
+
+                            <Route exact path="/skill">
+                                <SkillStack
+                                    title={data.skillStack.title}
+                                    record={data.skillStack}
+                                    useHero
+                                    heroColor="is-success"
+                                    iconColor="has-text-success"
+                                />
+                            </Route>
+
+                            <Route exact path="/education">
+                                <CardContent
+                                    record={data.education}
+                                    title={data.education.title}
+                                    useHero
+                                    heroColor="is-primary"
+                                />
+                            </Route>
+
+                            <Route exact path="/work">
+                                <CardContent
+                                    record={data.career}
+                                    title={data.career.title}
+                                    useHero
+                                    heroColor="is-info"
+                                />
+                            </Route>
+
+                            <Route exact path="/project">
+                                <CardContent
+                                    record={data.project}
+                                    title={data.project.title}
+                                    useHero
+                                    heroColor="is-warning"
+                                />
+                            </Route>
+
+                            <Route exact path="/portfolio">
+                                <CardContent
+                                    record={data.portfolio}
+                                    title={data.portfolio.title}
+                                    useHero
+                                    heroColor="is-danger"
+                                />
+                            </Route>
+                            <Route exact path="/certificate">
+                                <CardContent
+                                    record={data.certificate}
+                                    title={data.certificate.title}
+                                    useHero
+                                    heroColor="is-link"
+                                />
+                            </Route>
+                            <Redirect from="*" to="/" />
+                        </Switch>
+                    </Container>
                     <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
-                </MainLayout>
+                </GoogleAnalyticsProviderWithRouter>
             ) : (
                 <Loading />
             )}

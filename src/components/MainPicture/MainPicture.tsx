@@ -7,5 +7,9 @@ interface MainPictureProps {
 
 export const MainPicture = ({ record }: MainPictureProps) => {
     const imageUri = record.me.photo ?? '/public/me.png';
-    return <img src={imageUri} className="img-fluid w-half w-sm-quarter w-md-full " />;
+    return (
+        <figure className="image">
+            <img src={imageUri} className="is-rounded" />
+        </figure>
+    );
 };

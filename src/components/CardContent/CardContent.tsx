@@ -1,86 +1,105 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
-import { ContentDataRecord } from '../../interfaces/Data';
+import { ColorStyles } from '../../interfaces';
+import { ContentData } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';
+import { Card, Section } from '../Layouts';
 
 interface CardContentProps {
-    title: string;
-    records?: ContentDataRecord[];
+    title?: string;
+    record?: ContentData;
+    useHero?: boolean;
+    heroColor?: ColorStyles;
 }
 
-export const CardContent = ({ title, records }: CardContentProps) => {
+export const CardContent = ({ title, record, useHero, heroColor }: CardContentProps) => {
     return (
         <React.Fragment>
-            {records && records.length > 0 && (
-                <div className="card mx-0">
-                    <h2 className="card-title">{title}</h2>
-                    <div className="d-flex flex-column">
-                        {records
-                            .sort((a, b) => (a.period > b.period ? -1 : 1))
-                            .map((x) => {
-                                return (
-                                    <div
-                                        key={`${x.title}-${x.period}`}
-                                        className="content ml-0 mr-0"
-                                    >
-                                        <h3 className="content-title">{x.title}</h3>
-                                        <p>
-                                            {x.period} {x.state}
-                                        </p>
+            <Helmet title={title ?? record?.title} />
+            <Section title={title ?? record?.title} useHero={useHero} heroColor={heroColor} />
+            {record && record.records && record.records.length > 0 && (
+                <Section>
+                    {record.records
+                        .sort((a, b) => (a.period > b.period ? -1 : 1))
+                        .map((x) => {
+                            return (
+                                <Card
+                                    key={`${x.title}-${x.period}`}
+                                    title={x.title}
+                                    classNames={['mb-3']}
+                                >
+                                    <p>
+                                        {x.period} {x.state}
+                                    </p>
 
-                                        {x.description && (
-                                            <ReactMarkdown source={x.description ?? ''} />
-                                        )}
+                                    {x.description && (
+                                        <ReactMarkdown source={x.description ?? ''} />
+                                    )}
 
-                                        {x.features && x.features.length > 0 && (
+                                    {x.features && x.features.length > 0 && (
+                                        <ul>
+                                            {x.features.map((feature) => {
+                                                return (
+                                                    <li key={feature} className="mb-5">
+                                                        {feature}
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
+                                    )}
+                                    {x.links && x.links.length > 0 && (
+                                        <React.Fragment>
+                                            <p className="mb-0">링크:</p>
                                             <ul>
-                                                {x.features.map((feature) => {
+                                                {x.links.map((link) => {
                                                     return (
-                                                        <li key={feature} className="mb-5">
-                                                            {feature}
+                                                        <li key={link.href}>
+                                                            <GenericLink
+                                                                // className="mb-5"
+                                                                key={link.href}
+                                                                record={link}
+                                                            />
                                                         </li>
                                                     );
                                                 })}
                                             </ul>
-                                        )}
-                                        {x.links && x.links.length > 0 && (
-                                            <React.Fragment>
-                                                <p className="mb-0">링크:</p>
-                                                <div className="d-flex flex-column mb-10">
-                                                    {x.links.map((link) => {
-                                                        return (
-                                                            <GenericLink
-                                                                className="mb-5"
-                                                                key={link.href}
-                                                                record={link}
-                                                            />
-                                                        );
-                                                    })}
+                                        </React.Fragment>
+                                    )}
+
+                                    {x.images && x.images.length > 0 && (
+                                        <div className="columns">
+                                            {x.images.map((image) => (
+                                                <div className="column is-one-quarter">
+                                                    <figure className="image">
+                                                        <img src={image.src} alt={image.alt} />
+                                                    </figure>
                                                 </div>
-                                            </React.Fragment>
-                                        )}
-                                        {x.tags && x.tags.length > 0 && (
-                                            <React.Fragment>
-                                                <p className="mb-0">태그:</p>
-                                                <div className="d-flex flex-row justify-content-start flex-wrap">
-                                                    {x.tags.map((tag) => {
-                                                        return (
-                                                            <span
-                                                                key={tag}
-                                                                className="badge mr-5 mb-5"
-                                                            >
-                                                                {tag}
-                                                            </span>
-                                                        );
-                                                    })}
-                                                </div>
-                                            </React.Fragment>
-                                        )}
-                                    </div>
-                                );
-                            })}
-                    </div>
-                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    {x.tags && x.tags.length > 0 && (
+                                        <React.Fragment>
+                                            <p className="mb-0">태그:</p>
+                                            <div className="tags">
+                                                {x.tags.map((tag) => {
+                                                    return (
+                                                        <span
+                                                            key={tag}
+                                                            className={`tag ${heroColor} `}
+                                                        >
+                                                            {tag.toUpperCase()}
+                                                        </span>
+                                                    );
+                                                })}
+                                            </div>
+                                        </React.Fragment>
+                                    )}
+                                </Card>
+                            );
+                        })}
+                </Section>
             )}
         </React.Fragment>
     );

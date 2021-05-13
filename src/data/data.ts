@@ -73,7 +73,7 @@ export const data: Data = {
         ],
     },
     education: {
-        title: '교육',
+        title: 'Education',
         records: [
             {
                 period: '2008-03',
@@ -92,7 +92,7 @@ export const data: Data = {
         ],
     },
     career: {
-        title: '근무 경험',
+        title: 'Work',
         records: [
             {
                 period: '2007-03',
@@ -138,7 +138,7 @@ SI 프로젝트 참여
         ],
     },
     project: {
-        title: '업무 경험',
+        title: 'Project',
         records: [
             {
                 period: '2020-05~2020-07',
@@ -157,6 +157,7 @@ Azure DevOps 에서 버전제어를 관리하고, Azure Pipeline 을 사용해�
                     '프론트엔드',
                     'React',
                     'Next.js',
+                    'Azure',
                     'Azure DevOps',
                     'Azure WebApp',
                     'Azure Pipeline',
@@ -201,6 +202,8 @@ Azure QnA Service 로 구현한 후, QnA Service 를 참조해서 Azure Search S
                     '연구개발',
                     'ASP.NET Core',
                     '.NET Core',
+                    'C#',
+                    'Azure',
                     'Azure SQL Database',
                     'Azure Search Service',
                     'Azure QnA Service',
@@ -230,8 +233,10 @@ Azure QnA Service 로 구현한 후, QnA Service 를 참조해서 Azure Search S
                 tags: [
                     workAt.i,
                     '연구개발',
+                    'C#',
                     'ASP.NET core',
                     '.NET Core',
+                    'Azure',
                     'Azure SQL Database',
                     'Azure DevOps',
                     'Azure Pipeline',
@@ -255,6 +260,7 @@ Microsoft Exchange Server 상태 정보를 수집하는 Windows Service
                 tags: [
                     workAt.i,
                     '연구개발',
+                    'C#',
                     '.NET Framework',
                     'ASP.NET',
                     'Microsoft Exchange Server',
@@ -275,6 +281,9 @@ HR 데이터를 기반으로 Microsoft Active Directory 사용자 및 조직 정
                 tags: [
                     workAt.i,
                     '연구개발',
+                    'C#',
+                    '.NET Framework',
+                    'Windows Forms',
                     'Microsoft SQL Server',
                     'Microsoft Active Directory',
                     'T-SQL',
@@ -293,11 +302,20 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
 - Exchange Web Service API 사용
 - Windows Service 형식의 데몬으로 실행
 `,
-                tags: [workAt.i, '연구개발', 'Microsoft Exchange Server', 'Windows Service'],
+                tags: [
+                    workAt.i,
+                    '연구개발',
+                    'C#',
+                    '.NET Framework',
+                    'Windows Forms',
+                    'Microsoft Exchange Server',
+                    'Windows Service',
+                    'SQLite',
+                ],
             },
             {
                 period: '2012-09~2013-10',
-                title: '평택 국제대학교 종합정보시스템 구축',
+                title: '평택 OO대학교 종합정보시스템 구축',
 
                 description: `
 개발팀 소속으로 프로젝트 진행
@@ -308,12 +326,21 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
 - ASP.NET Web Forms 웹 응용프로그램
 - 사내 프레임워크 유지 관리                
                 `,
-                tags: [workAt.i, 'SI', '.NET Framework', 'Windows Forms', 'ASP.NET'],
+                tags: [
+                    workAt.i,
+                    'SI',
+                    'C#',
+                    '.NET Framework',
+                    'Windows Forms',
+                    'ASP.NET',
+                    'Microsoft SQL Server',
+                    'WCF',
+                ],
             },
         ],
     },
     portfolio: {
-        title: '미니 프로젝트',
+        title: 'Portfolio',
         records: [
             {
                 period: '2021-02',
@@ -322,7 +349,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 description:
                     'Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.',
                 features: ['Nuget 패키지로 제공', 'EntityFramework 확장'],
-                tags: ['nuget', 'dotnet', 'c#', 'entifyframework'],
+                tags: ['nuget', '.NET', 'c#', 'entifyframework'],
                 links: [
                     {
                         title: 'nuget.org: kr.bbon.EntityFrameworkCore.Extensions',
@@ -455,7 +482,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         target: '_blank',
                     },
                 ],
-                tags: ['react-native', 'expo', 'google-play', 'typescript'],
+                tags: ['react-native', 'expo', 'google play', 'typescript'],
             },
             {
                 period: '2020-02',
@@ -480,7 +507,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: 'HELP ME! Display:flex',
                 description: 'Help for display flex',
                 features: ['display:flex'],
-                tags: ['css', 'display', 'flex'],
+                tags: ['css', 'display', 'flex', 'react', 'typescript'],
                 links: [
                     {
                         title: 'GitHub: display-flex',
@@ -565,6 +592,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     'redux',
                     'redux-saga',
                     'styled-component',
+                    'javascript',
                 ],
             },
             {
@@ -592,7 +620,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         target: '_blank',
                     },
                 ],
-                tags: ['xamarin', 'android', 'uwp', 'google-play', 'microsoft-store'],
+                tags: ['xamarin', 'android', 'uwp', 'google play', 'microsoft store'],
             },
             {
                 period: '2019-04',
@@ -608,7 +636,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         icon: 'windows',
                     },
                 ],
-                tags: ['.net-framework', 'wpf', 'microsoft-store'],
+                tags: ['.net framework', 'wpf', 'microsoft store'],
             },
             {
                 period: '2019-04',
@@ -636,7 +664,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         target: '_blank',
                     },
                 ],
-                tags: ['.net-standard', 'xamarin', 'nuget', 'open-source', 'github'],
+                tags: ['.NET', '.net standard', 'xamarin', 'nuget', 'open source', 'github'],
             },
             {
                 period: '2019-06',
@@ -675,6 +703,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     'redux',
                     'redux-saga',
                     'styled-component',
+                    'javascript',
                 ],
             },
             {
@@ -702,7 +731,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         icon: 'github',
                     },
                 ],
-                tags: ['react-native', 'android', 'ios'],
+                tags: ['typescript', 'react native', 'android', 'ios'],
             },
             {
                 period: '2019-07',
@@ -717,12 +746,12 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         icon: 'github',
                     },
                 ],
-                tags: ['asp.net-core', 'entity-framework', 'microsoft-sql-server'],
+                tags: ['.NET', 'asp.net core', 'entity framework', 'microsoft sql server'],
             },
         ],
     },
     skillStack: {
-        title: '',
+        title: 'Skill',
         records: [
             {
                 name: '프로그램 언어',
@@ -822,6 +851,78 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         score: 2.5,
                     },
                 ],
+            },
+        ],
+    },
+    certificate: {
+        title: 'Certificate',
+        records: [
+            {
+                title: '정보처리기사',
+                period: '2011-09',
+                images: [
+                    {
+                        src: '/images/engineer-information-processing-masked.png',
+                        alt: '정보처리기사',
+                    },
+                ],
+                tags: ['한국산업인력공단'],
+            },
+            {
+                title: 'MCPD Microsoft Certified Professional Developer',
+                period: '2011-07',
+                images: [
+                    {
+                        src: '/images/6130286952_afb362be2f.jpg',
+                        alt: 'MCPD Microsoft Certified Professional Developer',
+                    },
+                ],
+                tags: ['mcp', 'microsoft'],
+            },
+            {
+                title: 'MCTS Microsoft Certified Technology Specialist',
+                subtitle: '',
+                period: '2011-07',
+                images: [
+                    {
+                        src: '/images/6130287190_b65fe0397f.jpg',
+                        alt: 'MCTS Microsoft Certified Technology Specialist',
+                    },
+                ],
+                tags: ['mcp', 'microsoft'],
+            },
+            {
+                title: 'MCP Microsoft Certified Professional',
+                period: '2008-12',
+                images: [
+                    {
+                        src: '/images/6130287398_4140350a09.jpg',
+                        alt: 'MCP Microsoft Certified Professional',
+                    },
+                ],
+                tags: ['mcp', 'microsoft'],
+            },
+            {
+                title: 'MCTS : .NET Framework 4. Windows(R) Application',
+                period: '2011-07',
+                images: [
+                    {
+                        src: '/images/6130287728_95da378380.jpg',
+                        alt: 'MCTS : .NET Framework 4. Windows(R) Application',
+                    },
+                ],
+                tags: ['mcp', 'microsoft'],
+            },
+            {
+                title: 'MCTS : .Net Framework 3.5. Windows Forms Apllications',
+                period: '2011-07',
+                images: [
+                    {
+                        src: '/images/6130288270_c653c5b644.jpg',
+                        alt: 'MCTS : .Net Framework 3.5. Windows Forms Apllications',
+                    },
+                ],
+                tags: ['mcp', 'microsoft'],
             },
         ],
     },
