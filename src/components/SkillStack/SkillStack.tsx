@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
+import { ColorStyles } from '../../interfaces';
 import { SkillSection } from '../../interfaces/Data';
 import { Card, Section } from '../Layouts';
 import { Score } from '../Score';
@@ -7,13 +8,16 @@ import { Score } from '../Score';
 interface SkillStackProps {
     title: string;
     records?: SkillSection[];
+    useHero?: boolean;
+    heroColor?: ColorStyles;
 }
 
-export const SkillStack = ({ title, records }: SkillStackProps) => {
+export const SkillStack = ({ title, records, useHero, heroColor }: SkillStackProps) => {
     return (
         <React.Fragment>
+            <Section title={title} useHero={useHero} heroColor={heroColor} />
             {records && records.length > 0 && (
-                <Section title={title}>
+                <Section>
                     <div className="columns">
                         {records.map((skill) => {
                             return (

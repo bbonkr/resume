@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
+import { ColorStyles } from '../../interfaces';
 import { ContentDataRecord } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';
 import { Card, Section } from '../Layouts';
@@ -7,13 +8,16 @@ import { Card, Section } from '../Layouts';
 interface CardContentProps {
     title: string;
     records?: ContentDataRecord[];
+    useHero?: boolean;
+    heroColor?: ColorStyles;
 }
 
-export const CardContent = ({ title, records }: CardContentProps) => {
+export const CardContent = ({ title, records, useHero, heroColor }: CardContentProps) => {
     return (
         <React.Fragment>
+            <Section title={title} useHero={useHero} heroColor={heroColor} />
             {records && records.length > 0 && (
-                <Section title={title}>
+                <Section>
                     {records
                         .sort((a, b) => (a.period > b.period ? -1 : 1))
                         .map((x) => {

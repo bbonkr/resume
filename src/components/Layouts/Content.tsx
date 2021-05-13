@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from 'react';
+import { UiHelper } from '../../libs/UiHelper';
 
 type ContentSizes = 'small' | 'medium' | 'large';
 type OrderedListAlternatives = 'lower-alpha' | 'lower-roman' | 'upper-alpha' | 'upper-roman';
@@ -6,11 +7,13 @@ type OrderedListAlternatives = 'lower-alpha' | 'lower-roman' | 'upper-alpha' | '
 interface ContentProps {
     size?: ContentSizes;
     orderedListalternative?: OrderedListAlternatives;
+    classNames?: string[];
 }
 
 export const Content = ({
     size,
     orderedListalternative,
+    classNames,
     children,
 }: PropsWithChildren<ContentProps>) => {
     return (
@@ -33,7 +36,7 @@ export const Content = ({
                     : orderedListalternative === 'upper-roman'
                     ? 'is-upper-roman'
                     : ''
-            }`}
+            } ${UiHelper.GetClassNames(...(classNames ?? []))}`}
         >
             {children}
         </div>

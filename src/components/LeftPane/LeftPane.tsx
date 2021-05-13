@@ -12,14 +12,16 @@ interface LeftPaneProps {
 export const LeftPane = ({ record }: LeftPaneProps) => {
     const location = useLocation();
     return (
-        <div
-            className={`col-md-4 text-center h-auto overflow-auto ${
-                location.pathname !== '/' ? 'hidden-sm-and-down' : ''
-            }`}
-        >
-            <MainPicture record={record} />
-            <Bio record={record} />
-            <Skill {...record.skillStack} />
+        <div className={`columns`}>
+            <div className="column">
+                <MainPicture record={record} />
+            </div>
+            <div className="column">
+                <Bio record={record} />
+            </div>
+            <div className="column">
+                <Skill {...record.skillStack} />
+            </div>
         </div>
     );
 };

@@ -31,7 +31,7 @@ export const ScrollToTop = ({
             }}
         >
             <button
-                className={` ${buttonClassName ?? 'btn btn-md'}`}
+                className={` ${buttonClassName ?? 'button'}`}
                 style={{ ...(buttonStyle ?? {}) }}
                 onClick={onClick}
             >
