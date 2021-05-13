@@ -6,6 +6,7 @@ export interface Data {
     project: ContentData;
     portfolio: ContentData;
     skillStack: SkillContentData;
+    certificate: ContentData;
 }
 
 export interface Link {
@@ -69,17 +70,24 @@ export interface SkillItem {
     href?: string;
 }
 
-interface ContentData {
+export interface ContentData {
     title: string;
     records?: ContentDataRecord[];
+}
+
+interface ImageData {
+    src: string;
+    alt: string;
 }
 
 export interface ContentDataRecord {
     period: string;
     title: string;
+    subtitle?: string;
     state?: string;
     description?: string;
     features?: string[];
     tags?: string[];
     links?: Link[];
+    images?: ImageData[];
 }

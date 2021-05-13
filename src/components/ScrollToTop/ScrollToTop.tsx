@@ -10,6 +10,7 @@ interface ScrollToTopProps {
     buttonContent?: React.ReactNode;
     onClick?: () => void;
 }
+
 export const ScrollToTop = ({
     show,
     containerClassName,
@@ -31,7 +32,7 @@ export const ScrollToTop = ({
             }}
         >
             <button
-                className={` ${buttonClassName ?? 'btn btn-md'}`}
+                className={` ${buttonClassName ?? 'button'}`}
                 style={{ ...(buttonStyle ?? {}) }}
                 onClick={onClick}
             >

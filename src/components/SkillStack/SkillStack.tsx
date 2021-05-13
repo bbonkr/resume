@@ -1,43 +1,52 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { FaStar } from 'react-icons/fa';
-import { SkillSection } from '../../interfaces/Data';
+import { ColorStyles, TextColorStyles } from '../../interfaces';
+import { SkillContentData } from '../../interfaces/Data';
+import { Card, Section } from '../Layouts';
 import { Score } from '../Score';
 
 interface SkillStackProps {
     title: string;
-    records?: SkillSection[];
+    record?: SkillContentData;
+    useHero?: boolean;
+    heroColor?: ColorStyles;
+    iconColor?: TextColorStyles;
 }
 
-export const SkillStack = ({ title, records }: SkillStackProps) => {
+export const SkillStack = ({ title, record, useHero, heroColor, iconColor }: SkillStackProps) => {
     return (
         <React.Fragment>
-            {records && records.length > 0 && (
-                <div className="card mx-0">
-                    <h2 className="card-title">{title}</h2>
-                    <div className="d-flex flex-column">
-                        {records.map((skill) => {
+            <Helmet title={title ?? record?.title} />
+            <Section title={title ?? record?.title} useHero={useHero} heroColor={heroColor} />
+            {record && record.records && record.records.length > 0 && (
+                <Section>
+                    <div className="columns">
+                        {record.records.map((skill) => {
                             return (
-                                <div key={`${skill.name}`} className="content ml-0 mr-0">
-                                    <h3 className="content-title">{skill.name}</h3>
-                                    {skill.items.map((item) => {
-                                        return (
-                                            <React.Fragment key={item.name}>
-                                                <dt>{item.name}</dt>
-                                                <dd>
-                                                    <Score
-                                                        score={item.score}
-                                                        max={5}
-                                                        icon={<FaStar />}
-                                                    />
-                                                </dd>
-                                            </React.Fragment>
-                                        );
-                                    })}
+                                <div className="column" key={skill.name}>
+                                    <Card title={skill.name} classNames={['mb-4']}>
+                                        {skill.items.map((item) => {
+                                            return (
+                                                <React.Fragment key={item.name}>
+                                                    <dt>{item.name}</dt>
+                                                    <dd>
+                                                        <Score
+                                                            score={item.score}
+                                                            max={5}
+                                                            icon={<FaStar />}
+                                                            onClassName={iconColor}
+                                                        />
+                                                    </dd>
+                                                </React.Fragment>
+                                            );
+                                        })}
+                                    </Card>
                                 </div>
                             );
                         })}
                     </div>
-                </div>
+                </Section>
             )}
         </React.Fragment>
     );

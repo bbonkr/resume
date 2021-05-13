@@ -54,14 +54,14 @@ module.exports = {
     plugins: [
         new webpack.LoaderOptionsPlugin({ dev: !isProduction }),
         new webpack.DefinePlugin({
-            GAID: JSON.stringify(process.env.GAID),
+            'process.env': {
+                GAID: JSON.stringify(process.env.GAID),
+                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            },
         }),
         new HtmlWebPackPlugin({
             template: 'src/index.ejs',
             filename: '../index.html',
-            templateParameters: {
-                gaid: process.env.GAID,
-            },
         }),
         new CopyPlugin({
             patterns: [
