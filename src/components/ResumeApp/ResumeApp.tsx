@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { data } from '../../data/data';
 import { Position, RouteData } from '../../interfaces';
-// import { Footer } from '../Footer';
-// import { Header } from '../Header';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
-import { Header, Container, Content, Footer } from '../Layouts';
-// import { Content } from '../Content';
-// import { Content } from '../Content';
+import { Header, Container, Footer, GoogleAnalyticsProviderWithRouter } from '../Layouts';
 import { Home } from '../Home';
 import { SkillStack } from '../SkillStack';
 import { CardContent } from '../CardContent';
-import { LeftPane } from '../LeftPane';
+import { Summary } from '../Summary';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
 
@@ -41,6 +38,10 @@ const routes: RouteData[] = [
         title: 'Portfolio',
         path: '/portfolio',
     },
+    {
+        title: 'Certificate',
+        path: '/certificate',
+    },
 ];
 
 export const ResumeApp = () => {
@@ -56,16 +57,6 @@ export const ResumeApp = () => {
     };
 
     useEffect(() => {
-        const bodyEl = document.querySelector('body');
-
-        if (bodyEl) {
-            bodyEl.setAttribute(
-                'class',
-                'with-custom-webkit-scrollbars with-custom-css-scrollbars',
-            );
-            bodyEl.setAttribute('data-set-preferred-theme-onload', 'true');
-        }
-
         smoothscroll.polyfill();
 
         console.info('🌈 App started. 🌠');
@@ -75,48 +66,82 @@ export const ResumeApp = () => {
 
     return (
         <Router>
+            <Helmet titleTemplate={`%s | ${data.me.name} 이력서`} />
             {theme ? (
-                <>
+                <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
                     <Header record={data} menuRoutes={routes} />
-                    <Container classNames={['is-fullhd', 'pt-6']}>
+                    <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
                         <Switch>
                             <Route exact path="/">
-                                {/* <Home record={data} useHero heroColor="is-link" />
-                                <SkillStack {...data.skillStack} useHero heroColor="is-primary" />
-                                <CardContent {...data.education} useHero heroColor="is-success" />
-                                <CardContent {...data.career} useHero heroColor="is-info" />
-                                <CardContent {...data.project} useHero heroColor="is-warning" />
-                                <CardContent {...data.portfolio} useHero heroColor="is-danger" /> */}
-                                <LeftPane record={data} />
+                                <Summary record={data} title="안녕하세요" />
                             </Route>
                             <Route exact path="/introduction">
-                                <Home record={data} useHero heroColor="is-link" />
+                                <Home
+                                    record={data}
+                                    useHero
+                                    heroColor="is-link"
+                                    title={'Introduction'}
+                                />
                             </Route>
 
                             <Route exact path="/skill">
-                                <SkillStack {...data.skillStack} useHero heroColor="is-primary" />
+                                <SkillStack
+                                    title={data.skillStack.title}
+                                    record={data.skillStack}
+                                    useHero
+                                    heroColor="is-success"
+                                    iconColor="has-text-success"
+                                />
                             </Route>
 
                             <Route exact path="/education">
-                                <CardContent {...data.education} useHero heroColor="is-success" />
+                                <CardContent
+                                    record={data.education}
+                                    title={data.education.title}
+                                    useHero
+                                    heroColor="is-primary"
+                                />
                             </Route>
 
                             <Route exact path="/work">
-                                <CardContent {...data.career} useHero heroColor="is-info" />
+                                <CardContent
+                                    record={data.career}
+                                    title={data.career.title}
+                                    useHero
+                                    heroColor="is-info"
+                                />
                             </Route>
 
                             <Route exact path="/project">
-                                <CardContent {...data.project} useHero heroColor="is-warning" />
+                                <CardContent
+                                    record={data.project}
+                                    title={data.project.title}
+                                    useHero
+                                    heroColor="is-warning"
+                                />
                             </Route>
 
                             <Route exact path="/portfolio">
-                                <CardContent {...data.portfolio} useHero heroColor="is-danger" />
+                                <CardContent
+                                    record={data.portfolio}
+                                    title={data.portfolio.title}
+                                    useHero
+                                    heroColor="is-danger"
+                                />
+                            </Route>
+                            <Route exact path="/certificate">
+                                <CardContent
+                                    record={data.certificate}
+                                    title={data.certificate.title}
+                                    useHero
+                                    heroColor="is-link"
+                                />
                             </Route>
                             <Redirect from="*" to="/" />
                         </Switch>
                     </Container>
                     <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
-                </>
+                </GoogleAnalyticsProviderWithRouter>
             ) : (
                 <Loading />
             )}

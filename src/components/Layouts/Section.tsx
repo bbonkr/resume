@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { ColorStyles, SizeStyles } from '../../interfaces';
+import { UiHelper } from '../../libs/UiHelper';
 
 type SectionSize = 'medium' | 'large';
 
@@ -10,6 +11,7 @@ interface SectionProps {
     useHero?: boolean;
     heroColor?: ColorStyles;
     heroSize?: SizeStyles;
+    classNames?: string[];
 }
 
 export const Section = ({
@@ -19,13 +21,16 @@ export const Section = ({
     useHero,
     heroColor,
     heroSize,
+    classNames,
     children,
 }: PropsWithChildren<SectionProps>) => {
     return (
         <section
             className={`section ${
                 size === 'medium' ? 'is-medium' : size === 'large' ? 'is-large' : ''
-            } ${useHero ? 'hero' : ''} ${heroColor ?? ''} ${heroSize ?? ''}`}
+            } ${useHero ? 'hero' : ''} ${heroColor ?? ''} ${
+                heroSize ?? ''
+            } ${UiHelper.GetClassNames(...(classNames ?? []))}`}
         >
             {useHero ? (
                 <div className="hero-body">

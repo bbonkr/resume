@@ -1,24 +1,26 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown';
 import { ColorStyles } from '../../interfaces';
-import { ContentDataRecord } from '../../interfaces/Data';
+import { ContentData } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';
 import { Card, Section } from '../Layouts';
 
 interface CardContentProps {
-    title: string;
-    records?: ContentDataRecord[];
+    title?: string;
+    record?: ContentData;
     useHero?: boolean;
     heroColor?: ColorStyles;
 }
 
-export const CardContent = ({ title, records, useHero, heroColor }: CardContentProps) => {
+export const CardContent = ({ title, record, useHero, heroColor }: CardContentProps) => {
     return (
         <React.Fragment>
-            <Section title={title} useHero={useHero} heroColor={heroColor} />
-            {records && records.length > 0 && (
+            <Helmet title={title ?? record?.title} />
+            <Section title={title ?? record?.title} useHero={useHero} heroColor={heroColor} />
+            {record && record.records && record.records.length > 0 && (
                 <Section>
-                    {records
+                    {record.records
                         .sort((a, b) => (a.period > b.period ? -1 : 1))
                         .map((x) => {
                             return (
@@ -64,14 +66,30 @@ export const CardContent = ({ title, records, useHero, heroColor }: CardContentP
                                             </ul>
                                         </React.Fragment>
                                     )}
+
+                                    {x.images && x.images.length > 0 && (
+                                        <div className="columns">
+                                            {x.images.map((image) => (
+                                                <div className="column is-one-quarter">
+                                                    <figure className="image">
+                                                        <img src={image.src} alt={image.alt} />
+                                                    </figure>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+
                                     {x.tags && x.tags.length > 0 && (
                                         <React.Fragment>
                                             <p className="mb-0">태그:</p>
                                             <div className="tags">
                                                 {x.tags.map((tag) => {
                                                     return (
-                                                        <span key={tag} className="tag is-info ">
-                                                            {tag}
+                                                        <span
+                                                            key={tag}
+                                                            className={`tag ${heroColor} `}
+                                                        >
+                                                            {tag.toUpperCase()}
                                                         </span>
                                                     );
                                                 })}

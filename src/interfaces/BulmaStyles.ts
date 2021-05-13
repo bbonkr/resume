@@ -6,4 +6,10 @@ export type ColorStyles =
     | 'is-warning'
     | 'is-danger';
 
+export type TextColorStyles =
+    | 'has-text-info'
+    | 'has-text-success'
+    | 'has-text-warning'
+    | 'has-text-danger';
+
 export type SizeStyles = 'is-small' | 'is-medium' | 'is-large' | 'is-halfheight' | 'is-fullheight';

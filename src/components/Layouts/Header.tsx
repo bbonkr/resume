@@ -10,6 +10,7 @@ interface HeaderProps {
 export const Header = ({ record, menuRoutes }: HeaderProps) => {
     const [navbarMenuIsActive, setNavbarMenuIsActive] = useState(false);
     const handleClickMenu = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         setNavbarMenuIsActive((prevState) => false);
     };
 
@@ -133,32 +134,11 @@ export const Header = ({ record, menuRoutes }: HeaderProps) => {
                                 />
                             );
                         })}
-
-                        {/* <a className="navbar-item">Home</a>
-
-                        <a className="navbar-item">Documentation</a>
-
-                        <div className="navbar-item has-dropdown is-hoverable">
-                            <a className="navbar-link">More</a>
-
-                            <div className="navbar-dropdown">
-                                <a className="navbar-item">About</a>
-                                <a className="navbar-item">Jobs</a>
-                                <a className="navbar-item">Contact</a>
-                                <hr className="navbar-divider" />
-                                <a className="navbar-item">Report an issue</a>
-                            </div>
-                        </div> */}
                     </div>
 
                     <div className="navbar-end">
                         <div className="navbar-item">
-                            <div className="buttons">
-                                <a className="button is-primary">
-                                    <strong>Sign up</strong>
-                                </a>
-                                <a className="button is-light">Log in</a>
-                            </div>
+                            <div className="buttons"></div>
                         </div>
                     </div>
                 </div>

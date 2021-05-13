@@ -10,6 +10,7 @@ interface ScrollToTopProps {
     buttonContent?: React.ReactNode;
     onClick?: () => void;
 }
+
 export const ScrollToTop = ({
     show,
     containerClassName,

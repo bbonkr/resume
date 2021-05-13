@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { UiHelper } from '../../libs/UiHelper';
-import { Content } from '../Content';
+import { Content } from './Content';
 import { CardImage } from './CardImage';
 import { CardMediaContent } from './CardMediaContent';
 

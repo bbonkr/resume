@@ -6,6 +6,7 @@ interface ScoreProps {
     onClassName?: string;
     offClassName?: string;
 }
+
 export const Score = ({ score, max, icon, onClassName, offClassName }: ScoreProps) => {
     return (
         <span>

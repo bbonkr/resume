@@ -1,25 +1,28 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import { FaStar } from 'react-icons/fa';
-import { ColorStyles } from '../../interfaces';
-import { SkillSection } from '../../interfaces/Data';
+import { ColorStyles, TextColorStyles } from '../../interfaces';
+import { SkillContentData } from '../../interfaces/Data';
 import { Card, Section } from '../Layouts';
 import { Score } from '../Score';
 
 interface SkillStackProps {
     title: string;
-    records?: SkillSection[];
+    record?: SkillContentData;
     useHero?: boolean;
     heroColor?: ColorStyles;
+    iconColor?: TextColorStyles;
 }
 
-export const SkillStack = ({ title, records, useHero, heroColor }: SkillStackProps) => {
+export const SkillStack = ({ title, record, useHero, heroColor, iconColor }: SkillStackProps) => {
     return (
         <React.Fragment>
-            <Section title={title} useHero={useHero} heroColor={heroColor} />
-            {records && records.length > 0 && (
+            <Helmet title={title ?? record?.title} />
+            <Section title={title ?? record?.title} useHero={useHero} heroColor={heroColor} />
+            {record && record.records && record.records.length > 0 && (
                 <Section>
                     <div className="columns">
-                        {records.map((skill) => {
+                        {record.records.map((skill) => {
                             return (
                                 <div className="column" key={skill.name}>
                                     <Card title={skill.name} classNames={['mb-4']}>
@@ -32,6 +35,7 @@ export const SkillStack = ({ title, records, useHero, heroColor }: SkillStackPro
                                                             score={item.score}
                                                             max={5}
                                                             icon={<FaStar />}
+                                                            onClassName={iconColor}
                                                         />
                                                     </dd>
                                                 </React.Fragment>
