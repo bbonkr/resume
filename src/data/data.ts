@@ -343,6 +343,40 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         title: 'Portfolio',
         records: [
             {
+                period: '2021-05',
+                state: '완료',
+                title: 'Bing Today Image Collector',
+                description:
+                    'Bing.com 에서 제공하는 배경 이미지를 지정된 일정에 수집하고, 수집된 이미지를 출력합니다.',
+                features: [
+                    'Scheduled Job',
+                    'Backend: ASP.NET Core',
+                    'Frontend: React',
+                    'Intersection Observer API',
+                ],
+                tags: ['.NET', 'react', 'c#', 'typescript', 'redux', 'scheduled job', 'docker'],
+                links: [
+                    {
+                        title: 'GitHub: bbonrk/bing-wallpaper',
+                        href: 'https://github.com/bbonkr/bing-wallpaper',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Blog: Bing Today Images Collector',
+                        href: 'https://bbon.kr/bing-today-images-collector/',
+                        icon: 'blog',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Demo',
+                        href: 'https://bing-images.bbon.me',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
                 period: '2021-02',
                 state: '완료',
                 title: 'kr.bbon.EntityFrameworkCore.Extensions',
@@ -760,7 +794,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'C#',
                         description: '',
-                        score: 5.0,
+                        score: 4.5,
                     },
                     {
                         name: 'Javascript',
@@ -775,7 +809,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'Python',
                         description: '',
-                        score: 3.0,
+                        score: 2.0,
                     },
                     {
                         name: 'SQL',
@@ -795,7 +829,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         href: 'https://dotnet.microsoft.com/',
                     },
                     {
-                        name: '.NET Core',
+                        name: '.NET',
                         description: '',
                         score: 4.0,
                         href: 'https://dotnet.microsoft.com/',
@@ -827,7 +861,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'Django',
                         description: '',
-                        score: 2.5,
+                        score: 1.5,
                         href: 'https://www.djangoproject.com/',
                     },
                 ],
@@ -848,7 +882,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'Google Cloud',
                         description: '',
-                        score: 2.5,
+                        score: 1.5,
                     },
                 ],
             },
