@@ -3,17 +3,20 @@ import { Data } from '../../interfaces/Data';
 import { Content } from './Content';
 import { GenericLink } from '../GenericLink';
 import { ScrollToTop } from '../ScrollToTop';
+import { Link as LinkModel } from '../../interfaces';
 
 interface FooterProps {
     record: Data;
+    gaEnabled?: boolean;
     onClickScrollToTop?: () => void;
 }
 
-export const Footer = ({ record, onClickScrollToTop }: FooterProps) => {
+export const Footer = ({ record, gaEnabled, onClickScrollToTop }: FooterProps) => {
     const [isOpen, setIsOpen] = useState(false);
     const handleToggleDropdown = () => {
         // setIsOpen((prevState) => !prevState);
     };
+
     return (
         <footer className="footer p-5">
             <Content
