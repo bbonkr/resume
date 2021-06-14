@@ -5,9 +5,10 @@ import { GenericLink } from '../GenericLink';
 interface HeaderProps {
     record: Data;
     menuRoutes: RouteData[];
+    gaEnabled?: boolean;
 }
 
-export const Header = ({ record, menuRoutes }: HeaderProps) => {
+export const Header = ({ record, menuRoutes, gaEnabled }: HeaderProps) => {
     const [navbarMenuIsActive, setNavbarMenuIsActive] = useState(false);
     const handleClickMenu = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { data } from '../../data/data';
 import { Position, RouteData } from '../../interfaces';
@@ -10,6 +11,7 @@ import { Home } from '../Home';
 import { SkillStack } from '../SkillStack';
 import { CardContent } from '../CardContent';
 import { Summary } from '../Summary';
+import { useStore } from '../../store';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
 
@@ -45,6 +47,7 @@ const routes: RouteData[] = [
 ];
 
 export const ResumeApp = () => {
+    const store = useStore();
     const [scrollPosition, setScrollPosition] = useState<Position>({ top: 0, left: 0 });
     const [theme, setTheme] = useState<Theme>(undefined);
     const handleClickScrollTop = () => {
@@ -65,86 +68,90 @@ export const ResumeApp = () => {
     }, []);
 
     return (
-        <Router>
-            <Helmet titleTemplate={`%s | ${data.me.name} 이력서`} />
-            {theme ? (
-                <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
-                    <Header record={data} menuRoutes={routes} />
-                    <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
-                        <Switch>
-                            <Route exact path="/">
-                                <Summary record={data} title="안녕하세요" />
-                            </Route>
-                            <Route exact path="/introduction">
-                                <Home
-                                    record={data}
-                                    useHero
-                                    heroColor="is-link"
-                                    title={'Introduction'}
-                                />
-                            </Route>
+        <Provider store={store}>
+            <HelmetProvider>
+                <Router>
+                    <Helmet titleTemplate={`%s | ${data.me.name} 이력서`} />
+                    {theme ? (
+                        <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
+                            <Header record={data} menuRoutes={routes} />
+                            <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
+                                <Switch>
+                                    <Route exact path="/">
+                                        <Summary record={data} title="안녕하세요" />
+                                    </Route>
+                                    <Route exact path="/introduction">
+                                        <Home
+                                            record={data}
+                                            useHero
+                                            heroColor="is-link"
+                                            title={'Introduction'}
+                                        />
+                                    </Route>
 
-                            <Route exact path="/skill">
-                                <SkillStack
-                                    title={data.skillStack.title}
-                                    record={data.skillStack}
-                                    useHero
-                                    heroColor="is-success"
-                                    iconColor="has-text-success"
-                                />
-                            </Route>
+                                    <Route exact path="/skill">
+                                        <SkillStack
+                                            title={data.skillStack.title}
+                                            record={data.skillStack}
+                                            useHero
+                                            heroColor="is-success"
+                                            iconColor="has-text-success"
+                                        />
+                                    </Route>
 
-                            <Route exact path="/education">
-                                <CardContent
-                                    record={data.education}
-                                    title={data.education.title}
-                                    useHero
-                                    heroColor="is-primary"
-                                />
-                            </Route>
+                                    <Route exact path="/education">
+                                        <CardContent
+                                            record={data.education}
+                                            title={data.education.title}
+                                            useHero
+                                            heroColor="is-primary"
+                                        />
+                                    </Route>
 
-                            <Route exact path="/work">
-                                <CardContent
-                                    record={data.career}
-                                    title={data.career.title}
-                                    useHero
-                                    heroColor="is-info"
-                                />
-                            </Route>
+                                    <Route exact path="/work">
+                                        <CardContent
+                                            record={data.career}
+                                            title={data.career.title}
+                                            useHero
+                                            heroColor="is-info"
+                                        />
+                                    </Route>
 
-                            <Route exact path="/project">
-                                <CardContent
-                                    record={data.project}
-                                    title={data.project.title}
-                                    useHero
-                                    heroColor="is-warning"
-                                />
-                            </Route>
+                                    <Route exact path="/project">
+                                        <CardContent
+                                            record={data.project}
+                                            title={data.project.title}
+                                            useHero
+                                            heroColor="is-warning"
+                                        />
+                                    </Route>
 
-                            <Route exact path="/portfolio">
-                                <CardContent
-                                    record={data.portfolio}
-                                    title={data.portfolio.title}
-                                    useHero
-                                    heroColor="is-danger"
-                                />
-                            </Route>
-                            <Route exact path="/certificate">
-                                <CardContent
-                                    record={data.certificate}
-                                    title={data.certificate.title}
-                                    useHero
-                                    heroColor="is-link"
-                                />
-                            </Route>
-                            <Redirect from="*" to="/" />
-                        </Switch>
-                    </Container>
-                    <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
-                </GoogleAnalyticsProviderWithRouter>
-            ) : (
-                <Loading />
-            )}
-        </Router>
+                                    <Route exact path="/portfolio">
+                                        <CardContent
+                                            record={data.portfolio}
+                                            title={data.portfolio.title}
+                                            useHero
+                                            heroColor="is-danger"
+                                        />
+                                    </Route>
+                                    <Route exact path="/certificate">
+                                        <CardContent
+                                            record={data.certificate}
+                                            title={data.certificate.title}
+                                            useHero
+                                            heroColor="is-link"
+                                        />
+                                    </Route>
+                                    <Redirect from="*" to="/" />
+                                </Switch>
+                            </Container>
+                            <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
+                        </GoogleAnalyticsProviderWithRouter>
+                    ) : (
+                        <Loading />
+                    )}
+                </Router>
+            </HelmetProvider>
+        </Provider>
     );
 };

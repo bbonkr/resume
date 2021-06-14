@@ -16,7 +16,7 @@ module.exports = {
         new ReactRefreshPlugin(),
     ],
     devServer: {
-        port: 3000,
+        port: 9200,
         host: '0.0.0.0',
         contentBase: path.resolve('docs'),
         historyApiFallback: true,

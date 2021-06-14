@@ -11,6 +11,7 @@ import {
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
 import { Link } from 'react-router-dom';
+import { useGaRedux } from '../../hooks/useGaRedux';
 import { Link as LinkModel } from '../../interfaces';
 
 interface GenericLinkProps {
@@ -25,6 +26,8 @@ export const GenericLink = ({
     children,
     onClick,
 }: PropsWithChildren<GenericLinkProps>) => {
+    const { gaId } = useGaRedux();
+
     const renderIcon = () => {
         if (record.icon) {
             switch (record.icon) {
@@ -54,6 +57,14 @@ export const GenericLink = ({
     };
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        if (gaId) {
+            gtag('event', 'click_link', {
+                href: record.href,
+                title: record.title,
+                debug_mode: process.env.NODE_ENV !== 'production',
+            });
+        }
+
         if (onClick) {
             onClick(event);
         }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { ColorStyles, SizeStyles } from '../../interfaces';
 import { Data } from '../../interfaces/Data';
 import { Bio } from '../Bio';
