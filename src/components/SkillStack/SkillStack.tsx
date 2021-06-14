@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { FaStar } from 'react-icons/fa';
 import { ColorStyles, TextColorStyles } from '../../interfaces';
 import { SkillContentData } from '../../interfaces/Data';
