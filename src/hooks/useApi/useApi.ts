@@ -1,96 +1,28 @@
-import { GraphQLClient, gql } from 'graphql-request';
 import { useCallback, useEffect, useState } from 'react';
 import { data as staticData } from '../../data/data';
 import useSWR from 'swr';
 import { Content, Maybe, Resume } from '../../graphql/sdk';
 import { ContentDataRecord, Data, Link, SkillItem, SkillSection } from '../../interfaces';
+import Axios from 'axios';
 
-export const useGraphQLResumeData = () => {
-    const endpoint = ''; //process.env.ENDPOINT ?? '';
-    const token = ''; // process.env.ACCESSKEY ?? '';
+export const useApi = () => {
+    const endpoint = process.env.API ?? '';
 
     const [resumeData, setResumeData] = useState<Data | null>(() =>
-        !endpoint && !token ? staticData : null,
+        !endpoint ? staticData : null,
     );
-
-    const client = new GraphQLClient(endpoint, {
-        headers: {
-            'xc-token': token,
-        },
-    });
 
     const { data, isValidating, error } = useSWR<{
         resume: Resume;
     }>(
         'get-resume',
         (_) =>
-            client.request(
-                gql`
-                    {
-                        resume: ResumeFindOne(where: "(username,eq,bbon)") {
-                            name
-                            username
-                            photo
-                            HomeList {
-                                title
-                                subtitle
-                                intro
-                                bio
-                                LinkList {
-                                    title
-                                    href
-                                    icon
-                                    target
-                                    disabled
-                                }
-                            }
-                            ContentList {
-                                title
-                                ContentItemList {
-                                    title
-                                    subtitle
-                                    period
-                                    state
-                                    description
-                                    disabled
-                                    images
-                                    ContentFeatureList {
-                                        title
-                                    }
-                                    ContentTagMMList {
-                                        title
-                                    }
-                                    ContentLinkList {
-                                        title
-                                        href
-                                        icon
-                                        target
-                                        disabled
-                                    }
-                                }
-                            }
-                            SkillList {
-                                title
-                                SkillGroupList {
-                                    title
-                                    icon
-                                    SkillItemList {
-                                        title
-                                        score
-                                        scoremax
-                                        description
-                                        href
-                                        disabled
-                                    }
-                                }
-                            }
-                        }
-                    }
-                `,
-            ),
+            Axios.get<{
+                resume: Resume;
+            }>(endpoint).then((res) => res.data),
         {
             shouldRetryOnError: false,
-            isPaused: () => !endpoint && !token,
+            isPaused: () => !endpoint,
         },
     );
 
@@ -259,4 +191,4 @@ export const useGraphQLResumeData = () => {
     };
 };
 
-export type UseGraphQLResumeData = ReturnType<typeof useGraphQLResumeData>;
+export type UseApi = ReturnType<typeof useApi>;

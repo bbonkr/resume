@@ -59,8 +59,7 @@ module.exports = {
                 env: {
                     GAID: JSON.stringify(process.env.GAID),
                     PRODUCTION: JSON.stringify(isProduction ? 'production' : ''),
-                    ENDPOINT: JSON.stringify(process.env.ENDPOINT),
-                    ACCESSKEY: JSON.stringify(process.env.ACCESSKEY),
+                    API: JSON.stringify(process.env.API),
                 },
             },
         }),

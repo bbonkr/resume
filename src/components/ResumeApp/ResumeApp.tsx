@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-// import { data } from '../../data/data';
 import { Position, RouteData } from '../../interfaces';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
@@ -12,7 +11,7 @@ import { SkillStack } from '../SkillStack';
 import { CardContent } from '../CardContent';
 import { Summary } from '../Summary';
 import { useStore } from '../../store';
-import { useGraphQLResumeData } from '../../hooks/useGraphQL';
+import { useApi } from '../../hooks/useApi';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
 
@@ -51,7 +50,7 @@ export const ResumeApp = () => {
     const store = useStore();
     const [scrollPosition, setScrollPosition] = useState<Position>({ top: 0, left: 0 });
     const [theme, setTheme] = useState<Theme>(undefined);
-    const { resume: data, isLoading } = useGraphQLResumeData();
+    const { resume: data, isLoading } = useApi();
 
     const handleClickScrollTop = () => {
         // setScrollPosition((prevState) => ({
