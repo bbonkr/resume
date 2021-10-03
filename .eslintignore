@@ -7,4 +7,5 @@ coverage/*
 # 3rd party libs
 public/
 # custom definition files
-/src/types/
+src/types/
+src/graphql/
