@@ -18,7 +18,7 @@ const GoogleAnalyticsProvider = ({
     useEffect(() => {
         if (googleAnalyticsId) {
             gtag('event', 'app_started', {
-                debug_mode: process.env.NODE_ENV !== 'production',
+                debug_mode: process.env.PRODUCTION !== 'production',
             });
         }
         setGaId(googleAnalyticsId ?? '');
@@ -31,7 +31,7 @@ const GoogleAnalyticsProvider = ({
                 page_title: window.document.title,
                 page_location: window.location.href,
                 page_path: location.pathname,
-                debug_mode: process.env.NODE_ENV !== 'production',
+                debug_mode: process.env.PRODUCTION !== 'production',
             });
         }
     }, [location]);

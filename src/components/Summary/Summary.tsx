@@ -16,13 +16,13 @@ interface Tag {
 }
 
 interface SummaryProps {
-    record: Data;
+    record?: Data | null;
     title?: string;
 }
 
 export const Summary = ({ record, title }: SummaryProps) => {
     const projectTags: Tag[] = [];
-    record.project.records?.forEach((x) => {
+    record?.project?.records?.forEach((x) => {
         x.tags?.forEach((tag) => {
             const found = projectTags.find((x) => x.tag.toLowerCase() === tag.toLowerCase());
             if (found) {
@@ -33,7 +33,7 @@ export const Summary = ({ record, title }: SummaryProps) => {
         });
     });
 
-    record.portfolio.records?.forEach((x) => {
+    record?.portfolio?.records?.forEach((x) => {
         x.tags?.forEach((tag) => {
             const found = projectTags.find((x) => x.tag.toLowerCase() === tag.toLowerCase());
             if (found) {
@@ -88,8 +88,8 @@ export const Summary = ({ record, title }: SummaryProps) => {
         <React.Fragment>
             <Helmet title={title} />
             <Section
-                title={record.home.title}
-                subtitle={record.home.subtitle}
+                title={record?.home?.title}
+                subtitle={record?.home?.subtitle}
                 useHero
                 heroColor="is-info"
             />
@@ -103,8 +103,8 @@ export const Summary = ({ record, title }: SummaryProps) => {
                     </div>
                     <div className="column">
                         <Skill
-                            records={record.skillStack.records}
-                            title={record.skillStack.title?.toUpperCase()}
+                            records={record?.skillStack?.records}
+                            title={record?.skillStack?.title?.toUpperCase() ?? ''}
                         />
                     </div>
                 </div>

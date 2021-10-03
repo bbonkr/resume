@@ -61,7 +61,7 @@ export const GenericLink = ({
             gtag('event', 'click_link', {
                 href: record.href,
                 title: record.title,
-                debug_mode: process.env.NODE_ENV !== 'production',
+                debug_mode: process.env.PRODUCTION !== 'production',
             });
         }
 

@@ -159,7 +159,7 @@ Azure DevOps 에서 버전제어를 관리하고, Azure Pipeline 을 사용해�
                     'Next.js',
                     'Azure',
                     'Azure DevOps',
-                    'Azure WebApp',
+                    'Azure app service',
                     'Azure Pipeline',
                     'Node.js',
                 ],
@@ -369,7 +369,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         target: '_blank',
                     },
                     {
-                        title: 'Demo',
+                        title: 'Demo: Bing Today Images Collector',
                         href: 'https://bing-images.bbon.me',
                         icon: 'site',
                         target: '_blank',
@@ -386,9 +386,8 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 tags: ['nuget', '.NET', 'c#', 'entifyframework'],
                 links: [
                     {
-                        title: 'nuget.org: kr.bbon.EntityFrameworkCore.Extensions',
-                        href:
-                            'https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions',
+                        title: 'Nuget: kr.bbon.EntityFrameworkCore.Extensions',
+                        href: 'https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions',
                         icon: 'nuget',
                         target: '_blank',
                     },
@@ -409,13 +408,13 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 features: ['typescript', 'npm', 'cli'],
                 links: [
                     {
-                        title: '@bbon/css-to-jss',
+                        title: 'NPM: @bbon/css-to-jss',
                         href: 'https://www.npmjs.com/package/@bbon/css-to-jss',
                         icon: 'npm',
                         target: '_blank',
                     },
                     {
-                        title: '@bbon/css-to-jss',
+                        title: 'GitHub: @bbon/css-to-jss',
                         href: 'https://github.com/bbonkr/css-to-jss',
                         icon: 'github',
                         target: '_blank',
@@ -432,13 +431,13 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 tags: ['typescript', 'npm'],
                 links: [
                     {
-                        title: '@bbonkr/filedownload',
+                        title: 'NPM: @bbonkr/filedownload',
                         href: 'https://www.npmjs.com/package/@bbon/filedownload',
                         icon: 'npm',
                         target: '_blank',
                     },
                     {
-                        title: '@bbonkr/filedownload',
+                        title: 'GitHub: @bbonkr/filedownload',
                         href: 'https://github.com/bbonkr/bbon-filedownload',
                         icon: 'github',
                         target: '_blank',
@@ -503,9 +502,8 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 features: ['Android', 'React Native', 'Expo', 'Google Play'],
                 links: [
                     {
-                        title: '구글 플레이',
-                        href:
-                            'https://play.google.com/store/apps/details?id=kr.bbon.whendoibuyamask',
+                        title: 'Google Play: 공적 마스크 안내',
+                        href: 'https://play.google.com/store/apps/details?id=kr.bbon.whendoibuyamask',
                         icon: 'android',
                         target: '_blank',
                     },
@@ -524,7 +522,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: 'Rename App: Electron',
                 description:
                     '일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.',
-                features: ['입력값으로 치환', '앞에 추가', '뒤에 추기', '정규식으로 치환'],
+                features: ['입력값으로 치환', '앞에 추가', '뒤에 추가', '정규식으로 치환'],
                 tags: ['electron', 'react', 'typescript', 'windows', 'macos'],
                 links: [
                     {
@@ -598,7 +596,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 ],
                 links: [
                     {
-                        title: '데모 사이트',
+                        title: 'Blog Service #2 사이트 (N/A)',
                         href: 'https://blog-service.bbon.me/',
                         icon: 'home',
                         target: '_blank',
@@ -641,15 +639,14 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 ],
                 links: [
                     {
-                        title: 'Google Play',
+                        title: 'Google Play: 너와 나의 점수판',
                         href: 'https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard',
                         icon: 'android',
                         target: '_blank',
                     },
                     {
-                        title: 'Microsoft Store',
-                        href:
-                            'https://www.microsoft.com/ko-kr/p/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90/9p7vpgxbgpwj',
+                        title: 'Microsoft Store: 너와 나의 점수판',
+                        href: 'https://www.microsoft.com/ko-kr/p/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90/9p7vpgxbgpwj',
                         icon: 'windows',
                         target: '_blank',
                     },
@@ -664,9 +661,8 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 features: ['Microsoft Store 게시됨'],
                 links: [
                     {
-                        title: 'Microsoft Store',
-                        href:
-                            'https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot%3Aoverviewtab#',
+                        title: 'Microsoft Store: File Rename App',
+                        href: 'https://www.microsoft.com/ko-kr/p/file-rename-app/9n94sf4f30m6?activetab=pivot%3Aoverviewtab#',
                         icon: 'windows',
                     },
                 ],
@@ -719,7 +715,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 ],
                 links: [
                     {
-                        title: '데모 사이트',
+                        title: 'Blog Service (N/A)',
                         href: 'https://sample-blog.bbon.me',
                         icon: 'home',
                     },
@@ -749,14 +745,13 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 features: ['언어 지원 en-US, ko-KR', 'React Native'],
                 links: [
                     {
-                        title: 'Google Play',
+                        title: 'Google Play: 너와 나의 점수판',
                         href: 'https://play.google.com/store/apps/details?id=kr.bbon.ScoreBoard',
                         icon: 'android',
                     },
                     {
-                        title: 'Microsoft Store',
-                        href:
-                            'https://www.microsoft.com/ko-kr/p/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90/9p7vpgxbgpwj',
+                        title: 'Microsoft Store: 너와 나의 점수판',
+                        href: 'https://www.microsoft.com/ko-kr/p/%EB%84%88%EC%99%80-%EB%82%98%EC%9D%98-%EC%A0%90%EC%88%98%ED%8C%90/9p7vpgxbgpwj',
                         icon: 'windows',
                     },
                     {
@@ -772,7 +767,7 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: 'Blog Service Backend: ASP.NET Core ',
                 state: '진행중',
                 description: '블로그 서비스의 백엔드를 ASP.NET Core 로 작성합니다.',
-                features: ['ASP.NET Core', 'Entity Framewor', 'Microsoft SQL Server'],
+                features: ['ASP.NET Core', 'Entity Framework', 'Microsoft SQL Server'],
                 links: [
                     {
                         title: 'GitHub: blog-aspnetcore-backend',

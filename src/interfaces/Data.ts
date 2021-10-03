@@ -1,86 +1,90 @@
-export interface Data {
-    me: Me;
-    home: Home;
-    education: ContentData;
-    career: ContentData;
-    project: ContentData;
-    portfolio: ContentData;
-    skillStack: SkillContentData;
-    certificate: ContentData;
-}
+export type Data = {
+    me?: Me | null;
+    home?: Home | null;
+    education?: ContentData | null;
+    career?: ContentData | null;
+    project?: ContentData | null;
+    portfolio?: ContentData | null;
+    skillStack?: SkillContentData | null;
+    certificate?: ContentData | null;
+};
 
-export interface Link {
+export type LinKIcon =
+    | 'home'
+    | 'blog'
+    | 'github'
+    | 'mail'
+    | 'site'
+    | 'android'
+    | 'ios'
+    | 'windows'
+    | 'npm'
+    | 'nuget'
+    | string;
+
+export type LinkTarget = string | '_blank' | '_self';
+
+export type Link = {
     title: string;
     href: string;
-    icon?:
-        | 'home'
-        | 'blog'
-        | 'github'
-        | 'mail'
-        | 'site'
-        | 'android'
-        | 'ios'
-        | 'windows'
-        | 'npm'
-        | 'nuget'
-        | '';
-    target?: string | '_blank' | '_self';
-}
+    icon?: LinKIcon;
+    target?: LinkTarget;
+};
 
-export interface Home {
+export type Home = {
     title: string;
     subtitle?: string;
     intro?: string;
     bio?: string;
     links?: Link[];
-}
+};
 
-export interface Education extends ContentDataRecord {
+export type Education = ContentDataRecord & {
     state: '입학' | '졸업';
-}
+};
 
-export interface Me {
+export type Me = {
     name: string;
-    photo: string;
-}
+    photo?: string;
+};
 
-export interface Career extends ContentDataRecord {
+export type Career = ContentDataRecord & {
     state: '입사' | '퇴사' | '완료';
-}
+};
 
-export interface Portfolio extends ContentDataRecord {
+export type Portfolio = ContentDataRecord & {
     state: '완료' | '진행중';
-}
+};
 
-export interface SkillContentData {
+export type SkillContentData = {
     title: string;
     records?: SkillSection[];
-}
+};
 
-export interface SkillSection {
+export type SkillSection = {
     name: string;
     icon?: string;
     items: SkillItem[];
-}
+};
 
-export interface SkillItem {
+export type SkillItem = {
     name: string;
     description: string;
     score: number;
     href?: string;
-}
+};
 
-export interface ContentData {
+export type ContentData = {
     title: string;
     records?: ContentDataRecord[];
-}
+};
 
-interface ImageData {
+type ImageData = {
     src: string;
     alt: string;
-}
+};
 
-export interface ContentDataRecord {
+export type ContentDataRecord = {
     period: string;
     title: string;
     subtitle?: string;
@@ -90,4 +94,4 @@ export interface ContentDataRecord {
     tags?: string[];
     links?: Link[];
     images?: ImageData[];
-}
+};
