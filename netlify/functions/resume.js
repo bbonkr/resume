@@ -3,8 +3,8 @@ const { GraphQLClient, gql } = require('graphql-request');
 exports.handler = async (event) => {
     // const subject = event.queryStringParameters.name || 'World';
 
-    const endpoint = process.env.ENDPOINT ?? '';
-    const token = process.env.ACCESSKEY ?? '';
+    const endpoint = process.env.ENDPOINT || '';
+    const token = process.env.ACCESSKEY || '';
 
     const client = new GraphQLClient(endpoint, {
         headers: {
