@@ -1,5 +1,6 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { useCallback, useEffect, useState } from 'react';
+import { data as staticData } from '../../data/data';
 import useSWR, { Key } from 'swr';
 import { Content, Maybe, Resume } from '../../graphql/sdk';
 import { ContentDataRecord, Data, Link, SkillItem, SkillSection, Home } from '../../interfaces';
@@ -20,11 +21,13 @@ export const useGraphQL = <TResponseData>(key: Key | [Key], query: string) => {
 export type UseGraphQL = ReturnType<typeof useGraphQL>;
 
 export const useGraphQLResumeData = () => {
-    const [resumeId, setResumeId] = useState<number>();
-    const [resumeData, setResumeData] = useState<Data | null>(null);
-
     const endpoint = process.env.ENDPOINT ?? '';
     const token = process.env.ACCESSKEY ?? '';
+
+    const [resumeId, setResumeId] = useState<number>();
+    const [resumeData, setResumeData] = useState<Data | null>(() =>
+        !endpoint && !token ? staticData : null,
+    );
 
     const client = new GraphQLClient(endpoint, {
         headers: {
@@ -34,44 +37,22 @@ export const useGraphQLResumeData = () => {
 
     const { data, isValidating, error } = useSWR<{
         resume: Resume;
-    }>('get-resume', (_) =>
-        client.request(
-            gql`
-                {
-                    resume: ResumeFindOne(where: "(username,eq,bbon)") {
-                        name
-                        username
-                        photo
-                        HomeList {
-                            title
-                            subtitle
-                            intro
-                            bio
-                            LinkList {
-                                title
-                                href
-                                icon
-                                target
-                                disabled
-                            }
-                        }
-                        ContentList {
-                            title
-                            ContentItemList {
+    }>(
+        'get-resume',
+        (_) =>
+            client.request(
+                gql`
+                    {
+                        resume: ResumeFindOne(where: "(username,eq,bbon)") {
+                            name
+                            username
+                            photo
+                            HomeList {
                                 title
                                 subtitle
-                                period
-                                state
-                                description
-                                disabled
-                                images
-                                ContentFeatureList {
-                                    title
-                                }
-                                ContentTagMMList {
-                                    title
-                                }
-                                ContentLinkList {
+                                intro
+                                bio
+                                LinkList {
                                     title
                                     href
                                     icon
@@ -79,26 +60,54 @@ export const useGraphQLResumeData = () => {
                                     disabled
                                 }
                             }
-                        }
-                        SkillList {
-                            title
-                            SkillGroupList {
+                            ContentList {
                                 title
-                                icon
-                                SkillItemList {
+                                ContentItemList {
                                     title
-                                    score
-                                    scoremax
+                                    subtitle
+                                    period
+                                    state
                                     description
-                                    href
                                     disabled
+                                    images
+                                    ContentFeatureList {
+                                        title
+                                    }
+                                    ContentTagMMList {
+                                        title
+                                    }
+                                    ContentLinkList {
+                                        title
+                                        href
+                                        icon
+                                        target
+                                        disabled
+                                    }
+                                }
+                            }
+                            SkillList {
+                                title
+                                SkillGroupList {
+                                    title
+                                    icon
+                                    SkillItemList {
+                                        title
+                                        score
+                                        scoremax
+                                        description
+                                        href
+                                        disabled
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            `,
-        ),
+                `,
+            ),
+        {
+            shouldRetryOnError: false,
+            isPaused: () => !endpoint && !token,
+        },
     );
 
     const parseUrl = useCallback((maybeUrl: any) => {
@@ -168,7 +177,6 @@ export const useGraphQLResumeData = () => {
     }, []);
 
     useEffect(() => {
-        console.info('[SWR] data:', data);
         if (data) {
             setResumeData((_) => {
                 const home = data.resume.HomeList?.filter((_, index) => index === 0).find(
@@ -253,7 +261,11 @@ export const useGraphQLResumeData = () => {
 
     useEffect(() => {
         if (error) {
-            console.info('[SWR ERROR]', error);
+            if (error.response.status === 404) {
+                console.info('Use static data source.');
+            } else {
+                console.info('[SWR ERROR]', error);
+            }
         }
     }, [error]);
 

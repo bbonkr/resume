@@ -25,7 +25,7 @@ export const data: Data = {
 
 ### 방송통신대학교
 
-입사후, 불평등한 대우가 싫어 낮에는 프로젝트를 진행하고 늦은 밤에 온라인 강의를 통해 학사 졸업장을 획득하였습니다. 
+입사후, 낮에는 프로젝트를 진행하고 늦은 밤에 온라인 강의를 통해 학사 졸업장을 획득하였습니다. 
 
 컴퓨터 과학 전공에서 얻은 지식은 없어도 무관할 수 있으나, 있으면 더 좋은 소프트웨어의 기반이 될 수 있다는 것을 알게되었습니다.
 
@@ -58,7 +58,7 @@ export const data: Data = {
 
 [블로그](https://bbon.kr/)에 글을 게시하고, [코드를 지속적으로 작성](https://github.com/bbonkr)하고 있습니다.`,
         links: [
-            { title: '블로그', href: 'http://bbon.kr', icon: 'home' },
+            { title: 'Blog', href: 'http://bbon.kr', icon: 'home' },
             {
                 title: 'GitHub',
                 href: 'https://github.com/bbonkr',
