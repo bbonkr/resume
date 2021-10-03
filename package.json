@@ -20,6 +20,7 @@
     "author": "Pon Cheol Ku <dev@bbon.kr> (http://bbon.kr)",
     "license": "MIT",
     "dependencies": {
+        "axios": "^0.22.0",
         "bulma": "^0.9.3",
         "graphql": "^15.6.0",
         "graphql-request": "^3.5.0",
