@@ -1,6 +1,6 @@
 const { GraphQLClient, gql } = require('graphql-request');
 
-exports.handler = async (event) => {
+exports.handler = async (event, context) => {
     // const subject = event.queryStringParameters.name || 'World';
 
     const endpoint = process.env.ENDPOINT || '';
@@ -79,6 +79,9 @@ exports.handler = async (event) => {
 
     return {
         statusCode: 200,
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+        },
         body: JSON.stringify(response),
     };
 };
