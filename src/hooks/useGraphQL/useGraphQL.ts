@@ -1,30 +1,14 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { useCallback, useEffect, useState } from 'react';
 import { data as staticData } from '../../data/data';
-import useSWR, { Key } from 'swr';
+import useSWR from 'swr';
 import { Content, Maybe, Resume } from '../../graphql/sdk';
-import { ContentDataRecord, Data, Link, SkillItem, SkillSection, Home } from '../../interfaces';
-
-export const useGraphQL = <TResponseData>(key: Key | [Key], query: string) => {
-    const endpoint = process.env.ENDPOINT ?? '';
-    const token = process.env.ACCESSKEY ?? '';
-
-    const client = new GraphQLClient(endpoint, {
-        headers: {
-            'xc-token': token,
-        },
-    });
-
-    return useSWR<TResponseData>(key, (_) => client.request<TResponseData>(query));
-};
-
-export type UseGraphQL = ReturnType<typeof useGraphQL>;
+import { ContentDataRecord, Data, Link, SkillItem, SkillSection } from '../../interfaces';
 
 export const useGraphQLResumeData = () => {
     const endpoint = process.env.ENDPOINT ?? '';
     const token = process.env.ACCESSKEY ?? '';
 
-    const [resumeId, setResumeId] = useState<number>();
     const [resumeData, setResumeData] = useState<Data | null>(() =>
         !endpoint && !token ? staticData : null,
     );
