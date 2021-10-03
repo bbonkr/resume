@@ -12,8 +12,8 @@ const projectRootDir = path.resolve(__dirname, '..');
 
 module.exports = {
     name: 'build resume',
-    devtool: isProduction ? 'hidden-source-map' : 'eval',
-    mode: isProduction ? 'production' : 'development',
+    devtool: 'hidden-source-map',
+    mode: 'production',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
         fallback: { assert: false },
