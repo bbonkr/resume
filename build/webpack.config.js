@@ -12,10 +12,11 @@ const projectRootDir = path.resolve(__dirname, '..');
 
 module.exports = {
     name: 'build resume',
-    devtool: isProduction ? 'hidden-source-map' : 'eval',
-    mode: isProduction ? 'production' : 'development',
+    devtool: 'hidden-source-map',
+    mode: 'production',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        fallback: { assert: false },
     },
     entry: {
         app: path.join(projectRootDir, 'src', 'index'),
@@ -54,13 +55,17 @@ module.exports = {
     plugins: [
         new webpack.LoaderOptionsPlugin({ dev: !isProduction }),
         new webpack.DefinePlugin({
-            'process.env': {
-                GAID: JSON.stringify(process.env.GAID),
-                NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+            process: {
+                env: {
+                    GAID: JSON.stringify(process.env.GAID),
+                    PRODUCTION: JSON.stringify(isProduction ? 'production' : ''),
+                    ENDPOINT: JSON.stringify(process.env.ENDPOINT),
+                    ACCESSKEY: JSON.stringify(process.env.ACCESSKEY),
+                },
             },
         }),
         new HtmlWebPackPlugin({
-            template: 'src/index.ejs',
+            template: 'src/index.html',
             filename: '../index.html',
         }),
         new CopyPlugin({
@@ -75,6 +80,6 @@ module.exports = {
     output: {
         filename: '[name].js',
         path: path.join(projectRootDir, 'docs/dist'),
-        publicPath: '/dist/',
+        publicPath: './dist/',
     },
 };

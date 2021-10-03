@@ -8,7 +8,7 @@ import { Card, Section } from '../Layouts';
 
 interface CardContentProps {
     title?: string;
-    record?: ContentData;
+    record?: ContentData | null;
     useHero?: boolean;
     heroColor?: ColorStyles;
 }
@@ -34,7 +34,7 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                     </p>
 
                                     {x.description && (
-                                        <ReactMarkdown source={x.description ?? ''} />
+                                        <ReactMarkdown children={x.description ?? ''} />
                                     )}
 
                                     {x.features && x.features.length > 0 && (
