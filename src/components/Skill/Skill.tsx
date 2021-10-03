@@ -6,7 +6,7 @@ import { FaStar } from 'react-icons/fa';
 
 interface SkillProps {
     title: string;
-    records?: SkillSection[];
+    records?: SkillSection[] | null;
 }
 
 export const Skill = ({ title, records }: SkillProps) => {

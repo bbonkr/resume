@@ -16,15 +16,15 @@ module.exports = {
         new ReactRefreshPlugin(),
     ],
     devServer: {
-        port: 9200,
-        host: '0.0.0.0',
-        contentBase: path.resolve('docs'),
+        port: 3000,
         historyApiFallback: true,
         hot: true,
-        hotOnly: true,
-        inline: true,
-        publicPath: '/',
-        watchContentBase: true,
-        writeToDisk: true,
+        liveReload: false,
+        devMiddleware: {
+            writeToDisk: true,
+        },
+        static: {
+            directory: path.resolve('docs'),
+        },
     },
 };

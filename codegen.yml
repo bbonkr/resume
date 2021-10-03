@@ -1,0 +1,25 @@
+overwrite: true
+generates:
+  src/graphql/sdk.ts:
+    schema: 
+      - "${ENDPOINT}":
+          headers:
+            'xc-token': "${ACCESSKEY}"
+    plugins:
+      - add: 
+          content: '// THIS FILE IS GENERATED, DO NOT EDIT!'
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request
+      - plugin-typescript-swr
+config:
+  # If you have a query that you want to use `useSWRInfinite`, list it in Options
+  # useSWRInfinite:
+  #   - GetPost
+  scalars:
+    DateTime: string
+    JSON: unknown
+    Upload: unknown
+    Time: string
+    Date: string
+    Long: number

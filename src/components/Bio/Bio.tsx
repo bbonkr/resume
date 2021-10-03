@@ -5,20 +5,19 @@ import { Content, Section } from '../Layouts';
 import { GenericLink } from '../GenericLink';
 
 interface BioProps {
-    record: Data;
+    record?: Pick<Data, 'home'> | null;
     title?: string;
 }
 
 export const Bio = ({ record, title }: BioProps) => {
-    const { home } = record;
     return (
         <Content>
             <Section title={title}>
-                <ReactMarkdown source={home.bio ?? ''} />
+                <ReactMarkdown children={record?.home?.bio ?? ''} />
 
-                {home.links && home.links.length > 0 && (
+                {record?.home?.links && record?.home.links.length > 0 && (
                     <div className="d-flex flex-row justify-content-center flex-wrap">
-                        {home.links.map((x) => {
+                        {record?.home.links.map((x) => {
                             return (
                                 <div className="mr-20" key={x.href}>
                                     <GenericLink record={x} />

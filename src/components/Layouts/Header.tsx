@@ -3,7 +3,7 @@ import { Data, RouteData } from '../../interfaces';
 import { GenericLink } from '../GenericLink';
 
 interface HeaderProps {
-    record: Data;
+    record?: Data | null;
     menuRoutes: RouteData[];
     gaEnabled?: boolean;
 }
@@ -102,7 +102,7 @@ export const Header = ({ record, menuRoutes, gaEnabled }: HeaderProps) => {
                         className="navbar-item"
                         onClick={handleClickMenu}
                     >
-                        <img src={record.me.photo} width="auto" height="28" />
+                        <img src={record?.me?.photo} width="auto" height="28" />
                     </GenericLink>
 
                     <a

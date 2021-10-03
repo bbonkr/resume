@@ -8,7 +8,7 @@ import { Score } from '../Score';
 
 interface SkillStackProps {
     title: string;
-    record?: SkillContentData;
+    record?: SkillContentData | null;
     useHero?: boolean;
     heroColor?: ColorStyles;
     iconColor?: TextColorStyles;

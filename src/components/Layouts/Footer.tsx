@@ -6,7 +6,7 @@ import { ScrollToTop } from '../ScrollToTop';
 import { Link as LinkModel } from '../../interfaces';
 
 interface FooterProps {
-    record: Data;
+    record?: Data | null;
     gaEnabled?: boolean;
     onClickScrollToTop?: () => void;
 }
@@ -42,7 +42,7 @@ export const Footer = ({ record, gaEnabled, onClickScrollToTop }: FooterProps) =
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
                         <div className="dropdown-content">
-                            {record.home.links?.map((link) => (
+                            {record?.home?.links?.map((link) => (
                                 <GenericLink
                                     key={link.href}
                                     className="dropdown-item"
@@ -55,7 +55,7 @@ export const Footer = ({ record, gaEnabled, onClickScrollToTop }: FooterProps) =
 
                 <div>
                     <span className="navbar-text ml-auto">
-                        &copy; {record.me.name}, All rights reserved
+                        &copy; {record?.me?.name}, All rights reserved
                     </span>
                 </div>
                 <div>
