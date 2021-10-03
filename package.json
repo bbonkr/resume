@@ -9,7 +9,8 @@
         "build:prod": "webpack --config build/webpack.config.js",
         "build": "cross-env NODE_ENV=production npm run build:prod",
         "lint": "eslint --ext .ts,.tsx src/ --quiet --fix",
-        "generate": "dotenv -e .env -- graphql-codegen"
+        "generate": "dotenv -e .env -- graphql-codegen",
+        "test-api": "dotenv -e .env -- node .functions/resume.js"
     },
     "keywords": [
         "react",
@@ -81,6 +82,7 @@
         "eslint-plugin-standard": "^5.0.0",
         "graphql-codegen-plugin-typescript-swr": "^0.6.1",
         "html-webpack-plugin": "^5.3.2",
+        "netlify-cli": "^6.9.28",
         "prettier": "^2.4.1",
         "react-refresh": "^0.10.0",
         "style-loader": "^3.3.0",

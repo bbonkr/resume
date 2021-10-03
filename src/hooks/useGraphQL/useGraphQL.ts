@@ -6,8 +6,8 @@ import { Content, Maybe, Resume } from '../../graphql/sdk';
 import { ContentDataRecord, Data, Link, SkillItem, SkillSection } from '../../interfaces';
 
 export const useGraphQLResumeData = () => {
-    const endpoint = process.env.ENDPOINT ?? '';
-    const token = process.env.ACCESSKEY ?? '';
+    const endpoint = ''; //process.env.ENDPOINT ?? '';
+    const token = ''; // process.env.ACCESSKEY ?? '';
 
     const [resumeData, setResumeData] = useState<Data | null>(() =>
         !endpoint && !token ? staticData : null,
