@@ -1,6 +1,22 @@
-#app{
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+#app {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+}
+
+.shadow {
+    box-shadow: 0 0.3rem 0.4rem #00000038;
+}
+
+p,
+a,
+span,
+div,
+.card-header-title {
+    word-break: break-word;
 }

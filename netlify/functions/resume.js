@@ -1,8 +1,6 @@
 const { GraphQLClient, gql } = require('graphql-request');
 
-exports.handler = async (event, context) => {
-    // const subject = event.queryStringParameters.name || 'World';
-
+const getResume = async (name) => {
     const endpoint = process.env.ENDPOINT || '';
     const token = process.env.ACCESSKEY || '';
 
@@ -15,7 +13,7 @@ exports.handler = async (event, context) => {
     const response = await client.request(
         gql`
             {
-                resume: ResumeFindOne(where: "(username,eq,bbon)") {
+                resume: ResumeFindOne(where: "(username,eq,${name})") {
                     name
                     username
                     photo
@@ -76,6 +74,14 @@ exports.handler = async (event, context) => {
             }
         `,
     );
+
+    return response;
+};
+
+exports.getResume = getResume;
+
+exports.handler = async (event, context) => {
+    const response = await getResume('bbon');
 
     return {
         statusCode: 200,

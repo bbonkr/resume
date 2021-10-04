@@ -90,7 +90,7 @@ export const Header = ({ record, menuRoutes, gaEnabled }: HeaderProps) => {
                 ></div>
             )}
             <nav
-                className="navbar is-fixed-top has-dropdown"
+                className="navbar is-fixed-top has-dropdown shadow"
                 id="header-nav"
                 role="navigation"
                 aria-label="main navigation"
@@ -102,7 +102,14 @@ export const Header = ({ record, menuRoutes, gaEnabled }: HeaderProps) => {
                         className="navbar-item"
                         onClick={handleClickMenu}
                     >
-                        <img src={record?.me?.photo} width="auto" height="28" />
+                        <img
+                            src={record?.me?.photo}
+                            width="auto"
+                            height="28"
+                            alt={record?.me?.name ?? ''}
+                            title={record?.me?.name ?? ''}
+                            loading="lazy"
+                        />
                     </GenericLink>
 
                     <a

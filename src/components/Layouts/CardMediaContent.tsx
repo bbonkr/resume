@@ -17,7 +17,7 @@ export const CardMediaContent = ({ image, content }: CardMediaContentProps) => {
             {image && (
                 <div className="media-left">
                     <figure>
-                        <img src={image.src} alt={image.alt} />
+                        <img src={image.src} alt={image.alt} loading="lazy" />
                     </figure>
                 </div>
             )}

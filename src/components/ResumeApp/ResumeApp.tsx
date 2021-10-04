@@ -70,7 +70,7 @@ export const ResumeApp = () => {
     }, []);
 
     useEffect(() => {
-        console.info('resume data: ', data);
+        console.info('data:', data);
     }, [data]);
 
     return (
@@ -78,7 +78,10 @@ export const ResumeApp = () => {
             <HelmetProvider>
                 <Router>
                     <Helmet titleTemplate={`%s | ${data?.me?.name} 이력서`} />
-                    {theme || !isLoading ? (
+
+                    {!theme || (!data && isLoading) ? (
+                        <Loading />
+                    ) : (
                         <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
                             <Header record={data} menuRoutes={routes} />
                             <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
@@ -153,8 +156,6 @@ export const ResumeApp = () => {
                             </Container>
                             <Footer record={data} onClickScrollToTop={handleClickScrollTop} />
                         </GoogleAnalyticsProviderWithRouter>
-                    ) : (
-                        <Loading />
                     )}
                 </Router>
             </HelmetProvider>
