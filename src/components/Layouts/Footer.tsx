@@ -3,7 +3,8 @@ import { Data } from '../../interfaces/Data';
 import { Content } from './Content';
 import { GenericLink } from '../GenericLink';
 import { ScrollToTop } from '../ScrollToTop';
-import { Link as LinkModel } from '../../interfaces';
+import { FaInfoCircle } from 'react-icons/fa';
+import { UiHelper } from '../../libs/UiHelper';
 
 interface FooterProps {
     record?: Data | null;
@@ -33,11 +34,9 @@ export const Footer = ({ record, gaEnabled, onClickScrollToTop }: FooterProps) =
                             aria-haspopup="true"
                             aria-controls="dropdown-menu"
                             onClick={handleToggleDropdown}
+                            role="button"
                         >
-                            <span>Contact</span>
-                            <span className="icon is-small">
-                                <i className="fas fa-angle-down" aria-hidden="true"></i>
-                            </span>
+                            <FaInfoCircle />
                         </button>
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
@@ -53,10 +52,15 @@ export const Footer = ({ record, gaEnabled, onClickScrollToTop }: FooterProps) =
                     </div>
                 </div>
 
-                <div>
-                    <span className="navbar-text ml-auto">
-                        &copy; {record?.me?.name}, All rights reserved
-                    </span>
+                <div
+                    className={UiHelper.GetClassNames(
+                        'is-flex',
+                        'is-flex-direction-column',
+                        'is-justify-content-center',
+                        'is-align-content-center',
+                    )}
+                >
+                    <span className="navbar-text ml-auto">&copy; {record?.me?.name}</span>
                 </div>
                 <div>
                     <ScrollToTop

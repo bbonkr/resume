@@ -158,7 +158,8 @@ export const useApi = () => {
                                         const skillItem: SkillItem = {
                                             name: item?.title ?? '',
                                             description: item?.description ?? '',
-                                            score: item?.score ?? 0 / (item?.scoremax ?? 1),
+                                            score:
+                                                10.0 * ((item?.score ?? 0) / (item?.scoremax ?? 1)),
                                             href: item?.href ?? '',
                                         };
 

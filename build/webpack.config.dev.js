@@ -3,6 +3,8 @@ const path = require('path');
 const ReactRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const baseConfig = require('./webpack.config');
 
+const { getResume } = require('../netlify/functions/resume');
+
 module.exports = {
     ...baseConfig,
     mode: 'development',
@@ -25,6 +27,17 @@ module.exports = {
         },
         static: {
             directory: path.resolve('docs'),
+        },
+        onBeforeSetupMiddleware: (devServer) => {
+            if (!devServer) {
+                throw new Error('webpack-dev-server is not defined');
+            }
+
+            devServer.app.get('/api/resume', async (req, res) => {
+                const response = await getResume('bbon');
+
+                return res.json(response);
+            });
         },
     },
 };

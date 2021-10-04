@@ -2,7 +2,7 @@ import React from 'react';
 import { SkillSection } from '../../interfaces/Data';
 import { Content, Section } from '../Layouts';
 import { Score } from '../Score';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaThumbsUp } from 'react-icons/fa';
 
 interface SkillProps {
     title: string;
@@ -29,8 +29,14 @@ export const Skill = ({ title, records }: SkillProps) => {
                                                         <dd>
                                                             <Score
                                                                 score={x.score}
-                                                                max={5}
-                                                                icon={<FaStar />}
+                                                                max={10}
+                                                                icon={
+                                                                    item.icon === 'like' ? (
+                                                                        <FaThumbsUp />
+                                                                    ) : (
+                                                                        <FaStar />
+                                                                    )
+                                                                }
                                                             />
                                                         </dd>
                                                     </React.Fragment>

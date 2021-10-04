@@ -1,10 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
-import { FaStar } from 'react-icons/fa';
 import { ColorStyles, TextColorStyles } from '../../interfaces';
 import { SkillContentData } from '../../interfaces/Data';
-import { Card, Section } from '../Layouts';
-import { Score } from '../Score';
+import { Section } from '../Layouts';
+import { SkillStackSection } from './Section';
 
 interface SkillStackProps {
     title: string;
@@ -23,27 +22,7 @@ export const SkillStack = ({ title, record, useHero, heroColor, iconColor }: Ski
                 <Section>
                     <div className="columns">
                         {record.records.map((skill) => {
-                            return (
-                                <div className="column" key={skill.name}>
-                                    <Card title={skill.name} classNames={['mb-4']}>
-                                        {skill.items.map((item) => {
-                                            return (
-                                                <React.Fragment key={item.name}>
-                                                    <dt>{item.name}</dt>
-                                                    <dd>
-                                                        <Score
-                                                            score={item.score}
-                                                            max={5}
-                                                            icon={<FaStar />}
-                                                            onClassName={iconColor}
-                                                        />
-                                                    </dd>
-                                                </React.Fragment>
-                                            );
-                                        })}
-                                    </Card>
-                                </div>
-                            );
+                            return <SkillStackSection record={skill} iconOnClassName={iconColor} />;
                         })}
                     </div>
                 </Section>

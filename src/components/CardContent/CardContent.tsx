@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import ReactMarkdown from 'react-markdown';
 import { ColorStyles } from '../../interfaces';
 import { ContentData } from '../../interfaces/Data';
+import { UiHelper } from '../../libs/UiHelper';
 import { GenericLink } from '../GenericLink';
 import { Card, Section } from '../Layouts';
 
@@ -28,6 +29,35 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                     key={`${x.title}-${x.period}`}
                                     title={x.title}
                                     classNames={['mb-3']}
+                                    footer={
+                                        x.tags &&
+                                        x.tags.length > 0 && (
+                                            <React.Fragment>
+                                                <div
+                                                    className={UiHelper.GetClassNames(
+                                                        'card-footer-item',
+                                                        'tags',
+                                                        'is-flex',
+                                                        'is-flex-direction-row',
+                                                        'is-align-content-start',
+                                                        'is-flex-wrap-wrap',
+                                                        'is-justify-content-flex-start',
+                                                    )}
+                                                >
+                                                    {x.tags.map((tag) => {
+                                                        return (
+                                                            <span
+                                                                key={tag}
+                                                                className={`tag ${heroColor} `}
+                                                            >
+                                                                {tag.toUpperCase()}
+                                                            </span>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </React.Fragment>
+                                        )
+                                    }
                                 >
                                     <p>
                                         {x.period} {x.state}
@@ -41,7 +71,7 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                         <ul>
                                             {x.features.map((feature) => {
                                                 return (
-                                                    <li key={feature} className="mb-5">
+                                                    <li key={feature} className="">
                                                         {feature}
                                                     </li>
                                                 );
@@ -56,7 +86,6 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                                     return (
                                                         <li key={link.href}>
                                                             <GenericLink
-                                                                // className="mb-5"
                                                                 key={link.href}
                                                                 record={link}
                                                             />
@@ -72,29 +101,16 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                             {x.images.map((image) => (
                                                 <div className="column is-one-quarter">
                                                     <figure className="image">
-                                                        <img src={image.src} alt={image.alt} />
+                                                        <img
+                                                            src={image.src}
+                                                            alt={image.alt}
+                                                            title={image.alt}
+                                                            loading="lazy"
+                                                        />
                                                     </figure>
                                                 </div>
                                             ))}
                                         </div>
-                                    )}
-
-                                    {x.tags && x.tags.length > 0 && (
-                                        <React.Fragment>
-                                            <p className="mb-0">태그:</p>
-                                            <div className="tags">
-                                                {x.tags.map((tag) => {
-                                                    return (
-                                                        <span
-                                                            key={tag}
-                                                            className={`tag ${heroColor} `}
-                                                        >
-                                                            {tag.toUpperCase()}
-                                                        </span>
-                                                    );
-                                                })}
-                                            </div>
-                                        </React.Fragment>
                                     )}
                                 </Card>
                             );

@@ -29,7 +29,7 @@ export const Home = ({ record, title, useHero, heroColor }: HomeProps) => {
                     {record?.home?.links && record?.home.links.length > 0 && (
                         <React.Fragment>
                             <hr />
-                            <div className="is-flex is-flex-direction-row is-justify-content-center is-align-items-center">
+                            <div className="is-flex is-flex-direction-row is-justify-content-center is-align-items-center is-flex-wrap-wrap">
                                 {record?.home.links.map((x) => {
                                     return (
                                         <div className="mr-4" key={x.href}>

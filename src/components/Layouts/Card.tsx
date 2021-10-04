@@ -15,6 +15,7 @@ interface CardProps {
     cardImage?: CardImage;
     medias?: CardMedia[];
     classNames?: string[];
+    footer?: React.ReactNode;
 }
 
 export const Card = ({
@@ -23,13 +24,14 @@ export const Card = ({
     medias,
     classNames,
     children,
+    footer,
 }: PropsWithChildren<CardProps>) => {
     return (
         <div className={`card ${UiHelper.GetClassNames(...(classNames ?? []))}`}>
             {cardImage && (
                 <div className="card-image">
                     <figure>
-                        <img src={cardImage.src} alt={cardImage.alt} />
+                        <img src={cardImage.src} alt={cardImage.alt} loading="lazy" />
                     </figure>
                 </div>
             )}
@@ -48,6 +50,7 @@ export const Card = ({
                 ))}
                 <Content>{children}</Content>
             </div>
+            {footer && <div className="card-footer">{footer}</div>}
         </div>
     );
 };
