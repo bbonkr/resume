@@ -22,7 +22,13 @@ export const SkillStack = ({ title, record, useHero, heroColor, iconColor }: Ski
                 <Section>
                     <div className="columns">
                         {record.records.map((skill) => {
-                            return <SkillStackSection record={skill} iconOnClassName={iconColor} />;
+                            return (
+                                <SkillStackSection
+                                    key={skill.name}
+                                    record={skill}
+                                    iconOnClassName={iconColor}
+                                />
+                            );
                         })}
                     </div>
                 </Section>

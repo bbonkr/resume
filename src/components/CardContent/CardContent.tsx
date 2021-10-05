@@ -99,7 +99,10 @@ export const CardContent = ({ title, record, useHero, heroColor }: CardContentPr
                                     {x.images && x.images.length > 0 && (
                                         <div className="columns">
                                             {x.images.map((image) => (
-                                                <div className="column is-one-quarter">
+                                                <div
+                                                    key={image.src}
+                                                    className="column is-one-quarter"
+                                                >
                                                     <figure className="image">
                                                         <img
                                                             src={image.src}

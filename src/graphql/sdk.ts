@@ -3,2953 +3,2347 @@ import { GraphQLClient } from 'graphql-request';
 import * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
 import { ClientError } from 'graphql-request/dist/types';
-import useSWR, {
-    ConfigInterface as SWRConfigInterface,
-    keyInterface as SWRKeyInterface,
-} from 'swr';
+import useSWR, { ConfigInterface as SWRConfigInterface, keyInterface as SWRKeyInterface } from 'swr';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-    ID: string;
-    String: string;
-    Boolean: boolean;
-    Int: number;
-    Float: number;
-    JSON: unknown;
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
+  JSON: unknown;
 };
 
 export type ConditionBoolean = {
-    eq?: Maybe<Scalars['Boolean']>;
-    neq?: Maybe<Scalars['Boolean']>;
-};
-
-export type ConditionContent = {
-    ContentFeatureList?: Maybe<ConditionContentFeature>;
-    ContentItemList?: Maybe<ConditionContentItem>;
-    ContentTagList?: Maybe<ConditionContentTag>;
-    ResumeRead?: Maybe<ConditionResume>;
-    _and?: Maybe<Array<Maybe<ConditionContent>>>;
-    _not?: Maybe<ConditionContent>;
-    _or?: Maybe<Array<Maybe<ConditionContent>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    owner?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-};
-
-export type ConditionContentFeature = {
-    ContentItemRead?: Maybe<ConditionContentItem>;
-    ContentRead?: Maybe<ConditionContent>;
-    _and?: Maybe<Array<Maybe<ConditionContentFeature>>>;
-    _not?: Maybe<ConditionContentFeature>;
-    _or?: Maybe<Array<Maybe<ConditionContentFeature>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    parent?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-    xa1__content_item_id?: Maybe<ConditionString>;
-};
-
-export type ConditionContentItem = {
-    ContentFeatureList?: Maybe<ConditionContentFeature>;
-    ContentLinkList?: Maybe<ConditionContentLink>;
-    ContentRead?: Maybe<ConditionContent>;
-    _and?: Maybe<Array<Maybe<ConditionContentItem>>>;
-    _not?: Maybe<ConditionContentItem>;
-    _or?: Maybe<Array<Maybe<ConditionContentItem>>>;
-    created_at?: Maybe<ConditionString>;
-    description?: Maybe<ConditionString>;
-    disabled?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    images?: Maybe<ConditionString>;
-    m2mContentItem_ContentTagList?: Maybe<Conditionm2mContentItem_ContentTag>;
-    parent?: Maybe<ConditionString>;
-    period?: Maybe<ConditionString>;
-    state?: Maybe<ConditionString>;
-    subtitle?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-};
-
-export type ConditionContentLink = {
-    ContentItemRead?: Maybe<ConditionContentItem>;
-    _and?: Maybe<Array<Maybe<ConditionContentLink>>>;
-    _not?: Maybe<ConditionContentLink>;
-    _or?: Maybe<Array<Maybe<ConditionContentLink>>>;
-    created_at?: Maybe<ConditionString>;
-    disabled?: Maybe<ConditionString>;
-    href?: Maybe<ConditionString>;
-    icon?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    target?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-    xa1__content_item_id?: Maybe<ConditionString>;
-};
-
-export type ConditionContentTag = {
-    ContentRead?: Maybe<ConditionContent>;
-    _and?: Maybe<Array<Maybe<ConditionContentTag>>>;
-    _not?: Maybe<ConditionContentTag>;
-    _or?: Maybe<Array<Maybe<ConditionContentTag>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    m2mContentItem_ContentTagList?: Maybe<Conditionm2mContentItem_ContentTag>;
-    parent?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+  eq?: Maybe<Scalars['Boolean']>;
+  neq?: Maybe<Scalars['Boolean']>;
 };
 
 export type ConditionFloat = {
-    eq?: Maybe<Scalars['Float']>;
-    ge?: Maybe<Scalars['Float']>;
-    gt?: Maybe<Scalars['Float']>;
-    in?: Maybe<Array<Maybe<Scalars['Float']>>>;
-    le?: Maybe<Scalars['Float']>;
-    lt?: Maybe<Scalars['Float']>;
-    neq?: Maybe<Scalars['Float']>;
-    nin?: Maybe<Array<Maybe<Scalars['Float']>>>;
-};
-
-export type ConditionHome = {
-    LinkList?: Maybe<ConditionLink>;
-    ResumeRead?: Maybe<ConditionResume>;
-    _and?: Maybe<Array<Maybe<ConditionHome>>>;
-    _not?: Maybe<ConditionHome>;
-    _or?: Maybe<Array<Maybe<ConditionHome>>>;
-    bio?: Maybe<ConditionString>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    intro?: Maybe<ConditionString>;
-    owner?: Maybe<ConditionString>;
-    subtitle?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+  eq?: Maybe<Scalars['Float']>;
+  ge?: Maybe<Scalars['Float']>;
+  gt?: Maybe<Scalars['Float']>;
+  in?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  le?: Maybe<Scalars['Float']>;
+  lt?: Maybe<Scalars['Float']>;
+  neq?: Maybe<Scalars['Float']>;
+  nin?: Maybe<Array<Maybe<Scalars['Float']>>>;
 };
 
 export type ConditionInt = {
-    eq?: Maybe<Scalars['Int']>;
-    ge?: Maybe<Scalars['Int']>;
-    gt?: Maybe<Scalars['Int']>;
-    in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    le?: Maybe<Scalars['Int']>;
-    lt?: Maybe<Scalars['Int']>;
-    neq?: Maybe<Scalars['Int']>;
-    nin?: Maybe<Array<Maybe<Scalars['Int']>>>;
-};
-
-export type ConditionLink = {
-    HomeRead?: Maybe<ConditionHome>;
-    _and?: Maybe<Array<Maybe<ConditionLink>>>;
-    _not?: Maybe<ConditionLink>;
-    _or?: Maybe<Array<Maybe<ConditionLink>>>;
-    created_at?: Maybe<ConditionString>;
-    disabled?: Maybe<ConditionString>;
-    href?: Maybe<ConditionString>;
-    icon?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    target?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-    xa1__home_id?: Maybe<ConditionString>;
-};
-
-export type ConditionResume = {
-    ContentList?: Maybe<ConditionContent>;
-    HomeList?: Maybe<ConditionHome>;
-    SkillList?: Maybe<ConditionSkill>;
-    _and?: Maybe<Array<Maybe<ConditionResume>>>;
-    _not?: Maybe<ConditionResume>;
-    _or?: Maybe<Array<Maybe<ConditionResume>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    name?: Maybe<ConditionString>;
-    photo?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-    username?: Maybe<ConditionString>;
-};
-
-export type ConditionSkill = {
-    ResumeRead?: Maybe<ConditionResume>;
-    SkillGroupList?: Maybe<ConditionSkillGroup>;
-    _and?: Maybe<Array<Maybe<ConditionSkill>>>;
-    _not?: Maybe<ConditionSkill>;
-    _or?: Maybe<Array<Maybe<ConditionSkill>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    owner?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-};
-
-export type ConditionSkillGroup = {
-    SkillItemList?: Maybe<ConditionSkillItem>;
-    SkillRead?: Maybe<ConditionSkill>;
-    _and?: Maybe<Array<Maybe<ConditionSkillGroup>>>;
-    _not?: Maybe<ConditionSkillGroup>;
-    _or?: Maybe<Array<Maybe<ConditionSkillGroup>>>;
-    created_at?: Maybe<ConditionString>;
-    icon?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    parent?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
-};
-
-export type ConditionSkillItem = {
-    SkillGroupRead?: Maybe<ConditionSkillGroup>;
-    _and?: Maybe<Array<Maybe<ConditionSkillItem>>>;
-    _not?: Maybe<ConditionSkillItem>;
-    _or?: Maybe<Array<Maybe<ConditionSkillItem>>>;
-    created_at?: Maybe<ConditionString>;
-    description?: Maybe<ConditionString>;
-    disabled?: Maybe<ConditionString>;
-    href?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    parent?: Maybe<ConditionString>;
-    score?: Maybe<ConditionString>;
-    scoremax?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+  eq?: Maybe<Scalars['Int']>;
+  ge?: Maybe<Scalars['Int']>;
+  gt?: Maybe<Scalars['Int']>;
+  in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  le?: Maybe<Scalars['Int']>;
+  lt?: Maybe<Scalars['Int']>;
+  neq?: Maybe<Scalars['Int']>;
+  nin?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
 
 export type ConditionString = {
-    eq?: Maybe<Scalars['String']>;
-    in?: Maybe<Array<Maybe<Scalars['String']>>>;
-    like?: Maybe<Scalars['String']>;
-    neq?: Maybe<Scalars['String']>;
-    nin?: Maybe<Array<Maybe<Scalars['String']>>>;
+  eq?: Maybe<Scalars['String']>;
+  in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  like?: Maybe<Scalars['String']>;
+  neq?: Maybe<Scalars['String']>;
+  nin?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
-export type ConditionZ_Test = {
-    Z_Test_ItemList?: Maybe<ConditionZ_Test_Item>;
-    _and?: Maybe<Array<Maybe<ConditionZ_Test>>>;
-    _not?: Maybe<ConditionZ_Test>;
-    _or?: Maybe<Array<Maybe<ConditionZ_Test>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    single?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    title5?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+export type Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag = {
+  _and?: Maybe<Array<Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  _not?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _or?: Maybe<Array<Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  content_itemRead?: Maybe<Conditioncontent_Item>;
+  content_tagRead?: Maybe<Conditioncontent_Tag>;
+  xa1__content_item_p_id?: Maybe<ConditionString>;
+  xa1__content_tag_c_id?: Maybe<ConditionString>;
 };
 
-export type ConditionZ_Test_Item = {
-    Z_TestRead?: Maybe<ConditionZ_Test>;
-    Z_Test_Item_oList?: Maybe<ConditionZ_Test_Item_O>;
-    _and?: Maybe<Array<Maybe<ConditionZ_Test_Item>>>;
-    _not?: Maybe<ConditionZ_Test_Item>;
-    _or?: Maybe<Array<Maybe<ConditionZ_Test_Item>>>;
-    created_at?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    title5?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+export type Conditioncontent = {
+  _and?: Maybe<Array<Maybe<Conditioncontent>>>;
+  _not?: Maybe<Conditioncontent>;
+  _or?: Maybe<Array<Maybe<Conditioncontent>>>;
+  content_itemList?: Maybe<Conditioncontent_Item>;
+  created_at?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  owner?: Maybe<ConditionString>;
+  resumeRead?: Maybe<Conditionresume>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type ConditionZ_Test_Item_O = {
-    Z_Test_ItemRead?: Maybe<ConditionZ_Test_Item>;
-    _and?: Maybe<Array<Maybe<ConditionZ_Test_Item_O>>>;
-    _not?: Maybe<ConditionZ_Test_Item_O>;
-    _or?: Maybe<Array<Maybe<ConditionZ_Test_Item_O>>>;
-    created_at?: Maybe<ConditionString>;
-    description?: Maybe<ConditionString>;
-    id?: Maybe<ConditionString>;
-    owner?: Maybe<ConditionString>;
-    title?: Maybe<ConditionString>;
-    updated_at?: Maybe<ConditionString>;
+export type Conditioncontent_Feature = {
+  _and?: Maybe<Array<Maybe<Conditioncontent_Feature>>>;
+  _not?: Maybe<Conditioncontent_Feature>;
+  _or?: Maybe<Array<Maybe<Conditioncontent_Feature>>>;
+  content_itemRead?: Maybe<Conditioncontent_Item>;
+  created_at?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
+  xa1__content_item_id?: Maybe<ConditionString>;
 };
 
-export type Conditionm2mContentItem_ContentTag = {
-    ContentItemPId?: Maybe<ConditionString>;
-    ContentItemRead?: Maybe<ConditionContentItem>;
-    ContentTagCId?: Maybe<ConditionString>;
-    ContentTagRead?: Maybe<ConditionContentTag>;
-    _and?: Maybe<Array<Maybe<Conditionm2mContentItem_ContentTag>>>;
-    _not?: Maybe<Conditionm2mContentItem_ContentTag>;
-    _or?: Maybe<Array<Maybe<Conditionm2mContentItem_ContentTag>>>;
+export type Conditioncontent_Item = {
+  _and?: Maybe<Array<Maybe<Conditioncontent_Item>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagList?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _not?: Maybe<Conditioncontent_Item>;
+  _or?: Maybe<Array<Maybe<Conditioncontent_Item>>>;
+  contentRead?: Maybe<Conditioncontent>;
+  content_featureList?: Maybe<Conditioncontent_Feature>;
+  content_linkList?: Maybe<Conditioncontent_Link>;
+  created_at?: Maybe<ConditionString>;
+  description?: Maybe<ConditionString>;
+  disabled?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  images?: Maybe<ConditionString>;
+  parent?: Maybe<ConditionString>;
+  period?: Maybe<ConditionString>;
+  state?: Maybe<ConditionString>;
+  subtitle?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type Conditionm2mContentItem_Link = {
-    ContentItemPId?: Maybe<ConditionString>;
-    LinkCId?: Maybe<ConditionString>;
-    _and?: Maybe<Array<Maybe<Conditionm2mContentItem_Link>>>;
-    _not?: Maybe<Conditionm2mContentItem_Link>;
-    _or?: Maybe<Array<Maybe<Conditionm2mContentItem_Link>>>;
+export type Conditioncontent_Link = {
+  _and?: Maybe<Array<Maybe<Conditioncontent_Link>>>;
+  _not?: Maybe<Conditioncontent_Link>;
+  _or?: Maybe<Array<Maybe<Conditioncontent_Link>>>;
+  content_itemRead?: Maybe<Conditioncontent_Item>;
+  created_at?: Maybe<ConditionString>;
+  disabled?: Maybe<ConditionString>;
+  href?: Maybe<ConditionString>;
+  icon?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  target?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
+  xa1__content_item_id?: Maybe<ConditionString>;
 };
 
-export type Conditionm2mHome_Link = {
-    HomePId?: Maybe<ConditionString>;
-    LinkCId?: Maybe<ConditionString>;
-    _and?: Maybe<Array<Maybe<Conditionm2mHome_Link>>>;
-    _not?: Maybe<Conditionm2mHome_Link>;
-    _or?: Maybe<Array<Maybe<Conditionm2mHome_Link>>>;
+export type Conditioncontent_Tag = {
+  _and?: Maybe<Array<Maybe<Conditioncontent_Tag>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagList?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _not?: Maybe<Conditioncontent_Tag>;
+  _or?: Maybe<Array<Maybe<Conditioncontent_Tag>>>;
+  created_at?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type Content = {
-    __typename?: 'Content';
-    ContentFeatureCount?: Maybe<Scalars['Int']>;
-    ContentFeatureList?: Maybe<Array<Maybe<ContentFeature>>>;
-    ContentItemCount?: Maybe<Scalars['Int']>;
-    ContentItemList?: Maybe<Array<Maybe<ContentItem>>>;
-    ContentTagCount?: Maybe<Scalars['Int']>;
-    ContentTagList?: Maybe<Array<Maybe<ContentTag>>>;
-    ResumeRead?: Maybe<Resume>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+export type Conditionhome = {
+  _and?: Maybe<Array<Maybe<Conditionhome>>>;
+  _not?: Maybe<Conditionhome>;
+  _or?: Maybe<Array<Maybe<Conditionhome>>>;
+  bio?: Maybe<ConditionString>;
+  created_at?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  intro?: Maybe<ConditionString>;
+  linkList?: Maybe<Conditionlink>;
+  owner?: Maybe<ConditionString>;
+  resumeRead?: Maybe<Conditionresume>;
+  subtitle?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type ContentResumeReadArgs = {
-    id?: Maybe<Scalars['String']>;
+export type Conditionlink = {
+  _and?: Maybe<Array<Maybe<Conditionlink>>>;
+  _not?: Maybe<Conditionlink>;
+  _or?: Maybe<Array<Maybe<Conditionlink>>>;
+  created_at?: Maybe<ConditionString>;
+  disabled?: Maybe<ConditionString>;
+  homeRead?: Maybe<Conditionhome>;
+  href?: Maybe<ConditionString>;
+  icon?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  target?: Maybe<ConditionString>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
+  xa1__home_id?: Maybe<ConditionString>;
 };
 
-export type ContentAggregate = {
-    __typename?: 'ContentAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    owner?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+export type Conditionresume = {
+  _and?: Maybe<Array<Maybe<Conditionresume>>>;
+  _not?: Maybe<Conditionresume>;
+  _or?: Maybe<Array<Maybe<Conditionresume>>>;
+  contentList?: Maybe<Conditioncontent>;
+  created_at?: Maybe<ConditionString>;
+  homeList?: Maybe<Conditionhome>;
+  id?: Maybe<ConditionString>;
+  name?: Maybe<ConditionString>;
+  photo?: Maybe<ConditionString>;
+  skillList?: Maybe<Conditionskill>;
+  updated_at?: Maybe<ConditionString>;
+  username?: Maybe<ConditionString>;
 };
 
-export type ContentFeature = {
-    __typename?: 'ContentFeature';
-    ContentItemRead?: Maybe<ContentItem>;
-    ContentRead?: Maybe<Content>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
+export type Conditionskill = {
+  _and?: Maybe<Array<Maybe<Conditionskill>>>;
+  _not?: Maybe<Conditionskill>;
+  _or?: Maybe<Array<Maybe<Conditionskill>>>;
+  created_at?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  owner?: Maybe<ConditionString>;
+  resumeRead?: Maybe<Conditionresume>;
+  skill_groupList?: Maybe<Conditionskill_Group>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type ContentFeatureContentItemReadArgs = {
-    id?: Maybe<Scalars['String']>;
+export type Conditionskill_Group = {
+  _and?: Maybe<Array<Maybe<Conditionskill_Group>>>;
+  _not?: Maybe<Conditionskill_Group>;
+  _or?: Maybe<Array<Maybe<Conditionskill_Group>>>;
+  created_at?: Maybe<ConditionString>;
+  icon?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  parent?: Maybe<ConditionString>;
+  skillRead?: Maybe<Conditionskill>;
+  skill_itemList?: Maybe<Conditionskill_Item>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
-export type ContentFeatureContentReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type ContentFeatureAggregate = {
-    __typename?: 'ContentFeatureAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    parent?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentFeatureGroupBy = {
-    __typename?: 'ContentFeatureGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentFeatureInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentGroupBy = {
-    __typename?: 'ContentGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentItem = {
-    __typename?: 'ContentItem';
-    ContentFeatureCount?: Maybe<Scalars['Int']>;
-    ContentFeatureList?: Maybe<Array<Maybe<ContentFeature>>>;
-    ContentLinkCount?: Maybe<Scalars['Int']>;
-    ContentLinkList?: Maybe<Array<Maybe<ContentLink>>>;
-    ContentRead?: Maybe<Content>;
-    ContentTagMMList?: Maybe<Array<Maybe<ContentTag>>>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    id?: Maybe<Scalars['Int']>;
-    images?: Maybe<Scalars['String']>;
-    m2mContentItem_ContentTagCount?: Maybe<Scalars['Int']>;
-    m2mContentItem_ContentTagList?: Maybe<Array<Maybe<M2mContentItem_ContentTag>>>;
-    parent?: Maybe<Scalars['Int']>;
-    period?: Maybe<Scalars['String']>;
-    state?: Maybe<Scalars['String']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentItemContentReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type ContentItemAggregate = {
-    __typename?: 'ContentItemAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    id?: Maybe<Scalars['Int']>;
-    images?: Maybe<Scalars['String']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    parent?: Maybe<Scalars['Int']>;
-    period?: Maybe<Scalars['String']>;
-    state?: Maybe<Scalars['String']>;
-    subtitle?: Maybe<Scalars['String']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentItemGroupBy = {
-    __typename?: 'ContentItemGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    id?: Maybe<Scalars['Int']>;
-    images?: Maybe<Scalars['String']>;
-    parent?: Maybe<Scalars['Int']>;
-    period?: Maybe<Scalars['String']>;
-    state?: Maybe<Scalars['String']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentItemInput = {
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    id?: Maybe<Scalars['Int']>;
-    images?: Maybe<Scalars['String']>;
-    parent?: Maybe<Scalars['Int']>;
-    period?: Maybe<Scalars['String']>;
-    state?: Maybe<Scalars['String']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentLink = {
-    __typename?: 'ContentLink';
-    ContentItemRead?: Maybe<ContentItem>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentLinkContentItemReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type ContentLinkAggregate = {
-    __typename?: 'ContentLinkAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentLinkGroupBy = {
-    __typename?: 'ContentLinkGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentLinkInput = {
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__content_item_id?: Maybe<Scalars['Int']>;
-};
-
-export type ContentTag = {
-    __typename?: 'ContentTag';
-    ContentItemMMList?: Maybe<Array<Maybe<ContentItem>>>;
-    ContentRead?: Maybe<Content>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    m2mContentItem_ContentTagCount?: Maybe<Scalars['Int']>;
-    m2mContentItem_ContentTagList?: Maybe<Array<Maybe<M2mContentItem_ContentTag>>>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentTagContentReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type ContentTagAggregate = {
-    __typename?: 'ContentTagAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    parent?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentTagGroupBy = {
-    __typename?: 'ContentTagGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type ContentTagInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type Home = {
-    __typename?: 'Home';
-    LinkCount?: Maybe<Scalars['Int']>;
-    LinkList?: Maybe<Array<Maybe<Link>>>;
-    ResumeRead?: Maybe<Resume>;
-    bio?: Maybe<Scalars['String']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    intro?: Maybe<Scalars['String']>;
-    owner?: Maybe<Scalars['Int']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type HomeResumeReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type HomeAggregate = {
-    __typename?: 'HomeAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    bio?: Maybe<Scalars['String']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    intro?: Maybe<Scalars['String']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    owner?: Maybe<Scalars['Int']>;
-    subtitle?: Maybe<Scalars['String']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type HomeGroupBy = {
-    __typename?: 'HomeGroupBy';
-    bio?: Maybe<Scalars['String']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    intro?: Maybe<Scalars['String']>;
-    owner?: Maybe<Scalars['Int']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type HomeInput = {
-    bio?: Maybe<Scalars['String']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    intro?: Maybe<Scalars['String']>;
-    owner?: Maybe<Scalars['Int']>;
-    subtitle?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-};
-
-export type Link = {
-    __typename?: 'Link';
-    HomeRead?: Maybe<Home>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__home_id?: Maybe<Scalars['Int']>;
-};
-
-export type LinkHomeReadArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type LinkAggregate = {
-    __typename?: 'LinkAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__home_id?: Maybe<Scalars['Int']>;
-};
-
-export type LinkGroupBy = {
-    __typename?: 'LinkGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__home_id?: Maybe<Scalars['Int']>;
-};
-
-export type LinkInput = {
-    created_at?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    target?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    xa1__home_id?: Maybe<Scalars['Int']>;
+export type Conditionskill_Item = {
+  _and?: Maybe<Array<Maybe<Conditionskill_Item>>>;
+  _not?: Maybe<Conditionskill_Item>;
+  _or?: Maybe<Array<Maybe<Conditionskill_Item>>>;
+  created_at?: Maybe<ConditionString>;
+  description?: Maybe<ConditionString>;
+  disabled?: Maybe<ConditionString>;
+  href?: Maybe<ConditionString>;
+  id?: Maybe<ConditionString>;
+  parent?: Maybe<ConditionString>;
+  score?: Maybe<ConditionString>;
+  scoremax?: Maybe<ConditionString>;
+  skill_groupRead?: Maybe<Conditionskill_Group>;
+  title?: Maybe<ConditionString>;
+  updated_at?: Maybe<ConditionString>;
 };
 
 export type Mutation = {
-    __typename?: 'Mutation';
-    ContentCreate?: Maybe<Content>;
-    ContentCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentDelete?: Maybe<Scalars['Int']>;
-    ContentDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentFeatureCreate?: Maybe<ContentFeature>;
-    ContentFeatureCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentFeatureDelete?: Maybe<Scalars['Int']>;
-    ContentFeatureDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentFeatureUpdate?: Maybe<ContentFeature>;
-    ContentFeatureUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentItemCreate?: Maybe<ContentItem>;
-    ContentItemCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentItemDelete?: Maybe<Scalars['Int']>;
-    ContentItemDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentItemUpdate?: Maybe<ContentItem>;
-    ContentItemUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentLinkCreate?: Maybe<ContentLink>;
-    ContentLinkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentLinkDelete?: Maybe<Scalars['Int']>;
-    ContentLinkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentLinkUpdate?: Maybe<ContentLink>;
-    ContentLinkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentTagCreate?: Maybe<ContentTag>;
-    ContentTagCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentTagDelete?: Maybe<Scalars['Int']>;
-    ContentTagDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentTagUpdate?: Maybe<ContentTag>;
-    ContentTagUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ContentUpdate?: Maybe<Content>;
-    ContentUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    HomeCreate?: Maybe<Home>;
-    HomeCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    HomeDelete?: Maybe<Scalars['Int']>;
-    HomeDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    HomeUpdate?: Maybe<Home>;
-    HomeUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    LinkCreate?: Maybe<Link>;
-    LinkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    LinkDelete?: Maybe<Scalars['Int']>;
-    LinkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    LinkUpdate?: Maybe<Link>;
-    LinkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ResumeCreate?: Maybe<Resume>;
-    ResumeCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ResumeDelete?: Maybe<Scalars['Int']>;
-    ResumeDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    ResumeUpdate?: Maybe<Resume>;
-    ResumeUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillCreate?: Maybe<Skill>;
-    SkillCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillDelete?: Maybe<Scalars['Int']>;
-    SkillDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillGroupCreate?: Maybe<SkillGroup>;
-    SkillGroupCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillGroupDelete?: Maybe<Scalars['Int']>;
-    SkillGroupDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillGroupUpdate?: Maybe<SkillGroup>;
-    SkillGroupUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillItemCreate?: Maybe<SkillItem>;
-    SkillItemCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillItemDelete?: Maybe<Scalars['Int']>;
-    SkillItemDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillItemUpdate?: Maybe<SkillItem>;
-    SkillItemUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    SkillUpdate?: Maybe<Skill>;
-    SkillUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_TestCreate?: Maybe<Z_Test>;
-    Z_TestCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_TestDelete?: Maybe<Scalars['Int']>;
-    Z_TestDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_TestUpdate?: Maybe<Z_Test>;
-    Z_TestUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_ItemCreate?: Maybe<Z_Test_Item>;
-    Z_Test_ItemCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_ItemDelete?: Maybe<Scalars['Int']>;
-    Z_Test_ItemDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_ItemUpdate?: Maybe<Z_Test_Item>;
-    Z_Test_ItemUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_Item_oCreate?: Maybe<Z_Test_Item_O>;
-    Z_Test_Item_oCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_Item_oDelete?: Maybe<Scalars['Int']>;
-    Z_Test_Item_oDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    Z_Test_Item_oUpdate?: Maybe<Z_Test_Item_O>;
-    Z_Test_Item_oUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_ContentTagCreate?: Maybe<M2mContentItem_ContentTag>;
-    m2mContentItem_ContentTagCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_ContentTagDelete?: Maybe<Scalars['Int']>;
-    m2mContentItem_ContentTagDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_ContentTagUpdate?: Maybe<M2mContentItem_ContentTag>;
-    m2mContentItem_ContentTagUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_LinkCreate?: Maybe<M2mContentItem_Link>;
-    m2mContentItem_LinkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_LinkDelete?: Maybe<Scalars['Int']>;
-    m2mContentItem_LinkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mContentItem_LinkUpdate?: Maybe<M2mContentItem_Link>;
-    m2mContentItem_LinkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mHome_LinkCreate?: Maybe<M2mHome_Link>;
-    m2mHome_LinkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mHome_LinkDelete?: Maybe<Scalars['Int']>;
-    m2mHome_LinkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
-    m2mHome_LinkUpdate?: Maybe<M2mHome_Link>;
-    m2mHome_LinkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  __typename?: 'Mutation';
+  _nc_m2m_xa1__content_item_xa1__content_tagCreate?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _nc_m2m_xa1__content_item_xa1__content_tagCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagDelete?: Maybe<Scalars['Int']>;
+  _nc_m2m_xa1__content_item_xa1__content_tagDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagUpdate?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _nc_m2m_xa1__content_item_xa1__content_tagUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  contentCreate?: Maybe<Content>;
+  contentCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  contentDelete?: Maybe<Scalars['Int']>;
+  contentDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  contentUpdate?: Maybe<Content>;
+  contentUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_featureCreate?: Maybe<Content_Feature>;
+  content_featureCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_featureDelete?: Maybe<Scalars['Int']>;
+  content_featureDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_featureUpdate?: Maybe<Content_Feature>;
+  content_featureUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_itemCreate?: Maybe<Content_Item>;
+  content_itemCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_itemDelete?: Maybe<Scalars['Int']>;
+  content_itemDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_itemUpdate?: Maybe<Content_Item>;
+  content_itemUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_linkCreate?: Maybe<Content_Link>;
+  content_linkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_linkDelete?: Maybe<Scalars['Int']>;
+  content_linkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_linkUpdate?: Maybe<Content_Link>;
+  content_linkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_tagCreate?: Maybe<Content_Tag>;
+  content_tagCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_tagDelete?: Maybe<Scalars['Int']>;
+  content_tagDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  content_tagUpdate?: Maybe<Content_Tag>;
+  content_tagUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  homeCreate?: Maybe<Home>;
+  homeCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  homeDelete?: Maybe<Scalars['Int']>;
+  homeDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  homeUpdate?: Maybe<Home>;
+  homeUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  linkCreate?: Maybe<Link>;
+  linkCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  linkDelete?: Maybe<Scalars['Int']>;
+  linkDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  linkUpdate?: Maybe<Link>;
+  linkUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  resumeCreate?: Maybe<Resume>;
+  resumeCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  resumeDelete?: Maybe<Scalars['Int']>;
+  resumeDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  resumeUpdate?: Maybe<Resume>;
+  resumeUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skillCreate?: Maybe<Skill>;
+  skillCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skillDelete?: Maybe<Scalars['Int']>;
+  skillDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skillUpdate?: Maybe<Skill>;
+  skillUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_groupCreate?: Maybe<Skill_Group>;
+  skill_groupCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_groupDelete?: Maybe<Scalars['Int']>;
+  skill_groupDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_groupUpdate?: Maybe<Skill_Group>;
+  skill_groupUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_itemCreate?: Maybe<Skill_Item>;
+  skill_itemCreateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_itemDelete?: Maybe<Scalars['Int']>;
+  skill_itemDeleteBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  skill_itemUpdate?: Maybe<Skill_Item>;
+  skill_itemUpdateBulk?: Maybe<Array<Maybe<Scalars['Int']>>>;
 };
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagCreateArgs = {
+  data?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput>;
+};
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput>>>;
+};
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput>>>;
+};
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagUpdateArgs = {
+  data?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput>;
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type Mutation_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput>>>;
+};
+
 
 export type MutationContentCreateArgs = {
-    data?: Maybe<ContentInput>;
+  data?: Maybe<ContentInput>;
 };
+
 
 export type MutationContentCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentInput>>>;
+  data?: Maybe<Array<Maybe<ContentInput>>>;
 };
+
 
 export type MutationContentDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationContentDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentInput>>>;
+  data?: Maybe<Array<Maybe<ContentInput>>>;
 };
 
-export type MutationContentFeatureCreateArgs = {
-    data?: Maybe<ContentFeatureInput>;
-};
-
-export type MutationContentFeatureCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentFeatureInput>>>;
-};
-
-export type MutationContentFeatureDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentFeatureDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentFeatureInput>>>;
-};
-
-export type MutationContentFeatureUpdateArgs = {
-    data?: Maybe<ContentFeatureInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentFeatureUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentFeatureInput>>>;
-};
-
-export type MutationContentItemCreateArgs = {
-    data?: Maybe<ContentItemInput>;
-};
-
-export type MutationContentItemCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentItemInput>>>;
-};
-
-export type MutationContentItemDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentItemDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentItemInput>>>;
-};
-
-export type MutationContentItemUpdateArgs = {
-    data?: Maybe<ContentItemInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentItemUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentItemInput>>>;
-};
-
-export type MutationContentLinkCreateArgs = {
-    data?: Maybe<ContentLinkInput>;
-};
-
-export type MutationContentLinkCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentLinkInput>>>;
-};
-
-export type MutationContentLinkDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentLinkDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentLinkInput>>>;
-};
-
-export type MutationContentLinkUpdateArgs = {
-    data?: Maybe<ContentLinkInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentLinkUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentLinkInput>>>;
-};
-
-export type MutationContentTagCreateArgs = {
-    data?: Maybe<ContentTagInput>;
-};
-
-export type MutationContentTagCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentTagInput>>>;
-};
-
-export type MutationContentTagDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentTagDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentTagInput>>>;
-};
-
-export type MutationContentTagUpdateArgs = {
-    data?: Maybe<ContentTagInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationContentTagUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentTagInput>>>;
-};
 
 export type MutationContentUpdateArgs = {
-    data?: Maybe<ContentInput>;
-    id?: Maybe<Scalars['String']>;
+  data?: Maybe<ContentInput>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationContentUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ContentInput>>>;
+  data?: Maybe<Array<Maybe<ContentInput>>>;
 };
+
+
+export type MutationContent_FeatureCreateArgs = {
+  data?: Maybe<Content_FeatureInput>;
+};
+
+
+export type MutationContent_FeatureCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_FeatureInput>>>;
+};
+
+
+export type MutationContent_FeatureDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_FeatureDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_FeatureInput>>>;
+};
+
+
+export type MutationContent_FeatureUpdateArgs = {
+  data?: Maybe<Content_FeatureInput>;
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_FeatureUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_FeatureInput>>>;
+};
+
+
+export type MutationContent_ItemCreateArgs = {
+  data?: Maybe<Content_ItemInput>;
+};
+
+
+export type MutationContent_ItemCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_ItemInput>>>;
+};
+
+
+export type MutationContent_ItemDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_ItemDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_ItemInput>>>;
+};
+
+
+export type MutationContent_ItemUpdateArgs = {
+  data?: Maybe<Content_ItemInput>;
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_ItemUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_ItemInput>>>;
+};
+
+
+export type MutationContent_LinkCreateArgs = {
+  data?: Maybe<Content_LinkInput>;
+};
+
+
+export type MutationContent_LinkCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_LinkInput>>>;
+};
+
+
+export type MutationContent_LinkDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_LinkDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_LinkInput>>>;
+};
+
+
+export type MutationContent_LinkUpdateArgs = {
+  data?: Maybe<Content_LinkInput>;
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_LinkUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_LinkInput>>>;
+};
+
+
+export type MutationContent_TagCreateArgs = {
+  data?: Maybe<Content_TagInput>;
+};
+
+
+export type MutationContent_TagCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_TagInput>>>;
+};
+
+
+export type MutationContent_TagDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_TagDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_TagInput>>>;
+};
+
+
+export type MutationContent_TagUpdateArgs = {
+  data?: Maybe<Content_TagInput>;
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type MutationContent_TagUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Content_TagInput>>>;
+};
+
 
 export type MutationHomeCreateArgs = {
-    data?: Maybe<HomeInput>;
+  data?: Maybe<HomeInput>;
 };
+
 
 export type MutationHomeCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<HomeInput>>>;
+  data?: Maybe<Array<Maybe<HomeInput>>>;
 };
+
 
 export type MutationHomeDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationHomeDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<HomeInput>>>;
+  data?: Maybe<Array<Maybe<HomeInput>>>;
 };
+
 
 export type MutationHomeUpdateArgs = {
-    data?: Maybe<HomeInput>;
-    id?: Maybe<Scalars['String']>;
+  data?: Maybe<HomeInput>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationHomeUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<HomeInput>>>;
+  data?: Maybe<Array<Maybe<HomeInput>>>;
 };
+
 
 export type MutationLinkCreateArgs = {
-    data?: Maybe<LinkInput>;
+  data?: Maybe<LinkInput>;
 };
+
 
 export type MutationLinkCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<LinkInput>>>;
+  data?: Maybe<Array<Maybe<LinkInput>>>;
 };
+
 
 export type MutationLinkDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationLinkDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<LinkInput>>>;
+  data?: Maybe<Array<Maybe<LinkInput>>>;
 };
+
 
 export type MutationLinkUpdateArgs = {
-    data?: Maybe<LinkInput>;
-    id?: Maybe<Scalars['String']>;
+  data?: Maybe<LinkInput>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationLinkUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<LinkInput>>>;
+  data?: Maybe<Array<Maybe<LinkInput>>>;
 };
+
 
 export type MutationResumeCreateArgs = {
-    data?: Maybe<ResumeInput>;
+  data?: Maybe<ResumeInput>;
 };
+
 
 export type MutationResumeCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<ResumeInput>>>;
+  data?: Maybe<Array<Maybe<ResumeInput>>>;
 };
+
 
 export type MutationResumeDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationResumeDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<ResumeInput>>>;
+  data?: Maybe<Array<Maybe<ResumeInput>>>;
 };
+
 
 export type MutationResumeUpdateArgs = {
-    data?: Maybe<ResumeInput>;
-    id?: Maybe<Scalars['String']>;
+  data?: Maybe<ResumeInput>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationResumeUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<ResumeInput>>>;
+  data?: Maybe<Array<Maybe<ResumeInput>>>;
 };
+
 
 export type MutationSkillCreateArgs = {
-    data?: Maybe<SkillInput>;
+  data?: Maybe<SkillInput>;
 };
+
 
 export type MutationSkillCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillInput>>>;
+  data?: Maybe<Array<Maybe<SkillInput>>>;
 };
+
 
 export type MutationSkillDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationSkillDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillInput>>>;
+  data?: Maybe<Array<Maybe<SkillInput>>>;
 };
 
-export type MutationSkillGroupCreateArgs = {
-    data?: Maybe<SkillGroupInput>;
-};
-
-export type MutationSkillGroupCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillGroupInput>>>;
-};
-
-export type MutationSkillGroupDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationSkillGroupDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillGroupInput>>>;
-};
-
-export type MutationSkillGroupUpdateArgs = {
-    data?: Maybe<SkillGroupInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationSkillGroupUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillGroupInput>>>;
-};
-
-export type MutationSkillItemCreateArgs = {
-    data?: Maybe<SkillItemInput>;
-};
-
-export type MutationSkillItemCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillItemInput>>>;
-};
-
-export type MutationSkillItemDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationSkillItemDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillItemInput>>>;
-};
-
-export type MutationSkillItemUpdateArgs = {
-    data?: Maybe<SkillItemInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationSkillItemUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillItemInput>>>;
-};
 
 export type MutationSkillUpdateArgs = {
-    data?: Maybe<SkillInput>;
-    id?: Maybe<Scalars['String']>;
+  data?: Maybe<SkillInput>;
+  id?: Maybe<Scalars['String']>;
 };
+
 
 export type MutationSkillUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<SkillInput>>>;
+  data?: Maybe<Array<Maybe<SkillInput>>>;
 };
 
-export type MutationZ_TestCreateArgs = {
-    data?: Maybe<Z_TestInput>;
+
+export type MutationSkill_GroupCreateArgs = {
+  data?: Maybe<Skill_GroupInput>;
 };
 
-export type MutationZ_TestCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_TestInput>>>;
+
+export type MutationSkill_GroupCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_GroupInput>>>;
 };
 
-export type MutationZ_TestDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type MutationSkill_GroupDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
-export type MutationZ_TestDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_TestInput>>>;
+
+export type MutationSkill_GroupDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_GroupInput>>>;
 };
 
-export type MutationZ_TestUpdateArgs = {
-    data?: Maybe<Z_TestInput>;
-    id?: Maybe<Scalars['String']>;
+
+export type MutationSkill_GroupUpdateArgs = {
+  data?: Maybe<Skill_GroupInput>;
+  id?: Maybe<Scalars['String']>;
 };
 
-export type MutationZ_TestUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_TestInput>>>;
+
+export type MutationSkill_GroupUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_GroupInput>>>;
 };
 
-export type MutationZ_Test_ItemCreateArgs = {
-    data?: Maybe<Z_Test_ItemInput>;
+
+export type MutationSkill_ItemCreateArgs = {
+  data?: Maybe<Skill_ItemInput>;
 };
 
-export type MutationZ_Test_ItemCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_ItemInput>>>;
+
+export type MutationSkill_ItemCreateBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_ItemInput>>>;
 };
 
-export type MutationZ_Test_ItemDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type MutationSkill_ItemDeleteArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
-export type MutationZ_Test_ItemDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_ItemInput>>>;
+
+export type MutationSkill_ItemDeleteBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_ItemInput>>>;
 };
 
-export type MutationZ_Test_ItemUpdateArgs = {
-    data?: Maybe<Z_Test_ItemInput>;
-    id?: Maybe<Scalars['String']>;
+
+export type MutationSkill_ItemUpdateArgs = {
+  data?: Maybe<Skill_ItemInput>;
+  id?: Maybe<Scalars['String']>;
 };
 
-export type MutationZ_Test_ItemUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_ItemInput>>>;
-};
 
-export type MutationZ_Test_Item_OCreateArgs = {
-    data?: Maybe<Z_Test_Item_OInput>;
-};
-
-export type MutationZ_Test_Item_OCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_Item_OInput>>>;
-};
-
-export type MutationZ_Test_Item_ODeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationZ_Test_Item_ODeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_Item_OInput>>>;
-};
-
-export type MutationZ_Test_Item_OUpdateArgs = {
-    data?: Maybe<Z_Test_Item_OInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationZ_Test_Item_OUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<Z_Test_Item_OInput>>>;
-};
-
-export type MutationM2mContentItem_ContentTagCreateArgs = {
-    data?: Maybe<M2mContentItem_ContentTagInput>;
-};
-
-export type MutationM2mContentItem_ContentTagCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_ContentTagInput>>>;
-};
-
-export type MutationM2mContentItem_ContentTagDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mContentItem_ContentTagDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_ContentTagInput>>>;
-};
-
-export type MutationM2mContentItem_ContentTagUpdateArgs = {
-    data?: Maybe<M2mContentItem_ContentTagInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mContentItem_ContentTagUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_ContentTagInput>>>;
-};
-
-export type MutationM2mContentItem_LinkCreateArgs = {
-    data?: Maybe<M2mContentItem_LinkInput>;
-};
-
-export type MutationM2mContentItem_LinkCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_LinkInput>>>;
-};
-
-export type MutationM2mContentItem_LinkDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mContentItem_LinkDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_LinkInput>>>;
-};
-
-export type MutationM2mContentItem_LinkUpdateArgs = {
-    data?: Maybe<M2mContentItem_LinkInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mContentItem_LinkUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mContentItem_LinkInput>>>;
-};
-
-export type MutationM2mHome_LinkCreateArgs = {
-    data?: Maybe<M2mHome_LinkInput>;
-};
-
-export type MutationM2mHome_LinkCreateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mHome_LinkInput>>>;
-};
-
-export type MutationM2mHome_LinkDeleteArgs = {
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mHome_LinkDeleteBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mHome_LinkInput>>>;
-};
-
-export type MutationM2mHome_LinkUpdateArgs = {
-    data?: Maybe<M2mHome_LinkInput>;
-    id?: Maybe<Scalars['String']>;
-};
-
-export type MutationM2mHome_LinkUpdateBulkArgs = {
-    data?: Maybe<Array<Maybe<M2mHome_LinkInput>>>;
+export type MutationSkill_ItemUpdateBulkArgs = {
+  data?: Maybe<Array<Maybe<Skill_ItemInput>>>;
 };
 
 export type Query = {
-    __typename?: 'Query';
-    ContentAggregate?: Maybe<Array<Maybe<ContentAggregate>>>;
-    ContentCount?: Maybe<Scalars['Int']>;
-    ContentDistinct?: Maybe<Array<Maybe<Content>>>;
-    ContentDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ContentExists?: Maybe<Scalars['Boolean']>;
-    ContentFeatureAggregate?: Maybe<Array<Maybe<ContentFeatureAggregate>>>;
-    ContentFeatureCount?: Maybe<Scalars['Int']>;
-    ContentFeatureDistinct?: Maybe<Array<Maybe<ContentFeature>>>;
-    ContentFeatureDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ContentFeatureExists?: Maybe<Scalars['Boolean']>;
-    ContentFeatureFindOne?: Maybe<ContentFeature>;
-    ContentFeatureGroupBy?: Maybe<Array<Maybe<ContentFeatureGroupBy>>>;
-    ContentFeatureList?: Maybe<Array<Maybe<ContentFeature>>>;
-    ContentFeatureRead?: Maybe<ContentFeature>;
-    ContentFindOne?: Maybe<Content>;
-    ContentGroupBy?: Maybe<Array<Maybe<ContentGroupBy>>>;
-    ContentItemAggregate?: Maybe<Array<Maybe<ContentItemAggregate>>>;
-    ContentItemCount?: Maybe<Scalars['Int']>;
-    ContentItemDistinct?: Maybe<Array<Maybe<ContentItem>>>;
-    ContentItemDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ContentItemExists?: Maybe<Scalars['Boolean']>;
-    ContentItemFindOne?: Maybe<ContentItem>;
-    ContentItemGroupBy?: Maybe<Array<Maybe<ContentItemGroupBy>>>;
-    ContentItemList?: Maybe<Array<Maybe<ContentItem>>>;
-    ContentItemRead?: Maybe<ContentItem>;
-    ContentLinkAggregate?: Maybe<Array<Maybe<ContentLinkAggregate>>>;
-    ContentLinkCount?: Maybe<Scalars['Int']>;
-    ContentLinkDistinct?: Maybe<Array<Maybe<ContentLink>>>;
-    ContentLinkDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ContentLinkExists?: Maybe<Scalars['Boolean']>;
-    ContentLinkFindOne?: Maybe<ContentLink>;
-    ContentLinkGroupBy?: Maybe<Array<Maybe<ContentLinkGroupBy>>>;
-    ContentLinkList?: Maybe<Array<Maybe<ContentLink>>>;
-    ContentLinkRead?: Maybe<ContentLink>;
-    ContentList?: Maybe<Array<Maybe<Content>>>;
-    ContentRead?: Maybe<Content>;
-    ContentTagAggregate?: Maybe<Array<Maybe<ContentTagAggregate>>>;
-    ContentTagCount?: Maybe<Scalars['Int']>;
-    ContentTagDistinct?: Maybe<Array<Maybe<ContentTag>>>;
-    ContentTagDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ContentTagExists?: Maybe<Scalars['Boolean']>;
-    ContentTagFindOne?: Maybe<ContentTag>;
-    ContentTagGroupBy?: Maybe<Array<Maybe<ContentTagGroupBy>>>;
-    ContentTagList?: Maybe<Array<Maybe<ContentTag>>>;
-    ContentTagRead?: Maybe<ContentTag>;
-    HomeAggregate?: Maybe<Array<Maybe<HomeAggregate>>>;
-    HomeCount?: Maybe<Scalars['Int']>;
-    HomeDistinct?: Maybe<Array<Maybe<Home>>>;
-    HomeDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    HomeExists?: Maybe<Scalars['Boolean']>;
-    HomeFindOne?: Maybe<Home>;
-    HomeGroupBy?: Maybe<Array<Maybe<HomeGroupBy>>>;
-    HomeList?: Maybe<Array<Maybe<Home>>>;
-    HomeRead?: Maybe<Home>;
-    LinkAggregate?: Maybe<Array<Maybe<LinkAggregate>>>;
-    LinkCount?: Maybe<Scalars['Int']>;
-    LinkDistinct?: Maybe<Array<Maybe<Link>>>;
-    LinkDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    LinkExists?: Maybe<Scalars['Boolean']>;
-    LinkFindOne?: Maybe<Link>;
-    LinkGroupBy?: Maybe<Array<Maybe<LinkGroupBy>>>;
-    LinkList?: Maybe<Array<Maybe<Link>>>;
-    LinkRead?: Maybe<Link>;
-    ResumeAggregate?: Maybe<Array<Maybe<ResumeAggregate>>>;
-    ResumeCount?: Maybe<Scalars['Int']>;
-    ResumeDistinct?: Maybe<Array<Maybe<Resume>>>;
-    ResumeDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    ResumeExists?: Maybe<Scalars['Boolean']>;
-    ResumeFindOne?: Maybe<Resume>;
-    ResumeGroupBy?: Maybe<Array<Maybe<ResumeGroupBy>>>;
-    ResumeList?: Maybe<Array<Maybe<Resume>>>;
-    ResumeRead?: Maybe<Resume>;
-    SkillAggregate?: Maybe<Array<Maybe<SkillAggregate>>>;
-    SkillCount?: Maybe<Scalars['Int']>;
-    SkillDistinct?: Maybe<Array<Maybe<Skill>>>;
-    SkillDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    SkillExists?: Maybe<Scalars['Boolean']>;
-    SkillFindOne?: Maybe<Skill>;
-    SkillGroupAggregate?: Maybe<Array<Maybe<SkillGroupAggregate>>>;
-    SkillGroupBy?: Maybe<Array<Maybe<SkillGroupBy>>>;
-    SkillGroupCount?: Maybe<Scalars['Int']>;
-    SkillGroupDistinct?: Maybe<Array<Maybe<SkillGroup>>>;
-    SkillGroupDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    SkillGroupExists?: Maybe<Scalars['Boolean']>;
-    SkillGroupFindOne?: Maybe<SkillGroup>;
-    SkillGroupGroupBy?: Maybe<Array<Maybe<SkillGroupGroupBy>>>;
-    SkillGroupList?: Maybe<Array<Maybe<SkillGroup>>>;
-    SkillGroupRead?: Maybe<SkillGroup>;
-    SkillItemAggregate?: Maybe<Array<Maybe<SkillItemAggregate>>>;
-    SkillItemCount?: Maybe<Scalars['Int']>;
-    SkillItemDistinct?: Maybe<Array<Maybe<SkillItem>>>;
-    SkillItemDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    SkillItemExists?: Maybe<Scalars['Boolean']>;
-    SkillItemFindOne?: Maybe<SkillItem>;
-    SkillItemGroupBy?: Maybe<Array<Maybe<SkillItemGroupBy>>>;
-    SkillItemList?: Maybe<Array<Maybe<SkillItem>>>;
-    SkillItemRead?: Maybe<SkillItem>;
-    SkillList?: Maybe<Array<Maybe<Skill>>>;
-    SkillRead?: Maybe<Skill>;
-    Z_TestAggregate?: Maybe<Array<Maybe<Z_TestAggregate>>>;
-    Z_TestCount?: Maybe<Scalars['Int']>;
-    Z_TestDistinct?: Maybe<Array<Maybe<Z_Test>>>;
-    Z_TestDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    Z_TestExists?: Maybe<Scalars['Boolean']>;
-    Z_TestFindOne?: Maybe<Z_Test>;
-    Z_TestGroupBy?: Maybe<Array<Maybe<Z_TestGroupBy>>>;
-    Z_TestList?: Maybe<Array<Maybe<Z_Test>>>;
-    Z_TestRead?: Maybe<Z_Test>;
-    Z_Test_ItemAggregate?: Maybe<Array<Maybe<Z_Test_ItemAggregate>>>;
-    Z_Test_ItemCount?: Maybe<Scalars['Int']>;
-    Z_Test_ItemDistinct?: Maybe<Array<Maybe<Z_Test_Item>>>;
-    Z_Test_ItemDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    Z_Test_ItemExists?: Maybe<Scalars['Boolean']>;
-    Z_Test_ItemFindOne?: Maybe<Z_Test_Item>;
-    Z_Test_ItemGroupBy?: Maybe<Array<Maybe<Z_Test_ItemGroupBy>>>;
-    Z_Test_ItemList?: Maybe<Array<Maybe<Z_Test_Item>>>;
-    Z_Test_ItemRead?: Maybe<Z_Test_Item>;
-    Z_Test_Item_oAggregate?: Maybe<Array<Maybe<Z_Test_Item_OAggregate>>>;
-    Z_Test_Item_oCount?: Maybe<Scalars['Int']>;
-    Z_Test_Item_oDistinct?: Maybe<Array<Maybe<Z_Test_Item_O>>>;
-    Z_Test_Item_oDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    Z_Test_Item_oExists?: Maybe<Scalars['Boolean']>;
-    Z_Test_Item_oFindOne?: Maybe<Z_Test_Item_O>;
-    Z_Test_Item_oGroupBy?: Maybe<Array<Maybe<Z_Test_Item_OGroupBy>>>;
-    Z_Test_Item_oList?: Maybe<Array<Maybe<Z_Test_Item_O>>>;
-    Z_Test_Item_oRead?: Maybe<Z_Test_Item_O>;
-    m2mContentItem_ContentTagAggregate?: Maybe<Array<Maybe<M2mContentItem_ContentTagAggregate>>>;
-    m2mContentItem_ContentTagCount?: Maybe<Scalars['Int']>;
-    m2mContentItem_ContentTagDistinct?: Maybe<Array<Maybe<M2mContentItem_ContentTag>>>;
-    m2mContentItem_ContentTagDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    m2mContentItem_ContentTagExists?: Maybe<Scalars['Boolean']>;
-    m2mContentItem_ContentTagFindOne?: Maybe<M2mContentItem_ContentTag>;
-    m2mContentItem_ContentTagGroupBy?: Maybe<Array<Maybe<M2mContentItem_ContentTagGroupBy>>>;
-    m2mContentItem_ContentTagList?: Maybe<Array<Maybe<M2mContentItem_ContentTag>>>;
-    m2mContentItem_ContentTagRead?: Maybe<M2mContentItem_ContentTag>;
-    m2mContentItem_LinkAggregate?: Maybe<Array<Maybe<M2mContentItem_LinkAggregate>>>;
-    m2mContentItem_LinkCount?: Maybe<Scalars['Int']>;
-    m2mContentItem_LinkDistinct?: Maybe<Array<Maybe<M2mContentItem_Link>>>;
-    m2mContentItem_LinkDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    m2mContentItem_LinkExists?: Maybe<Scalars['Boolean']>;
-    m2mContentItem_LinkFindOne?: Maybe<M2mContentItem_Link>;
-    m2mContentItem_LinkGroupBy?: Maybe<Array<Maybe<M2mContentItem_LinkGroupBy>>>;
-    m2mContentItem_LinkList?: Maybe<Array<Maybe<M2mContentItem_Link>>>;
-    m2mContentItem_LinkRead?: Maybe<M2mContentItem_Link>;
-    m2mHome_LinkAggregate?: Maybe<Array<Maybe<M2mHome_LinkAggregate>>>;
-    m2mHome_LinkCount?: Maybe<Scalars['Int']>;
-    m2mHome_LinkDistinct?: Maybe<Array<Maybe<M2mHome_Link>>>;
-    m2mHome_LinkDistribution?: Maybe<Array<Maybe<Distribution>>>;
-    m2mHome_LinkExists?: Maybe<Scalars['Boolean']>;
-    m2mHome_LinkFindOne?: Maybe<M2mHome_Link>;
-    m2mHome_LinkGroupBy?: Maybe<Array<Maybe<M2mHome_LinkGroupBy>>>;
-    m2mHome_LinkList?: Maybe<Array<Maybe<M2mHome_Link>>>;
-    m2mHome_LinkRead?: Maybe<M2mHome_Link>;
-    m2mNotChildren?: Maybe<Array<Maybe<Scalars['JSON']>>>;
-    m2mNotChildrenCount?: Maybe<Scalars['JSON']>;
-    nocodb_health?: Maybe<Scalars['String']>;
+  __typename?: 'Query';
+  _nc_m2m_xa1__content_item_xa1__content_tagAggregate?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagAggregate>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagCount?: Maybe<Scalars['Int']>;
+  _nc_m2m_xa1__content_item_xa1__content_tagDistinct?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagExists?: Maybe<Scalars['Boolean']>;
+  _nc_m2m_xa1__content_item_xa1__content_tagFindOne?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  _nc_m2m_xa1__content_item_xa1__content_tagGroupBy?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagGroupBy>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagList?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  _nc_m2m_xa1__content_item_xa1__content_tagRead?: Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  contentAggregate?: Maybe<Array<Maybe<ContentAggregate>>>;
+  contentCount?: Maybe<Scalars['Int']>;
+  contentDistinct?: Maybe<Array<Maybe<Content>>>;
+  contentDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  contentExists?: Maybe<Scalars['Boolean']>;
+  contentFindOne?: Maybe<Content>;
+  contentGroupBy?: Maybe<Array<Maybe<ContentGroupBy>>>;
+  contentList?: Maybe<Array<Maybe<Content>>>;
+  contentRead?: Maybe<Content>;
+  content_featureAggregate?: Maybe<Array<Maybe<Content_FeatureAggregate>>>;
+  content_featureCount?: Maybe<Scalars['Int']>;
+  content_featureDistinct?: Maybe<Array<Maybe<Content_Feature>>>;
+  content_featureDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  content_featureExists?: Maybe<Scalars['Boolean']>;
+  content_featureFindOne?: Maybe<Content_Feature>;
+  content_featureGroupBy?: Maybe<Array<Maybe<Content_FeatureGroupBy>>>;
+  content_featureList?: Maybe<Array<Maybe<Content_Feature>>>;
+  content_featureRead?: Maybe<Content_Feature>;
+  content_itemAggregate?: Maybe<Array<Maybe<Content_ItemAggregate>>>;
+  content_itemCount?: Maybe<Scalars['Int']>;
+  content_itemDistinct?: Maybe<Array<Maybe<Content_Item>>>;
+  content_itemDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  content_itemExists?: Maybe<Scalars['Boolean']>;
+  content_itemFindOne?: Maybe<Content_Item>;
+  content_itemGroupBy?: Maybe<Array<Maybe<Content_ItemGroupBy>>>;
+  content_itemList?: Maybe<Array<Maybe<Content_Item>>>;
+  content_itemRead?: Maybe<Content_Item>;
+  content_linkAggregate?: Maybe<Array<Maybe<Content_LinkAggregate>>>;
+  content_linkCount?: Maybe<Scalars['Int']>;
+  content_linkDistinct?: Maybe<Array<Maybe<Content_Link>>>;
+  content_linkDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  content_linkExists?: Maybe<Scalars['Boolean']>;
+  content_linkFindOne?: Maybe<Content_Link>;
+  content_linkGroupBy?: Maybe<Array<Maybe<Content_LinkGroupBy>>>;
+  content_linkList?: Maybe<Array<Maybe<Content_Link>>>;
+  content_linkRead?: Maybe<Content_Link>;
+  content_tagAggregate?: Maybe<Array<Maybe<Content_TagAggregate>>>;
+  content_tagCount?: Maybe<Scalars['Int']>;
+  content_tagDistinct?: Maybe<Array<Maybe<Content_Tag>>>;
+  content_tagDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  content_tagExists?: Maybe<Scalars['Boolean']>;
+  content_tagFindOne?: Maybe<Content_Tag>;
+  content_tagGroupBy?: Maybe<Array<Maybe<Content_TagGroupBy>>>;
+  content_tagList?: Maybe<Array<Maybe<Content_Tag>>>;
+  content_tagRead?: Maybe<Content_Tag>;
+  homeAggregate?: Maybe<Array<Maybe<HomeAggregate>>>;
+  homeCount?: Maybe<Scalars['Int']>;
+  homeDistinct?: Maybe<Array<Maybe<Home>>>;
+  homeDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  homeExists?: Maybe<Scalars['Boolean']>;
+  homeFindOne?: Maybe<Home>;
+  homeGroupBy?: Maybe<Array<Maybe<HomeGroupBy>>>;
+  homeList?: Maybe<Array<Maybe<Home>>>;
+  homeRead?: Maybe<Home>;
+  linkAggregate?: Maybe<Array<Maybe<LinkAggregate>>>;
+  linkCount?: Maybe<Scalars['Int']>;
+  linkDistinct?: Maybe<Array<Maybe<Link>>>;
+  linkDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  linkExists?: Maybe<Scalars['Boolean']>;
+  linkFindOne?: Maybe<Link>;
+  linkGroupBy?: Maybe<Array<Maybe<LinkGroupBy>>>;
+  linkList?: Maybe<Array<Maybe<Link>>>;
+  linkRead?: Maybe<Link>;
+  m2mNotChildren?: Maybe<Array<Maybe<Scalars['JSON']>>>;
+  m2mNotChildrenCount?: Maybe<Scalars['JSON']>;
+  nocodb_health?: Maybe<Scalars['String']>;
+  resumeAggregate?: Maybe<Array<Maybe<ResumeAggregate>>>;
+  resumeCount?: Maybe<Scalars['Int']>;
+  resumeDistinct?: Maybe<Array<Maybe<Resume>>>;
+  resumeDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  resumeExists?: Maybe<Scalars['Boolean']>;
+  resumeFindOne?: Maybe<Resume>;
+  resumeGroupBy?: Maybe<Array<Maybe<ResumeGroupBy>>>;
+  resumeList?: Maybe<Array<Maybe<Resume>>>;
+  resumeRead?: Maybe<Resume>;
+  skillAggregate?: Maybe<Array<Maybe<SkillAggregate>>>;
+  skillCount?: Maybe<Scalars['Int']>;
+  skillDistinct?: Maybe<Array<Maybe<Skill>>>;
+  skillDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  skillExists?: Maybe<Scalars['Boolean']>;
+  skillFindOne?: Maybe<Skill>;
+  skillGroupBy?: Maybe<Array<Maybe<SkillGroupBy>>>;
+  skillList?: Maybe<Array<Maybe<Skill>>>;
+  skillRead?: Maybe<Skill>;
+  skill_groupAggregate?: Maybe<Array<Maybe<Skill_GroupAggregate>>>;
+  skill_groupCount?: Maybe<Scalars['Int']>;
+  skill_groupDistinct?: Maybe<Array<Maybe<Skill_Group>>>;
+  skill_groupDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  skill_groupExists?: Maybe<Scalars['Boolean']>;
+  skill_groupFindOne?: Maybe<Skill_Group>;
+  skill_groupGroupBy?: Maybe<Array<Maybe<Skill_GroupGroupBy>>>;
+  skill_groupList?: Maybe<Array<Maybe<Skill_Group>>>;
+  skill_groupRead?: Maybe<Skill_Group>;
+  skill_itemAggregate?: Maybe<Array<Maybe<Skill_ItemAggregate>>>;
+  skill_itemCount?: Maybe<Scalars['Int']>;
+  skill_itemDistinct?: Maybe<Array<Maybe<Skill_Item>>>;
+  skill_itemDistribution?: Maybe<Array<Maybe<Distribution>>>;
+  skill_itemExists?: Maybe<Scalars['Boolean']>;
+  skill_itemFindOne?: Maybe<Skill_Item>;
+  skill_itemGroupBy?: Maybe<Array<Maybe<Skill_ItemGroupBy>>>;
+  skill_itemList?: Maybe<Array<Maybe<Skill_Item>>>;
+  skill_itemRead?: Maybe<Skill_Item>;
 };
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagCountArgs = {
+  condition?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagExistsArgs = {
+  id: Scalars['String'];
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagFindOneArgs = {
+  condition?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagListArgs = {
+  condition?: Maybe<Condition_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type Query_Nc_M2m_Xa1__Content_Item_Xa1__Content_TagReadArgs = {
+  id: Scalars['String'];
+};
+
 
 export type QueryContentAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentCountArgs = {
-    condition?: Maybe<ConditionContent>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionContent>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentExistsArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
 
-export type QueryContentFeatureAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureCountArgs = {
-    condition?: Maybe<ConditionContentFeature>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionContentFeature>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryContentFeatureFindOneArgs = {
-    condition?: Maybe<ConditionContentFeature>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureListArgs = {
-    condition?: Maybe<ConditionContentFeature>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentFeatureReadArgs = {
-    id: Scalars['String'];
-};
 
 export type QueryContentFindOneArgs = {
-    condition?: Maybe<ConditionContent>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentItemAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemCountArgs = {
-    condition?: Maybe<ConditionContentItem>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionContentItem>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryContentItemFindOneArgs = {
-    condition?: Maybe<ConditionContentItem>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemListArgs = {
-    condition?: Maybe<ConditionContentItem>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentItemReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryContentLinkAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkCountArgs = {
-    condition?: Maybe<ConditionContentLink>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionContentLink>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryContentLinkFindOneArgs = {
-    condition?: Maybe<ConditionContentLink>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkListArgs = {
-    condition?: Maybe<ConditionContentLink>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryContentLinkReadArgs = {
-    id: Scalars['String'];
-};
 
 export type QueryContentListArgs = {
-    condition?: Maybe<ConditionContent>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryContentReadArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
 
-export type QueryContentTagAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagCountArgs = {
-    condition?: Maybe<ConditionContentTag>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureCountArgs = {
+  condition?: Maybe<Conditioncontent_Feature>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionContentTag>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent_Feature>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagExistsArgs = {
-    id: Scalars['String'];
+
+export type QueryContent_FeatureExistsArgs = {
+  id: Scalars['String'];
 };
 
-export type QueryContentTagFindOneArgs = {
-    condition?: Maybe<ConditionContentTag>;
-    where?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureFindOneArgs = {
+  condition?: Maybe<Conditioncontent_Feature>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagListArgs = {
-    condition?: Maybe<ConditionContentTag>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+
+export type QueryContent_FeatureListArgs = {
+  condition?: Maybe<Conditioncontent_Feature>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type QueryContentTagReadArgs = {
-    id: Scalars['String'];
+
+export type QueryContent_FeatureReadArgs = {
+  id: Scalars['String'];
 };
+
+
+export type QueryContent_ItemAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemCountArgs = {
+  condition?: Maybe<Conditioncontent_Item>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent_Item>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemExistsArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryContent_ItemFindOneArgs = {
+  condition?: Maybe<Conditioncontent_Item>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemListArgs = {
+  condition?: Maybe<Conditioncontent_Item>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_ItemReadArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryContent_LinkAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkCountArgs = {
+  condition?: Maybe<Conditioncontent_Link>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent_Link>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkExistsArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryContent_LinkFindOneArgs = {
+  condition?: Maybe<Conditioncontent_Link>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkListArgs = {
+  condition?: Maybe<Conditioncontent_Link>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_LinkReadArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryContent_TagAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagCountArgs = {
+  condition?: Maybe<Conditioncontent_Tag>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditioncontent_Tag>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagExistsArgs = {
+  id: Scalars['String'];
+};
+
+
+export type QueryContent_TagFindOneArgs = {
+  condition?: Maybe<Conditioncontent_Tag>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagListArgs = {
+  condition?: Maybe<Conditioncontent_Tag>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContent_TagReadArgs = {
+  id: Scalars['String'];
+};
+
 
 export type QueryHomeAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeCountArgs = {
-    condition?: Maybe<ConditionHome>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionhome>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionHome>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionhome>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeExistsArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
+
 
 export type QueryHomeFindOneArgs = {
-    condition?: Maybe<ConditionHome>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionhome>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeListArgs = {
-    condition?: Maybe<ConditionHome>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionhome>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryHomeReadArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
+
 
 export type QueryLinkAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkCountArgs = {
-    condition?: Maybe<ConditionLink>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionlink>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionLink>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionlink>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkExistsArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
+
 
 export type QueryLinkFindOneArgs = {
-    condition?: Maybe<ConditionLink>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionlink>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkListArgs = {
-    condition?: Maybe<ConditionLink>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionlink>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
+
 
 export type QueryLinkReadArgs = {
-    id: Scalars['String'];
+  id: Scalars['String'];
 };
 
-export type QueryResumeAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeCountArgs = {
-    condition?: Maybe<ConditionResume>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionResume>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryResumeFindOneArgs = {
-    condition?: Maybe<ConditionResume>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeListArgs = {
-    condition?: Maybe<ConditionResume>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryResumeReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillCountArgs = {
-    condition?: Maybe<ConditionSkill>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionSkill>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillFindOneArgs = {
-    condition?: Maybe<ConditionSkill>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupCountArgs = {
-    condition?: Maybe<ConditionSkillGroup>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionSkillGroup>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillGroupFindOneArgs = {
-    condition?: Maybe<ConditionSkillGroup>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupListArgs = {
-    condition?: Maybe<ConditionSkillGroup>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillGroupReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillItemAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemCountArgs = {
-    condition?: Maybe<ConditionSkillItem>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionSkillItem>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillItemFindOneArgs = {
-    condition?: Maybe<ConditionSkillItem>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemListArgs = {
-    condition?: Maybe<ConditionSkillItem>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillItemReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QuerySkillListArgs = {
-    condition?: Maybe<ConditionSkill>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QuerySkillReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_TestAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestCountArgs = {
-    condition?: Maybe<ConditionZ_Test>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionZ_Test>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_TestFindOneArgs = {
-    condition?: Maybe<ConditionZ_Test>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestListArgs = {
-    condition?: Maybe<ConditionZ_Test>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_TestReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_Test_ItemAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemCountArgs = {
-    condition?: Maybe<ConditionZ_Test_Item>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionZ_Test_Item>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_Test_ItemFindOneArgs = {
-    condition?: Maybe<ConditionZ_Test_Item>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemListArgs = {
-    condition?: Maybe<ConditionZ_Test_Item>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_ItemReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_Test_Item_OAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_OCountArgs = {
-    condition?: Maybe<ConditionZ_Test_Item_O>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_ODistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<ConditionZ_Test_Item_O>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_ODistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_OExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryZ_Test_Item_OFindOneArgs = {
-    condition?: Maybe<ConditionZ_Test_Item_O>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_OGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_OListArgs = {
-    condition?: Maybe<ConditionZ_Test_Item_O>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryZ_Test_Item_OReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mContentItem_ContentTagAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagCountArgs = {
-    condition?: Maybe<Conditionm2mContentItem_ContentTag>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<Conditionm2mContentItem_ContentTag>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mContentItem_ContentTagFindOneArgs = {
-    condition?: Maybe<Conditionm2mContentItem_ContentTag>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagListArgs = {
-    condition?: Maybe<Conditionm2mContentItem_ContentTag>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_ContentTagReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mContentItem_LinkAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkCountArgs = {
-    condition?: Maybe<Conditionm2mContentItem_Link>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<Conditionm2mContentItem_Link>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mContentItem_LinkFindOneArgs = {
-    condition?: Maybe<Conditionm2mContentItem_Link>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkListArgs = {
-    condition?: Maybe<Conditionm2mContentItem_Link>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mContentItem_LinkReadArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mHome_LinkAggregateArgs = {
-    column_name: Scalars['String'];
-    func: Scalars['String'];
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkCountArgs = {
-    condition?: Maybe<Conditionm2mHome_Link>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkDistinctArgs = {
-    column_name?: Maybe<Scalars['String']>;
-    condition?: Maybe<Conditionm2mHome_Link>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkDistributionArgs = {
-    column_name: Scalars['String'];
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Int']>;
-    step?: Maybe<Scalars['Int']>;
-    steps?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkExistsArgs = {
-    id: Scalars['String'];
-};
-
-export type QueryM2mHome_LinkFindOneArgs = {
-    condition?: Maybe<Conditionm2mHome_Link>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkGroupByArgs = {
-    fields?: Maybe<Scalars['String']>;
-    having?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkListArgs = {
-    condition?: Maybe<Conditionm2mHome_Link>;
-    conditionGraph?: Maybe<Scalars['String']>;
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    sort?: Maybe<Scalars['String']>;
-    where?: Maybe<Scalars['String']>;
-};
-
-export type QueryM2mHome_LinkReadArgs = {
-    id: Scalars['String'];
-};
 
 export type QueryM2mNotChildrenArgs = {
-    assoc: Scalars['String'];
-    limit?: Maybe<Scalars['Int']>;
-    offset?: Maybe<Scalars['Int']>;
-    parent: Scalars['String'];
-    pid: Scalars['String'];
+  assoc: Scalars['String'];
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  parent: Scalars['String'];
+  pid: Scalars['String'];
 };
+
 
 export type QueryM2mNotChildrenCountArgs = {
-    assoc: Scalars['String'];
-    parent: Scalars['String'];
-    pid: Scalars['String'];
+  assoc: Scalars['String'];
+  parent: Scalars['String'];
+  pid: Scalars['String'];
 };
 
-export type Resume = {
-    __typename?: 'Resume';
-    ContentCount?: Maybe<Scalars['Int']>;
-    ContentList?: Maybe<Array<Maybe<Content>>>;
-    HomeCount?: Maybe<Scalars['Int']>;
-    HomeList?: Maybe<Array<Maybe<Home>>>;
-    SkillCount?: Maybe<Scalars['Int']>;
-    SkillList?: Maybe<Array<Maybe<Skill>>>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    name?: Maybe<Scalars['String']>;
-    photo?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    username?: Maybe<Scalars['String']>;
+
+export type QueryResumeAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type ResumeAggregate = {
-    __typename?: 'ResumeAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    name?: Maybe<Scalars['String']>;
-    photo?: Maybe<Scalars['String']>;
-    sum?: Maybe<Scalars['Float']>;
-    updated_at?: Maybe<Scalars['String']>;
-    username?: Maybe<Scalars['String']>;
+
+export type QueryResumeCountArgs = {
+  condition?: Maybe<Conditionresume>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type ResumeGroupBy = {
-    __typename?: 'ResumeGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    name?: Maybe<Scalars['String']>;
-    photo?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    username?: Maybe<Scalars['String']>;
+
+export type QueryResumeDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionresume>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type ResumeInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    name?: Maybe<Scalars['String']>;
-    photo?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
-    username?: Maybe<Scalars['String']>;
+
+export type QueryResumeDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
 
-export type Skill = {
-    __typename?: 'Skill';
-    ResumeRead?: Maybe<Resume>;
-    SkillGroupCount?: Maybe<Scalars['Int']>;
-    SkillGroupList?: Maybe<Array<Maybe<SkillGroup>>>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QueryResumeExistsArgs = {
+  id: Scalars['String'];
 };
 
-export type SkillResumeReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type QueryResumeFindOneArgs = {
+  condition?: Maybe<Conditionresume>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillAggregate = {
-    __typename?: 'SkillAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    owner?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QueryResumeGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type SkillGroup = {
-    __typename?: 'SkillGroup';
-    SkillItemCount?: Maybe<Scalars['Int']>;
-    SkillItemList?: Maybe<Array<Maybe<SkillItem>>>;
-    SkillRead?: Maybe<Skill>;
-    created_at?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QueryResumeListArgs = {
+  condition?: Maybe<Conditionresume>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillGroupSkillReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type QueryResumeReadArgs = {
+  id: Scalars['String'];
 };
 
-export type SkillGroupAggregate = {
-    __typename?: 'SkillGroupAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    parent?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type SkillGroupBy = {
-    __typename?: 'SkillGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillCountArgs = {
+  condition?: Maybe<Conditionskill>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillGroupGroupBy = {
-    __typename?: 'SkillGroupGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionskill>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillGroupInput = {
-    created_at?: Maybe<Scalars['String']>;
-    icon?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
 
-export type SkillInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillExistsArgs = {
+  id: Scalars['String'];
 };
 
-export type SkillItem = {
-    __typename?: 'SkillItem';
-    SkillGroupRead?: Maybe<SkillGroup>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    score?: Maybe<Scalars['Int']>;
-    scoremax?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillFindOneArgs = {
+  condition?: Maybe<Conditionskill>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillItemSkillGroupReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type QuerySkillGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type SkillItemAggregate = {
-    __typename?: 'SkillItemAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    parent?: Maybe<Scalars['Int']>;
-    score?: Maybe<Scalars['Int']>;
-    scoremax?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillListArgs = {
+  condition?: Maybe<Conditionskill>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type SkillItemGroupBy = {
-    __typename?: 'SkillItemGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    score?: Maybe<Scalars['Int']>;
-    scoremax?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkillReadArgs = {
+  id: Scalars['String'];
 };
 
-export type SkillItemInput = {
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    disabled?: Maybe<Scalars['Int']>;
-    href?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    parent?: Maybe<Scalars['Int']>;
-    score?: Maybe<Scalars['Int']>;
-    scoremax?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test = {
-    __typename?: 'Z_Test';
-    Z_Test_ItemCount?: Maybe<Scalars['Int']>;
-    Z_Test_ItemList?: Maybe<Array<Maybe<Z_Test_Item>>>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    single?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['JSON']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupCountArgs = {
+  condition?: Maybe<Conditionskill_Group>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_TestAggregate = {
-    __typename?: 'Z_TestAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    single?: Maybe<Scalars['String']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['JSON']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionskill_Group>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_TestGroupBy = {
-    __typename?: 'Z_TestGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    single?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['JSON']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
 
-export type Z_TestInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    single?: Maybe<Scalars['String']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['JSON']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupExistsArgs = {
+  id: Scalars['String'];
 };
 
-export type Z_Test_Item = {
-    __typename?: 'Z_Test_Item';
-    Z_TestRead?: Maybe<Z_Test>;
-    Z_Test_Item_oCount?: Maybe<Scalars['Int']>;
-    Z_Test_Item_oList?: Maybe<Array<Maybe<Z_Test_Item_O>>>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['Int']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupFindOneArgs = {
+  condition?: Maybe<Conditionskill_Group>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_ItemZ_TestReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_ItemAggregate = {
-    __typename?: 'Z_Test_ItemAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['Int']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupListArgs = {
+  condition?: Maybe<Conditionskill_Group>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_ItemGroupBy = {
-    __typename?: 'Z_Test_ItemGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['Int']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_GroupReadArgs = {
+  id: Scalars['String'];
 };
 
-export type Z_Test_ItemInput = {
-    created_at?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    title5?: Maybe<Scalars['Int']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemAggregateArgs = {
+  column_name: Scalars['String'];
+  func: Scalars['String'];
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_Item_O = {
-    __typename?: 'Z_Test_Item_o';
-    Z_Test_ItemRead?: Maybe<Z_Test_Item>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemCountArgs = {
+  condition?: Maybe<Conditionskill_Item>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_Item_OZ_Test_ItemReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemDistinctArgs = {
+  column_name?: Maybe<Scalars['String']>;
+  condition?: Maybe<Conditionskill_Item>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_Item_OAggregate = {
-    __typename?: 'Z_Test_Item_oAggregate';
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    owner?: Maybe<Scalars['Int']>;
-    sum?: Maybe<Scalars['Float']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemDistributionArgs = {
+  column_name: Scalars['String'];
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Int']>;
+  step?: Maybe<Scalars['Int']>;
+  steps?: Maybe<Scalars['String']>;
 };
 
-export type Z_Test_Item_OGroupBy = {
-    __typename?: 'Z_Test_Item_oGroupBy';
-    count?: Maybe<Scalars['Int']>;
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemExistsArgs = {
+  id: Scalars['String'];
 };
 
-export type Z_Test_Item_OInput = {
-    created_at?: Maybe<Scalars['String']>;
-    description?: Maybe<Scalars['String']>;
-    id?: Maybe<Scalars['Int']>;
-    owner?: Maybe<Scalars['Int']>;
-    title?: Maybe<Scalars['String']>;
-    updated_at?: Maybe<Scalars['String']>;
+
+export type QuerySkill_ItemFindOneArgs = {
+  condition?: Maybe<Conditionskill_Item>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySkill_ItemGroupByArgs = {
+  fields?: Maybe<Scalars['String']>;
+  having?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySkill_ItemListArgs = {
+  condition?: Maybe<Conditionskill_Item>;
+  conditionGraph?: Maybe<Scalars['String']>;
+  limit?: Maybe<Scalars['Int']>;
+  offset?: Maybe<Scalars['Int']>;
+  sort?: Maybe<Scalars['String']>;
+  where?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySkill_ItemReadArgs = {
+  id: Scalars['String'];
+};
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag = {
+  __typename?: '_nc_m2m_xa1__content_item_xa1__content_tag';
+  content_itemRead?: Maybe<Content_Item>;
+  content_tagRead?: Maybe<Content_Tag>;
+  xa1__content_item_p_id?: Maybe<Scalars['Int']>;
+  xa1__content_tag_c_id?: Maybe<Scalars['Int']>;
+};
+
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_TagContent_ItemReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_TagContent_TagReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_TagAggregate = {
+  __typename?: '_nc_m2m_xa1__content_item_xa1__content_tagAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  xa1__content_item_p_id?: Maybe<Scalars['Int']>;
+  xa1__content_tag_c_id?: Maybe<Scalars['Int']>;
+};
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_TagGroupBy = {
+  __typename?: '_nc_m2m_xa1__content_item_xa1__content_tagGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  xa1__content_item_p_id?: Maybe<Scalars['Int']>;
+  xa1__content_tag_c_id?: Maybe<Scalars['Int']>;
+};
+
+export type _Nc_M2m_Xa1__Content_Item_Xa1__Content_TagInput = {
+  xa1__content_item_p_id?: Maybe<Scalars['Int']>;
+  xa1__content_tag_c_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content = {
+  __typename?: 'content';
+  content_itemCount?: Maybe<Scalars['Int']>;
+  content_itemList?: Maybe<Array<Maybe<Content_Item>>>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  resumeRead?: Maybe<Resume>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentResumeReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type ContentAggregate = {
+  __typename?: 'contentAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  owner?: Maybe<Scalars['Int']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type ContentGroupBy = {
+  __typename?: 'contentGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type ContentInput = {
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_Feature = {
+  __typename?: 'content_feature';
+  content_itemRead?: Maybe<Content_Item>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+
+export type Content_FeatureContent_ItemReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Content_FeatureAggregate = {
+  __typename?: 'content_featureAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_FeatureGroupBy = {
+  __typename?: 'content_featureGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_FeatureInput = {
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_Item = {
+  __typename?: 'content_item';
+  _nc_m2m_xa1__content_item_xa1__content_tagCount?: Maybe<Scalars['Int']>;
+  _nc_m2m_xa1__content_item_xa1__content_tagList?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  contentRead?: Maybe<Content>;
+  content_featureCount?: Maybe<Scalars['Int']>;
+  content_featureList?: Maybe<Array<Maybe<Content_Feature>>>;
+  content_linkCount?: Maybe<Scalars['Int']>;
+  content_linkList?: Maybe<Array<Maybe<Content_Link>>>;
+  content_tagMMList?: Maybe<Array<Maybe<Content_Tag>>>;
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  images?: Maybe<Scalars['String']>;
+  parent?: Maybe<Scalars['Int']>;
+  period?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+export type Content_ItemContentReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Content_ItemAggregate = {
+  __typename?: 'content_itemAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  images?: Maybe<Scalars['String']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  parent?: Maybe<Scalars['Int']>;
+  period?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_ItemGroupBy = {
+  __typename?: 'content_itemGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  images?: Maybe<Scalars['String']>;
+  parent?: Maybe<Scalars['Int']>;
+  period?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_ItemInput = {
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  id?: Maybe<Scalars['Int']>;
+  images?: Maybe<Scalars['String']>;
+  parent?: Maybe<Scalars['Int']>;
+  period?: Maybe<Scalars['String']>;
+  state?: Maybe<Scalars['String']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_Link = {
+  __typename?: 'content_link';
+  content_itemRead?: Maybe<Content_Item>;
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+
+export type Content_LinkContent_ItemReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Content_LinkAggregate = {
+  __typename?: 'content_linkAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_LinkGroupBy = {
+  __typename?: 'content_linkGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_LinkInput = {
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__content_item_id?: Maybe<Scalars['Int']>;
+};
+
+export type Content_Tag = {
+  __typename?: 'content_tag';
+  _nc_m2m_xa1__content_item_xa1__content_tagCount?: Maybe<Scalars['Int']>;
+  _nc_m2m_xa1__content_item_xa1__content_tagList?: Maybe<Array<Maybe<_Nc_M2m_Xa1__Content_Item_Xa1__Content_Tag>>>;
+  content_itemMMList?: Maybe<Array<Maybe<Content_Item>>>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_TagAggregate = {
+  __typename?: 'content_tagAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_TagGroupBy = {
+  __typename?: 'content_tagGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Content_TagInput = {
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
 };
 
 export type Distribution = {
-    __typename?: 'distribution';
-    count?: Maybe<Scalars['Int']>;
-    range?: Maybe<Scalars['String']>;
+  __typename?: 'distribution';
+  count?: Maybe<Scalars['Int']>;
+  range?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTag = {
-    __typename?: 'm2mContentItem_ContentTag';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    ContentItemRead?: Maybe<ContentItem>;
-    ContentTagCId?: Maybe<Scalars['Int']>;
-    ContentTagRead?: Maybe<ContentTag>;
+export type Home = {
+  __typename?: 'home';
+  bio?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  intro?: Maybe<Scalars['String']>;
+  linkCount?: Maybe<Scalars['Int']>;
+  linkList?: Maybe<Array<Maybe<Link>>>;
+  owner?: Maybe<Scalars['Int']>;
+  resumeRead?: Maybe<Resume>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTagContentItemReadArgs = {
-    id?: Maybe<Scalars['String']>;
+
+export type HomeResumeReadArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTagContentTagReadArgs = {
-    id?: Maybe<Scalars['String']>;
+export type HomeAggregate = {
+  __typename?: 'homeAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  bio?: Maybe<Scalars['String']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  intro?: Maybe<Scalars['String']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  owner?: Maybe<Scalars['Int']>;
+  subtitle?: Maybe<Scalars['String']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTagAggregate = {
-    __typename?: 'm2mContentItem_ContentTagAggregate';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    ContentTagCId?: Maybe<Scalars['Int']>;
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
+export type HomeGroupBy = {
+  __typename?: 'homeGroupBy';
+  bio?: Maybe<Scalars['String']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  intro?: Maybe<Scalars['String']>;
+  owner?: Maybe<Scalars['Int']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTagGroupBy = {
-    __typename?: 'm2mContentItem_ContentTagGroupBy';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    ContentTagCId?: Maybe<Scalars['Int']>;
-    count?: Maybe<Scalars['Int']>;
+export type HomeInput = {
+  bio?: Maybe<Scalars['String']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  intro?: Maybe<Scalars['String']>;
+  owner?: Maybe<Scalars['Int']>;
+  subtitle?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_ContentTagInput = {
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    ContentTagCId?: Maybe<Scalars['Int']>;
+export type Link = {
+  __typename?: 'link';
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  homeRead?: Maybe<Home>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__home_id?: Maybe<Scalars['Int']>;
 };
 
-export type M2mContentItem_Link = {
-    __typename?: 'm2mContentItem_Link';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
+
+export type LinkHomeReadArgs = {
+  id?: Maybe<Scalars['String']>;
 };
 
-export type M2mContentItem_LinkAggregate = {
-    __typename?: 'm2mContentItem_LinkAggregate';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
+export type LinkAggregate = {
+  __typename?: 'linkAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__home_id?: Maybe<Scalars['Int']>;
 };
 
-export type M2mContentItem_LinkGroupBy = {
-    __typename?: 'm2mContentItem_LinkGroupBy';
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
-    count?: Maybe<Scalars['Int']>;
+export type LinkGroupBy = {
+  __typename?: 'linkGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__home_id?: Maybe<Scalars['Int']>;
 };
 
-export type M2mContentItem_LinkInput = {
-    ContentItemPId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
+export type LinkInput = {
+  created_at?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  target?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  xa1__home_id?: Maybe<Scalars['Int']>;
 };
 
-export type M2mHome_Link = {
-    __typename?: 'm2mHome_Link';
-    HomePId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
+export type Resume = {
+  __typename?: 'resume';
+  contentCount?: Maybe<Scalars['Int']>;
+  contentList?: Maybe<Array<Maybe<Content>>>;
+  created_at?: Maybe<Scalars['String']>;
+  homeCount?: Maybe<Scalars['Int']>;
+  homeList?: Maybe<Array<Maybe<Home>>>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['String']>;
+  skillCount?: Maybe<Scalars['Int']>;
+  skillList?: Maybe<Array<Maybe<Skill>>>;
+  updated_at?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
 };
 
-export type M2mHome_LinkAggregate = {
-    __typename?: 'm2mHome_LinkAggregate';
-    HomePId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
-    avg?: Maybe<Scalars['Float']>;
-    count?: Maybe<Scalars['Int']>;
-    max?: Maybe<Scalars['Int']>;
-    min?: Maybe<Scalars['Float']>;
-    sum?: Maybe<Scalars['Float']>;
+export type ResumeAggregate = {
+  __typename?: 'resumeAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  name?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['String']>;
+  sum?: Maybe<Scalars['Float']>;
+  updated_at?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
 };
 
-export type M2mHome_LinkGroupBy = {
-    __typename?: 'm2mHome_LinkGroupBy';
-    HomePId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
-    count?: Maybe<Scalars['Int']>;
+export type ResumeGroupBy = {
+  __typename?: 'resumeGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
 };
 
-export type M2mHome_LinkInput = {
-    HomePId?: Maybe<Scalars['Int']>;
-    LinkCId?: Maybe<Scalars['Int']>;
+export type ResumeInput = {
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  name?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+  username?: Maybe<Scalars['String']>;
 };
 
-export type SdkFunctionWrapper = <T>(
-    action: (requestHeaders?: Record<string, string>) => Promise<T>,
-    operationName: string,
-) => Promise<T>;
+export type Skill = {
+  __typename?: 'skill';
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  resumeRead?: Maybe<Resume>;
+  skill_groupCount?: Maybe<Scalars['Int']>;
+  skill_groupList?: Maybe<Array<Maybe<Skill_Group>>>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+export type SkillResumeReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type SkillAggregate = {
+  __typename?: 'skillAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  owner?: Maybe<Scalars['Int']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type SkillGroupBy = {
+  __typename?: 'skillGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type SkillInput = {
+  created_at?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  owner?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_Group = {
+  __typename?: 'skill_group';
+  created_at?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  skillRead?: Maybe<Skill>;
+  skill_itemCount?: Maybe<Scalars['Int']>;
+  skill_itemList?: Maybe<Array<Maybe<Skill_Item>>>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+export type Skill_GroupSkillReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Skill_GroupAggregate = {
+  __typename?: 'skill_groupAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  parent?: Maybe<Scalars['Int']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_GroupGroupBy = {
+  __typename?: 'skill_groupGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_GroupInput = {
+  created_at?: Maybe<Scalars['String']>;
+  icon?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_Item = {
+  __typename?: 'skill_item';
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
+  scoremax?: Maybe<Scalars['Int']>;
+  skill_groupRead?: Maybe<Skill_Group>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+export type Skill_ItemSkill_GroupReadArgs = {
+  id?: Maybe<Scalars['String']>;
+};
+
+export type Skill_ItemAggregate = {
+  __typename?: 'skill_itemAggregate';
+  avg?: Maybe<Scalars['Float']>;
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  max?: Maybe<Scalars['Int']>;
+  min?: Maybe<Scalars['Float']>;
+  parent?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
+  scoremax?: Maybe<Scalars['Int']>;
+  sum?: Maybe<Scalars['Float']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_ItemGroupBy = {
+  __typename?: 'skill_itemGroupBy';
+  count?: Maybe<Scalars['Int']>;
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
+  scoremax?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+export type Skill_ItemInput = {
+  created_at?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  disabled?: Maybe<Scalars['Int']>;
+  href?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+  parent?: Maybe<Scalars['Int']>;
+  score?: Maybe<Scalars['Int']>;
+  scoremax?: Maybe<Scalars['Int']>;
+  title?: Maybe<Scalars['String']>;
+  updated_at?: Maybe<Scalars['String']>;
+};
+
+
+
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string) => Promise<T>;
+
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName) => action();
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-    return {};
+  return {
+
+  };
 }
 export type Sdk = ReturnType<typeof getSdk>;
-export function getSdkWithHooks(
-    client: GraphQLClient,
-    withWrapper: SdkFunctionWrapper = defaultWrapper,
-) {
-    const sdk = getSdk(client, withWrapper);
-    return {
-        ...sdk,
-    };
+export function getSdkWithHooks(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+  const sdk = getSdk(client, withWrapper);
+  return {
+    ...sdk,
+
+  };
 }
 export type SdkWithHooks = ReturnType<typeof getSdkWithHooks>;
