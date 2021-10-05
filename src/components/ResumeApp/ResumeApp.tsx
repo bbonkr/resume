@@ -69,9 +69,9 @@ export const ResumeApp = () => {
         setTheme((_) => 'light-mode');
     }, []);
 
-    useEffect(() => {
-        console.info('data:', data);
-    }, [data]);
+    // useEffect(() => {
+    //     console.info('data:', data);
+    // }, [data]);
 
     return (
         <Provider store={store}>
@@ -82,7 +82,7 @@ export const ResumeApp = () => {
                     {!theme || (!data && isLoading) ? (
                         <Loading />
                     ) : (
-                        <GoogleAnalyticsProviderWithRouter googleAnalyticsId={process.env.GAID}>
+                        <GoogleAnalyticsProviderWithRouter>
                             <Header record={data} menuRoutes={routes} />
                             <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
                                 <Switch>
