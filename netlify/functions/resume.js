@@ -13,16 +13,16 @@ const getResume = async (name) => {
     const response = await client.request(
         gql`
             {
-                resume: ResumeFindOne(where: "(username,eq,${name})") {
+                resume: resumeFindOne(where: "(username,eq,bbon)") {
                     name
                     username
                     photo
-                    HomeList {
+                    homeList {
                         title
                         subtitle
                         intro
                         bio
-                        LinkList {
+                        linkList {
                             title
                             href
                             icon
@@ -30,9 +30,25 @@ const getResume = async (name) => {
                             disabled
                         }
                     }
-                    ContentList {
+                    skillList {
                         title
-                        ContentItemList {
+                        skill_groupList {
+                            title
+                            icon
+                            skill_itemList {
+                                title
+                                score
+                                scoremax
+                                description
+                                href
+                                disabled
+                            }
+                        }
+                    }
+                    contentList {
+                        id
+                        title
+                        content_itemList {
                             title
                             subtitle
                             period
@@ -40,32 +56,17 @@ const getResume = async (name) => {
                             description
                             disabled
                             images
-                            ContentFeatureList {
+                            content_featureList {
                                 title
                             }
-                            ContentTagMMList {
+                            content_tagMMList {
                                 title
                             }
-                            ContentLinkList {
+                            content_linkList {
                                 title
                                 href
                                 icon
                                 target
-                                disabled
-                            }
-                        }
-                    }
-                    SkillList {
-                        title
-                        SkillGroupList {
-                            title
-                            icon
-                            SkillItemList {
-                                title
-                                score
-                                scoremax
-                                description
-                                href
                                 disabled
                             }
                         }

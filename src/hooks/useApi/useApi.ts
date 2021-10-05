@@ -62,65 +62,71 @@ export const useApi = () => {
 
         return {
             title: content?.title ?? '',
-            records: content?.ContentItemList?.map((item) => {
-                const record: ContentDataRecord = {
-                    title: item?.title ?? '',
-                    subtitle: item?.subtitle ?? '',
-                    period: item?.period ?? '',
-                    description: item?.description ?? '',
-                    features: item?.ContentFeatureList?.map(
-                        (feature) => feature?.title ?? '',
-                    ).filter(Boolean),
-                    images: item?.images
-                        ? [{ src: parseUrl(item?.images), alt: item?.title ?? '' }]
-                        : undefined,
-                    state: item?.state ?? '',
-                    tags: item?.ContentTagMMList?.map((tag) => tag?.title ?? '').filter(Boolean),
-                    links: item?.ContentLinkList?.map((item) => {
-                        const link: Link = {
-                            href: item?.href ?? '',
-                            title: item?.title ?? '',
-                            icon: item?.icon ?? '',
-                            target: item?.target ?? '',
-                        };
-                        return link;
-                    }),
-                };
+            records: content?.content_itemList
+                ?.filter((item) => item?.disabled !== 1)
+                .map((item) => {
+                    const record: ContentDataRecord = {
+                        title: item?.title ?? '',
+                        subtitle: item?.subtitle ?? '',
+                        period: item?.period ?? '',
+                        description: item?.description ?? '',
+                        features: item?.content_featureList
+                            ?.map((feature) => feature?.title ?? '')
+                            .filter(Boolean),
+                        images: item?.images
+                            ? [{ src: parseUrl(item?.images), alt: item?.title ?? '' }]
+                            : undefined,
+                        state: item?.state ?? '',
+                        tags: item?.content_tagMMList
+                            ?.map((tag) => tag?.title ?? '')
+                            .filter(Boolean),
+                        links: item?.content_linkList
+                            ?.filter((item) => item?.disabled !== 1)
+                            .map((item) => {
+                                const link: Link = {
+                                    href: item?.href ?? '',
+                                    title: item?.title ?? '',
+                                    icon: item?.icon ?? '',
+                                    target: item?.target ?? '',
+                                };
+                                return link;
+                            }),
+                    };
 
-                return record;
-            }),
+                    return record;
+                }),
         };
     }, []);
 
     useEffect(() => {
         if (data) {
             setResumeData((_) => {
-                const home = data.resume.HomeList?.filter((_, index) => index === 0).find(
-                    (_, index) => index === 0,
-                );
-                const career = data.resume.ContentList?.filter((x) => x?.title === 'Work').find(
-                    (_, index) => index === 0,
-                );
+                const home = data.resume.homeList
+                    ?.filter((_, index) => index === 0)
+                    .find((_, index) => index === 0);
+                const career = data.resume.contentList
+                    ?.filter((x) => x?.title === 'Work')
+                    .find((_, index) => index === 0);
 
-                const education = data.resume.ContentList?.filter(
-                    (x) => x?.title === 'Education',
-                ).find((_, index) => index === 0);
+                const education = data.resume.contentList
+                    ?.filter((x) => x?.title === 'Education')
+                    .find((_, index) => index === 0);
 
-                const project = data.resume.ContentList?.filter((x) => x?.title === 'Project').find(
-                    (_, index) => index === 0,
-                );
+                const project = data.resume.contentList
+                    ?.filter((x) => x?.title === 'Project')
+                    .find((_, index) => index === 0);
 
-                const portfolio = data.resume.ContentList?.filter(
-                    (x) => x?.title === 'Portfolio',
-                ).find((_, index) => index === 0);
+                const portfolio = data.resume.contentList
+                    ?.filter((x) => x?.title === 'Portfolio')
+                    .find((_, index) => index === 0);
 
-                const certificate = data.resume.ContentList?.filter(
-                    (x) => x?.title === 'Certificate',
-                ).find((_, index) => index === 0);
+                const certificate = data.resume.contentList
+                    ?.filter((x) => x?.title === 'Certificate')
+                    .find((_, index) => index === 0);
 
-                const skill = data.resume.SkillList?.filter((x) => x?.title === 'Skill').find(
-                    (_, index) => index === 0,
-                );
+                const skill = data.resume.skillList
+                    ?.filter((x) => x?.title === 'Skill')
+                    .find((_, index) => index === 0);
 
                 const generated: Data = {
                     me: {
@@ -132,15 +138,17 @@ export const useApi = () => {
                         subtitle: home?.subtitle ?? '',
                         intro: home?.intro ?? '',
                         bio: home?.bio ?? '',
-                        links: home?.LinkList?.map((linkItem) => {
-                            const link: Link = {
-                                href: linkItem?.href ?? '',
-                                title: linkItem?.title ?? '',
-                                icon: linkItem?.icon ?? '',
-                                target: linkItem?.target ?? '',
-                            };
-                            return link;
-                        }),
+                        links: home?.linkList
+                            ?.filter((linkItem) => linkItem?.disabled !== 1)
+                            .map((linkItem) => {
+                                const link: Link = {
+                                    href: linkItem?.href ?? '',
+                                    title: linkItem?.title ?? '',
+                                    icon: linkItem?.icon ?? '',
+                                    target: linkItem?.target ?? '',
+                                };
+                                return link;
+                            }),
                     },
                     career: parseContentData(career),
                     education: parseContentData(education),
@@ -149,22 +157,25 @@ export const useApi = () => {
                     certificate: parseContentData(certificate),
                     skillStack: {
                         title: skill?.title ?? '',
-                        records: skill?.SkillGroupList?.map((group) => {
+                        records: skill?.skill_groupList?.map((group) => {
                             const section: SkillSection = {
                                 name: group?.title ?? '',
                                 icon: group?.icon ?? '',
                                 items:
-                                    group?.SkillItemList?.map((item) => {
-                                        const skillItem: SkillItem = {
-                                            name: item?.title ?? '',
-                                            description: item?.description ?? '',
-                                            score:
-                                                10.0 * ((item?.score ?? 0) / (item?.scoremax ?? 1)),
-                                            href: item?.href ?? '',
-                                        };
+                                    group?.skill_itemList
+                                        ?.filter((item) => item?.disabled !== 1)
+                                        .map((item) => {
+                                            const skillItem: SkillItem = {
+                                                name: item?.title ?? '',
+                                                description: item?.description ?? '',
+                                                score:
+                                                    10.0 *
+                                                    ((item?.score ?? 0) / (item?.scoremax ?? 1)),
+                                                href: item?.href ?? '',
+                                            };
 
-                                        return skillItem;
-                                    }) ?? [],
+                                            return skillItem;
+                                        }) ?? [],
                             };
 
                             return section;
