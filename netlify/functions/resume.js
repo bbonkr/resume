@@ -13,7 +13,7 @@ const getResume = async (name) => {
     const response = await client.request(
         gql`
             {
-                resume: resumeFindOne(where: "(username,eq,bbon)") {
+                resume: resumeFindOne(where: "(username,eq,${name})") {
                     name
                     username
                     photo
@@ -76,19 +76,97 @@ const getResume = async (name) => {
         `,
     );
 
+    const projectItem = response.resume.contentList.find((x) => x.title === 'Project');
+
+    if (projectItem) {
+        const projectResponse = await client.request(
+            gql`
+                {
+                    items: content_itemList(where: "(parent,eq,${projectItem.id})", limit: 1000) {
+                        title
+                        subtitle
+                        period
+                        state
+                        description
+                        disabled
+                        images
+                        content_featureList {
+                            title
+                        }
+                        content_tagMMList {
+                            title
+                        }
+                        content_linkList {
+                            title
+                            href
+                            icon
+                            target
+                            disabled
+                        }
+                    }
+                }
+            `,
+        );
+
+        projectItem.content_itemList = projectResponse.items;
+    }
+
+    const portfolioItem = response.resume.contentList.find((x) => x.title === 'Portfolio');
+
+    if (portfolioItem) {
+        const portfolioResponse = await client.request(
+            gql`
+                {
+                    items: content_itemList(where: "(parent,eq,${portfolioItem.id})", limit: 1000) {
+                        title
+                        subtitle
+                        period
+                        state
+                        description
+                        disabled
+                        images
+                        content_featureList {
+                            title
+                        }
+                        content_tagMMList {
+                            title
+                        }
+                        content_linkList {
+                            title
+                            href
+                            icon
+                            target
+                            disabled
+                        }
+                    }
+                }
+            `,
+        );
+
+        portfolioItem.content_itemList = portfolioResponse.items;
+    }
+
     return response;
 };
 
 exports.getResume = getResume;
 
 exports.handler = async (event, context) => {
-    const response = await getResume('bbon');
+    try {
+        const response = await getResume('bbon');
 
-    return {
-        statusCode: 200,
-        headers: {
-            'Content-Type': 'application/json; charset=utf-8',
-        },
-        body: JSON.stringify(response),
-    };
+        return {
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8',
+                'Cache-Control': 'public, s-maxage=31536000',
+            },
+            body: JSON.stringify(response),
+        };
+    } catch (err) {
+        return {
+            statusCode: 500,
+            body: 'Data could not fetch at this time. Please try later.',
+        };
+    }
 };
