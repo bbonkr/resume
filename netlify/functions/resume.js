@@ -155,11 +155,14 @@ exports.handler = async (event, context) => {
     try {
         const response = await getResume('bbon');
 
+        // 7 days
+        const expiration = 7 * 24 * 60 * 60;
+
         return {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
-                'Cache-Control': 'public, s-maxage=31536000',
+                'Cache-Control': `public, s-maxage=${expiration}`,
             },
             body: JSON.stringify(response),
         };

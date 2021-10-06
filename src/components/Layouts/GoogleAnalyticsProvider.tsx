@@ -1,25 +1,33 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { useGaRedux } from '../../hooks/useGaRedux';
 
-interface GoogleAnalyticsProviderProps {}
+interface GoogleAnalyticsProviderProps {
+    gaid?: string;
+}
 
 const GoogleAnalyticsProvider = ({
+    gaid,
     children,
     location,
 }: PropsWithChildren<GoogleAnalyticsProviderProps> & RouteComponentProps) => {
-    const gaid = process.env.GAID;
+    const { setGaId } = useGaRedux();
 
     useEffect(() => {
-        if (gaid) {
+        if (gaid && typeof window.gtag === 'function') {
             gtag('event', 'app_started', {
                 debug_mode: process.env.PRODUCTION !== 'production',
             });
+
+            setGaId(gaid);
+
+            console.info('⚡ Google analytics connected.');
         }
     }, []);
 
     useEffect(() => {
-        if (gaid) {
+        if (gaid && typeof window.gtag === 'function') {
             // https://developers.google.com/gtagjs/reference/event
             gtag('event', 'page_view', {
                 page_title: window.document.title,
@@ -39,9 +47,10 @@ const GoogleAnalyticsProvider = ({
                             id: 'script-ga-head',
                             type: 'text/javascript',
                             src: `https://www.googletagmanager.com/gtag/js?id=${gaid}`,
+                            async: true,
                         },
                         {
-                            id: '',
+                            id: 'script-ga-body',
                             type: 'text/javascript',
                             innerHTML: `window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
