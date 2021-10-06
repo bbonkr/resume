@@ -14,6 +14,7 @@ import { useStore } from '../../store';
 import { useApi } from '../../hooks/useApi';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
+const gaid = process.env.GAID;
 
 const routes: RouteData[] = [
     {
@@ -69,10 +70,6 @@ export const ResumeApp = () => {
         setTheme((_) => 'light-mode');
     }, []);
 
-    // useEffect(() => {
-    //     console.info('data:', data);
-    // }, [data]);
-
     return (
         <Provider store={store}>
             <HelmetProvider>
@@ -82,7 +79,7 @@ export const ResumeApp = () => {
                     {!theme || (!data && isLoading) ? (
                         <Loading />
                     ) : (
-                        <GoogleAnalyticsProviderWithRouter>
+                        <GoogleAnalyticsProviderWithRouter gaid={gaid}>
                             <Header record={data} menuRoutes={routes} />
                             <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
                                 <Switch>
