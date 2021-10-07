@@ -26,7 +26,7 @@ module.exports = {
             writeToDisk: true,
         },
         static: {
-            directory: path.resolve('docs'),
+            directory: path.resolve('out'),
         },
         onBeforeSetupMiddleware: (devServer) => {
             if (!devServer) {
