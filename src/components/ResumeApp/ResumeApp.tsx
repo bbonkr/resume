@@ -83,6 +83,10 @@ export const ResumeApp = () => {
         }
     }, [resume]);
 
+    // useEffect(() => {
+    //     console.info('data:', data);
+    // }, [data]);
+
     return (
         <Provider store={store}>
             <HelmetProvider>
