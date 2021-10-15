@@ -1,5 +1,9 @@
 import { Data } from '../interfaces/Data';
 
+const SCORE_BASIS = 5.0;
+
+const calcRate = (score: number) => (score / SCORE_BASIS) * 10.0;
+
 const workAt = {
     i: '(주)아이OO',
     r: '(주)리블OO',
@@ -789,27 +793,27 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'C#',
                         description: '',
-                        score: 4.5,
+                        score: calcRate(4.5),
                     },
                     {
                         name: 'Javascript',
                         description: '',
-                        score: 4.5,
+                        score: calcRate(4.5),
                     },
                     {
                         name: 'Typescript',
                         description: '',
-                        score: 4.0,
+                        score: calcRate(4.0),
                     },
                     {
                         name: 'Python',
                         description: '',
-                        score: 2.0,
+                        score: calcRate(2.0),
                     },
                     {
                         name: 'SQL',
                         description: '',
-                        score: 4.0,
+                        score: calcRate(4.0),
                     },
                 ],
             },
@@ -820,43 +824,43 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: '.NET Framework',
                         description: '',
-                        score: 5.0,
+                        score: calcRate(5.0),
                         href: 'https://dotnet.microsoft.com/',
                     },
                     {
                         name: '.NET',
                         description: '',
-                        score: 4.0,
+                        score: calcRate(4.0),
                         href: 'https://dotnet.microsoft.com/',
                     },
                     {
                         name: 'Xamarin.Forms',
                         description: '',
-                        score: 4.0,
+                        score: calcRate(4.0),
                         href: 'https://docs.microsoft.com/ko-kr/xamarin/',
                     },
                     {
                         name: 'Node.js',
                         description: '',
-                        score: 3.5,
+                        score: calcRate(3.5),
                         href: '',
                     },
                     {
                         name: 'React',
                         description: '',
-                        score: 3.5,
+                        score: calcRate(3.5),
                         href: 'https://reactjs.org/',
                     },
                     {
                         name: 'Express',
                         description: '',
-                        score: 3.0,
+                        score: calcRate(3.0),
                         href: 'https://expressjs.com/',
                     },
                     {
                         name: 'Django',
                         description: '',
-                        score: 1.5,
+                        score: calcRate(1.5),
                         href: 'https://www.djangoproject.com/',
                     },
                 ],
@@ -867,17 +871,17 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     {
                         name: 'Azure',
                         description: '',
-                        score: 3.0,
+                        score: calcRate(3.0),
                     },
                     {
                         name: 'AWS',
                         description: '',
-                        score: 2.5,
+                        score: calcRate(2.5),
                     },
                     {
                         name: 'Google Cloud',
                         description: '',
-                        score: 1.5,
+                        score: calcRate(1.5),
                     },
                 ],
             },
