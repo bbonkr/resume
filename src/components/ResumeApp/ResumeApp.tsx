@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { Position, RouteData } from '../../interfaces';
+import { Data, Position, RouteData } from '../../interfaces';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
 import { Header, Container, Footer, GoogleAnalyticsProviderWithRouter } from '../Layouts';
@@ -12,6 +12,7 @@ import { CardContent } from '../CardContent';
 import { Summary } from '../Summary';
 import { useStore } from '../../store';
 import { useApi } from '../../hooks/useApi';
+import { data as localData } from '../../data/data';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
 const gaid = process.env.GAID;
@@ -49,16 +50,12 @@ const routes: RouteData[] = [
 
 export const ResumeApp = () => {
     const store = useStore();
-    const [scrollPosition, setScrollPosition] = useState<Position>({ top: 0, left: 0 });
+    const { resume, isLoading, error } = useApi();
+
+    const [data, setData] = useState<Data | null>(() => localData);
     const [theme, setTheme] = useState<Theme>(undefined);
-    const { resume: data, isLoading } = useApi();
 
     const handleClickScrollTop = () => {
-        // setScrollPosition((prevState) => ({
-        //     ...prevState,
-        //     top: 0,
-        //     left: 0,
-        // }));
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     };
 
@@ -69,6 +66,22 @@ export const ResumeApp = () => {
 
         setTheme((_) => 'light-mode');
     }, []);
+
+    useEffect(() => {
+        if (error) {
+            console.info('Api not wokring!. use local data');
+
+            setData((_) => localData);
+        }
+    }, [error]);
+
+    useEffect(() => {
+        if (resume) {
+            console.info('Api not wokring!. use local data');
+
+            setData((_) => resume);
+        }
+    }, [resume]);
 
     return (
         <Provider store={store}>

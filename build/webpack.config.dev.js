@@ -34,9 +34,14 @@ module.exports = {
             }
 
             devServer.app.get('/api/resume', async (req, res) => {
-                const response = await getResume('bbon');
+                try {
+                    const response = await getResume('bbon');
 
-                return res.json(response);
+                    return res.json(response);
+                } catch (error) {
+                    console.error('[DEBUG][ERROR] error', error.message);
+                    return res.status(500).json({ statusCode: 500, message: error.message });
+                }
             });
         },
     },

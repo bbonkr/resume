@@ -21,8 +21,12 @@ export const useApi = () => {
                 resume: Resume;
             }>(endpoint).then((res) => res.data),
         {
+            errorRetryCount: 0,
+            errorRetryInterval: 0,
+            // fallback
             shouldRetryOnError: false,
             isPaused: () => !endpoint,
+            loadingTimeout: 2000,
         },
     );
 
@@ -200,6 +204,7 @@ export const useApi = () => {
     return {
         isLoading: isValidating,
         resume: resumeData,
+        error,
     };
 };
 
