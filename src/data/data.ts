@@ -384,8 +384,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2021-02',
                 state: '완료',
                 title: 'kr.bbon.EntityFrameworkCore.Extensions',
-                description:
-                    'Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.',
+                description: `Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.
+
+[![](https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) [![](https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) ![publish to nuget](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg)
+`,
                 features: ['Nuget 패키지로 제공', 'EntityFramework 확장'],
                 tags: ['nuget', '.NET', 'c#', 'entifyframework'],
                 links: [
@@ -407,8 +409,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2020-11',
                 state: '완료',
                 title: '@bbon/css-to-jss',
-                description:
-                    '프로젝트에 포함된 css 파일을 css-in-js 적용을 위한 `<style jsx>` 코드로 변환하는 CLI 도구입니다.',
+                description: `프로젝트에 포함된 css 파일을 css-in-js 적용을 위한 \`<style jsx>\` 코드로 변환하는 CLI 도구입니다.
+
+[![](https://shields.io/npm/v/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![](https://shields.io/npm/dt/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![Build and tag](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml)
+`,
                 features: ['typescript', 'npm', 'cli'],
                 links: [
                     {
@@ -430,7 +434,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2020-09',
                 state: '완료',
                 title: '@bbon/filedownload',
-                description: '파일 다운로드 코드 조각입니다.',
+                description: `파일 다운로드 코드 조각입니다.
+
+[![](https://shields.io/npm/v/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![](https://shields.io/npm/dt/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![Build and tag](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml)
+`,
                 features: ['typescript', 'npm'],
                 tags: ['typescript', 'npm'],
                 links: [
@@ -457,7 +464,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
             {
                 period: '2020-04',
                 title: '@bbon/fomatter',
-                description: '값을 형식화된 문자열로 처리하기 위한 기능을 제공합니다.',
+                description: `값을 형식화된 문자열로 처리하기 위한 기능을 제공합니다.
+
+[![](https://shields.io/npm/v/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![](https://shields.io/npm/dt/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![Build and tag](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml)
+`,
                 features: ['typescript', 'npm'],
                 state: '완료',
                 tags: ['typescript', 'npm'],
@@ -704,8 +714,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-06',
                 title: 'Blog Service',
                 state: '완료',
-                description:
-                    '마크다운으로 글을 작성하는 블로그 서비스입니다. Nodejs 백엔드와 React 프론트엔드로 작성되었습니다.',
+                description: `마크다운으로 글을 작성하는 블로그 서비스입니다. 
+                    
+**Nodejs** 백엔드와 **React** 프론트엔드로 작성되었습니다.
+`,
                 features: [
                     'Nodejs Backend',
                     'express.js',
@@ -780,6 +792,82 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     },
                 ],
                 tags: ['.NET', 'asp.net core', 'entity framework', 'microsoft sql server'],
+            },
+            {
+                title: 'kr.bbon.AspNetCore',
+                period: '2021-03',
+                state: '완료',
+                description: `.NET 5 에서 API 웹 응용프로그램 프로젝트 (webapi 템플릿 기준)를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.
+
+[![](https://img.shields.io/nuget/v/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![](https://img.shields.io/nuget/dt/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![publish to nuget](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/dotnet.yml)
+`,
+                links: [
+                    {
+                        title: 'GitHub: kr.bbon.AspNetCore',
+                        href: 'https://github.com/bbonkr/kr.bbon.AspNetCore',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Nuget: kr.bbon.AspNetCore',
+                        href: 'https://www.nuget.org/packages/kr.bbon.AspNetCore',
+                        icon: 'nuget',
+                        target: '_blank',
+                    },
+                ],
+                tags: ['.NET', 'asp.net core', 'nuget', 'c#'],
+            },
+            {
+                title: 'kr.bbon.Core',
+                period: '2021-06',
+                state: '완료',
+                description: `.NET 5 에서 프로젝트를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.
+
+[![](https://img.shields.io/nuget/v/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![](https://img.shields.io/nuget/dt/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![publish to nuget](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/dotnet.yml)
+`,
+                links: [
+                    {
+                        title: 'GitHub: kr.bbon.Core',
+                        href: 'https://github.com/bbonkr/kr.bbon.Core',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Nuget: kr.bbon.Core',
+                        href: 'https://www.nuget.org/packages/kr.bbon.Core',
+                        icon: 'nuget',
+                        target: '_blank',
+                    },
+                ],
+                tags: ['.NET', 'nuget', 'c#'],
+            },
+            {
+                title: 'apps.bbon.me',
+                period: '2021-08',
+                state: '완료',
+                description: `간혹 사용되는 기능들을 모아둔 웹 앱입니다.
+
+아래 기능을 제공합니다.
+
+- 문자열 정규화
+- GUID 생성기
+- JSON 문서 정렬
+- QR Code 이미지 생성기`,
+                links: [
+                    {
+                        title: 'GitHub: apps.bbon.me',
+                        href: 'https://github.com/bbonkr/apps.bbon.me',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'apps.bbon.me',
+                        href: 'https://apps.bbon.me',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+                tags: ['react', 'typescript', 'pwa'],
             },
         ],
     },
