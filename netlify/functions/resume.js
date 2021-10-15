@@ -8,10 +8,14 @@ const getResume = async (name) => {
         headers: {
             'xc-token': token,
         },
+        timeout: 2000,
     });
 
-    const response = await client.request(
-        gql`
+    let response;
+
+    try {
+        response = await client.request(
+            gql`
             {
                 resume: resumeFindOne(where: "(username,eq,${name})") {
                     name
@@ -74,13 +78,13 @@ const getResume = async (name) => {
                 }
             }
         `,
-    );
+        );
 
-    const projectItem = response.resume.contentList.find((x) => x.title === 'Project');
+        const projectItem = response.resume.contentList.find((x) => x.title === 'Project');
 
-    if (projectItem) {
-        const projectResponse = await client.request(
-            gql`
+        if (projectItem) {
+            const projectResponse = await client.request(
+                gql`
                 {
                     items: content_itemList(where: "(parent,eq,${projectItem.id})", limit: 1000) {
                         title
@@ -106,16 +110,16 @@ const getResume = async (name) => {
                     }
                 }
             `,
-        );
+            );
 
-        projectItem.content_itemList = projectResponse.items;
-    }
+            projectItem.content_itemList = projectResponse.items;
+        }
 
-    const portfolioItem = response.resume.contentList.find((x) => x.title === 'Portfolio');
+        const portfolioItem = response.resume.contentList.find((x) => x.title === 'Portfolio');
 
-    if (portfolioItem) {
-        const portfolioResponse = await client.request(
-            gql`
+        if (portfolioItem) {
+            const portfolioResponse = await client.request(
+                gql`
                 {
                     items: content_itemList(where: "(parent,eq,${portfolioItem.id})", limit: 1000) {
                         title
@@ -141,9 +145,12 @@ const getResume = async (name) => {
                     }
                 }
             `,
-        );
+            );
 
-        portfolioItem.content_itemList = portfolioResponse.items;
+            portfolioItem.content_itemList = portfolioResponse.items;
+        }
+    } catch {
+        throw new Error('API unavailable.');
     }
 
     return response;
