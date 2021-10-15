@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { Data, Position, RouteData } from '../../interfaces';
+import { Data, RouteData } from '../../interfaces';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
 import { Header, Container, Footer, GoogleAnalyticsProviderWithRouter } from '../Layouts';
@@ -50,7 +50,7 @@ const routes: RouteData[] = [
 
 export const ResumeApp = () => {
     const store = useStore();
-    const { resume, isLoading, error } = useApi();
+    // const { resume, isLoading, error } = useApi();
 
     const [data, setData] = useState<Data | null>(() => localData);
     const [theme, setTheme] = useState<Theme>(undefined);
@@ -67,21 +67,21 @@ export const ResumeApp = () => {
         setTheme((_) => 'light-mode');
     }, []);
 
-    useEffect(() => {
-        if (error) {
-            console.info('Api not wokring!. use local data');
+    // useEffect(() => {
+    //     if (error) {
+    //         console.info('Api not wokring!. use local data');
 
-            setData((_) => localData);
-        }
-    }, [error]);
+    //         setData((_) => localData);
+    //     }
+    // }, [error]);
 
-    useEffect(() => {
-        if (resume) {
-            console.info('Api not wokring!. use local data');
+    // useEffect(() => {
+    //     if (resume) {
+    //         console.info('Api not wokring!. use local data');
 
-            setData((_) => resume);
-        }
-    }, [resume]);
+    //         setData((_) => resume);
+    //     }
+    // }, [resume]);
 
     // useEffect(() => {
     //     console.info('data:', data);
@@ -93,7 +93,8 @@ export const ResumeApp = () => {
                 <Router>
                     <Helmet titleTemplate={`%s | ${data?.me?.name} 이력서`} />
 
-                    {!theme || (!data && isLoading) ? (
+                    {!theme || !data ? (
+                        // && isLoading
                         <Loading />
                     ) : (
                         <GoogleAnalyticsProviderWithRouter gaid={gaid}>
