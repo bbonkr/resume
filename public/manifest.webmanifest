@@ -1,0 +1,69 @@
+{
+    "name": "구본철 이력사항 | Resume Pon Cheol Ku",
+    "short_name": "구본철 이력사항",
+    "start_url": ".",
+    "lang": "ko-KR",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "description": "안녕하세요. 구본철입니다. 저는 응용프로그램 개발자입니다. .NET | nodejs | react. Thank you for your interest. This web app is PONCHEOL KU resume. If you want to know about me, search for bbonkr in search engine such as google.",
+    "categories": ["personalization", "social"],
+    "icons": [
+        {
+            "src": "images/bbon-icon-16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-48.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-196.png",
+            "sizes": "196x196",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-57.png",
+            "sizes": "57x57",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-114.png",
+            "sizes": "114x114",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-120.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "images/bbon-icon-152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "images/screenshot1.png",
+            "sizes": "1280x720",
+            "type": "image/png"
+        }
+    ]
+}
