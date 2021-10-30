@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
-import { Data, RouteData } from '../../interfaces';
+import { RouteData } from '../../interfaces';
 import smoothscroll from 'smoothscroll-polyfill';
 import { Loading } from '../Loading';
 import { Header, Container, Footer, GoogleAnalyticsProviderWithRouter } from '../Layouts';
@@ -12,7 +12,8 @@ import { CardContent } from '../CardContent';
 import { Summary } from '../Summary';
 import { useStore } from '../../store';
 import { useApi } from '../../hooks/useApi';
-import { data as localData } from '../../data/data';
+
+import { ErrorContent } from '../ErrorContent';
 
 type Theme = 'dark-mode' | 'light-mode' | undefined | '';
 const gaid = process.env.GAID;
@@ -50,10 +51,11 @@ const routes: RouteData[] = [
 
 export const ResumeApp = () => {
     const store = useStore();
-    // const { resume, isLoading, error } = useApi();
+    // Use remote data
+    const { resume: data, isLoading, error } = useApi();
 
-    const [data, setData] = useState<Data | null>(() => localData);
-    const [theme, setTheme] = useState<Theme>(undefined);
+    // Use local data
+    // const [data, setData] = useState<Data | null>(() => localData);
 
     const handleClickScrollTop = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -63,39 +65,26 @@ export const ResumeApp = () => {
         smoothscroll.polyfill();
 
         console.info('🌈 App started. 🌠');
-
-        setTheme((_) => 'light-mode');
     }, []);
 
-    // useEffect(() => {
-    //     if (error) {
-    //         console.info('Api not wokring!. use local data');
-
-    //         setData((_) => localData);
-    //     }
-    // }, [error]);
-
-    // useEffect(() => {
-    //     if (resume) {
-    //         console.info('Api not wokring!. use local data');
-
-    //         setData((_) => resume);
-    //     }
-    // }, [resume]);
-
-    // useEffect(() => {
-    //     console.info('data:', data);
-    // }, [data]);
+    useEffect(() => {
+        if (error) {
+            console.error('Api not wokring!. use local data');
+        }
+    }, [error]);
 
     return (
         <Provider store={store}>
             <HelmetProvider>
                 <Router>
-                    <Helmet titleTemplate={`%s | ${data?.me?.name} 이력서`} />
-
-                    {!theme || !data ? (
-                        // && isLoading
+                    <Helmet titleTemplate={`%s | ${data?.me?.name ?? ''} 이력서`} />
+                    {isLoading ? (
                         <Loading />
+                    ) : error ? (
+                        <Container classNames={['is-fluid', 'pt-6', 'pl-0', 'pr-0', 'm-0']}>
+                            <Header record={data} menuRoutes={routes} />
+                            <ErrorContent error={error} />
+                        </Container>
                     ) : (
                         <GoogleAnalyticsProviderWithRouter gaid={gaid}>
                             <Header record={data} menuRoutes={routes} />
