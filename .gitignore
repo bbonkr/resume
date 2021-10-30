@@ -339,3 +339,4 @@ docs/
 .env
 
 out/
+.netlify/

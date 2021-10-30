@@ -203,11 +203,11 @@ export type Conditionskill_Group = {
   created_at?: Maybe<ConditionString>;
   icon?: Maybe<ConditionString>;
   id?: Maybe<ConditionString>;
-  parent?: Maybe<ConditionString>;
   skillRead?: Maybe<Conditionskill>;
   skill_itemList?: Maybe<Conditionskill_Item>;
   title?: Maybe<ConditionString>;
   updated_at?: Maybe<ConditionString>;
+  xa1__skill_id?: Maybe<ConditionString>;
 };
 
 export type Conditionskill_Item = {
@@ -1809,7 +1809,7 @@ export type Content_Item = {
   description?: Maybe<Scalars['String']>;
   disabled?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  images?: Maybe<Scalars['String']>;
+  images?: Maybe<Scalars['JSON']>;
   parent?: Maybe<Scalars['Int']>;
   period?: Maybe<Scalars['String']>;
   state?: Maybe<Scalars['String']>;
@@ -1831,7 +1831,7 @@ export type Content_ItemAggregate = {
   description?: Maybe<Scalars['String']>;
   disabled?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  images?: Maybe<Scalars['String']>;
+  images?: Maybe<Scalars['JSON']>;
   max?: Maybe<Scalars['Int']>;
   min?: Maybe<Scalars['Float']>;
   parent?: Maybe<Scalars['Int']>;
@@ -1850,7 +1850,7 @@ export type Content_ItemGroupBy = {
   description?: Maybe<Scalars['String']>;
   disabled?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  images?: Maybe<Scalars['String']>;
+  images?: Maybe<Scalars['JSON']>;
   parent?: Maybe<Scalars['Int']>;
   period?: Maybe<Scalars['String']>;
   state?: Maybe<Scalars['String']>;
@@ -1864,7 +1864,7 @@ export type Content_ItemInput = {
   description?: Maybe<Scalars['String']>;
   disabled?: Maybe<Scalars['Int']>;
   id?: Maybe<Scalars['Int']>;
-  images?: Maybe<Scalars['String']>;
+  images?: Maybe<Scalars['JSON']>;
   parent?: Maybe<Scalars['Int']>;
   period?: Maybe<Scalars['String']>;
   state?: Maybe<Scalars['String']>;
@@ -2115,7 +2115,7 @@ export type Resume = {
   homeList?: Maybe<Array<Maybe<Home>>>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  photo?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['JSON']>;
   skillCount?: Maybe<Scalars['Int']>;
   skillList?: Maybe<Array<Maybe<Skill>>>;
   updated_at?: Maybe<Scalars['String']>;
@@ -2131,7 +2131,7 @@ export type ResumeAggregate = {
   max?: Maybe<Scalars['Int']>;
   min?: Maybe<Scalars['Float']>;
   name?: Maybe<Scalars['String']>;
-  photo?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['JSON']>;
   sum?: Maybe<Scalars['Float']>;
   updated_at?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
@@ -2143,7 +2143,7 @@ export type ResumeGroupBy = {
   created_at?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  photo?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['JSON']>;
   updated_at?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 };
@@ -2152,7 +2152,7 @@ export type ResumeInput = {
   created_at?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
   name?: Maybe<Scalars['String']>;
-  photo?: Maybe<Scalars['String']>;
+  photo?: Maybe<Scalars['JSON']>;
   updated_at?: Maybe<Scalars['String']>;
   username?: Maybe<Scalars['String']>;
 };
@@ -2211,12 +2211,12 @@ export type Skill_Group = {
   created_at?: Maybe<Scalars['String']>;
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
-  parent?: Maybe<Scalars['Int']>;
   skillRead?: Maybe<Skill>;
   skill_itemCount?: Maybe<Scalars['Int']>;
   skill_itemList?: Maybe<Array<Maybe<Skill_Item>>>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
+  xa1__skill_id?: Maybe<Scalars['Int']>;
 };
 
 
@@ -2233,10 +2233,10 @@ export type Skill_GroupAggregate = {
   id?: Maybe<Scalars['Int']>;
   max?: Maybe<Scalars['Int']>;
   min?: Maybe<Scalars['Float']>;
-  parent?: Maybe<Scalars['Int']>;
   sum?: Maybe<Scalars['Float']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
+  xa1__skill_id?: Maybe<Scalars['Int']>;
 };
 
 export type Skill_GroupGroupBy = {
@@ -2245,18 +2245,18 @@ export type Skill_GroupGroupBy = {
   created_at?: Maybe<Scalars['String']>;
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
-  parent?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
+  xa1__skill_id?: Maybe<Scalars['Int']>;
 };
 
 export type Skill_GroupInput = {
   created_at?: Maybe<Scalars['String']>;
   icon?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['Int']>;
-  parent?: Maybe<Scalars['Int']>;
   title?: Maybe<Scalars['String']>;
   updated_at?: Maybe<Scalars['String']>;
+  xa1__skill_id?: Maybe<Scalars['Int']>;
 };
 
 export type Skill_Item = {
