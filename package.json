@@ -1,6 +1,6 @@
 {
     "name": "resume",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "description": "공개 이력서",
     "main": "docs/dist/app.js",
     "scripts": {
@@ -47,7 +47,7 @@
         "@babel/preset-env": "^7.15.6",
         "@babel/preset-react": "^7.14.5",
         "@babel/preset-typescript": "^7.15.0",
-        "@graphql-codegen/add": "^3.1.0",
+        "@graphql-codegen/add": "^3.1.1",
         "@graphql-codegen/cli": "^2.6.2",
         "@graphql-codegen/jsdoc": "^2.1.4",
         "@graphql-codegen/typescript": "^2.2.2",
@@ -61,7 +61,7 @@
         "@types/react-router-dom": "^5.3.0",
         "@types/smoothscroll-polyfill": "^0.3.1",
         "@types/webpack": "^5.28.0",
-        "@types/webpack-dev-server": "^4.1.0",
+        "@types/webpack-dev-server": "^4.7.2",
         "@types/workbox-webpack-plugin": "^5.1.8",
         "@typescript-eslint/eslint-plugin": "^4.32.0",
         "@typescript-eslint/parser": "^4.32.0",
@@ -72,7 +72,7 @@
         "concurrently": "^6.3.0",
         "copy-webpack-plugin": "^9.0.1",
         "cross-env": "^7.0.3",
-        "css-loader": "^6.3.0",
+        "css-loader": "^6.7.1",
         "dotenv": "^10.0.0",
         "dotenv-cli": "^4.0.0",
         "eslint": "^7.32.0",
@@ -90,10 +90,10 @@
         "netlify-cli": "^6.14.7",
         "prettier": "^2.4.1",
         "react-refresh": "^0.10.0",
-        "style-loader": "^3.3.0",
+        "style-loader": "^3.3.1",
         "typescript": "^4.6.2",
         "webpack": "^5.55.1",
         "webpack-cli": "^4.8.0",
-        "webpack-dev-server": "^4.3.0"
+        "webpack-dev-server": "^4.7.4"
     }
 }
