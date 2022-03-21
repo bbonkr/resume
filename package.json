@@ -22,7 +22,7 @@
     "author": "Pon Cheol Ku <dev@bbon.kr> (http://bbon.kr)",
     "license": "MIT",
     "dependencies": {
-        "@netlify/functions": "^0.8.0",
+        "@netlify/functions": "^1.0.0",
         "axios": "^0.22.0",
         "bulma": "^0.9.3",
         "graphql": "^15.6.0",
