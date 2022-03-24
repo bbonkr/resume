@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
 
 interface MainPictureProps {
@@ -8,14 +9,16 @@ interface MainPictureProps {
 export const MainPicture = ({ record }: MainPictureProps) => {
     const imageUri = record?.me?.photo ?? '/images/icon.png';
     return (
-        <figure className="image">
-            <img
+        <React.Fragment>
+            <Image
                 src={imageUri}
-                className="is-rounded"
+                className="rounded-full"
                 alt={record?.me?.name}
                 title={record?.me?.name}
+                width={300}
+                height={300}
                 loading="lazy"
             />
-        </figure>
+        </React.Fragment>
     );
 };

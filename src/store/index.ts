@@ -1,5 +1,5 @@
 import { useMemo } from 'react';
-import { applyMiddleware, createStore, Store } from 'redux';
+import { createStore, Store } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { RootAction } from './actions';
 import { rootState, RootState } from './reducers';

@@ -7,6 +7,7 @@ type OrderedListAlternatives = 'lower-alpha' | 'lower-roman' | 'upper-alpha' | '
 interface ContentProps {
     size?: ContentSizes;
     orderedListalternative?: OrderedListAlternatives;
+    className?: string;
     classNames?: string[];
 }
 
@@ -14,11 +15,12 @@ export const Content = ({
     size,
     orderedListalternative,
     classNames,
+    className,
     children,
 }: PropsWithChildren<ContentProps>) => {
     return (
         <div
-            className={`content ${
+            className={`${className ?? ''} content ${
                 size === 'small'
                     ? 'is-small'
                     : size === 'medium'

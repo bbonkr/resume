@@ -18,7 +18,7 @@ export const Section = ({
             id={id}
             className={`${className} ${UiHelper.GetClassNames(...(classNames ?? []))}`}
         >
-            {children}
+            <div className="pt-8">{children}</div>
         </section>
     );
 };

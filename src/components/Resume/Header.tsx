@@ -2,11 +2,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { Data } from '../../interfaces';
-
-interface MenuItem {
-    id: string;
-    title: string;
-}
+import { menus } from './menu';
 
 // https://www.section.io/engineering-education/creating-a-responsive-navigation-bar-using-tailwind-css-and-javascript/
 
@@ -17,11 +13,6 @@ interface HeaderProps {
 export const Header = ({ data }: HeaderProps) => {
     const [open, setOpen] = React.useState(false);
 
-    const menus: MenuItem[] = [
-        { id: 'sample1', title: 'Sample #1' },
-        { id: 'sample2', title: 'Sample #2' },
-        { id: 'sample3', title: 'Sample #3' },
-    ];
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
 
@@ -95,11 +86,11 @@ export const Header = ({ data }: HeaderProps) => {
         <React.Fragment>
             {open && (
                 <div
-                    className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-60"
+                    className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-60 z-20"
                     onClick={handleClickBackground}
                 ></div>
             )}
-            <header className="fixed bg-yellow-200 w-full md:shadow-lg">
+            <header className="fixed bg-slate-50 dark:bg-slate-600 print:bg-white w-full md:shadow-lg z-20">
                 <nav className="p-6">
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="flex justify-between">
@@ -107,7 +98,7 @@ export const Header = ({ data }: HeaderProps) => {
                                 <div>
                                     <Link href="/">
                                         <a>
-                                            <h1>{data?.home?.title}</h1>
+                                            <h1>{data?.site?.title}</h1>
                                         </a>
                                     </Link>
                                 </div>
@@ -115,7 +106,7 @@ export const Header = ({ data }: HeaderProps) => {
                                 <div className="hidden md:flex items-center space-x-1">
                                     {/* Primary navbar items */}
                                     <ul className="flex md:flex-row sm:flex-col gap-3">
-                                        {menus.map((menu) => (
+                                        {Object.values(menus).map((menu) => (
                                             <li key={menu.id}>
                                                 <a href={`#${menu.id}`} onClick={handleClick}>
                                                     {menu.title}
@@ -138,7 +129,7 @@ export const Header = ({ data }: HeaderProps) => {
                     {/* mobile menu items */}
                     <div className="hidden modile-menu" onBlur={handleBlur}>
                         <ul className="flex flex-col gap-3 justify-center items-end px-6 mt-6">
-                            {menus.map((menu) => (
+                            {Object.values(menus).map((menu) => (
                                 <li key={menu.id} className="p-1">
                                     <a href={`#${menu.id}`} onClick={handleClick}>
                                         {menu.title}

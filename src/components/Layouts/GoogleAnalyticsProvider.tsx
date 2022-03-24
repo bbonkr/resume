@@ -1,22 +1,20 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
+import Head from 'next/head';
 import { useGaRedux } from '../../hooks/useGaRedux';
 
 interface GoogleAnalyticsProviderProps {
     gaid?: string;
 }
 
-const GoogleAnalyticsProvider = ({
+export const GoogleAnalyticsProvider = ({
     gaid,
     children,
-    location,
-}: PropsWithChildren<GoogleAnalyticsProviderProps> & RouteComponentProps) => {
+}: PropsWithChildren<GoogleAnalyticsProviderProps>) => {
     const { setGaId } = useGaRedux();
 
     useEffect(() => {
         if (gaid && typeof window.gtag === 'function') {
-            gtag('event', 'app_started', {
+            window.gtag('event', 'app_started', {
                 debug_mode: process.env.PRODUCTION !== 'production',
             });
 
@@ -29,7 +27,7 @@ const GoogleAnalyticsProvider = ({
     useEffect(() => {
         if (gaid && typeof window.gtag === 'function') {
             // https://developers.google.com/gtagjs/reference/event
-            gtag('event', 'page_view', {
+            window.gtag('event', 'page_view', {
                 page_title: window.document.title,
                 page_location: window.location.href,
                 page_path: location.pathname,
@@ -41,29 +39,29 @@ const GoogleAnalyticsProvider = ({
     return (
         <React.Fragment>
             {gaid && (
-                <Helmet
-                    script={[
-                        {
-                            id: 'script-ga-head',
-                            type: 'text/javascript',
-                            src: `https://www.googletagmanager.com/gtag/js?id=${gaid}`,
-                            async: true,
-                        },
-                        {
-                            id: 'script-ga-body',
-                            type: 'text/javascript',
-                            innerHTML: `window.dataLayer = window.dataLayer || [];
+                <Head>
+                    <script
+                        id="script-ga-head"
+                        type="text/javascript"
+                        src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
+                        async
+                    ></script>
+                    <script
+                        id="script-ga-body"
+                        type="text/javascript"
+                        dangerouslySetInnerHTML={{
+                            __html: `window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
   gtag('config', '${gaid}');`,
-                        },
-                    ]}
-                />
+                        }}
+                    ></script>
+                </Head>
             )}
             {children}
         </React.Fragment>
     );
 };
 
-export const GoogleAnalyticsProviderWithRouter = withRouter(GoogleAnalyticsProvider);
+// export const GoogleAnalyticsProviderWithRouter = withRouter(GoogleAnalyticsProvider);
