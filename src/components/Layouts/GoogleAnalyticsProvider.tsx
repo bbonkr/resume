@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 import Head from 'next/head';
 import { useGaRedux } from '../../hooks/useGaRedux';
+import { useRouter } from 'next/router';
 
 interface GoogleAnalyticsProviderProps {
     gaid?: string;
@@ -11,6 +12,7 @@ export const GoogleAnalyticsProvider = ({
     children,
 }: PropsWithChildren<GoogleAnalyticsProviderProps>) => {
     const { setGaId } = useGaRedux();
+    const router = useRouter();
 
     useEffect(() => {
         if (gaid && typeof window.gtag === 'function') {
@@ -30,11 +32,11 @@ export const GoogleAnalyticsProvider = ({
             window.gtag('event', 'page_view', {
                 page_title: window.document.title,
                 page_location: window.location.href,
-                page_path: location.pathname,
+                page_path: router.pathname,
                 debug_mode: process.env.PRODUCTION !== 'production',
             });
         }
-    }, [location]);
+    }, [router.pathname]);
 
     return (
         <React.Fragment>
@@ -63,5 +65,3 @@ export const GoogleAnalyticsProvider = ({
         </React.Fragment>
     );
 };
-
-// export const GoogleAnalyticsProviderWithRouter = withRouter(GoogleAnalyticsProvider);

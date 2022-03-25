@@ -17,7 +17,9 @@
     "author": "Pon Cheol Ku <dev@bbon.kr> (http://bbon.kr)",
     "license": "MIT",
     "dependencies": {
+        "@sendgrid/mail": "^7.6.2",
         "axios": "^0.26.1",
+        "formik": "^2.2.9",
         "graphql": "^16.3.0",
         "graphql-request": "^3.5.0",
         "next": "^12.1.0",
@@ -34,7 +36,8 @@
         "remark-gfm": "^3.0.1",
         "smoothscroll-polyfill": "^0.4.4",
         "swr": "^1.0.1",
-        "typesafe-actions": "^5.1.0"
+        "typesafe-actions": "^5.1.0",
+        "yup": "^0.32.11"
     },
     "devDependencies": {
         "@graphql-codegen/add": "^3.1.1",

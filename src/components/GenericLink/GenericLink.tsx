@@ -70,6 +70,8 @@ export const GenericLink = ({
         }
     };
 
+    const title = record.title.length > 30 ? `${record.title.substring(0, 27)}...` : record.title;
+
     return record.href.startsWith('/') ? (
         <Link href={record.href}>
             <a className={className} onClick={handleClick}>
@@ -85,10 +87,11 @@ export const GenericLink = ({
         >
             {children ?? (
                 <React.Fragment>
-                    {record.icon && <span className="mr-1">{renderIcon()}</span>}{' '}
-                    <span className="mr-1">{record.title}</span>
+                    {record.icon && <span className=" mr-1">{renderIcon()}</span>}{' '}
+                    <span className="mr-1 hidden md:inline-block">{record.title}</span>
+                    <span className="mr-1 inline-block md:hidden">{title}</span>
                     {(!record.target || record.target !== '_self') && (
-                        <span>
+                        <span className="">
                             <FaExternalLinkAlt />
                         </span>
                     )}

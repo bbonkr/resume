@@ -3,16 +3,17 @@ import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
 
 interface MainPictureProps {
+    className?: string;
     record?: Data | null;
 }
 
-export const MainPicture = ({ record }: MainPictureProps) => {
+export const MainPicture = ({ className, record }: MainPictureProps) => {
     const imageUri = record?.me?.photo ?? '/images/icon.png';
     return (
         <React.Fragment>
             <Image
                 src={imageUri}
-                className="rounded-full"
+                className={className}
                 alt={record?.me?.name}
                 title={record?.me?.name}
                 width={300}

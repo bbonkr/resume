@@ -14,11 +14,6 @@ const getResumeData = async (_: NextApiRequest, res: NextApiResponse<Data>) => {
         res.setHeader('Cache-Control', `private, max-age=${expiration}`);
         res.setHeader('Access-Control-Allow-Origin', '*'); // Allow from anywhere
     }
-    // else {
-    //     res.setHeader('Content-Type', 'application/json; charset=utf-8');
-    //     res.setHeader('Cache-Control', `private, max-age=${expiration}`);
-    //     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow from anywhere
-    // }
 
     res.status(200).json(data);
 };

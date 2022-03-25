@@ -72,13 +72,16 @@ export const Summary = ({ record, title }: SummaryProps) => {
             const percentage = ((maxRank - (x.rank - 1)) / maxRank) * 100;
 
             if (percentage > 80) {
-                x.color = 'border-blue-600 bg-blue-100';
+                x.color = 'border-blue-600 bg-blue-600 dark:bg-blue-900 dark:ring-blue-300';
                 x.size = 'px-3 py-2';
             } else if (percentage > 60) {
-                x.color = 'border-blue-400 bg-blue-100';
+                x.color = 'border-blue-300 bg-blue-300 dark:bg-blue-700 dark:ring-blue-400';
+                x.size = 'px-3 py-2';
+            } else if (percentage > 40) {
+                x.color = 'border-blue-200 bg-blue-200 dark:bg-blue-600 dark:ring-blue-400';
                 x.size = 'px-3 py-2';
             } else {
-                x.color = 'border-blue-200 bg-blue-100';
+                x.color = 'border-blue-100 bg-blue-100 dark:bg-blue-500 dark:ring-blue-400';
                 x.size = 'px-3 py-2';
             }
             x.size = 'px-3 py-2';
@@ -86,22 +89,24 @@ export const Summary = ({ record, title }: SummaryProps) => {
 
     return (
         <React.Fragment>
-            <div className="flex flex-col justify-center items-center gap-9">
+            <div className="flex flex-col justify-center items-center gap-9 dark:opacity-70">
                 <div
-                    className={`flex flex-col md:flex-row justify-around sm:justify-center items-start py-3 gap-9`}
+                    className={`flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full`}
                 >
-                    <MainPicture record={record} />
+                    <MainPicture record={record} className="rounded-full flex-1" />
 
                     <Skill
                         records={record?.skillStack?.records}
                         title={record?.skillStack?.title?.toUpperCase() ?? ''}
                         filter={0}
+                        className="flex-1 w-full"
                     />
 
                     <Skill
                         records={record?.skillStack?.records}
                         title={record?.skillStack?.title?.toUpperCase() ?? ''}
                         filter={1}
+                        className="flex-1 w-full"
                     />
                 </div>
 
@@ -110,10 +115,11 @@ export const Summary = ({ record, title }: SummaryProps) => {
                         projectTags.length > 0 &&
                         projectTags
                             .sort((a, b) => (a.count > b.count ? -1 : 1))
+                            .filter((x) => x.count > 1)
                             .map((tag) => (
                                 <span
                                     key={tag.tag}
-                                    className={`border-2 rounded-lg ring-2 ring-blue-100 tag ${
+                                    className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
                                         tag.color ?? ''
                                     } ${tag.size ?? ''}`}
                                 >

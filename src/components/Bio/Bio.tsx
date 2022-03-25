@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Data } from '../../interfaces/Data';
-import { GenericLink } from '../GenericLink';
 
 interface BioProps {
     record?: Pick<Data, 'home'> | null;
@@ -15,7 +14,7 @@ export const Bio = ({ record, title }: BioProps) => {
             <div className="my-3">
                 <ReactMarkdown className="markdown">{record?.home?.bio ?? ''}</ReactMarkdown>
 
-                {record?.home?.links && record?.home.links.length > 0 && (
+                {/* {record?.home?.links && record?.home.links.length > 0 && (
                     <ul className="flex flex-row flex-wrap justify-center items-center gap-3 my-6">
                         {record?.home.links.map((x) => {
                             return (
@@ -28,7 +27,7 @@ export const Bio = ({ record, title }: BioProps) => {
                             );
                         })}
                     </ul>
-                )}
+                )} */}
             </div>
         </div>
     );

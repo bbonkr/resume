@@ -1,7 +1,7 @@
 import useSWR from 'swr';
 import { Data } from '../../interfaces';
 import Axios from 'axios';
-import { ApiException } from '../../interfaces/ApiException';
+import { ApiException } from '../../libs/Errors/ApiError';
 
 export const useApi = () => {
     const endpoint = process.env.API ?? '';
@@ -16,11 +16,7 @@ export const useApi = () => {
                     if (err.response?.data) {
                         error = err.response.data as ApiException;
                     } else {
-                        error = {
-                            statusCode: 500,
-                            instance: '',
-                            message: 'unknown error occurred',
-                        };
+                        error = new ApiException(500, 'unknown error occurred');
                     }
                     throw error;
                 }),

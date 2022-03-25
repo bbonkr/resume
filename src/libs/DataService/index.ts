@@ -43,6 +43,7 @@ export class DataService {
             title: content?.title ?? '',
             records: content?.content_itemList
                 ?.filter((item) => item?.disabled !== 1)
+                .sort((a, b) => ((a?.period ?? '') > (b?.period ?? '') ? -1 : 1))
                 .map((item) => {
                     const record: ContentDataRecord = {
                         title: item?.title ?? '',

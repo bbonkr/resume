@@ -3,8 +3,9 @@ import axios from 'axios';
 import { Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
+import { GetServerSideProps } from 'next';
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps<HomePageProps> = async () => {
     const url = `${process.env.API}`;
     const response = await axios.get<Data>(url);
 
