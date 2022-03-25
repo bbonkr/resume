@@ -10,14 +10,14 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { useGaRedux } from '../../hooks/useGaRedux';
 import { Link as LinkModel } from '../../interfaces';
 
 interface GenericLinkProps {
     record: LinkModel;
     className?: string;
-    onClick?: (event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+    onClick?: (_event?: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }
 
 export const GenericLink = ({
@@ -58,7 +58,7 @@ export const GenericLink = ({
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         if (gaId && typeof window.gtag === 'function') {
-            gtag('event', 'click_link', {
+            window.gtag('event', 'click_link', {
                 href: record.href,
                 title: record.title,
                 debug_mode: process.env.PRODUCTION !== 'production',
@@ -70,9 +70,13 @@ export const GenericLink = ({
         }
     };
 
+    const title = record.title.length > 30 ? `${record.title.substring(0, 27)}...` : record.title;
+
     return record.href.startsWith('/') ? (
-        <Link to={record.href} className={className} onClick={handleClick}>
-            {children ?? record.title}
+        <Link href={record.href}>
+            <a className={className} onClick={handleClick}>
+                {children ?? record.title}
+            </a>
         </Link>
     ) : (
         <a
@@ -83,10 +87,11 @@ export const GenericLink = ({
         >
             {children ?? (
                 <React.Fragment>
-                    {record.icon && <span className="mr-1">{renderIcon()}</span>}{' '}
-                    <span className="mr-1">{record.title}</span>
+                    {record.icon && <span className=" mr-1">{renderIcon()}</span>}{' '}
+                    <span className="mr-1 hidden md:inline-block">{record.title}</span>
+                    <span className="mr-1 inline-block md:hidden">{title}</span>
                     {(!record.target || record.target !== '_self') && (
-                        <span>
+                        <span className="">
                             <FaExternalLinkAlt />
                         </span>
                     )}

@@ -1,9 +1,7 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { ColorStyles, SizeStyles } from '../../interfaces';
+
 import { Data } from '../../interfaces/Data';
-import { Bio } from '../Bio';
-import { Content, Section } from '../Layouts';
+
 import { MainPicture } from '../MainPicture';
 import { Skill } from '../Skill';
 
@@ -11,8 +9,8 @@ interface Tag {
     tag: string;
     count: number;
     rank: number;
-    color?: ColorStyles;
-    size?: SizeStyles;
+    color?: string; //ColorStyles;
+    size?: string; //SizeStyles;
 }
 
 interface SummaryProps {
@@ -74,59 +72,62 @@ export const Summary = ({ record, title }: SummaryProps) => {
             const percentage = ((maxRank - (x.rank - 1)) / maxRank) * 100;
 
             if (percentage > 80) {
-                x.color = 'is-link';
-                x.size = 'is-large';
+                x.color = 'border-blue-600 bg-blue-600 dark:bg-blue-900 dark:ring-blue-300';
+                x.size = 'px-3 py-2';
             } else if (percentage > 60) {
-                x.color = 'is-info';
-                x.size = 'is-medium';
+                x.color = 'border-blue-300 bg-blue-300 dark:bg-blue-700 dark:ring-blue-400';
+                x.size = 'px-3 py-2';
+            } else if (percentage > 40) {
+                x.color = 'border-blue-200 bg-blue-200 dark:bg-blue-600 dark:ring-blue-400';
+                x.size = 'px-3 py-2';
             } else {
-                x.color = undefined;
+                x.color = 'border-blue-100 bg-blue-100 dark:bg-blue-500 dark:ring-blue-400';
+                x.size = 'px-3 py-2';
             }
+            x.size = 'px-3 py-2';
         });
 
     return (
         <React.Fragment>
-            <Helmet title={title} />
-            <Section
-                title={record?.home?.title}
-                subtitle={record?.home?.subtitle}
-                useHero
-                heroColor="is-info"
-            />
-            <Section>
-                <div className={`columns`}>
-                    <div className="column is-one-quarter">
-                        <MainPicture record={record} />
-                    </div>
-                    <div className="column">
-                        <Bio record={record} title={'about me'.toUpperCase()} />
-                    </div>
-                    <div className="column">
-                        <Skill
-                            records={record?.skillStack?.records}
-                            title={record?.skillStack?.title?.toUpperCase() ?? ''}
-                        />
-                    </div>
+            <div className="flex flex-col justify-center items-center gap-9 dark:opacity-70">
+                <div
+                    className={`flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full`}
+                >
+                    <MainPicture record={record} className="rounded-full flex-1" />
+
+                    <Skill
+                        records={record?.skillStack?.records}
+                        title={record?.skillStack?.title?.toUpperCase() ?? ''}
+                        filter={0}
+                        className="flex-1 w-full"
+                    />
+
+                    <Skill
+                        records={record?.skillStack?.records}
+                        title={record?.skillStack?.title?.toUpperCase() ?? ''}
+                        filter={1}
+                        className="flex-1 w-full"
+                    />
                 </div>
-                <div className="columns">
-                    {projectTags && projectTags.length > 0 && (
-                        <Content>
-                            <Section title={'Tags'.toUpperCase()} classNames={['column', 'tags']}>
-                                {projectTags
-                                    .sort((a, b) => (a.count > b.count ? -1 : 1))
-                                    .map((tag) => (
-                                        <span
-                                            key={tag.tag}
-                                            className={`tag ${tag.color ?? ''} ${tag.size ?? ''}`}
-                                        >
-                                            {tag.tag.toUpperCase()}
-                                        </span>
-                                    ))}
-                            </Section>
-                        </Content>
-                    )}
+
+                <div className="flex flex-row justify-center items-start flex-wrap gap-3 py-3">
+                    {projectTags &&
+                        projectTags.length > 0 &&
+                        projectTags
+                            .sort((a, b) => (a.count > b.count ? -1 : 1))
+                            .filter((x) => x.count > 1)
+                            .map((tag) => (
+                                <span
+                                    key={tag.tag}
+                                    className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
+                                        tag.color ?? ''
+                                    } ${tag.size ?? ''}`}
+                                >
+                                    {tag.tag.toUpperCase()}
+                                </span>
+                            ))}
                 </div>
-            </Section>
+            </div>
         </React.Fragment>
     );
 };
