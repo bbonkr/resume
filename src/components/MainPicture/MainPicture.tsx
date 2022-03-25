@@ -1,5 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
 
 interface MainPictureProps {
@@ -11,7 +12,7 @@ export const MainPicture = ({ className, record }: MainPictureProps) => {
     const imageUri = record?.me?.photo ?? '/images/icon.png';
     return (
         <React.Fragment>
-            <Image
+            {/* <Image
                 src={imageUri}
                 className={className}
                 alt={record?.me?.name}
@@ -19,6 +20,13 @@ export const MainPicture = ({ className, record }: MainPictureProps) => {
                 width={300}
                 height={300}
                 loading="lazy"
+            /> */}
+
+            <img
+                src={imageUri}
+                alt={record?.me?.name}
+                title={record?.me?.name}
+                className={className}
             />
         </React.Fragment>
     );

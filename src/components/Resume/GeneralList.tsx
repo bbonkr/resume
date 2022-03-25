@@ -1,8 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
 import { ContentData } from '../../interfaces';
 import Markdown from 'react-markdown';
 import { GenericLink } from '../GenericLink';
-import Image from 'next/image';
+// import Image from 'next/image';
 interface GeneralListProps {
     title?: string;
     data?: ContentData | null;
@@ -51,12 +52,18 @@ export const GeneralList = ({ title, data }: GeneralListProps) => {
                                     {item.images.map((img) => {
                                         return (
                                             <li key={img.src} className="py-2">
-                                                <Image
+                                                {/* <Image
                                                     src={img.src}
                                                     alt={img.alt}
                                                     width={300}
                                                     height={300}
                                                     objectFit="cover"
+                                                    loading="lazy"
+                                                /> */}
+                                                <img
+                                                    src={img.src}
+                                                    alt={img.alt}
+                                                    title={img.alt}
                                                     loading="lazy"
                                                 />
                                             </li>
