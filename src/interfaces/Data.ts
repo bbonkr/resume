@@ -1,4 +1,5 @@
 export type Data = {
+    site?: SiteInfo | null;
     me?: Me | null;
     home?: Home | null;
     education?: ContentData | null;
@@ -24,6 +25,14 @@ export type LinKIcon =
 
 export type LinkTarget = string | '_blank' | '_self';
 
+export interface SiteInfo {
+    name?: string;
+    nameEn?: string;
+    title?: string;
+    titleEn?: string;
+    url?: string;
+}
+
 export type Link = {
     title: string;
     href: string;
@@ -46,6 +55,11 @@ export type Education = ContentDataRecord & {
 export type Me = {
     name: string;
     photo?: string;
+    twitter?: string;
+    github?: string;
+    facebook?: string;
+    linkedin?: string;
+    instagram?: string;
 };
 
 export type Career = ContentDataRecord & {

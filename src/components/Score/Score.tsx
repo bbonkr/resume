@@ -9,7 +9,7 @@ interface ScoreProps {
 }
 
 export const Score = ({ score, max, icon, onClassName, offClassName }: ScoreProps) => (
-    <div>
+    <div className="flex flex-row">
         {Array(max)
             .fill(0)
             .map((x, index) => {

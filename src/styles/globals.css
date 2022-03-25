@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.markdown {
+    @apply py-6;
+}
+
+.markdown p {
+    @apply my-1;
+}
+
+.markdown h3 {
+    @apply my-3 font-semibold text-lg;
+}
+.markdown ul,
+.markdown ol {
+    display: list-item;
+    @apply pl-5;
+}
+
+.markdown ul > li,
+.markdown ol > li {
+    list-style-type: auto;
+    list-style-position: outside;
+    @apply break-words py-2;
+}
+
+.markdown p > a {
+    display: inline-block;
+}
+
+.section {
+    @apply flex flex-col justify-center items-center min-h-screen w-full p-6 py-16 px-4 md:px-16 break-after-page;
+}
+
+.section.odd {
+    @apply bg-slate-200 dark:bg-slate-800;
+}
+
+.section.even {
+    @apply bg-slate-100 dark:bg-slate-700;
+}
+
+#contact input,
+#contact textarea {
+    @apply px-6 py-3 rounded-md border-2 border-blue-400 ring-1 ring-blue-100 focus:ring-2 focus:ring-blue-300 focus-visible:border-blue-400 focus-within:border-blue-400;
+}
+
+#contact form > div > label {
+    @apply flex flex-col;
+}
+
+#contact form > div > label > span {
+    @apply my-2;
+}

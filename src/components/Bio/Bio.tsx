@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Data } from '../../interfaces/Data';
-import { Content, Section } from '../Layouts';
-import { GenericLink } from '../GenericLink';
 
 interface BioProps {
     record?: Pick<Data, 'home'> | null;
@@ -11,22 +9,26 @@ interface BioProps {
 
 export const Bio = ({ record, title }: BioProps) => {
     return (
-        <Content>
-            <Section title={title}>
-                <ReactMarkdown children={record?.home?.bio ?? ''} />
+        <div className={`flex flex-col justify-center items-center mx-auto`}>
+            {title && <h2 className="text-lg font-bold my-6">{title}</h2>}
+            <div className="my-3">
+                <ReactMarkdown className="markdown">{record?.home?.bio ?? ''}</ReactMarkdown>
 
-                {record?.home?.links && record?.home.links.length > 0 && (
-                    <div className="d-flex flex-row justify-content-center flex-wrap">
+                {/* {record?.home?.links && record?.home.links.length > 0 && (
+                    <ul className="flex flex-row flex-wrap justify-center items-center gap-3 my-6">
                         {record?.home.links.map((x) => {
                             return (
-                                <div className="mr-20" key={x.href}>
-                                    <GenericLink record={x} />
-                                </div>
+                                <li className="mx-3 flex-1" key={x.href}>
+                                    <GenericLink
+                                        className="flex justify-center items-center"
+                                        record={x}
+                                    />
+                                </li>
                             );
                         })}
-                    </div>
-                )}
-            </Section>
-        </Content>
+                    </ul>
+                )} */}
+            </div>
+        </div>
     );
 };
