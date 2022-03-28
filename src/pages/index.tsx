@@ -6,7 +6,7 @@ import { Resume } from '../components/Resume';
 import { GetServerSideProps } from 'next';
 
 export const getServerSideProps: GetServerSideProps<HomePageProps> = async () => {
-    const url = `${process.env.API}`;
+    const url = `${process.env.HOST}/api/resume`;
     const response = await axios.get<Data>(url);
 
     if (response.status === 200) {
