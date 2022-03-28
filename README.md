@@ -55,3 +55,11 @@ index.html 파일의 내용을 변경하십시오.
 환경변수 또는 .env 파일
 
 -   Google Analytics 식별자 `GAID=UA-XXXXXXXX-X`
+
+## Docker
+
+### Build on M1
+
+```bash
+$ docker build . --tag bbonkr/resume:2.2.6 --platform linux/amd64
+```

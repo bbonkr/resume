@@ -1,0 +1,29 @@
+# 1. Copy docker-compose.dev.yml to docker-compose.yml
+# 2. Change image name
+# 3. Change port
+# 4. Copy .env.sample to .env
+# 5. Edit .env
+# 6. Build docker image
+# 7. Run container with compose (docker-compose up -d)
+version: '3'
+
+services:
+  app:
+    image: docker.io/bbonkr/resume:2.2.6.11 # Change 
+    container_name: resume
+    ports:
+      - 20000:3000
+    restart: always
+    network_mode: bridge
+    environment:
+      - TZ=Asia/Seoul
+      - NEXT_PUBLIC_HOST=${NEXT_PUBLIC_HOST}
+      - HOST=${HOST}
+      - GAID=${GAID}
+      - ENDPOINT=${ENDPOINT}
+      - ACCESSKEY=${ACCESSKEY}
+      - USERNAME=${USERNAME}
+      - SENDGRID_SENDER=${SENDGRID_SENDER}
+      - SENDGRID_EMAIL=${SENDGRID_EMAIL}
+      - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+    entrypoint: ['npm', 'start']
