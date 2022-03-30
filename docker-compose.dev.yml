@@ -18,8 +18,8 @@ services:
     environment:
       - TZ=Asia/Seoul
       - NEXT_PUBLIC_HOST=${NEXT_PUBLIC_HOST}
+      - NEXT_PUBLIC_GAID=${NEXT_PUBLIC_GAID}
       - HOST=${HOST}
-      - GAID=${GAID}
       - ENDPOINT=${ENDPOINT}
       - ACCESSKEY=${ACCESSKEY}
       - USERNAME=${USERNAME}
