@@ -57,8 +57,8 @@ export const GenericLink = ({
     };
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-        if (gaId && typeof window.gtag === 'function') {
-            window.gtag('event', 'click_link', {
+        if (gaId && typeof window.ga === 'function') {
+            window.ga('send', 'event', 'click_link', {
                 href: record.href,
                 title: record.title,
                 debug_mode: process.env.PRODUCTION !== 'production',

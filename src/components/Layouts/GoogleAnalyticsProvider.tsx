@@ -1,5 +1,5 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import Head from 'next/head';
+import Script from 'next/script';
 import { useGaRedux } from '../../hooks/useGaRedux';
 import { useRouter } from 'next/router';
 
@@ -15,10 +15,12 @@ export const GoogleAnalyticsProvider = ({
     const router = useRouter();
 
     useEffect(() => {
-        if (gaid && typeof window.gtag === 'function') {
-            window.gtag('event', 'app_started', {
-                debug_mode: process.env.PRODUCTION !== 'production',
-            });
+        if (gaid && typeof window.ga === 'function') {
+            // window.gtag('event', 'app_started', {
+            //     debug_mode: process.env.PRODUCTION !== 'production',
+            // });
+
+            window.ga('send', 'event', 'app_started', 'app_started');
 
             setGaId(gaid);
 
@@ -27,30 +29,26 @@ export const GoogleAnalyticsProvider = ({
     }, []);
 
     useEffect(() => {
-        if (gaid && typeof window.gtag === 'function') {
+        if (gaid && typeof window.ga === 'function') {
             // https://developers.google.com/gtagjs/reference/event
-            window.gtag('event', 'page_view', {
-                page_title: window.document.title,
-                page_location: window.location.href,
-                page_path: router.pathname,
-                debug_mode: process.env.PRODUCTION !== 'production',
-            });
+            // window.gtag('event', 'page_view', {
+            //     page_title: window.document.title,
+            //     page_location: window.location.href,
+            //     page_path: router.pathname,
+            //     debug_mode: process.env.PRODUCTION !== 'production',
+            // });
+            window.ga('send', 'pageview', router.pathname);
         }
     }, [router.pathname]);
 
     return (
         <React.Fragment>
+            {children}
             {gaid && (
-                <Head>
-                    <script
-                        id="script-ga-head"
-                        type="text/javascript"
-                        src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
-                        async
-                    ></script>
-                    <script
+                <React.Fragment>
+                    <Script
                         id="script-ga-body"
-                        type="text/javascript"
+                        strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
                             __html: `window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -58,10 +56,15 @@ export const GoogleAnalyticsProvider = ({
 
   gtag('config', '${gaid}');`,
                         }}
-                    ></script>
-                </Head>
+                    />
+                    <Script
+                        id="script-ga-head"
+                        type="text/javascript"
+                        src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
+                        strategy="afterInteractive"
+                    />
+                </React.Fragment>
             )}
-            {children}
         </React.Fragment>
     );
 };
