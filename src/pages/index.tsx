@@ -1,33 +1,30 @@
 import * as React from 'react';
-import axios from 'axios';
 import { Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
-import { GetServerSideProps } from 'next';
+import useSWR from 'swr';
+import axios from 'axios';
+import { Loading } from '../components/Loading';
 
-export const getServerSideProps: GetServerSideProps<HomePageProps> = async () => {
-    const url = `${process.env.HOST}/api/resume`;
-    const response = await axios.get<Data>(url);
+const HomePage = () => {
+    const { data, error, isValidating } = useSWR<Data, Error>('/api/resume', async (url) => {
+        const response = await axios.get<Data>(url);
+        if (response.status !== 200) {
+            throw new Error(response.statusText);
+        }
+        return response.data;
+    });
 
-    if (response.status === 200) {
-        return {
-            props: {
-                data: response.data,
-            },
-        };
-    } else {
-        return {
-            notFound: true,
-        };
+    if (isValidating) {
+        return <Loading />;
     }
-};
 
-interface HomePageProps {
-    data: Data | null;
-}
+    if (error) {
+        throw error;
+    }
 
-const HomePage = ({ data }: HomePageProps) => {
     const siteTitle = `${data?.site?.title} | ${data?.site?.titleEn}`;
+
     return (
         <React.Fragment>
             <Head>
