@@ -36,7 +36,7 @@ export const Contact = ({ title, data }: ContactProps) => {
                     if (isVaild) {
                         try {
                             const response = await axios.post<SendMessageResponseModel>(
-                                `${process.env.NEXT_PUBLIC_HOST}/api/message`,
+                                `/api/message`,
                                 formValues,
                             );
 
