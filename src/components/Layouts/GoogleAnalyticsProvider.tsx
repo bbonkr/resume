@@ -1,5 +1,4 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import Script from 'next/script';
 import { useGaRedux } from '../../hooks/useGaRedux';
 import { useRouter } from 'next/router';
 
@@ -46,9 +45,14 @@ export const GoogleAnalyticsProvider = ({
             {children}
             {gaid && (
                 <React.Fragment>
-                    <Script
+                    <script
+                        id="script-ga-head"
+                        type="text/javascript"
+                        src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
+                        async
+                    ></script>
+                    <script
                         id="script-ga-body"
-                        strategy="afterInteractive"
                         dangerouslySetInnerHTML={{
                             __html: `window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -56,13 +60,7 @@ export const GoogleAnalyticsProvider = ({
 
   gtag('config', '${gaid}');`,
                         }}
-                    />
-                    <Script
-                        id="script-ga-head"
-                        type="text/javascript"
-                        src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
-                        strategy="afterInteractive"
-                    />
+                    ></script>
                 </React.Fragment>
             )}
         </React.Fragment>
