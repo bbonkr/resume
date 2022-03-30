@@ -3,9 +3,10 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 import { Provider } from 'react-redux';
 import { useStore } from '../store';
-// import { GoogleAnalyticsProvider } from '../components/Layouts';
+import { GoogleAnalyticsProvider } from '../components/Layouts';
 
 import '../styles/globals.css';
+import '../components/Loading/style.css';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
     const store = useStore();
@@ -13,10 +14,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <React.Fragment>
             <Provider store={store}>
                 <ThemeProvider attribute="class" defaultTheme="system">
-                    {/* <GoogleAnalyticsProvider
-                        gaid={process.env.NEXT_PUBLIC_GAID}
-                    ></GoogleAnalyticsProvider> */}
-                    <Component {...pageProps} />
+                    <GoogleAnalyticsProvider gaid={process.env.NEXT_PUBLIC_GAID}>
+                        <Component {...pageProps} />
+                    </GoogleAnalyticsProvider>
                 </ThemeProvider>
             </Provider>
         </React.Fragment>
