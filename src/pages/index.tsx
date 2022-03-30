@@ -7,20 +7,30 @@ import axios from 'axios';
 import { Loading } from '../components/Loading';
 
 const HomePage = () => {
-    const { data, error, isValidating } = useSWR<Data, Error>('/api/resume', async (url) => {
-        const response = await axios.get<Data>(url);
-        if (response.status !== 200) {
-            throw new Error(response.statusText);
+    const { data, error, isValidating } = useSWR<Data, Error>(
+        '/api/resume',
+        async (url) => {
+            const response = await axios.get<Data>(url);
+            if (response.status !== 200) {
+                throw new Error(response.statusText);
+            }
+            return response.data;
+        },
+        {
+            revalidateIfStale: false,
+            revalidateOnFocus: false,
+            revalidateOnReconnect: false,
+        },
+    );
+
+    React.useEffect(() => {
+        if (error) {
+            console.error(error);
         }
-        return response.data;
-    });
+    }, [error]);
 
     if (isValidating) {
         return <Loading />;
-    }
-
-    if (error) {
-        throw error;
     }
 
     const siteTitle = `${data?.site?.title} | ${data?.site?.titleEn}`;
