@@ -7,12 +7,24 @@ interface SkillProps {
     records?: SkillSection[] | null;
     filter?: string | number;
     className?: string;
+    isLoading?: boolean;
 }
 
-export const Skill = ({ title, className, records, filter }: SkillProps) => {
+export const Skill = ({ title, className, records, filter, isLoading }: SkillProps) => {
     return (
         <React.Fragment>
-            {records &&
+            {isLoading ? (
+                <div key="skill-skelecton" className=" w-full flex flex-col space-y-3">
+                    <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                    <div className="w-full h-6 rounded-md "></div>
+                    <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                    <div className="w-4/5 bg-gray-300 h-6 rounded-md "></div>
+                    <div className="w-2/3 bg-gray-300 h-6 rounded-md "></div>
+                    <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                    <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                </div>
+            ) : (
+                records &&
                 records.length > 0 &&
                 records
                     .filter((x, index) =>
@@ -44,7 +56,8 @@ export const Skill = ({ title, className, records, filter }: SkillProps) => {
                                 </dl>
                             </div>
                         );
-                    })}
+                    })
+            )}
         </React.Fragment>
     );
 };

@@ -5,29 +5,36 @@ import { Data } from '../../interfaces/Data';
 interface BioProps {
     record?: Pick<Data, 'home'> | null;
     title?: string;
+    isLoading?: boolean;
 }
 
-export const Bio = ({ record, title }: BioProps) => {
+export const Bio = ({ record, title, isLoading }: BioProps) => {
+    if (isLoading) {
+        return (
+            <div
+                key="bio-skelecton"
+                className={`flex flex-col justify-center items-center mx-auto w-full animate-pulse`}
+            >
+                <h2 className="text-lg font-bold my-6">
+                    <span className="block w-48 h-9  bg-gray-300"></span>
+                </h2>
+
+                <div className="my-3 w-full">
+                    <div className="flex flex-col gap-3 justify-center items-center ">
+                        <div className=" w-2/3 h-6 bg-gray-300"></div>
+                        <div className=" w-3/4 h-6 bg-gray-300"></div>
+                        <div className=" w-2/3 h-6 bg-gray-300"></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
     return (
-        <div className={`flex flex-col justify-center items-center mx-auto`}>
+        <div className={`flex flex-col justify-center items-center mx-auto w-full`}>
             {title && <h2 className="text-lg font-bold my-6">{title}</h2>}
+
             <div className="my-3">
                 <ReactMarkdown className="markdown">{record?.home?.bio ?? ''}</ReactMarkdown>
-
-                {/* {record?.home?.links && record?.home.links.length > 0 && (
-                    <ul className="flex flex-row flex-wrap justify-center items-center gap-3 my-6">
-                        {record?.home.links.map((x) => {
-                            return (
-                                <li className="mx-3 flex-1" key={x.href}>
-                                    <GenericLink
-                                        className="flex justify-center items-center"
-                                        record={x}
-                                    />
-                                </li>
-                            );
-                        })}
-                    </ul>
-                )} */}
             </div>
         </div>
     );

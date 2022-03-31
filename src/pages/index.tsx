@@ -4,12 +4,15 @@ import Head from 'next/head';
 import { Resume } from '../components/Resume';
 import useSWR from 'swr';
 import axios from 'axios';
-import { Loading } from '../components/Loading';
 
 const HomePage = () => {
     const { data, error, isValidating } = useSWR<Data, Error>(
         '/api/resume',
         async (url) => {
+            // await new Promise((resolve, reject) => {
+            //     window.setTimeout(resolve, 5000);
+            // });
+
             const response = await axios.get<Data>(url);
             if (response.status !== 200) {
                 throw new Error(response.statusText);
@@ -29,11 +32,7 @@ const HomePage = () => {
         }
     }, [error]);
 
-    if (isValidating) {
-        return <Loading />;
-    }
-
-    const siteTitle = `${data?.site?.title} | ${data?.site?.titleEn}`;
+    const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
 
     return (
         <React.Fragment>
@@ -118,7 +117,7 @@ const HomePage = () => {
                 <body className="bg-slate-50 dark:bg-slate-900" />
                 <html lang="ko" prefix="og: http://ogp.me/ns#" />
             </Head>
-            <Resume data={data ?? undefined} />
+            <Resume data={data ?? undefined} isLoading={isValidating} />
         </React.Fragment>
     );
 };

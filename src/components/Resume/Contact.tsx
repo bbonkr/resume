@@ -8,6 +8,7 @@ import { SnsList } from './SnsList';
 interface ContactProps {
     data?: Data | null;
     title?: string;
+    isLoading?: boolean;
 }
 
 const validationSchema = object({
@@ -20,7 +21,7 @@ const validationSchema = object({
 
 type FormValues = InferType<typeof validationSchema>;
 
-export const Contact = ({ title, data }: ContactProps) => {
+export const Contact = ({ title, data, isLoading }: ContactProps) => {
     const [result, setResult] = React.useState<SendMessageResponseModel>();
 
     const { values, errors, touched, getFieldProps, isSubmitting, isValid, handleSubmit } =
@@ -73,7 +74,7 @@ export const Contact = ({ title, data }: ContactProps) => {
             </div>
 
             <div className="w-full md:w-1/2 md:mx-auto flex flex-col justify-center items-center px-9 pb-9 ">
-                <SnsList data={data?.me} />
+                <SnsList data={data?.me} isLoading={isLoading} />
             </div>
 
             <div className="w-full md:w-1/2 md:mx-auto flex flex-col justify-center items-center px-9 pb-9 ">
@@ -92,6 +93,7 @@ export const Contact = ({ title, data }: ContactProps) => {
                                 placeholder="Name"
                                 {...getFieldProps('name')}
                                 value={values.name ?? ''}
+                                disabled={isLoading || isSubmitting}
                             />
                         </label>
                     </div>
@@ -110,6 +112,7 @@ export const Contact = ({ title, data }: ContactProps) => {
                                 placeholder="Email"
                                 {...getFieldProps('email')}
                                 value={values.email ?? ''}
+                                disabled={isLoading || isSubmitting}
                             />
                         </label>
                     </div>
@@ -128,6 +131,7 @@ export const Contact = ({ title, data }: ContactProps) => {
                                 rows={8}
                                 {...getFieldProps('message')}
                                 value={values.message ?? ''}
+                                disabled={isLoading || isSubmitting}
                             />
                         </label>
                     </div>
@@ -145,7 +149,7 @@ export const Contact = ({ title, data }: ContactProps) => {
                             <button
                                 type="submit"
                                 className="px-6 py-3 text-slate-200 bg-blue-500 ring-2 ring-blue-100 rounded-lg hover:bg-blue-600 active:bg-blue-800 active:ring-blue-300 disabled:bg-slate-400 disabled:text-slate-300 disabled:ring-0"
-                                disabled={isSubmitting || !isValid}
+                                disabled={isSubmitting || !isValid || isLoading}
                             >
                                 Submit
                             </button>
