@@ -2,6 +2,7 @@
 import React from 'react';
 // import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
+import { Picture } from '../Resume/Picture';
 
 interface MainPictureProps {
     className?: string;
@@ -10,6 +11,7 @@ interface MainPictureProps {
 
 export const MainPicture = ({ className, record }: MainPictureProps) => {
     const imageUri = record?.me?.photo ?? '/images/icon.png';
+
     return (
         <React.Fragment>
             {/* <Image
@@ -22,11 +24,19 @@ export const MainPicture = ({ className, record }: MainPictureProps) => {
                 loading="lazy"
             /> */}
 
-            <img
+            {/* <img
                 src={imageUri}
                 alt={record?.me?.name}
                 title={record?.me?.name}
                 className={className}
+            /> */}
+            <Picture
+                imageProps={{
+                    src: imageUri,
+                    alt: record?.me?.name,
+                    title: record?.me?.name,
+                    className: `${className ?? ''}`,
+                }}
             />
         </React.Fragment>
     );

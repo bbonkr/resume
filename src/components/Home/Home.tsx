@@ -10,9 +10,36 @@ interface HomeProps {
     useHero?: boolean;
     heroColor?: ColorStyles;
     showLinks?: boolean;
+    isLoading?: boolean;
 }
 
-export const Home = ({ record, title, useHero, heroColor, showLinks }: HomeProps) => {
+export const Home = ({ record, title, useHero, heroColor, showLinks, isLoading }: HomeProps) => {
+    if (isLoading) {
+        return (
+            <div
+                key="home-skelecton"
+                className="flex flex-row justify-center items-center flex-wrap my-6 gap-9"
+            >
+                {Array(2)
+                    .fill(0)
+                    .map((item) => (
+                        <div
+                            key={item}
+                            className="flex animate-pulse flex-row items-center w-full h-full justify-center "
+                        >
+                            <div className="flex-1 flex flex-col gap-3">
+                                <div className="w-64 bg-gray-300 h-6 rounded-md "></div>
+                                <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                                <div className="w-4/5 bg-gray-300 h-6 rounded-md "></div>
+                                <div className="w-2/3 bg-gray-300 h-6 rounded-md "></div>
+                                <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                            </div>
+                        </div>
+                    ))}
+            </div>
+        );
+    }
+
     return (
         <React.Fragment>
             <div>

@@ -41,7 +41,7 @@ export const GoogleAnalyticsProvider = ({
     }, [router.pathname]);
 
     return (
-        <React.Fragment>
+        <React.Fragment key="google-analytics-provider">
             {children}
             {gaid && (
                 <React.Fragment>

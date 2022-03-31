@@ -1,11 +1,27 @@
 import * as React from 'react';
 import { Me } from '../../interfaces';
 import { FaGithub, FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+
 interface SnsListProps {
     data?: Me | null;
+    isLoading?: boolean;
 }
 
-export const SnsList = ({ data }: SnsListProps) => {
+export const SnsList = ({ data, isLoading }: SnsListProps) => {
+    if (isLoading) {
+        return (
+            <ul key={`snslist-skelecton`} className="flex flex-row gap-3 animate-pulse">
+                {Array(3)
+                    .fill(0)
+                    .map((item) => (
+                        <li key={item}>
+                            <span className="w-12 h-12 block bg-gray-300"></span>
+                        </li>
+                    ))}
+            </ul>
+        );
+    }
+
     return (
         <ul className="flex flex-row gap-3">
             {data?.github && (
@@ -44,7 +60,6 @@ export const SnsList = ({ data }: SnsListProps) => {
                     </a>
                 </li>
             )}
-
             {data?.facebook && (
                 <li>
                     <a
@@ -57,7 +72,6 @@ export const SnsList = ({ data }: SnsListProps) => {
                     </a>
                 </li>
             )}
-
             {data?.instagram && (
                 <li>
                     <a

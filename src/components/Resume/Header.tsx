@@ -6,9 +6,10 @@ import { menus } from './menu';
 
 interface HeaderProps {
     data?: Data;
+    isLoading?: boolean;
 }
 
-export const Header = ({ data }: HeaderProps) => {
+export const Header = ({ data, isLoading }: HeaderProps) => {
     const [open, setOpen] = React.useState(false);
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -93,9 +94,24 @@ export const Header = ({ data }: HeaderProps) => {
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="flex justify-between">
                             <div className="flex space-x-7 flex-1 justify-center">
-                                <div>
-                                    <h1>{data?.site?.title}</h1>
-                                </div>
+                                {isLoading ? (
+                                    <div
+                                        key="header-title-skelecton"
+                                        className="w-32 border-1 rounded-md"
+                                    >
+                                        <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+                                            <div className="flex-1 flex flex-col space-y-3">
+                                                <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <a href={`#${menus.home.id}`} onClick={handleClick}>
+                                            <h1>{data?.site?.title}</h1>
+                                        </a>
+                                    </div>
+                                )}
 
                                 <div className="hidden md:flex items-center space-x-1 print:hidden">
                                     {/* Primary navbar items */}

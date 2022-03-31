@@ -16,9 +16,51 @@ interface Tag {
 interface SummaryProps {
     record?: Data | null;
     title?: string;
+    isLoading?: boolean;
 }
 
-export const Summary = ({ record, title }: SummaryProps) => {
+export const Summary = ({ record, title, isLoading }: SummaryProps) => {
+    if (isLoading) {
+        return (
+            <div
+                key="summary-skelecton"
+                className="animate-pulse flex flex-col justify-center items-center gap-9"
+            >
+                <div className=" flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full">
+                    <div className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"></div>
+
+                    <div className=" w-full flex flex-col space-y-3">
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full h-6 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-4/5 bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-2/3 bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                    </div>
+
+                    <div className=" w-full flex flex-col space-y-3">
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full h-6 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-4/5 bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-2/3 bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                        <div className="w-full bg-gray-300 h-8 rounded-md "></div>
+                    </div>
+                </div>
+
+                <div className="flex flex-row flex-wrap justify-center items-stretch w-full h-full mt-9 gap-6">
+                    {Array(6)
+                        .fill(0)
+                        .map((item) => (
+                            <div key={item} className="w-32 bg-gray-300 h-10 rounded-md "></div>
+                        ))}
+                </div>
+            </div>
+        );
+    }
+
     const projectTags: Tag[] = [];
     record?.project?.records?.forEach((x) => {
         x.tags?.forEach((tag) => {
@@ -89,17 +131,25 @@ export const Summary = ({ record, title }: SummaryProps) => {
 
     return (
         <React.Fragment>
-            <div className="flex flex-col justify-center items-center gap-9 dark:opacity-70">
+            <div className={`flex flex-col justify-center items-center gap-9 `}>
                 <div
                     className={`flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full`}
                 >
-                    <MainPicture record={record} className="rounded-full flex-1" />
+                    {isLoading ? (
+                        <div
+                            key="main-picture-skelecton"
+                            className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"
+                        ></div>
+                    ) : (
+                        <MainPicture record={record} className="rounded-full flex-1 w-300 h-300" />
+                    )}
 
                     <Skill
                         records={record?.skillStack?.records}
                         title={record?.skillStack?.title?.toUpperCase() ?? ''}
                         filter={0}
                         className="flex-1 w-full"
+                        isLoading={isLoading}
                     />
 
                     <Skill
@@ -107,25 +157,35 @@ export const Summary = ({ record, title }: SummaryProps) => {
                         title={record?.skillStack?.title?.toUpperCase() ?? ''}
                         filter={1}
                         className="flex-1 w-full"
+                        isLoading={isLoading}
                     />
                 </div>
 
                 <div className="flex flex-row justify-center items-start flex-wrap gap-3 py-3">
-                    {projectTags &&
-                        projectTags.length > 0 &&
-                        projectTags
-                            .sort((a, b) => (a.count > b.count ? -1 : 1))
-                            .filter((x) => x.count > 1)
-                            .map((tag) => (
-                                <span
-                                    key={tag.tag}
-                                    className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
-                                        tag.color ?? ''
-                                    } ${tag.size ?? ''}`}
-                                >
-                                    {tag.tag.toUpperCase()}
-                                </span>
-                            ))}
+                    {isLoading
+                        ? Array(6)
+                              .fill(0)
+                              .map((_, index) => (
+                                  <span
+                                      key={`summary-tag-${index + 1}-skelecton`}
+                                      className={`block w-24 h-9 bg-gray-300`}
+                                  ></span>
+                              ))
+                        : projectTags &&
+                          projectTags.length > 0 &&
+                          projectTags
+                              .sort((a, b) => (a.count > b.count ? -1 : 1))
+                              .filter((x) => x.count > 1)
+                              .map((tag) => (
+                                  <span
+                                      key={tag.tag}
+                                      className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
+                                          tag.color ?? ''
+                                      } ${tag.size ?? ''}`}
+                                  >
+                                      {tag.tag.toUpperCase()}
+                                  </span>
+                              ))}
                 </div>
             </div>
         </React.Fragment>

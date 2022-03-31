@@ -13,21 +13,18 @@
 .markdown h3 {
     @apply my-3 font-semibold text-lg;
 }
-.markdown ul,
-.markdown ol {
-    display: list-item;
-    @apply pl-5;
-}
 
 .markdown ul > li,
 .markdown ol > li {
-    list-style-type: auto;
-    list-style-position: outside;
     @apply break-words py-2;
 }
 
 .markdown p > a {
     display: inline-block;
+}
+
+.markdown blockquote {
+    @apply border-l-2 border-l-gray-400 px-3 py-1 my-2;
 }
 
 .section {
@@ -53,4 +50,16 @@
 
 #contact form > div > label > span {
     @apply my-2;
+}
+
+.w-300 {
+    width: 100%;
+    max-width: 300px;
+    min-width: 300px;
+}
+
+.h-300 {
+    height: 100%;
+    max-height: 300px;
+    min-height: 300px;
 }
