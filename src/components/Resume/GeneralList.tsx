@@ -1,10 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
 import { ContentData } from '../../interfaces';
-import Markdown from 'react-markdown';
 import { GenericLink } from '../GenericLink';
 import { Picture } from './Picture';
-// import Image from 'next/image';
+import { Markdown } from '../Markdown';
+
 interface GeneralListProps {
     title?: string;
     data?: ContentData | null;
@@ -84,7 +84,7 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                                 {item.period} {item.state}
                             </p>
                             {item.description && (
-                                <Markdown className="markdown">{item.description}</Markdown>
+                                <Markdown className="markdown" markdown={item.description} />
                             )}
 
                             {item.links && (

@@ -1,7 +1,6 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { Data } from '../../interfaces/Data';
-import remarkGfm from 'remark-gfm';
+import { Markdown } from '../Markdown';
 
 interface BioProps {
     record?: Pick<Data, 'home'> | null;
@@ -35,7 +34,7 @@ export const Bio = ({ record, title, isLoading }: BioProps) => {
             {title && <h2 className="text-lg font-bold my-6">{title}</h2>}
 
             <div className="my-3">
-                <ReactMarkdown className="markdown" remarkPlugins={[remarkGfm]}>{record?.home?.bio ?? ''}</ReactMarkdown>
+                <Markdown className="markdown" markdown={record?.home?.bio} />
             </div>
         </div>
     );
