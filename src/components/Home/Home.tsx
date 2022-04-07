@@ -1,8 +1,8 @@
 import React from 'react';
-import ReactMarkdown from 'react-markdown';
 import { ColorStyles } from '../../interfaces';
 import { Data } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';
+import { Markdown } from '../Markdown';
 
 interface HomeProps {
     record?: Pick<Data, 'home'> | null;
@@ -22,9 +22,9 @@ export const Home = ({ record, title, useHero, heroColor, showLinks, isLoading }
             >
                 {Array(2)
                     .fill(0)
-                    .map((item) => (
+                    .map((item, index) => (
                         <div
-                            key={item}
+                            key={`home-skelecton-${index}`}
                             className="flex animate-pulse flex-row items-center w-full h-full justify-center "
                         >
                             <div className="flex-1 flex flex-col gap-3">
@@ -44,7 +44,8 @@ export const Home = ({ record, title, useHero, heroColor, showLinks, isLoading }
         <React.Fragment>
             <div>
                 {title && <h2>{title}</h2>}
-                <ReactMarkdown className="markdown">{record?.home?.intro ?? ''}</ReactMarkdown>
+                <Markdown className="markdown" markdown={record?.home?.intro} />
+
                 {showLinks && record?.home?.links && record?.home.links.length > 0 && (
                     <React.Fragment>
                         <ul className="flex flex-row justify-center items-center flex-wrap my-6 gap-3">

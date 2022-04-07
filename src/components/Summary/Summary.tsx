@@ -53,8 +53,8 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
                 <div className="flex flex-row flex-wrap justify-center items-stretch w-full h-full mt-9 gap-6">
                     {Array(6)
                         .fill(0)
-                        .map((item) => (
-                            <div key={item} className="w-32 bg-gray-300 h-10 rounded-md "></div>
+                        .map((item, index) => (
+                            <div key={index} className="w-32 bg-gray-300 h-10 rounded-md "></div>
                         ))}
                 </div>
             </div>

@@ -13,8 +13,8 @@ export const SnsList = ({ data, isLoading }: SnsListProps) => {
             <ul key={`snslist-skelecton`} className="flex flex-row gap-3 animate-pulse">
                 {Array(3)
                     .fill(0)
-                    .map((item) => (
-                        <li key={item}>
+                    .map((item, index) => (
+                        <li key={index}>
                             <span className="w-12 h-12 block bg-gray-300"></span>
                         </li>
                     ))}
