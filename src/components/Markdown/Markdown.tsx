@@ -9,7 +9,7 @@ interface MarkdownViewerProps {
 
 export const Markdown = ({ className, markdown }: MarkdownViewerProps) => {
     return (
-        <ReactMarkdown className={className ?? ''} plugins={[remarkGfm]}>
+        <ReactMarkdown className={className ?? ''} remarkPlugins={[remarkGfm]}>
             {markdown ?? ''}
         </ReactMarkdown>
     );
