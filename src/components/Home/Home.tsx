@@ -22,9 +22,9 @@ export const Home = ({ record, title, useHero, heroColor, showLinks, isLoading }
             >
                 {Array(2)
                     .fill(0)
-                    .map((item) => (
+                    .map((item, index) => (
                         <div
-                            key={item}
+                            key={`home-skelecton-${index}`}
                             className="flex animate-pulse flex-row items-center w-full h-full justify-center "
                         >
                             <div className="flex-1 flex flex-col gap-3">

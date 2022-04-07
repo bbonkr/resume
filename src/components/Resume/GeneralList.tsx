@@ -26,9 +26,12 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                 <div className="w-full md:w-2/3 flex flex-col justify-center items-start break-words">
                     {Array(2)
                         .fill(0)
-                        .map((item) => {
+                        .map((item, index) => {
                             return (
-                                <div key={`${item}`} className="my-9 break-words w-full max-w-full">
+                                <div
+                                    key={`${item}-${index}`}
+                                    className="my-9 break-words w-full max-w-full"
+                                >
                                     <h3 className="font-bold break-words overflow-ellipsis">
                                         <span className="block w-64 h-6 bg-gray-300"></span>
                                     </h3>
@@ -42,9 +45,9 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                                     <div>
                                         {Array(2)
                                             .fill(0)
-                                            .map((link) => {
+                                            .map((link, index) => {
                                                 return (
-                                                    <div className="py-2" key={link}>
+                                                    <div className="py-2" key={`${link}-${index}`}>
                                                         <span className="w-1/3 h-8 block bg-gray-300"></span>
                                                     </div>
                                                 );
