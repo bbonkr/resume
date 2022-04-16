@@ -71,43 +71,45 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                 <h2 className="font-semibold"> {title ?? data?.title}</h2>
             </div>
             <div className="w-full md:w-2/3 flex flex-col justify-center items-start break-words">
-                {data?.records?.map((item) => {
-                    return (
-                        <div
-                            key={`${item.title}-${item.state}`}
-                            className="my-9 break-words max-w-full"
-                        >
-                            <h3 className="font-bold break-words overflow-ellipsis">
-                                {item.title}
-                            </h3>
-                            <p className="text-sm">
-                                {item.period} {item.state}
-                            </p>
-                            {item.description && (
-                                <Markdown className="markdown" markdown={item.description} />
-                            )}
+                {data?.records
+                    ?.sort((a, b) => (a.period > b.period ? -1 : 1))
+                    .map((item) => {
+                        return (
+                            <div
+                                key={`${item.title}-${item.state}`}
+                                className="my-9 break-words max-w-full"
+                            >
+                                <h3 className="font-bold break-words overflow-ellipsis">
+                                    {item.title}
+                                </h3>
+                                <p className="text-sm">
+                                    {item.period} {item.state}
+                                </p>
+                                {item.description && (
+                                    <Markdown className="markdown" markdown={item.description} />
+                                )}
 
-                            {item.links && (
-                                <ul>
-                                    {item.links.map((link) => {
-                                        return (
-                                            <li className="py-2" key={link.href}>
-                                                <GenericLink
-                                                    className="flex flex-row justify-start items-center max-w-full"
-                                                    record={link}
-                                                />
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            )}
+                                {item.links && (
+                                    <ul>
+                                        {item.links.map((link) => {
+                                            return (
+                                                <li className="py-2" key={link.href}>
+                                                    <GenericLink
+                                                        className="flex flex-row justify-start items-center max-w-full"
+                                                        record={link}
+                                                    />
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
 
-                            {item.images && (
-                                <ul className="max-w-full">
-                                    {item.images.map((img) => {
-                                        return (
-                                            <li key={img.src} className="py-2">
-                                                {/* <Image
+                                {item.images && (
+                                    <ul className="max-w-full">
+                                        {item.images.map((img) => {
+                                            return (
+                                                <li key={img.src} className="py-2">
+                                                    {/* <Image
                                                     src={img.src}
                                                     alt={img.alt}
                                                     width={300}
@@ -115,43 +117,43 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                                                     objectFit="cover"
                                                     loading="lazy"
                                                 /> */}
-                                                {/* <img
+                                                    {/* <img
                                                     src={img.src}
                                                     alt={img.alt}
                                                     title={img.alt}
                                                     loading="lazy"
                                                 /> */}
-                                                <Picture
-                                                    imageProps={{
-                                                        src: img.src,
-                                                        alt: img.alt,
-                                                        title: img.alt,
-                                                        loading: 'lazy',
-                                                    }}
-                                                />
-                                            </li>
-                                        );
-                                    })}
-                                </ul>
-                            )}
+                                                    <Picture
+                                                        imageProps={{
+                                                            src: img.src,
+                                                            alt: img.alt,
+                                                            title: img.alt,
+                                                            loading: 'lazy',
+                                                        }}
+                                                    />
+                                                </li>
+                                            );
+                                        })}
+                                    </ul>
+                                )}
 
-                            {item.tags && (
-                                <div className="flex flex-row flex-wrap gap-3 pt-3 dark:opacity-70">
-                                    {item.tags.map((tag) => {
-                                        return (
-                                            <span
-                                                key={tag}
-                                                className="px-2 py-1 rounded-lg border-2 border-blue-200 bg-blue-100 dark:border-blue-500 dark:bg-blue-800"
-                                            >
-                                                {tag}
-                                            </span>
-                                        );
-                                    })}
-                                </div>
-                            )}
-                        </div>
-                    );
-                })}
+                                {item.tags && (
+                                    <div className="flex flex-row flex-wrap gap-3 pt-3 dark:opacity-70">
+                                        {item.tags.map((tag) => {
+                                            return (
+                                                <span
+                                                    key={tag}
+                                                    className="px-2 py-1 rounded-lg border-2 border-blue-200 bg-blue-100 dark:border-blue-500 dark:bg-blue-800"
+                                                >
+                                                    {tag}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+                        );
+                    })}
             </div>
         </div>
     );

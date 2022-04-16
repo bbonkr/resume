@@ -8,18 +8,30 @@ const workAt = {
     i: '(주)아이OO',
     r: '(주)리블OO',
     a: '에어OO',
+    c: '클라우드호스OO',
 };
 
 export const data: Data = {
+    site: {
+        name: '구본철',
+        nameEn: 'Pon Cheol Ku',
+        title: '구본철 이력사항',
+        titleEn: 'Resume: Pon Cheol Ku',
+        url: 'https://resume.bbon.me',
+    },
     me: {
         name: '구본철',
         photo: '/images/me.png',
+        twitter: 'bbonkr',
+        github: 'bbonkr',
+        facebook: 'bbonkr',
+        linkedin: 'bbonkr',
+        instagram: 'bbonkr',
     },
     home: {
         title: '안녕하세요. 구본철입니다.',
         subtitle: '응용프로그램 개발자',
-        intro: `
-### 개발자
+        intro: `### 개발자
 
 부산의 솔루션 개발기업에서 개발자 경력을 시작했습니다. 
 
@@ -29,7 +41,7 @@ export const data: Data = {
 
 ### 방송통신대학교
 
-입사후, 낮에는 프로젝트를 진행하고 늦은 밤에 온라인 강의를 통해 학사 졸업장을 획득하였습니다. 
+입사후 낮에는 프로젝트를 진행하고 늦은 밤에 온라인 강의를 통해 학사 졸업장을 획득하였습니다. 
 
 컴퓨터 과학 전공에서 얻은 지식은 없어도 무관할 수 있으나, 있으면 더 좋은 소프트웨어의 기반이 될 수 있다는 것을 알게되었습니다.
 
@@ -47,14 +59,13 @@ export const data: Data = {
 
 하지만, 편하게 업무를 진행하는 것보다 앞으로 나아가고 싶었습니다. 
 
-힘들고 어렵더라도 새로운 일에 도전하고 싶어 퇴사를 결정하게 되었습니다.
+새로운 일에 도전하고 싶어 퇴사를 결정하게 되었습니다.
 
 ### 스타트업
 
 새로운 서비스를 시작하시는 스타트업 개발팀과 협업하고 있습니다.
 
-웹 프론트엔드 업무를 리액트로 구현하는 작업을 주로 진행합니다.
-        `,
+웹 프론트엔드 업무를 리액트로 구현하는 작업을 주로 진행합니다.`,
         bio: `
 2007년 3월부터 부산 소재 대학교 업무 솔루션 개발 기업에서 프로젝트를 진행했습니다.
 
@@ -133,11 +144,21 @@ SI 프로젝트 참여
                 links: [],
             },
             {
-                period: '2020-05~2020-07',
+                period: '2020-05 ~ 2020-07',
                 title: workAt.a,
                 state: '완료',
                 description: '프론트엔드 개발',
                 links: [],
+            },
+            {
+                period: '2022-11 ~ 2022-04',
+                title: workAt.c,
+                state: '진행중',
+                description: `계약직
+
+* 풀타임 프론트엔드, 백엔드 개발 2021-05 ~ 2022-04 (진행중)
+* 풀타임 프론트엔드 개발 2021-02 ~ 2021-04
+* 파트타임 프론트엔드 개발 2020-11 ~ 2021-01`,
             },
         ],
     },
@@ -350,14 +371,12 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2021-05',
                 state: '완료',
                 title: 'Bing Today Image Collector',
-                description:
-                    'Bing.com 에서 제공하는 배경 이미지를 지정된 일정에 수집하고, 수집된 이미지를 출력합니다.',
-                features: [
-                    'Scheduled Job',
-                    'Backend: ASP.NET Core',
-                    'Frontend: React',
-                    'Intersection Observer API',
-                ],
+                description: `Bing.com 에서 제공하는 배경 이미지를 지정된 일정에 수집하고, 수집된 이미지를 출력합니다.
+
+- Scheduled Job
+- Backend: ASP.NET Core
+- Frontend: React
+- Intersection Observer API`,
                 tags: ['.NET', 'react', 'c#', 'typescript', 'redux', 'scheduled job', 'docker'],
                 links: [
                     {
@@ -384,11 +403,12 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2021-02',
                 state: '완료',
                 title: 'kr.bbon.EntityFrameworkCore.Extensions',
-                description: `Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.
+                description: `[![](https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) [![](https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) ![publish to nuget](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg)
 
-[![](https://img.shields.io/nuget/v/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) [![](https://img.shields.io/nuget/dt/kr.bbon.EntityFrameworkCore.Extensions)](https://www.nuget.org/packages/kr.bbon.EntityFrameworkCore.Extensions) ![publish to nuget](https://github.com/bbonkr/kr.bbon.EntityFrameworkCore.Extensions/workflows/publish%20to%20nuget/badge.svg)
-`,
-                features: ['Nuget 패키지로 제공', 'EntityFramework 확장'],
+Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합니다.
+
+- Nuget 패키지로 제공,
+- EntityFramework 확장`,
                 tags: ['nuget', '.NET', 'c#', 'entifyframework'],
                 links: [
                     {
@@ -409,11 +429,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2020-11',
                 state: '완료',
                 title: '@bbon/css-to-jss',
-                description: `프로젝트에 포함된 css 파일을 css-in-js 적용을 위한 \`<style jsx>\` 코드로 변환하는 CLI 도구입니다.
+                description: `[![](https://shields.io/npm/v/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![](https://shields.io/npm/dt/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![Build and tag](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml)
 
-[![](https://shields.io/npm/v/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![](https://shields.io/npm/dt/@bbon/css-to-jss)](https://www.npmjs.com/package/@bbon/css-to-jss) [![Build and tag](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/css-to-jss/actions/workflows/publish-npm.yml)
-`,
-                features: ['typescript', 'npm', 'cli'],
+프로젝트에 포함된 css 파일을 css-in-js 적용을 위한 \`<style jsx>\` 코드로 변환하는 CLI 도구입니다.`,
                 links: [
                     {
                         title: 'NPM: @bbon/css-to-jss',
@@ -434,11 +452,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2020-09',
                 state: '완료',
                 title: '@bbon/filedownload',
-                description: `파일 다운로드 코드 조각입니다.
+                description: `[![](https://shields.io/npm/v/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![](https://shields.io/npm/dt/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![Build and tag](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml)
 
-[![](https://shields.io/npm/v/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![](https://shields.io/npm/dt/@bbon/filedownload)](https://www.npmjs.com/package/@bbon/filedownload) [![Build and tag](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-filedownload/actions/workflows/publish-npm.yml)
-`,
-                features: ['typescript', 'npm'],
+파일 다운로드 코드 조각입니다.`,
                 tags: ['typescript', 'npm'],
                 links: [
                     {
@@ -464,11 +480,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
             {
                 period: '2020-04',
                 title: '@bbon/fomatter',
-                description: `값을 형식화된 문자열로 처리하기 위한 기능을 제공합니다.
+                description: `[![](https://shields.io/npm/v/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![](https://shields.io/npm/dt/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![Build and tag](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml)
 
-[![](https://shields.io/npm/v/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![](https://shields.io/npm/dt/@bbon/formatter)](https://www.npmjs.com/package/@bbon/formatter) [![Build and tag](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/bbon-formatter/actions/workflows/publish-npm.yml)
-`,
-                features: ['typescript', 'npm'],
+값을 형식화된 문자열로 처리하기 위한 기능을 제공합니다.`,
                 state: '완료',
                 tags: ['typescript', 'npm'],
                 links: [
@@ -489,7 +503,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
             {
                 period: '2020-04',
                 title: 'GUID Generator',
-                description: 'GUID 생성기',
+                description: `GUID 생성기
+                
+- GUID 생성
+- GUID 스타일 적용`,
                 features: ['GUID 생성', 'GUID 스타일 적용'],
                 state: '완료',
                 tags: ['react', 'typescript'],
@@ -513,7 +530,6 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: '공적 마스크 안내',
                 state: '완료',
                 description: '공적 마스크 구입 요일을 안내하는 모바일 응용프로그램입니다.',
-                features: ['Android', 'React Native', 'Expo', 'Google Play'],
                 links: [
                     {
                         title: 'Google Play: 공적 마스크 안내',
@@ -534,9 +550,13 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2020-02',
                 state: '완료',
                 title: 'Rename App: Electron',
-                description:
-                    '일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.',
-                features: ['입력값으로 치환', '앞에 추가', '뒤에 추가', '정규식으로 치환'],
+                description: `일정한 규칙으로 관리되는 파일의 이름을 일괄 변경하기 위해 작성한 응용프로그램입니다.
+
+- 입력값으로 치환
+- 앞에 추가
+- 뒤에 추가
+- 정규식으로 치환'
+                    `,
                 tags: ['electron', 'react', 'typescript', 'windows', 'macos'],
                 links: [
                     {
@@ -552,7 +572,6 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 state: '완료',
                 title: 'HELP ME! Display:flex',
                 description: 'Help for display flex',
-                features: ['display:flex'],
                 tags: ['css', 'display', 'flex', 'react', 'typescript'],
                 links: [
                     {
@@ -574,7 +593,6 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 state: '완료',
                 title: 'JSON fomatter',
                 description: 'JSON 내용을 보기 좋게 출력합니다.',
-                features: ['JSON Format'],
                 tags: ['json', 'react', 'typescript'],
                 links: [
                     {
@@ -597,17 +615,6 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 state: '완료',
                 description:
                     '마크다운으로 글을 작성하는 블로그 서비스입니다.  Nodejs 백엔드와 React 프론트엔드를 타입스크립트로 작성했습니다.',
-                features: [
-                    'Nodejs Backend',
-                    'express.js',
-                    'passport.js',
-                    'Sequelize.js',
-                    'React Frontend',
-                    'Next.js',
-                    'Styled Component',
-                    'Redux',
-                    'Redux-saga',
-                ],
                 links: [
                     {
                         title: 'Blog Service #2 사이트 (N/A)',
@@ -645,12 +652,11 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-04',
                 title: '너와 나의 점수판',
                 state: '완료',
-                description:
-                    'Xamarin.Forms 로 작성된 응용프로그램을 Google Play, Microsoft Store 에 게시합니다.',
-                features: [
-                    '언어 지원 en-US, ko-KR',
-                    '앱 내 구매 In-app purchase (현재 사용하지 않습니다.)',
-                ],
+                description: `Xamarin.Forms 로 작성된 응용프로그램을 Google Play, Microsoft Store 에 게시합니다.
+
+- 언어 지원 en-US, ko-KR
+- 앱 내 구매 In-app purchase (현재 사용하지 않습니다.)
+`,
                 links: [
                     {
                         title: 'Google Play: 너와 나의 점수판',
@@ -671,8 +677,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-04',
                 title: 'File Rename App',
                 state: '완료',
-                description: 'WPF로 작성된 응용프로그램을 Microsoft Store 에 게시합니다.',
-                features: ['Microsoft Store 게시됨'],
+                description: `WPF로 작성된 응용프로그램을 Microsoft Store 에 게시합니다.
+
+- Microsoft Store 게시됨`,
                 links: [
                     {
                         title: 'Microsoft Store: File Rename App',
@@ -686,14 +693,12 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-04',
                 title: 'kr.bbon.Xamarin.Forms',
                 state: '진행중',
-                description:
-                    'Xamarin.Forms 프로젝트를 위한 라이브러리입니다. MVVM 으로 응용프로그램을 작성하기 위한 기본 형식을 제공하고, 자주 사용되는 기능을 포함하고 있습니다.',
-                features: [
-                    'Nuget 패키지로 제공',
-                    '경량 MVVM 프레임워크 제공',
-                    'Content Page 기본형 제공',
-                    'App Center 연결 제공',
-                ],
+                description: `Xamarin.Forms 프로젝트를 위한 라이브러리입니다. MVVM 으로 응용프로그램을 작성하기 위한 기본 형식을 제공하고, 자주 사용되는 기능을 포함하고 있습니다.
+
+- Nuget 패키지로 제공
+- 경량 MVVM 프레임워크 제공
+- Content Page 기본형 제공
+- App Center 연결 제공`,
                 links: [
                     {
                         title: 'nuget.org: kr.bbon.Xamarin.Forms',
@@ -718,17 +723,6 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     
 **Nodejs** 백엔드와 **React** 프론트엔드로 작성되었습니다.
 `,
-                features: [
-                    'Nodejs Backend',
-                    'express.js',
-                    'passport.js',
-                    'Sequelize.js',
-                    'React Frontend',
-                    'Next.js',
-                    'Styled Component',
-                    'Redux',
-                    'Redux-saga',
-                ],
                 links: [
                     {
                         title: 'Blog Service (N/A)',
@@ -756,9 +750,10 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-07',
                 title: '너와 나의 점수판 React Native',
                 state: '완료',
-                description:
-                    'React Native 를 사용해서 Xamarin.Forms 로 작성된 응용프로그램을 재작성합니다.',
-                features: ['언어 지원 en-US, ko-KR', 'React Native'],
+                description: `React Native 를 사용해서 Xamarin.Forms 로 작성된 응용프로그램을 재작성합니다.
+                    
+- 언어 지원 en-US, ko-KR
+- React Native'`,
                 links: [
                     {
                         title: 'Google Play: 너와 나의 점수판',
@@ -782,8 +777,11 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 period: '2019-07',
                 title: 'Blog Service Backend: ASP.NET Core ',
                 state: '진행중',
-                description: '블로그 서비스의 백엔드를 ASP.NET Core 로 작성합니다.',
-                features: ['ASP.NET Core', 'Entity Framework', 'Microsoft SQL Server'],
+                description: `블로그 서비스의 백엔드를 ASP.NET Core 로 작성합니다.
+
+- ASP.NET Core 
+- Entity Framework
+- Microsoft SQL Server`,
                 links: [
                     {
                         title: 'GitHub: blog-aspnetcore-backend',
@@ -797,10 +795,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: 'kr.bbon.AspNetCore',
                 period: '2021-03',
                 state: '완료',
-                description: `.NET 5 에서 API 웹 응용프로그램 프로젝트 (webapi 템플릿 기준)를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.
+                description: `[![](https://img.shields.io/nuget/v/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![](https://img.shields.io/nuget/dt/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![publish to nuget](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/publish-nuget.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/publish-nuget.yml)
 
-[![](https://img.shields.io/nuget/v/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![](https://img.shields.io/nuget/dt/kr.bbon.AspNetCore)](https://www.nuget.org/packages/kr.bbon.AspNetCore) [![publish to nuget](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.AspNetCore/actions/workflows/dotnet.yml)
-`,
+.NET 5 에서 API 웹 응용프로그램 프로젝트 (webapi 템플릿 기준)를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.`,
                 links: [
                     {
                         title: 'GitHub: kr.bbon.AspNetCore',
@@ -821,10 +818,9 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                 title: 'kr.bbon.Core',
                 period: '2021-06',
                 state: '완료',
-                description: `.NET 5 에서 프로젝트를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.
+                description: `[![](https://img.shields.io/nuget/v/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![](https://img.shields.io/nuget/dt/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![publish to nuget](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/publish-nuget.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/publish-nuget.yml)
 
-[![](https://img.shields.io/nuget/v/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![](https://img.shields.io/nuget/dt/kr.bbon.Core)](https://www.nuget.org/packages/kr.bbon.Core) [![publish to nuget](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/dotnet.yml/badge.svg)](https://github.com/bbonkr/kr.bbon.Core/actions/workflows/dotnet.yml)
-`,
+.NET 5 에서 프로젝트를 시작할 때, 반복적으로 작성하던 사항을 패키지로 정리했습니다.`,
                 links: [
                     {
                         title: 'GitHub: kr.bbon.Core',
@@ -868,6 +864,91 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                     },
                 ],
                 tags: ['react', 'typescript', 'pwa'],
+            },
+            {
+                title: '@bbon/react-calendar',
+                period: '2021-11',
+                state: '완료',
+                description: `[![npm (scoped)](https://img.shields.io/npm/v/@bbon/react-calendar)](https://www.npmjs.com/package/@bbon/react-calendar) [![npm](https://img.shields.io/npm/dt/@bbon/react-calendar)](https://www.npmjs.com/package/@bbon/react-calendar) [![Build and tag](https://github.com/bbonkr/react-calendar/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/react-calendar/actions/workflows/build-and-tag.yml) [![publish NPM](https://github.com/bbonkr/react-calendar/actions/workflows/publish-npm.yml/badge.svg)](https://github.com/bbonkr/react-calendar/actions/workflows/publish-npm.yml)
+
+타입스크립트로 작성된 리액트 달력 컴포넌트입니다.
+                `,
+                links: [
+                    {
+                        title: 'GitHub: bbonkr/react-calendar',
+                        href: 'https://github.com/bbonkr/react-calendar',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'NPM: @bbon/react-calendar',
+                        href: 'https://www.npmjs.com/package/@bbon/react-calendar',
+                        icon: 'npm',
+                        target: 'blank',
+                    },
+                    {
+                        title: 'DEMO: react-calendar',
+                        href: 'https://bbon.me/react-calendar',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
+                title: 'GitHub Action: Git Tag Check Action',
+                period: '2022-01',
+                state: '완료',
+                description: `[![View on Marketplace: git-tag-check-action](https://img.shields.io/badge/Marketplace-git--tag--check--action-blueviolet)](https://github.com/marketplace/actions/git-tag-check-action) [![출시 버전](https://img.shields.io/github/v/release/bbonkr/git-tag-check-action?display_name=tag&style=flat-square&include_prereleases)](https://github.com/bbonkr/git-tag-check-action/releases)
+                
+입력된 태그가 깃 git 원격저장소에 존재하는지 조회한 후 있으면 입력된 태그를 반환하고, 찾을 수 없으면 빈 문자열을 반환하는 단계를 제공합니다.`,
+                links: [
+                    {
+                        title: 'GitHub: bbonkr/git-tag-check-action',
+                        href: 'https://github.com/bbonkr/git-tag-check-action',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Marketplace: git-tag-check-action',
+                        href: 'https://github.com/marketplace/actions/git-tag-check-action',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GitHub Action: Git Tag Check Action',
+                        href: 'https://bbon.kr/github-action-git-tag-check-action/',
+                        icon: 'blog',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
+                title: 'GitHub Action: Get Version Action',
+                period: '2022-01',
+                state: '완료',
+                description: `[![View on Marketplace: get-version-action](https://img.shields.io/badge/Marketplace-get--version--action-blueviolet)](https://github.com/marketplace/actions/get-version-action) [![출시 버전](https://img.shields.io/github/v/release/bbonkr/get-version-action?display_name=tag&style=flat-square&include_prereleases)](https://github.com/bbonkr/get-version-action/releases)
+                
+NPM package.json 또는 c# SDK 스타일 프로젝트 파일의 version 문자열을 추출하는 깃허브 액션입니다.`,
+                links: [
+                    {
+                        title: 'GitHub: bbonkr/get-version-action',
+                        href: 'https://github.com/bbonkr/get-version-action',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'Marketplace: get-version-action',
+                        href: 'https://github.com/marketplace/actions/get-version-action',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'GitHub Action: Get Version Action',
+                        href: 'https://bbon.kr/github-action-get-version-action/',
+                        icon: 'blog',
+                        target: '_blank',
+                    },
+                ],
             },
         ],
     },
@@ -939,18 +1020,18 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         score: calcRate(3.5),
                         href: 'https://reactjs.org/',
                     },
-                    {
-                        name: 'Express',
-                        description: '',
-                        score: calcRate(3.0),
-                        href: 'https://expressjs.com/',
-                    },
-                    {
-                        name: 'Django',
-                        description: '',
-                        score: calcRate(1.5),
-                        href: 'https://www.djangoproject.com/',
-                    },
+                    // {
+                    //     name: 'Express',
+                    //     description: '',
+                    //     score: calcRate(3.0),
+                    //     href: 'https://expressjs.com/',
+                    // },
+                    // {
+                    //     name: 'Django',
+                    //     description: '',
+                    //     score: calcRate(1.5),
+                    //     href: 'https://www.djangoproject.com/',
+                    // },
                 ],
             },
             {
@@ -970,6 +1051,26 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
                         name: 'Google Cloud',
                         description: '',
                         score: calcRate(1.5),
+                    },
+                ],
+            },
+            {
+                name: 'DevOps tools',
+                items: [
+                    {
+                        name: 'GitHub Actions',
+                        description: '',
+                        score: calcRate(3.0),
+                    },
+                    {
+                        name: 'Azure DevOps',
+                        description: '',
+                        score: calcRate(3.5),
+                    },
+                    {
+                        name: 'Docker',
+                        description: '',
+                        score: calcRate(3.2),
                     },
                 ],
             },
