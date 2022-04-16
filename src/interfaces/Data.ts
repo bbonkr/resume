@@ -25,12 +25,15 @@ export type LinKIcon =
 
 export type LinkTarget = string | '_blank' | '_self';
 
+type DataSourceType = 'static' | 'nocodb';
+
 export interface SiteInfo {
     name?: string;
     nameEn?: string;
     title?: string;
     titleEn?: string;
     url?: string;
+    sourceType?: DataSourceType;
 }
 
 export type Link = {

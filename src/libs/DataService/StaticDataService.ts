@@ -4,6 +4,11 @@ import { data } from '../../data/data';
 
 export class StaticDataService implements DataService {
     public getResume(username: string): Promise<Data> {
-        return new Promise((resolve, reject) => resolve(data));
+        return new Promise((resolve, reject) => {
+            if (data.site) {
+                data.site.sourceType = 'static';
+            }
+            resolve(data);
+        });
     }
 }

@@ -173,6 +173,11 @@ export class NocodbDataService implements DataService {
                 }),
             },
         };
+
+        if (generated.site) {
+            generated.site.sourceType = 'nocodb';
+        }
+
         return generated;
     }
 

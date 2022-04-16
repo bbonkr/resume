@@ -3,7 +3,6 @@ import { Data } from '../../../interfaces';
 import { StaticDataService } from '../../../libs/DataService';
 
 const getResumeData = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-    console.info(req.method);
     if (req.method === 'GET') {
         const expiration = 7 * 24 * 60 * 60;
         const username = process.env.USERNAME ?? '';
