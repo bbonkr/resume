@@ -71,7 +71,8 @@ export const data: Data = {
 
 2019년 4월부터 스타트업 개발자, 프리랜서 개발자로 활동하고 있습니다.
 
-[블로그](https://bbon.kr/)에 글을 게시하고, [코드를 지속적으로 작성](https://github.com/bbonkr)하고 있습니다.`,
+[블로그](https://bbon.kr/)에 글을 게시하고, [코드를 지속적으로 작성](https://github.com/bbonkr)하고 있습니다.
+`,
         links: [
             { title: 'Blog', href: 'http://bbon.kr', icon: 'home' },
             {
@@ -151,12 +152,13 @@ SI 프로젝트 참여
                 links: [],
             },
             {
-                period: '2022-11 ~ 2022-04',
+                period: '2022-11 ~ (진행중)',
                 title: workAt.c,
                 state: '진행중',
                 description: `계약직
 
-* 풀타임 프론트엔드, 백엔드 개발 2021-05 ~ 2022-04 (진행중)
+* 풀타임 프론트엔드, 백엔드 개발 2022-05 ~ (진행중)
+* 풀타임 프론트엔드, 백엔드 개발 2021-05 ~ 2022-04
 * 풀타임 프론트엔드 개발 2021-02 ~ 2021-04
 * 파트타임 프론트엔드 개발 2020-11 ~ 2021-01`,
             },
@@ -753,7 +755,8 @@ Microsoft.EntityFrameworkCore 패키지의 데이터 정렬 기능을 확장합�
                 description: `React Native 를 사용해서 Xamarin.Forms 로 작성된 응용프로그램을 재작성합니다.
                     
 - 언어 지원 en-US, ko-KR
-- React Native'`,
+- React Native
+`,
                 links: [
                     {
                         title: 'Google Play: 너와 나의 점수판',
