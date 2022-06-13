@@ -43,7 +43,7 @@
     "devDependencies": {
         "@graphql-codegen/add": "^3.1.1",
         "@graphql-codegen/cli": "^2.6.2",
-        "@graphql-codegen/jsdoc": "^2.2.8",
+        "@graphql-codegen/jsdoc": "^2.2.13",
         "@graphql-codegen/typescript": "^2.4.11",
         "@graphql-codegen/typescript-graphql-request": "^4.4.5",
         "@graphql-codegen/typescript-operations": "^2.3.5",
