@@ -24,30 +24,32 @@ export const Picture = ({ imageProps }: PictureProps) => {
     };
 
     React.useEffect(() => {
-        const skelectonEl = skelectonRef.current;
+        if (!imageLoaded) {
+            const skelectonEl = skelectonRef.current;
 
-        if (!skelectonObserverRef.current) {
-            skelectonObserverRef.current = new IntersectionObserver(handleIntersection, {
-                threshold: 0.4,
-            });
+            if (!skelectonObserverRef.current) {
+                skelectonObserverRef.current = new IntersectionObserver(handleIntersection, {
+                    threshold: 0.2,
+                });
 
-            if (skelectonEl) {
-                skelectonObserverRef.current.observe(skelectonEl);
+                if (skelectonEl) {
+                    skelectonObserverRef.current.observe(skelectonEl);
+                    console.info('skelecton element observerd');
+                }
             }
-        }
-
-        return () => {
+        } else {
             if (skelectonObserverRef.current) {
                 skelectonObserverRef.current.disconnect();
+                console.info('skelecton element disconnected');
             }
-        };
-    }, []);
+        }
+    }, [imageLoaded]);
 
     if (!imageLoaded) {
         return (
             <div
-                className={`relative w-full h-56 ${imageProps?.className ?? ''}`}
                 ref={skelectonRef}
+                className={`relative w-full h-56 ${imageProps?.className ?? ''}`}
             >
                 <div className="absolute top-0 left-0 right-0 bottom-0">
                     <span className="block skeleton-box group-hover:scale-110 transition-transform transform-center w-full h-full"></span>
