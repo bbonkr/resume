@@ -46,7 +46,7 @@
         "@graphql-codegen/jsdoc": "^2.3.1",
         "@graphql-codegen/typescript": "^2.4.11",
         "@graphql-codegen/typescript-graphql-request": "^4.5.1",
-        "@graphql-codegen/typescript-operations": "^2.3.5",
+        "@graphql-codegen/typescript-operations": "^2.5.2",
         "@netlify/plugin-nextjs": "^4.7.0",
         "@next/eslint-plugin-next": "^12.1.0",
         "@types/google.analytics": "^0.0.42",
