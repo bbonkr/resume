@@ -44,7 +44,7 @@
         "@graphql-codegen/add": "^3.2.1",
         "@graphql-codegen/cli": "^2.13.7",
         "@graphql-codegen/jsdoc": "^2.3.1",
-        "@graphql-codegen/typescript": "^2.4.11",
+        "@graphql-codegen/typescript": "^2.8.8",
         "@graphql-codegen/typescript-graphql-request": "^4.5.1",
         "@graphql-codegen/typescript-operations": "^2.5.4",
         "@netlify/plugin-nextjs": "^4.27.3",
