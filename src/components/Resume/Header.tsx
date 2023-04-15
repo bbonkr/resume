@@ -1,16 +1,12 @@
 import * as React from 'react';
 import { FaWindowClose } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { Data } from '../../interfaces';
 import { menus } from './menu';
+import { useDataContext } from '../DataContextProvider';
 
-interface HeaderProps {
-    data?: Data;
-    isLoading?: boolean;
-}
-
-export const Header = ({ data, isLoading }: HeaderProps) => {
+export const Header = () => {
     const [open, setOpen] = React.useState(false);
+    const data = useDataContext();
 
     const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -25,7 +21,6 @@ export const Header = ({ data, isLoading }: HeaderProps) => {
 
         const menuEl = document.querySelector('.modile-menu');
         if (menuEl) {
-            // menuEl.classList.toggle('hidden');
             setOpen((_) => false);
         }
     };
@@ -33,7 +28,6 @@ export const Header = ({ data, isLoading }: HeaderProps) => {
     const handleClickMenu = () => {
         const el = document.querySelector('.modile-menu');
         if (el) {
-            // el.classList.toggle('hidden');
             setOpen((prevState) => !prevState);
         }
     };
@@ -44,7 +38,6 @@ export const Header = ({ data, isLoading }: HeaderProps) => {
 
         const el = document.querySelector('.modile-menu');
         if (el) {
-            // el.classList.add('hidden');
             setOpen((_) => false);
         }
     };
@@ -94,7 +87,7 @@ export const Header = ({ data, isLoading }: HeaderProps) => {
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="flex justify-between">
                             <div className="flex space-x-7 flex-1 justify-center">
-                                {isLoading ? (
+                                {!data ? (
                                     <div
                                         key="header-title-skelecton"
                                         className="w-32 border-1 rounded-md"
