@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Data } from '../interfaces';
+import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
 import useSWR from 'swr';
@@ -9,10 +9,6 @@ const HomePage = () => {
     const { data, error, isValidating } = useSWR<Data, Error>(
         '/api/resume',
         async (url) => {
-            // await new Promise((resolve, reject) => {
-            //     window.setTimeout(resolve, 5000);
-            // });
-
             const response = await axios.get<Data>(url);
             if (response.status !== 200) {
                 throw new Error(response.statusText);
