@@ -1,6 +1,6 @@
 {
     "name": "resume",
-    "version": "2.3.8",
+    "version": "2.3.9",
     "description": "공개 이력서",
     "main": "docs/dist/app.js",
     "scripts": {
@@ -47,7 +47,7 @@
         "@graphql-codegen/typescript": "^3.0.0",
         "@graphql-codegen/typescript-graphql-request": "^4.5.1",
         "@graphql-codegen/typescript-operations": "^2.5.4",
-        "@netlify/plugin-nextjs": "^4.27.3",
+        "@netlify/plugin-nextjs": "^4.34.0",
         "@next/eslint-plugin-next": "^12.1.0",
         "@types/google.analytics": "^0.0.42",
         "@types/node": "^18.15.11",
