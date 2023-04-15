@@ -2,32 +2,13 @@ import * as React from 'react';
 import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
-import useSWR from 'swr';
-import axios from 'axios';
+import { GetServerSideProps } from 'next';
 
-const HomePage = () => {
-    const { data, error, isValidating } = useSWR<Data, Error>(
-        '/api/resume',
-        async (url) => {
-            const response = await axios.get<Data>(url);
-            if (response.status !== 200) {
-                throw new Error(response.statusText);
-            }
-            return response.data;
-        },
-        {
-            revalidateIfStale: false,
-            revalidateOnFocus: false,
-            revalidateOnReconnect: false,
-        },
-    );
+interface HomePageProps {
+    data: Data;
+}
 
-    React.useEffect(() => {
-        if (error) {
-            console.error(error);
-        }
-    }, [error]);
-
+const HomePage = ({ data }: HomePageProps) => {
     const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
 
     return (
@@ -113,9 +94,28 @@ const HomePage = () => {
                 <body className="bg-slate-50 dark:bg-slate-900" />
                 <html lang="ko" prefix="og: http://ogp.me/ns#" />
             </Head>
-            <Resume data={data ?? undefined} isLoading={isValidating} />
+            <Resume data={data ?? undefined} isLoading={false} />
         </React.Fragment>
     );
 };
 
 export default HomePage;
+
+export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
+    const url = process.env.NEXT_PUBLIC_HOST ?? '';
+    if (url) {
+        const res = await fetch(`${url}/api/resume`);
+        const data: Data = await res.json();
+        if (data) {
+            return {
+                props: {
+                    data,
+                },
+            };
+        }
+    }
+
+    return {
+        notFound: true,
+    };
+};
