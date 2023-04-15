@@ -1,15 +1,44 @@
 import * as React from 'react';
-import { Data } from '../../interfaces';
-import { Bio } from '../Bio';
-import { Home } from '../Home';
-import { Section } from '../Section';
-import { Summary } from '../Summary';
-import { Contact } from './Contact';
-import { GeneralList } from './GeneralList';
-import { Header } from './Header';
-import { Layout } from './Layout';
+import dynamic from 'next/dynamic';
+import { type Data } from '../../interfaces';
 import { menus } from './menu';
-import { SnsList } from './SnsList';
+
+const Bio = dynamic(
+    import('../Bio').then((m) => m.Bio),
+    { ssr: false },
+);
+const Home = dynamic(
+    import('../Home').then((m) => m.Home),
+    { ssr: false },
+);
+const Section = dynamic(
+    import('../Section').then((m) => m.Section),
+    { ssr: false },
+);
+const Summary = dynamic(
+    import('../Summary').then((m) => m.Summary),
+    { ssr: false },
+);
+const Contact = dynamic(
+    import('./Contact').then((m) => m.Contact),
+    { ssr: false },
+);
+const GeneralList = dynamic(
+    import('./GeneralList').then((m) => m.GeneralList),
+    { ssr: false },
+);
+const Header = dynamic(
+    import('./Header').then((m) => m.Header),
+    { ssr: false },
+);
+const Layout = dynamic(
+    import('./Layout').then((m) => m.Layout),
+    { ssr: false },
+);
+const SnsList = dynamic(
+    import('./SnsList').then((m) => m.SnsList),
+    { ssr: false },
+);
 
 interface ResumeProps {
     data?: Data;
