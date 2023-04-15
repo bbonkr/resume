@@ -1,39 +1,39 @@
-name: Verify to Build 
+name: Verify to Build
 
 on:
-  pull_request:
+    pull_request:
 
 jobs:
-  verify-build:
-    name: Verify to build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 1
+    verify-build:
+        name: Verify to build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 1
 
-      - name: Setup Node
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
 
-      - name: install dependencies
-        run: npm install
+            - name: install dependencies
+              run: npm install
 
-      - name: lint
-        run: npm run lint
+            - name: lint
+              run: npm run lint
 
-      - name: build
-        env:
-          NODE_ENV: production
-        run: npm run build
+            - name: build
+              env:
+                  NODE_ENV: production
+              run: npm run build
 
-      - name: Add comment 
-        uses: unsplash/comment-on-pr@v1.3.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          OUTPUT: "✅ This pull request is verified to build."
-        with:
-          msg: ${{ env.OUTPUT }}
-          check_for_duplicate_msg: false
+            - name: Add comment
+              uses: unsplash/comment-on-pr@v1.3.0
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+                  OUTPUT: '✅ This pull request is verified to build.'
+              with:
+                  msg: ${{ env.OUTPUT }}
+                  check_for_duplicate_msg: false

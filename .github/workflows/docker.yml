@@ -1,103 +1,103 @@
 name: docker image
 
 on:
-  # schedule:
+    # schedule:
     # - cron: '0 10 * * *' # everyday at 10am
-  push:
-    # branches:
-    #   - '**'
-    tags:
-      - 'v*.*.*'
-  # pull_request:
-  #   branches:
-  #     - 'master'
+    push:
+        # branches:
+        #   - '**'
+        tags:
+            - 'v*.*.*'
+    # pull_request:
+    #   branches:
+    #     - 'master'
 
 jobs:
-  docker:
-    name: 'Build and push docker image'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+    docker:
+        name: 'Build and push docker image'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
 
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
-        with:
-          # list of Docker images to use as base name for tags
-          images: |
-            ${{ secrets.DOCKER_REGISTRY_URI }}/${{ github.repository }}
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
-            type=sha
-          labels: |
-            org.opencontainers.image.title=Resume app
-            org.opencontainers.image.description=Resume app
-            org.opencontainers.image.vendor=bbon
+            - name: Docker meta
+              id: meta
+              uses: docker/metadata-action@v3
+              with:
+                  # list of Docker images to use as base name for tags
+                  images: |
+                      ${{ secrets.DOCKER_REGISTRY_URI }}/${{ github.repository }}
+                  # generate Docker tags based on the following events/attributes
+                  tags: |
+                      type=schedule
+                      type=ref,event=branch
+                      type=ref,event=pr
+                      type=semver,pattern={{version}}
+                      type=semver,pattern={{major}}.{{minor}}
+                      type=semver,pattern={{major}},enable=${{ !startsWith(github.ref, 'refs/tags/v0.') }}
+                      type=sha
+                  labels: |
+                      org.opencontainers.image.title=Resume app
+                      org.opencontainers.image.description=Resume app
+                      org.opencontainers.image.vendor=bbon
 
-      # - name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v1
+            # - name: Set up QEMU
+            #   uses: docker/setup-qemu-action@v1
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v1
+            # - name: Set up Docker Buildx
+            #   uses: docker/setup-buildx-action@v1
 
-      # - name: Login to DockerHub
-      #   uses: docker/login-action@v1 
-      #   with:
-      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
-      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
-      
-      # - name: Login to Registry
-      #   uses: docker/login-action@v1 
-      #   with:
-      #     registry: ${{ secrets.DOCKER_REGISTRY_URI }}
-      #     username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
-      #     password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
-      
-      # - name: Build and push
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: .
-      #     push: ${{ github.event_name != 'pull_request' }}
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
+            # - name: Login to DockerHub
+            #   uses: docker/login-action@v1
+            #   with:
+            #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+            #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      # - name: Image digest
-      #   run: echo ${{ steps.docker_build.outputs.digest }}
+            # - name: Login to Registry
+            #   uses: docker/login-action@v1
+            #   with:
+            #     registry: ${{ secrets.DOCKER_REGISTRY_URI }}
+            #     username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+            #     password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
-      # - name: Release 
-      #   id: release_drafter
-      #   uses: release-drafter/release-drafter@v5
-      #   with:
-      #     config-name: release-drafter.yml
-      #     version: ${{ github.ref_name }}
-      #     publish: true 
-      #     prerelease: false
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      #   if: success()
+            # - name: Build and push
+            #   uses: docker/build-push-action@v2
+            #   with:
+            #     context: .
+            #     push: ${{ github.event_name != 'pull_request' }}
+            #     tags: ${{ steps.meta.outputs.tags }}
+            #     labels: ${{ steps.meta.outputs.labels }}
 
-      # - name: Notify to slack
-      #   uses: 8398a7/action-slack@v3
-      #   with:
-      #     job_name: "create release" 
-      #     status: ${{ job.status }}
-      #     fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      #   if: always() # Pick up events even if the job fails or is canceled. 
+            # - name: Image digest
+            #   run: echo ${{ steps.docker_build.outputs.digest }}
 
-      # - name: Notify to Microsoft Teams
-      #   uses: skitionek/notify-microsoft-teams@master
-      #   if: always()
-      #   with:
-      #     webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
-      #     needs: ${{ toJson(needs) }}
-      #     job: ${{ toJson(job) }}
-      #     steps: ${{ toJson(steps) }}
+            # - name: Release
+            #   id: release_drafter
+            #   uses: release-drafter/release-drafter@v5
+            #   with:
+            #     config-name: release-drafter.yml
+            #     version: ${{ github.ref_name }}
+            #     publish: true
+            #     prerelease: false
+            #   env:
+            #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+            #   if: success()
+
+            # - name: Notify to slack
+            #   uses: 8398a7/action-slack@v3
+            #   with:
+            #     job_name: "create release"
+            #     status: ${{ job.status }}
+            #     fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
+            #   env:
+            #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+            #   if: always() # Pick up events even if the job fails or is canceled.
+
+            # - name: Notify to Microsoft Teams
+            #   uses: skitionek/notify-microsoft-teams@master
+            #   if: always()
+            #   with:
+            #     webhook_url: ${{ secrets.MSTEAMS_WEBHOOK }}
+            #     needs: ${{ toJson(needs) }}
+            #     job: ${{ toJson(job) }}
+            #     steps: ${{ toJson(steps) }}
