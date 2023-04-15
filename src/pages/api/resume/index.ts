@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Data } from '../../../interfaces';
+import { type Data } from '../../../interfaces';
 import { StaticDataService } from '../../../libs/DataService';
 
 const getResumeData = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
@@ -7,7 +7,6 @@ const getResumeData = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
         const expiration = 7 * 24 * 60 * 60;
         const username = process.env.USERNAME ?? '';
 
-        // const dataService = new NocodbDataService();
         const dataService = new StaticDataService();
         const data = await dataService.getResume(username);
 

@@ -3,32 +3,23 @@ import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
 import { GetServerSideProps } from 'next';
+import { StaticDataService } from '../libs/DataService';
+import { useDataActionContext } from '../components/DataContextProvider';
 
 interface HomePageProps {
     data: Data;
 }
 
 const HomePage = ({ data }: HomePageProps) => {
+    const { setData } = useDataActionContext();
     const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
+    const twitterHandle = data?.me?.twitter;
+
+    setData(data);
 
     return (
         <React.Fragment>
             <Head>
-                <meta property="og:title" content={siteTitle} />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`${data?.site?.url}`} />
-                <meta property="og:image" content={`${data?.site?.url}/images/me.png`} />
-                <meta property="og:description" content={siteTitle} />
-                <meta property="og:site_name" content={siteTitle} />
-
-                {data?.me?.twitter && (
-                    <meta name="twitter:site" content={`@${data?.me?.twitter}`} />
-                )}
-
-                {data?.me?.twitter && (
-                    <meta name="twitter:creator" content={`@${data.me?.twitter}`} />
-                )}
-
                 <title>{siteTitle}</title>
                 <meta charSet="utf-8" />
                 <meta
@@ -41,15 +32,40 @@ const HomePage = ({ data }: HomePageProps) => {
                 <meta name="msapplication-TileImage" content="/images/bbon-icon-144.png" />
                 <meta name="robots" content="index,follow" />
                 <meta name="googlebot" content="index,follow" />
-                <meta name="twitter:card" content="summary" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/images/bbon-icon-16.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/images/bbon-icon-32.png" />
-                <link rel="icon" type="image/png" sizes="48x48" href="/images/bbon-icon-48.png" />
+
+                <meta property="og:title" content={siteTitle} />
+                <meta property="og:url" content={`${data?.site?.url}`} />
+                <meta property="og:image" content={`${data?.site?.url}/images/me.png`} />
+                <meta property="og:description" content={siteTitle} />
+                <meta property="og:site_name" content={siteTitle} />
+                <meta name="theme-color" content="#ffffff" />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="16x16"
+                    href="/images/bbon-icon-16.png"
+                    key="icon-/images/bbon-icon-16.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="32x32"
+                    href="/images/bbon-icon-32.png"
+                    key="icon-/images/bbon-icon-32.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="48x48"
+                    href="/images/bbon-icon-48.png"
+                    key="icon-/images/bbon-icon-48.png"
+                />
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="196x196"
                     href="/images/bbon-icon-196.png"
+                    key="icon-/images/bbon-icon-196.png"
                 />
                 <link
                     rel="apple-touch-icon"
@@ -90,10 +106,16 @@ const HomePage = ({ data }: HomePageProps) => {
                 <link rel="manifest" href="/manifest.webmanifest" />
 
                 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-                <body className="bg-slate-50 dark:bg-slate-900" />
-                <html lang="ko" prefix="og: http://ogp.me/ns#" />
             </Head>
+
+            {twitterHandle && (
+                <Head>
+                    <meta name="twitter:site" content={`@${twitterHandle}`} />
+                    <meta name="twitter:creator" content={`@${twitterHandle}`} />
+                    <meta name="twitter:card" content="summary" />
+                </Head>
+            )}
+
             <Resume data={data ?? undefined} isLoading={false} />
         </React.Fragment>
     );
@@ -102,17 +124,15 @@ const HomePage = ({ data }: HomePageProps) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
-    const url = process.env.NEXT_PUBLIC_HOST ?? '';
-    if (url) {
-        const res = await fetch(`${url}/api/resume`);
-        const data: Data = await res.json();
-        if (data) {
-            return {
-                props: {
-                    data,
-                },
-            };
-        }
+    const dataService = new StaticDataService();
+    const data = await dataService.getResume('');
+
+    if (data) {
+        return {
+            props: {
+                data,
+            },
+        };
     }
 
     return {
