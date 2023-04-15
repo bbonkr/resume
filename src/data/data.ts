@@ -370,6 +370,37 @@ Microsoft Exchange Server 의 로그를 분석해서 전자우편전송 통계�
         title: 'Portfolio',
         records: [
             {
+                period: '2022-10',
+                state: '완료',
+                title: 'New CS File',
+                description: `[![Latest release](https://img.shields.io/github/v/release/bbonkr/vscode-extensions-new-cs-file?style=for-the-badge)](https://marketplace.visualstudio.com/items?itemName=bbonkr.kr-bbon-vscode-plugins-newcsfile)
+
+[![Build and tag](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/build-and-tag.yml/badge.svg)](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/build-and-tag.yml) [![create release](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/create-release.yml/badge.svg)](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/create-release.yml) [![Publish vscode extension](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/publish-vscode-extension.yml/badge.svg)](https://github.com/bbonkr/vscode-extensions-new-cs-file/actions/workflows/publish-vscode-extension.yml)
+
+## Features
+
+Create new cs file with namespace.
+
+- Namespace generates from csproj file name or references DefaultNamespace element in csproj file.
+
+`,
+                tags: ['vscode', 'vscode-extension', 'typescript', 'c#', 'dotnet', '.NET'],
+                links: [
+                    {
+                        title: 'GitHub: bbonkr/vscode-extensions-new-cs-file',
+                        href: 'https://github.com/bbonkr/vscode-extensions-new-cs-file',
+                        icon: 'github',
+                        target: '_blank',
+                    },
+                    {
+                        title: 'New CS File: Visual Studio Marketplace',
+                        href: 'https://marketplace.visualstudio.com/items?itemName=bbonkr.kr-bbon-vscode-plugins-newcsfile',
+                        icon: 'site',
+                        target: '_blank',
+                    },
+                ],
+            },
+            {
                 period: '2021-05',
                 state: '완료',
                 title: 'Bing Today Image Collector',
