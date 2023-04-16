@@ -38,7 +38,9 @@ const HomePage = ({ data }: HomePageProps) => {
                 <meta property="og:image" content={`${data?.site?.url}/images/me.png`} />
                 <meta property="og:description" content={siteTitle} />
                 <meta property="og:site_name" content={siteTitle} />
-                <meta name="theme-color" content="#ffffff" />
+                <meta name="theme-color" content="#f6f9fb" />
+                <meta name="theme-color" content="#f6f9fb" media="(prefers-color-scheme: light)" />
+                <meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)" />
                 <link
                     rel="icon"
                     type="image/png"
