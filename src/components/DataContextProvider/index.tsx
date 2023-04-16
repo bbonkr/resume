@@ -18,7 +18,7 @@ const DataContextProvider = ({ children }: React.PropsWithChildren) => {
     );
     return (
         <ActionContext.Provider value={actions}>
-            <DataContext.Provider value={data}>{children}</DataContext.Provider>;
+            <DataContext.Provider value={data}>{children}</DataContext.Provider>
         </ActionContext.Provider>
     );
 };

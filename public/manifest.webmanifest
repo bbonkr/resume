@@ -4,7 +4,7 @@
     "start_url": ".",
     "lang": "ko-KR",
     "display": "standalone",
-    "background_color": "#ffffff",
+    "background_color": "#f6f9fb",
     "description": "안녕하세요. 구본철입니다. 저는 응용프로그램 개발자입니다. .NET | nodejs | react. Thank you for your interest. This web app is PONCHEOL KU resume. If you want to know about me, search for bbonkr in search engine such as google.",
     "categories": ["personalization", "social"],
     "icons": [

@@ -14,9 +14,16 @@
     @apply my-3 font-semibold text-lg;
 }
 
+.markdown ul,
+.markdown ol {
+    @apply py-2;
+    list-style: initial;
+    list-style-position: inside;
+}
+
 .markdown ul > li,
 .markdown ol > li {
-    @apply break-words py-2;
+    @apply break-words;
 }
 
 .markdown p > a {
