@@ -16,7 +16,11 @@ const getResumeData = async (req: NextApiRequest, res: NextApiResponse<Data>) =>
             res.setHeader('Access-Control-Allow-Origin', '*'); // Allow from anywhere
         }
 
-        res.status(200).json(data);
+        if (!data) {
+            res.status(404);
+        } else {
+            res.status(200).json(data);
+        }
     } else {
         res.status(406).end();
     }
