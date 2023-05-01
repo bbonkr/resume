@@ -25,7 +25,7 @@ export type LinKIcon =
 
 export type LinkTarget = string | '_blank' | '_self';
 
-type DataSourceType = 'static' | 'nocodb';
+type DataSourceType = 'static' | 'nocodb' | 'keystone';
 
 export interface SiteInfo {
     name?: string;
@@ -34,6 +34,18 @@ export interface SiteInfo {
     titleEn?: string;
     url?: string;
     sourceType?: DataSourceType;
+}
+
+export type ImageDetailModel = {
+    url: string;
+    filesize?: number;
+    width?: number;
+    height?: number;
+};
+
+export interface ImageDataModel {
+    altText: string;
+    image: ImageDetailModel;
 }
 
 export type Link = {
@@ -57,7 +69,7 @@ export type Education = ContentDataRecord & {
 
 export type Me = {
     name: string;
-    photo?: string;
+    photo?: string | ImageDataModel;
     twitter?: string;
     github?: string;
     facebook?: string;
@@ -80,7 +92,7 @@ export type SkillContentData = {
 
 export type SkillSection = {
     name: string;
-    icon?: string;
+    icon?: string | null;
     items: SkillItem[];
 };
 
@@ -88,6 +100,7 @@ export type SkillItem = {
     name: string;
     description: string;
     score: number;
+    scoreMax?: number | null;
     href?: string;
 };
 
@@ -110,5 +123,5 @@ export type ContentDataRecord = {
     features?: string[];
     tags?: string[];
     links?: Link[];
-    images?: ImageData[];
+    images?: (ImageData | ImageDataModel)[];
 };

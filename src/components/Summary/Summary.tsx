@@ -85,6 +85,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
     });
 
     projectTags
+        .slice()
         .sort((a, b) => (a.count > b.count ? -1 : 1))
         .forEach((x, index, arr) => {
             if (index === 0) {
@@ -102,6 +103,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
 
     let maxRank = 0;
     projectTags
+        .slice()
         .sort((a, b) => (a.rank > b.rank ? -1 : 1))
         .filter((_, index) => index === 0)
         .forEach((x) => {
@@ -109,6 +111,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
         });
 
     projectTags
+        .slice()
         .sort((a, b) => (a.rank < b.rank ? -1 : 1))
         .forEach((x) => {
             const percentage = ((maxRank - (x.rank - 1)) / maxRank) * 100;
@@ -174,6 +177,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
                         : projectTags &&
                           projectTags.length > 0 &&
                           projectTags
+                              .slice()
                               .sort((a, b) => (a.count > b.count ? -1 : 1))
                               .filter((x) => x.count > 1)
                               .map((tag) => (

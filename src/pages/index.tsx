@@ -3,8 +3,9 @@ import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
 import { GetServerSideProps } from 'next';
-import { StaticDataService } from '../libs/DataService';
+// import { StaticDataService } from '../libs/DataService';
 import { useDataActionContext } from '../components/DataContextProvider';
+import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
 
 interface HomePageProps {
     data: Data;
@@ -126,7 +127,7 @@ const HomePage = ({ data }: HomePageProps) => {
 export default HomePage;
 
 export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
-    const dataService = new StaticDataService();
+    const dataService = new ResumeBackendDataService();
     const data = await dataService.getResume('');
 
     if (data) {
