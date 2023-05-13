@@ -9,7 +9,7 @@ version: '3'
 
 services:
   app:
-    image: docker.io/bbonkr/resume:2.2.6.11 # Change 
+    image: docker.io/bbonkr/resume:latest # Change 
     container_name: resume
     ports:
       - 20000:3000
@@ -19,6 +19,7 @@ services:
       - TZ=Asia/Seoul
       - NEXT_PUBLIC_HOST=${NEXT_PUBLIC_HOST}
       - NEXT_PUBLIC_GAID=${NEXT_PUBLIC_GAID}
+      - NEXT_PUBLIC_CLARITY=${NEXT_PUBLIC_CLARITY}
       - HOST=${HOST}
       - ENDPOINT=${ENDPOINT}
       - ACCESSKEY=${ACCESSKEY}
@@ -26,4 +27,5 @@ services:
       - SENDGRID_SENDER=${SENDGRID_SENDER}
       - SENDGRID_EMAIL=${SENDGRID_EMAIL}
       - SENDGRID_API_KEY=${SENDGRID_API_KEY}
+      - IMAGE_DOMAINS=${IMAGE_DOMAINS}
     entrypoint: ['npm', 'start']
