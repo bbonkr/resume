@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useEffect } from 'react';
 
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 
 interface GoogleAnalyticsProviderProps {
     gaid?: string;
@@ -18,7 +19,7 @@ export const GoogleAnalyticsProvider = ({
 
             console.info('⚡ Google analytics connected.');
         }
-    }, []);
+    }, [gaid]);
 
     useEffect(() => {
         if (gaid && typeof window.ga === 'function') {
@@ -38,13 +39,13 @@ export const GoogleAnalyticsProvider = ({
             {children}
             {gaid && (
                 <React.Fragment>
-                    <script
+                    <Script
                         id="script-ga-head"
                         type="text/javascript"
                         src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
                         async
-                    ></script>
-                    <script
+                    />
+                    <Script
                         id="script-ga-body"
                         dangerouslySetInnerHTML={{
                             __html: `window.dataLayer = window.dataLayer || [];
@@ -53,7 +54,7 @@ export const GoogleAnalyticsProvider = ({
 
   gtag('config', '${gaid}');`,
                         }}
-                    ></script>
+                    />
                 </React.Fragment>
             )}
         </React.Fragment>
