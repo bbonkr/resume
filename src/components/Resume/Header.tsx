@@ -74,6 +74,18 @@ export const Header = () => {
         };
     }, []);
 
+    if (!data) {
+        return (
+            <div key="header-title-skelecton" className="w-32 border-1 rounded-md">
+                <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+                    <div className="flex-1 flex flex-col space-y-3">
+                        <div className="w-full bg-gray-300 h-6 rounded-md "></div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     return (
         <React.Fragment>
             {open && (
@@ -87,24 +99,17 @@ export const Header = () => {
                     <div className="max-w-6xl mx-auto px-4">
                         <div className="flex justify-between">
                             <div className="flex space-x-7 flex-1 justify-center">
-                                {!data ? (
-                                    <div
-                                        key="header-title-skelecton"
-                                        className="w-32 border-1 rounded-md"
-                                    >
-                                        <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-                                            <div className="flex-1 flex flex-col space-y-3">
-                                                <div className="w-full bg-gray-300 h-6 rounded-md "></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <a href={`#${menus.home.id}`} onClick={handleClick}>
-                                            <h1>{data?.site?.title}</h1>
-                                        </a>
-                                    </div>
-                                )}
+                                <div className="relative px-4">
+                                    <a href={`#${menus.home.id}`} onClick={handleClick}>
+                                        <h1>{data?.site?.title}</h1>
+                                    </a>
+                                    <span
+                                        className={`${
+                                            data.origin === 'online' ? 'bg-green-400' : 'bg-red-400'
+                                        } top-0 right-0 absolute w-3.5 h-3.5 border-2 border-white dark:border-gray-800 rounded-full`}
+                                        title={`data came from ${data.origin}`}
+                                    ></span>
+                                </div>
 
                                 <div className="hidden md:flex items-center space-x-1 print:hidden">
                                     {/* Primary navbar items */}

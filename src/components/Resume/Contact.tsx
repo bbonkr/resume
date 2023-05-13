@@ -91,6 +91,7 @@ export const Contact = ({ title, data, isLoading }: ContactProps) => {
                                 type="text"
                                 className="w-full"
                                 placeholder="Name"
+                                required
                                 {...getFieldProps('name')}
                                 value={values.name ?? ''}
                                 disabled={isLoading || isSubmitting}
@@ -110,6 +111,7 @@ export const Contact = ({ title, data, isLoading }: ContactProps) => {
                                 type="email"
                                 className="w-full"
                                 placeholder="Email"
+                                required
                                 {...getFieldProps('email')}
                                 value={values.email ?? ''}
                                 disabled={isLoading || isSubmitting}
@@ -151,7 +153,10 @@ export const Contact = ({ title, data, isLoading }: ContactProps) => {
                                 className="px-6 py-3 text-slate-200 bg-blue-500 ring-2 ring-blue-100 rounded-lg hover:bg-blue-600 active:bg-blue-800 active:ring-blue-300 disabled:bg-slate-400 disabled:text-slate-300 disabled:ring-0"
                                 disabled={isSubmitting || !isValid || isLoading}
                             >
-                                Submit
+                                {isLoading && 'Please wait, now loading'}
+                                {isSubmitting && 'Please wait until processing is completed'}
+                                {!isValid && 'Please check your input'}
+                                {!isSubmitting && isValid && !isLoading && 'Submit'}
                             </button>
                         )}
                     </div>
