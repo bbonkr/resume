@@ -21,6 +21,8 @@ const validationSchema = object({
 
 type FormValues = InferType<typeof validationSchema>;
 
+const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY;
+
 export const Contact = ({ title, data, isLoading }: ContactProps) => {
     const [result, setResult] = React.useState<SendMessageResponseModel>();
 
@@ -55,6 +57,19 @@ export const Contact = ({ title, data, isLoading }: ContactProps) => {
                     }
                 } finally {
                     helper.setSubmitting(false);
+
+                    if (clarityProjectId && typeof clarityProjectId === 'string') {
+                        import('clarity-js')
+                            .then((m) =>
+                                m.clarity.event(
+                                    'send_message',
+                                    formValues?.name ?? 'Fail to recognize name',
+                                ),
+                            )
+                            .catch((err) => {
+                                console.warn('Could not send data to clarity', err);
+                            });
+                    }
                 }
             },
         });
@@ -140,13 +155,17 @@ export const Contact = ({ title, data, isLoading }: ContactProps) => {
 
                     <div className="w-full mb-3 flex flex-col justify-center items-center">
                         {result ? (
-                            <p
-                                className={`${
-                                    result.status === 200 ? 'text-green-500' : 'text-red-500'
-                                }`}
-                            >
-                                {result.message}
-                            </p>
+                            <React.Fragment>
+                                <p
+                                    className={`${
+                                        result?.status === 200 ? 'text-green-500' : 'text-red-500'
+                                    }`}
+                                >
+                                    {result?.message}
+                                </p>
+                                <p>메시지를 확인하고 연락드리겠습니다. 감사합니다.</p>
+                                <p>Thank you. I will check the message and contact you</p>
+                            </React.Fragment>
                         ) : (
                             <button
                                 type="submit"

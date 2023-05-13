@@ -20,6 +20,7 @@ interface GenericLinkProps {
 }
 
 const gaId = process.env.NEXT_PUBLIC_GAID;
+const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY;
 
 export const GenericLink = ({
     record,
@@ -62,6 +63,14 @@ export const GenericLink = ({
                 title: record.title,
                 debug_mode: process.env.PRODUCTION !== 'production',
             });
+        }
+
+        if (clarityProjectId && typeof clarityProjectId === 'string') {
+            import('clarity-js')
+                .then((m) => m.clarity.event('click_link', record.href))
+                .catch((err) => {
+                    console.warn('Could not send data to clarity', err);
+                });
         }
 
         if (onClick) {

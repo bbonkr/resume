@@ -17,7 +17,7 @@ const HomePage = ({ data }: HomePageProps) => {
 
     React.useEffect(() => {
         setData(data);
-    }, []);
+    }, [setData, data]);
 
     return (
         <React.Fragment>

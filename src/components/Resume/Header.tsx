@@ -4,6 +4,8 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import { menus } from './menu';
 import { useDataContext } from '../DataContextProvider';
 
+const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY;
+
 export const Header = () => {
     const [open, setOpen] = React.useState(false);
     const data = useDataContext();
@@ -17,6 +19,14 @@ export const Header = () => {
 
         if (el) {
             el.scrollIntoView({ behavior: 'smooth' });
+
+            if (clarityProjectId && typeof clarityProjectId === 'string') {
+                import('clarity-js')
+                    .then((m) => m.clarity.event('click_menu', id))
+                    .catch((err) => {
+                        console.warn('Could not send data to clarity', err);
+                    });
+            }
         }
 
         const menuEl = document.querySelector('.modile-menu');
