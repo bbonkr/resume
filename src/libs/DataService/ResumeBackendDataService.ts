@@ -1,4 +1,4 @@
-import { ContentDataRecord, Data, SkillSection } from '../../interfaces';
+import { ContentDataRecord, Data, DataOrigin, SkillSection } from '../../interfaces';
 import { DataService } from './DataService';
 import axios from 'axios';
 
@@ -116,9 +116,12 @@ export type UserModel = {
 export class ResumeBackendDataService implements DataService {
     public async getResume(username: string): Promise<Data | undefined> {
         let user: UserModel | undefined;
+        let dataSource: DataOrigin = 'online';
 
         try {
             user = await this.getData();
+
+            dataSource = 'online';
         } catch (err) {
             if (err instanceof Error) {
                 const fallback = process.env.DATA_FALLBACK ?? '';
@@ -133,6 +136,7 @@ export class ResumeBackendDataService implements DataService {
                     });
 
                     user = response.data;
+                    dataSource = 'fallback';
                 }
             }
         }
@@ -142,6 +146,7 @@ export class ResumeBackendDataService implements DataService {
         }
 
         const data: Data = {
+            origin: dataSource,
             site: {
                 name: user?.aboutMe?.name,
                 nameEn: user?.aboutMe?.nameEn,

@@ -3,7 +3,6 @@ import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
 import { GetServerSideProps } from 'next';
-// import { StaticDataService } from '../libs/DataService';
 import { useDataActionContext } from '../components/DataContextProvider';
 import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
 
@@ -16,7 +15,9 @@ const HomePage = ({ data }: HomePageProps) => {
     const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
     const twitterHandle = data?.me?.twitter;
 
-    setData(data);
+    React.useEffect(() => {
+        setData(data);
+    }, [setData, data]);
 
     return (
         <React.Fragment>

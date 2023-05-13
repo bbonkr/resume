@@ -1,3 +1,5 @@
+export type DataOrigin = 'online' | 'fallback';
+
 export type Data = {
     site?: SiteInfo | null;
     me?: Me | null;
@@ -8,6 +10,7 @@ export type Data = {
     portfolio?: ContentData | null;
     skillStack?: SkillContentData | null;
     certificate?: ContentData | null;
+    origin?: DataOrigin;
 };
 
 export type LinKIcon =

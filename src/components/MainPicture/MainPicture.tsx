@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-// import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
 import { Picture } from '../Resume/Picture';
 
