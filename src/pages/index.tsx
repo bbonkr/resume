@@ -2,7 +2,7 @@ import * as React from 'react';
 import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
-import { GetServerSideProps } from 'next';
+import { type GetStaticProps } from 'next';
 import { useDataActionContext } from '../components/DataContextProvider';
 import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
 
@@ -127,18 +127,17 @@ const HomePage = ({ data }: HomePageProps) => {
 
 export default HomePage;
 
-export const getServerSideProps: GetServerSideProps<{ data: Data }> = async () => {
+export const getStaticProps: GetStaticProps<{ data: Data }> = async () => {
     const dataService = new ResumeBackendDataService();
     const data = await dataService.getResume('');
-
     if (data) {
         return {
             props: {
                 data,
             },
+            revalidate: 10 * 1000, // 10 seconds
         };
     }
-
     return {
         notFound: true,
     };
