@@ -1,8 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApiResponseModel } from '../../../interfaces/ApiResponseModel';
 
+const REVALIDATE_KEY = 'x-revalidate-key';
+
 const revalidateHanlder = async (req: NextApiRequest, res: NextApiResponse<ApiResponseModel>) => {
-    const { method, query } = req;
+    const { method } = req;
 
     if (process.env.NEXT_PUBLIC_ENV !== 'dev') {
         if (method !== 'POST') {
@@ -13,10 +15,15 @@ const revalidateHanlder = async (req: NextApiRequest, res: NextApiResponse<ApiRe
         }
     }
 
-    const { secret } = query;
+    const secret = req.headers[REVALIDATE_KEY];
+
     const secretRevalidateToken = process.env.SECRET_REVALIDATE_TOKEN;
 
-    if (typeof secret !== 'string' || secret !== secretRevalidateToken) {
+    if (!secret || typeof secret !== 'string') {
+        return res.status(401).json({ status: 401, message: 'Invalid token' });
+    }
+
+    if (secret !== secretRevalidateToken) {
         return res.status(401).json({ status: 401, message: 'Invalid token' });
     }
 
