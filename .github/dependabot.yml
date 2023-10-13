@@ -3,7 +3,7 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    target-branch: "main"
+    target-branch: "dev"
     schedule:
       interval: "weekly"
     labels:
