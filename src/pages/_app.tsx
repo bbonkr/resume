@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import { MicrosoftClarityProvider } from '../components/Layouts';
 import ErrorBoundary from '../components/ErrorBoundary';
@@ -27,6 +28,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                     </MicrosoftClarityProvider>
                 </ThemeProvider>
             </DataContextProvider>
+            <Analytics />
         </React.Fragment>
     );
 };
