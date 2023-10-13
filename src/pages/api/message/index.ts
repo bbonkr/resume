@@ -46,7 +46,7 @@ const sendMessage = async (req: NextApiRequest, res: NextApiResponse<SendMessage
 
         res.status(200).json({
             status: 200,
-            message: '전송되었습니다',
+            message: 'Your message has been sent.',
         });
     } catch (e) {
         if (e instanceof ApiException) {

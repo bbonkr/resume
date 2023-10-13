@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import React from 'react';
-// import Image from 'next/image';
 import { Data } from '../../interfaces/Data';
 import { Picture } from '../Resume/Picture';
 
@@ -10,30 +9,27 @@ interface MainPictureProps {
 }
 
 export const MainPicture = ({ className, record }: MainPictureProps) => {
-    const imageUri = record?.me?.photo ?? '/images/icon.png';
+    let imageUri = '';
+    let altText = '';
+
+    if (record?.me?.photo) {
+        if (typeof record?.me?.photo === 'string') {
+            imageUri = record?.me?.photo ?? '/images/icon.png';
+            altText = record.me.name;
+        } else {
+            imageUri = record.me.photo.image.url;
+            altText = record.me.photo.altText;
+        }
+    } else {
+        imageUri = '/images/icon.png';
+    }
 
     return (
         <React.Fragment>
-            {/* <Image
-                src={imageUri}
-                className={className}
-                alt={record?.me?.name}
-                title={record?.me?.name}
-                width={300}
-                height={300}
-                loading="lazy"
-            /> */}
-
-            {/* <img
-                src={imageUri}
-                alt={record?.me?.name}
-                title={record?.me?.name}
-                className={className}
-            /> */}
             <Picture
                 imageProps={{
                     src: imageUri,
-                    alt: record?.me?.name,
+                    alt: altText,
                     title: record?.me?.name,
                     className: `${className ?? ''}`,
                 }}

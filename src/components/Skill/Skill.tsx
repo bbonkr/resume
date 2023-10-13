@@ -27,6 +27,7 @@ export const Skill = ({ title, className, records, filter, isLoading }: SkillPro
                 records &&
                 records.length > 0 &&
                 records
+                    .slice()
                     .filter((x, index) =>
                         typeof filter === 'string'
                             ? x.name === filter
@@ -47,7 +48,7 @@ export const Skill = ({ title, className, records, filter, isLoading }: SkillPro
                                                     <ScoreBar
                                                         className="h-8 bg-slate-900 dark:bg-slate-200"
                                                         value={x.score}
-                                                        maxValue={10}
+                                                        maxValue={x.scoreMax ?? 10}
                                                     />
                                                 </dd>
                                             </React.Fragment>

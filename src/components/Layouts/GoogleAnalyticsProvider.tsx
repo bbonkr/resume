@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useEffect } from 'react';
-import { useGaRedux } from '../../hooks/useGaRedux';
+
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 
 interface GoogleAnalyticsProviderProps {
     gaid?: string;
@@ -10,22 +11,15 @@ export const GoogleAnalyticsProvider = ({
     gaid,
     children,
 }: PropsWithChildren<GoogleAnalyticsProviderProps>) => {
-    const { setGaId } = useGaRedux();
     const router = useRouter();
 
     useEffect(() => {
         if (gaid && typeof window.ga === 'function') {
-            // window.gtag('event', 'app_started', {
-            //     debug_mode: process.env.PRODUCTION !== 'production',
-            // });
-
             window.ga('send', 'event', 'app_started', 'app_started');
-
-            setGaId(gaid);
 
             console.info('⚡ Google analytics connected.');
         }
-    }, []);
+    }, [gaid]);
 
     useEffect(() => {
         if (gaid && typeof window.ga === 'function') {
@@ -38,20 +32,20 @@ export const GoogleAnalyticsProvider = ({
             // });
             window.ga('send', 'pageview', router.pathname);
         }
-    }, [router.pathname]);
+    }, [router.pathname, gaid]);
 
     return (
         <React.Fragment key="google-analytics-provider">
             {children}
             {gaid && (
                 <React.Fragment>
-                    <script
+                    <Script
                         id="script-ga-head"
                         type="text/javascript"
                         src={`https://www.googletagmanager.com/gtag/js?id=${gaid}`}
                         async
-                    ></script>
-                    <script
+                    />
+                    <Script
                         id="script-ga-body"
                         dangerouslySetInnerHTML={{
                             __html: `window.dataLayer = window.dataLayer || [];
@@ -60,7 +54,7 @@ export const GoogleAnalyticsProvider = ({
 
   gtag('config', '${gaid}');`,
                         }}
-                    ></script>
+                    />
                 </React.Fragment>
             )}
         </React.Fragment>
