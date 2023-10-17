@@ -3,23 +3,29 @@ import * as React from 'react';
 
 interface MicrosoftClarityProviderProps {
     projectId?: string;
+    stage?: string;
 }
 
 export const MicrosoftClarityProvider = ({
     projectId,
+    stage,
     children,
 }: React.PropsWithChildren<MicrosoftClarityProviderProps>) => {
     React.useEffect(() => {
-        if (process.env.NEXT_PUBLIC_ENV === 'dev' && projectId) {
+        if (!projectId) {
             import('clarity-js')
                 .then((m) => {
-                    m.clarity.set('env', ['dev', window.location.hostname]);
+                    m.clarity.set('env', [stage ?? 'dev', window.location.hostname]);
                 })
                 .catch((err) => {
                     throw err;
                 });
         }
-    }, [projectId]);
+    }, [stage, projectId]);
+
+    if (!projectId) {
+        return <React.Fragment>{children}</React.Fragment>;
+    }
 
     return (
         <React.Fragment>
@@ -33,6 +39,7 @@ y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "${projectId}");
 `,
                 }}
+                defer
             />
             {children}
         </React.Fragment>
