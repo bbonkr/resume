@@ -7,6 +7,8 @@ import Document, {
     DocumentInitialProps,
 } from 'next/document';
 
+const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY ?? '';
+
 class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
         // const originalRenderPage = ctx.renderPage;
@@ -28,7 +30,12 @@ class MyDocument extends Document {
     render() {
         return (
             <Html lang="ko" prefix="og: http://ogp.me/ns#">
-                <Head />
+                <Head>
+                    <link rel="preconnect" href="https://www.clarity.ms/" />
+                    <link rel="preconnect" href="https://storage.bbon.me/" />
+                    <script src={`https://www.clarity.ms/tag/${clarityProjectId}`} async></script>
+                    <script src="/js/clarity.js" defer></script>
+                </Head>
                 <body className="bg-slate-50 dark:bg-slate-900">
                     <Main />
                     <NextScript />
