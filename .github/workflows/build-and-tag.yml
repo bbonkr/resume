@@ -16,8 +16,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-              with:
-                  fetch-depth: 1
 
             - name: Setup Node
               uses: actions/setup-node@v3
@@ -35,33 +33,33 @@ jobs:
                   NODE_ENV: production
               run: npm run build
 
-            - name: Get version
-              uses: bbonkr/get-version-action@v1
-              id: get_version
-              with:
-                  project: '${{ env.TARGET_PROJECT_PATH }}${{ env.TARGET_PROJECT_FILE }}'
+            # - name: Get version
+            #   uses: bbonkr/get-version-action@v1
+            #   id: get_version
+            #   with:
+            #       project: '${{ env.TARGET_PROJECT_PATH }}${{ env.TARGET_PROJECT_FILE }}'
 
-            - name: Check git tag
-              uses: bbonkr/git-tag-check-action@v1
-              id: git_tag_check
-              with:
-                  github_token: ${{ secrets.GH_TOKEN }}
-                  tag: 'v${{ steps.get_version.outputs.version }}'
+            # - name: Check git tag
+            #   uses: bbonkr/git-tag-check-action@v1
+            #   id: git_tag_check
+            #   with:
+            #       github_token: ${{ secrets.GH_TOKEN }}
+            #       tag: 'v${{ steps.get_version.outputs.version }}'
 
-            - name: Create git tag
-              uses: pkgdeps/git-tag-action@v2
-              if: ${{ steps.git_tag_check.outputs.tag == '' }}
-              with:
-                  github_token: ${{ secrets.GH_TOKEN }}
-                  github_repo: ${{ github.repository }}
-                  version: ${{ steps.get_version.outputs.version }}
-                  git_commit_sha: ${{ github.sha }}
-                  git_tag_prefix: 'v'
+            # - name: Create git tag
+            #   uses: pkgdeps/git-tag-action@v2
+            #   if: ${{ steps.git_tag_check.outputs.tag == '' }}
+            #   with:
+            #       github_token: ${{ secrets.GH_TOKEN }}
+            #       github_repo: ${{ github.repository }}
+            #       version: ${{ steps.get_version.outputs.version }}
+            #       git_commit_sha: ${{ github.sha }}
+            #       git_tag_prefix: 'v'
 
-            - name: logging
-              if: ${{ steps.git_tag_check.outputs.tag != '' }}
-              run: |
-                  echo "Tag ${{ steps.git_tag_check.outputs.tag }} is exists."
+            # - name: logging
+            #   if: ${{ steps.git_tag_check.outputs.tag != '' }}
+            #   run: |
+            #       echo "Tag ${{ steps.git_tag_check.outputs.tag }} is exists."
 
             - name: Notify to slack
               uses: 8398a7/action-slack@v3
