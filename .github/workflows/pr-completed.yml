@@ -10,6 +10,7 @@ permissions:
 
 env:
     MAIN_BRANCH_NAME: main
+    DEFAULT_BRANCH_NAME: dev
     PROJECT_NAME: '' # Repository project only; ORG project not supported
 
 jobs:
@@ -48,7 +49,7 @@ jobs:
             next_version: ${{ steps.next_version_proposal.outputs.next_version }}
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: 'get next version name'
               uses: bbonkr/next-version-proposal-action@v1
@@ -81,7 +82,7 @@ jobs:
         if: ${{ needs.create-tag.outputs.next_version != '' }}
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
 
             - name: Logging
               run: |
@@ -104,31 +105,16 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
-
-            - name: Set Node.js 18.x
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 18.x
-
-            - name: Install dependencies
-              run: |
-                  npm install
-
-            - name: Run all npm script
-              run: |
-                  npm run all
-              # env:
-              #   NODE_ENV: production
+              uses: actions/checkout@v4
 
             - name: Get overview of PULL_REQUEST
               uses: ./
               id: get_overview
               with:
                   github_token: ${{ github.token }}
-                  base: main
+                  base: ${{ env.MAIN_BRANCH_NAME }}
                   head: ${{ github.event.pull_request.base.ref }}
-                  default_branch: dev
+                  default_branch: ${{ env.DEFAULT_BRANCH_NAME }}
 
             - name: logging
               run: |
