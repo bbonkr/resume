@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { ThemeProvider } from 'next-themes';
 import ErrorBoundary from '../components/ErrorBoundary';
 import dynamic from 'next/dynamic';
@@ -34,7 +35,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                     </MicrosoftClarityProvider>
                 </ThemeProvider>
             </DataContextProvider>
-            <Analytics mode={stage === 'prd' ? 'production' : 'development'} />
+            <Analytics
+                debug={stage !== 'prd'}
+                mode={stage === 'prd' ? 'production' : 'development'}
+            />
+            <SpeedInsights debug={stage !== 'prd'} />
         </React.Fragment>
     );
 };
