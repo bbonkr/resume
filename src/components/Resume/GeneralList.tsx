@@ -107,28 +107,25 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                                 {item.images && (
                                     <ul className="max-w-full">
                                         {item.images.map((img) => {
+                                            let src = '';
+                                            let altText = '';
+                                            if ('src' in img) {
+                                                src = img.src;
+                                                altText = img.alt;
+                                            } else {
+                                                src = img.image.url;
+                                                altText = img.altText;
+                                            }
+
                                             return (
-                                                <li key={img.src} className="py-2">
-                                                    {/* <Image
-                                                    src={img.src}
-                                                    alt={img.alt}
-                                                    width={300}
-                                                    height={300}
-                                                    objectFit="cover"
-                                                    loading="lazy"
-                                                /> */}
-                                                    {/* <img
-                                                    src={img.src}
-                                                    alt={img.alt}
-                                                    title={img.alt}
-                                                    loading="lazy"
-                                                /> */}
+                                                <li key={src} className="py-2">
                                                     <Picture
                                                         imageProps={{
-                                                            src: img.src,
-                                                            alt: img.alt,
-                                                            title: img.alt,
+                                                            src: src,
+                                                            alt: altText,
+                                                            title: altText,
                                                             loading: 'lazy',
+                                                            className: 'blur-sm',
                                                         }}
                                                     />
                                                 </li>

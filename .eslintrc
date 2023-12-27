@@ -1,15 +1,13 @@
 {
     "extends": [
-        "eslint:recommended",
         "next",
-        "prettier",
-        "plugin:@next/next/recommended"
+        "prettier"
     ],
     "rules": {
         "no-unused-vars": [
             "error",
             {
-                "argsIgnorePattern":"^_",
+                "argsIgnorePattern": "^_",
                 "vars": "all",
                 "args": "none",
                 "ignoreRestSiblings": false

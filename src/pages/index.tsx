@@ -1,57 +1,27 @@
 import * as React from 'react';
-import { Data } from '../interfaces';
+import { type Data } from '../interfaces';
 import Head from 'next/head';
 import { Resume } from '../components/Resume';
-import useSWR from 'swr';
-import axios from 'axios';
+import { type GetStaticProps } from 'next';
+import { useDataActionContext } from '../components/DataContextProvider';
+import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
 
-const HomePage = () => {
-    const { data, error, isValidating } = useSWR<Data, Error>(
-        '/api/resume',
-        async (url) => {
-            // await new Promise((resolve, reject) => {
-            //     window.setTimeout(resolve, 5000);
-            // });
+interface HomePageProps {
+    data: Data;
+}
 
-            const response = await axios.get<Data>(url);
-            if (response.status !== 200) {
-                throw new Error(response.statusText);
-            }
-            return response.data;
-        },
-        {
-            revalidateIfStale: false,
-            revalidateOnFocus: false,
-            revalidateOnReconnect: false,
-        },
-    );
+const HomePage = ({ data }: HomePageProps) => {
+    const { setData } = useDataActionContext();
+    const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
+    const twitterHandle = data?.me?.twitter;
 
     React.useEffect(() => {
-        if (error) {
-            console.error(error);
-        }
-    }, [error]);
-
-    const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
+        setData(data);
+    }, [setData, data]);
 
     return (
         <React.Fragment>
             <Head>
-                <meta property="og:title" content={siteTitle} />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content={`${data?.site?.url}`} />
-                <meta property="og:image" content={`${data?.site?.url}/images/me.png`} />
-                <meta property="og:description" content={siteTitle} />
-                <meta property="og:site_name" content={siteTitle} />
-
-                {data?.me?.twitter && (
-                    <meta name="twitter:site" content={`@${data?.me?.twitter}`} />
-                )}
-
-                {data?.me?.twitter && (
-                    <meta name="twitter:creator" content={`@${data.me?.twitter}`} />
-                )}
-
                 <title>{siteTitle}</title>
                 <meta charSet="utf-8" />
                 <meta
@@ -64,15 +34,42 @@ const HomePage = () => {
                 <meta name="msapplication-TileImage" content="/images/bbon-icon-144.png" />
                 <meta name="robots" content="index,follow" />
                 <meta name="googlebot" content="index,follow" />
-                <meta name="twitter:card" content="summary" />
-                <link rel="icon" type="image/png" sizes="16x16" href="/images/bbon-icon-16.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="/images/bbon-icon-32.png" />
-                <link rel="icon" type="image/png" sizes="48x48" href="/images/bbon-icon-48.png" />
+
+                <meta property="og:title" content={siteTitle} />
+                <meta property="og:url" content={`${data?.site?.url}`} />
+                <meta property="og:image" content={`${data?.site?.url}/images/me.png`} />
+                <meta property="og:description" content={siteTitle} />
+                <meta property="og:site_name" content={siteTitle} />
+                <meta name="theme-color" content="#f6f9fb" />
+                <meta name="theme-color" content="#f6f9fb" media="(prefers-color-scheme: light)" />
+                <meta name="theme-color" content="#0d1220" media="(prefers-color-scheme: dark)" />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="16x16"
+                    href="/images/bbon-icon-16.png"
+                    key="icon-/images/bbon-icon-16.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="32x32"
+                    href="/images/bbon-icon-32.png"
+                    key="icon-/images/bbon-icon-32.png"
+                />
+                <link
+                    rel="icon"
+                    type="image/png"
+                    sizes="48x48"
+                    href="/images/bbon-icon-48.png"
+                    key="icon-/images/bbon-icon-48.png"
+                />
                 <link
                     rel="icon"
                     type="image/png"
                     sizes="196x196"
                     href="/images/bbon-icon-196.png"
+                    key="icon-/images/bbon-icon-196.png"
                 />
                 <link
                     rel="apple-touch-icon"
@@ -113,13 +110,35 @@ const HomePage = () => {
                 <link rel="manifest" href="/manifest.webmanifest" />
 
                 <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
-                <body className="bg-slate-50 dark:bg-slate-900" />
-                <html lang="ko" prefix="og: http://ogp.me/ns#" />
             </Head>
-            <Resume data={data ?? undefined} isLoading={isValidating} />
+
+            {twitterHandle && (
+                <Head>
+                    <meta name="twitter:site" content={`@${twitterHandle}`} />
+                    <meta name="twitter:creator" content={`@${twitterHandle}`} />
+                    <meta name="twitter:card" content="summary" />
+                </Head>
+            )}
+
+            <Resume data={data ?? undefined} isLoading={false} />
         </React.Fragment>
     );
 };
 
 export default HomePage;
+
+export const getStaticProps: GetStaticProps<{ data: Data }> = async () => {
+    const dataService = new ResumeBackendDataService();
+    const data = await dataService.getResume('');
+    if (data) {
+        return {
+            props: {
+                data,
+            },
+            revalidate: 10 * 1000, // 10 seconds
+        };
+    }
+    return {
+        notFound: true,
+    };
+};

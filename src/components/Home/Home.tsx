@@ -42,7 +42,11 @@ export const Home = ({ record, title, useHero, heroColor, showLinks, isLoading }
 
     return (
         <React.Fragment>
-            <div>
+            <div
+                className={`${
+                    isLoading ? 'animate-pulse' : ''
+                } w-full flex flex-col md:flex-row justify-center items-start my-9 border-b-2 border-slate-500 dark:border-slate-400 last:border-0`}
+            >
                 {title && <h2>{title}</h2>}
                 <Markdown className="markdown" markdown={record?.home?.intro} />
 
