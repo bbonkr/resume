@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Data } from '../../interfaces/Data';
-
 import { MainPicture } from '../MainPicture';
 import { Skill } from '../Skill';
 
@@ -133,65 +132,63 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
         });
 
     return (
-        <React.Fragment>
-            <div className={`flex flex-col justify-center items-center gap-9 `}>
-                <div
-                    className={`flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full`}
-                >
-                    {isLoading ? (
-                        <div
-                            key="main-picture-skelecton"
-                            className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"
-                        ></div>
-                    ) : (
-                        <MainPicture record={record} className="rounded-full flex-1 w-300 h-300" />
-                    )}
+        <div className={`flex flex-col justify-center items-center gap-9 `}>
+            <div
+                className={`flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full`}
+            >
+                {isLoading ? (
+                    <div
+                        key="main-picture-skelecton"
+                        className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"
+                    ></div>
+                ) : (
+                    <MainPicture record={record} className="rounded-full flex-1 w-300 h-300" />
+                )}
 
-                    <Skill
-                        records={record?.skillStack?.records}
-                        title={record?.skillStack?.title?.toUpperCase() ?? ''}
-                        filter={0}
-                        className="flex-1 w-full"
-                        isLoading={isLoading}
-                    />
+                <Skill
+                    records={record?.skillStack?.records}
+                    title={record?.skillStack?.title?.toUpperCase() ?? ''}
+                    filter={0}
+                    className="flex-1 w-full"
+                    isLoading={isLoading}
+                />
 
-                    <Skill
-                        records={record?.skillStack?.records}
-                        title={record?.skillStack?.title?.toUpperCase() ?? ''}
-                        filter={1}
-                        className="flex-1 w-full"
-                        isLoading={isLoading}
-                    />
-                </div>
-
-                <div className="flex flex-row justify-center items-start flex-wrap gap-3 py-3">
-                    {isLoading
-                        ? Array(6)
-                              .fill(0)
-                              .map((_, index) => (
-                                  <span
-                                      key={`summary-tag-${index + 1}-skelecton`}
-                                      className={`block w-24 h-9 bg-gray-300`}
-                                  ></span>
-                              ))
-                        : projectTags &&
-                          projectTags.length > 0 &&
-                          projectTags
-                              .slice()
-                              .sort((a, b) => (a.count > b.count ? -1 : 1))
-                              .filter((x) => x.count > 1)
-                              .map((tag) => (
-                                  <span
-                                      key={tag.tag}
-                                      className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
-                                          tag.color ?? ''
-                                      } ${tag.size ?? ''}`}
-                                  >
-                                      {tag.tag.toUpperCase()}
-                                  </span>
-                              ))}
-                </div>
+                <Skill
+                    records={record?.skillStack?.records}
+                    title={record?.skillStack?.title?.toUpperCase() ?? ''}
+                    filter={1}
+                    className="flex-1 w-full"
+                    isLoading={isLoading}
+                />
             </div>
-        </React.Fragment>
+
+            <div className="flex flex-row justify-center items-start flex-wrap gap-3 py-3">
+                {isLoading
+                    ? Array(6)
+                          .fill(0)
+                          .map((_, index) => (
+                              <span
+                                  key={`summary-tag-${index + 1}-skelecton`}
+                                  className={`block w-24 h-9 bg-gray-300`}
+                              ></span>
+                          ))
+                    : projectTags &&
+                      projectTags.length > 0 &&
+                      projectTags
+                          .slice()
+                          .sort((a, b) => (a.count > b.count ? -1 : 1))
+                          .filter((x) => x.count > 1)
+                          .map((tag) => (
+                              <span
+                                  key={tag.tag}
+                                  className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
+                                      tag.color ?? ''
+                                  } ${tag.size ?? ''}`}
+                              >
+                                  {tag.tag.toUpperCase()}
+                              </span>
+                          ))}
+            </div>
+        </div>
     );
 };
