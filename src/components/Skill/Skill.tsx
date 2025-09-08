@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { SkillSection } from '../../interfaces/Data';
 import { ScoreBar } from '../Score';
 
@@ -32,8 +33,8 @@ export const Skill = ({ title, className, records, filter, isLoading }: SkillPro
                         typeof filter === 'string'
                             ? x.name === filter
                             : typeof filter === 'number'
-                            ? index === filter
-                            : index === 0,
+                              ? index === filter
+                              : index === 0,
                     )
                     .map((item) => {
                         return (

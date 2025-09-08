@@ -1,8 +1,11 @@
+import * as React from 'react';
+
 import axios from 'axios';
 import { useFormik } from 'formik';
-import * as React from 'react';
 import { InferType, object, string } from 'yup';
+
 import { Data, SendMessageResponseModel } from '../../interfaces';
+
 import { SnsList } from './SnsList';
 
 interface ContactProps {

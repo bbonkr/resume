@@ -1,9 +1,12 @@
 import * as React from 'react';
-import { type Data } from '../interfaces';
+
 import Head from 'next/head';
-import { Resume } from '../components/Resume';
+
 import { type GetStaticProps } from 'next';
+
 import { useDataActionContext } from '../components/DataContextProvider';
+import { Resume } from '../components/Resume';
+import { type Data } from '../interfaces';
 import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
 
 interface HomePageProps {

@@ -7,7 +7,7 @@ interface ScoreBarProps {
 }
 
 export const ScoreBar = ({ className, value, maxValue }: ScoreBarProps) => {
-    var percent =
+    const percent =
         (maxValue ?? 0) === 0 ? 0 : (((value ?? 0) * 1.0) / (maxValue ?? 1)) * 1.0 * 100.0;
 
     return (

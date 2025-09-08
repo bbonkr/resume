@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ColorStyles } from '../../interfaces';
 import { Data } from '../../interfaces/Data';
 import { GenericLink } from '../GenericLink';

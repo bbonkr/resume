@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { type Data } from '../../interfaces';
 
 const DataContext = React.createContext<Data>({});

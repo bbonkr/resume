@@ -1,6 +1,9 @@
 import * as React from 'react';
+
 import dynamic from 'next/dynamic';
+
 import { type Data } from '../../interfaces';
+
 import { menus } from './menu';
 
 const Bio = dynamic(

@@ -1,6 +1,8 @@
-import { ContentDataRecord, Data, DataOrigin, SkillSection } from '../../interfaces';
-import { DataService } from './DataService';
 import axios from 'axios';
+
+import { ContentDataRecord, Data, DataOrigin, SkillSection } from '../../interfaces';
+
+import { DataService } from './DataService';
 
 export interface ResumeBackendModel<TData> {
     data: TData;
