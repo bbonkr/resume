@@ -1,8 +1,11 @@
 import * as React from 'react';
+
 import { FaWindowClose } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import { menus } from './menu';
+
 import { useDataContext } from '../DataContextProvider';
+
+import { menus } from './menu';
 
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY;
 

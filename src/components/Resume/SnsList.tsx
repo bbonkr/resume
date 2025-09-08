@@ -1,6 +1,8 @@
 import * as React from 'react';
-import { Me } from '../../interfaces';
+
 import { FaGithub, FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from 'react-icons/fa';
+
+import { Me } from '../../interfaces';
 
 interface SnsListProps {
     data?: Me | null;

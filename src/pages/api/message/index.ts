@@ -1,7 +1,9 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import sgMail, { MailDataRequired } from '@sendgrid/mail';
+
 import { SendMessageResponseModel } from '../../../interfaces';
 import { ApiException } from '../../../libs/Errors/ApiError';
+
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const sendMessage = async (req: NextApiRequest, res: NextApiResponse<SendMessageResponseModel>) => {
     const sendGirdApiKey = process.env.SENDGRID_API_KEY ?? '';
@@ -50,9 +52,15 @@ const sendMessage = async (req: NextApiRequest, res: NextApiResponse<SendMessage
         });
     } catch (e) {
         if (e instanceof ApiException) {
-            res.status(e.statusCode).json({ status: e.statusCode, message: e.message });
+            res.status(e.statusCode).json({
+                status: e.statusCode,
+                message: e.message,
+            });
         } else {
-            res.status(500).json({ status: 500, message: '알수없는 예외가 발생했습니다' });
+            res.status(500).json({
+                status: 500,
+                message: '알수없는 예외가 발생했습니다',
+            });
         }
     }
 };

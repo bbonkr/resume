@@ -1,4 +1,7 @@
 import React, { PropsWithChildren } from 'react';
+
+import Link from 'next/link';
+
 import {
     FaBlog,
     FaHome,
@@ -10,7 +13,7 @@ import {
 } from 'react-icons/fa';
 import { MdEmail, MdWeb, MdAndroid } from 'react-icons/md';
 import { SiNuget } from 'react-icons/si';
-import Link from 'next/link';
+
 import { Link as LinkModel } from '../../interfaces';
 
 interface GenericLinkProps {

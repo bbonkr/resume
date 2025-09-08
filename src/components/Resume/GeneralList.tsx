@@ -1,9 +1,10 @@
-/* eslint-disable @next/next/no-img-element */
 import * as React from 'react';
+
 import { ContentData } from '../../interfaces';
 import { GenericLink } from '../GenericLink';
-import { Picture } from './Picture';
 import { Markdown } from '../Markdown';
+
+import { Picture } from './Picture';
 
 interface GeneralListProps {
     title?: string;

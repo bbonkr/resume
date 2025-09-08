@@ -8,7 +8,7 @@ export const Picture = ({ imageProps }: PictureProps) => {
     const [imageLoaded, setImageLoaded] = React.useState(false);
 
     const skelectonRef = React.useRef<HTMLDivElement>(null);
-    const skelectonObserverRef = React.useRef<IntersectionObserver>();
+    const skelectonObserverRef = React.useRef<IntersectionObserver>(null);
 
     const handleIntersection = (
         entries: IntersectionObserverEntry[],

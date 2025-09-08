@@ -1,5 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
 import React from 'react';
+
 import { Data } from '../../interfaces/Data';
 import { Picture } from '../Resume/Picture';
 
@@ -25,15 +25,13 @@ export const MainPicture = ({ className, record }: MainPictureProps) => {
     }
 
     return (
-        <React.Fragment>
-            <Picture
-                imageProps={{
-                    src: imageUri,
-                    alt: altText,
-                    title: record?.me?.name,
-                    className: `${className ?? ''}`,
-                }}
-            />
-        </React.Fragment>
+        <Picture
+            imageProps={{
+                src: imageUri,
+                alt: altText,
+                title: record?.me?.name,
+                className: `${className ?? ''}`,
+            }}
+        />
     );
 };

@@ -1,5 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
 import { ApiResponseModel } from '../../../interfaces/ApiResponseModel';
+
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 const REVALIDATE_KEY = 'x-revalidate-key';
 
@@ -32,6 +33,7 @@ const revalidateHanlder = async (req: NextApiRequest, res: NextApiResponse<ApiRe
 
         return res.status(202).json({ status: 202, message: 'Revalidated' });
     } catch (err) {
+        console.error(err);
         return res.status(500).json({ status: 500, message: 'Error while revalidating' });
     }
 };

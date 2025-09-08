@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import dynamic from 'next/dynamic';
 
 const Section = dynamic(import('../Section').then((m) => m.Section));
