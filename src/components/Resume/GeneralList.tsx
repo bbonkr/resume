@@ -14,6 +14,7 @@ interface GeneralListProps {
 
 export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
     if (isLoading) {
+        const placeholder = new Array(2).fill(0);
         return (
             <div
                 key="generallist-skelecton"
@@ -24,39 +25,35 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                         <span className="block w-48 h-6 bg-gray-300"></span>
                     </h2>
                 </div>
-                <div className="w-full md:w-2/3 flex flex-col justify-center items-start break-words">
-                    {Array(2)
-                        .fill(0)
-                        .map((item, index) => {
-                            return (
-                                <div
-                                    key={`${item}-${index}`}
-                                    className="my-9 break-words w-full max-w-full"
-                                >
-                                    <h3 className="font-bold break-words overflow-ellipsis">
-                                        <span className="block w-64 h-6 bg-gray-300"></span>
-                                    </h3>
-                                    <p className="text-sm my-1">
-                                        <span className="block w-full h-6 bg-gray-300"></span>
-                                    </p>
-                                    <p>
-                                        <span className="block w-full h-6 bg-gray-300"></span>
-                                    </p>
+                <div className="w-full md:w-2/3 flex flex-col justify-center items-start wrap-break-word">
+                    {placeholder.map((item, index) => {
+                        return (
+                            <div
+                                key={`${item}-${index}`}
+                                className="my-9 wrap-break-word w-full max-w-full"
+                            >
+                                <h3 className="font-bold wrap-break-word text-ellipsis">
+                                    <span className="block w-64 h-6 bg-gray-300"></span>
+                                </h3>
+                                <p className="text-sm my-1">
+                                    <span className="block w-full h-6 bg-gray-300"></span>
+                                </p>
+                                <p>
+                                    <span className="block w-full h-6 bg-gray-300"></span>
+                                </p>
 
-                                    <div>
-                                        {Array(2)
-                                            .fill(0)
-                                            .map((link, index) => {
-                                                return (
-                                                    <div className="py-2" key={`${link}-${index}`}>
-                                                        <span className="w-1/3 h-8 block bg-gray-300"></span>
-                                                    </div>
-                                                );
-                                            })}
-                                    </div>
+                                <div>
+                                    {placeholder.map((link, index) => {
+                                        return (
+                                            <div className="py-2" key={`${link}-${index}`}>
+                                                <span className="w-1/3 h-8 block bg-gray-300"></span>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
-                            );
-                        })}
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
         );
@@ -71,16 +68,16 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
             <div className="w-full md:w-1/3 flex flex-col justify-center items-center md:items-end px-9 py-9 md:max-w-xs ">
                 <h2 className="font-semibold"> {title ?? data?.title}</h2>
             </div>
-            <div className="w-full md:w-2/3 flex flex-col justify-center items-start break-words">
+            <div className="w-full md:w-2/3 flex flex-col justify-center items-start wrap-break-word">
                 {data?.records
                     ?.sort((a, b) => (a.period > b.period ? -1 : 1))
                     .map((item) => {
                         return (
                             <div
                                 key={`${item.title}-${item.state}`}
-                                className="my-9 break-words max-w-full"
+                                className="my-9 wrap-break-word max-w-full"
                             >
-                                <h3 className="font-bold break-words overflow-ellipsis">
+                                <h3 className="font-bold wrap-break-word text-ellipsis">
                                     {item.title}
                                 </h3>
                                 <p className="text-sm">
@@ -126,7 +123,7 @@ export const GeneralList = ({ title, data, isLoading }: GeneralListProps) => {
                                                             alt: altText,
                                                             title: altText,
                                                             loading: 'lazy',
-                                                            className: 'blur-sm',
+                                                            className: 'blur-xs',
                                                         }}
                                                     />
                                                 </li>
