@@ -7,16 +7,23 @@ const ActionContext = React.createContext<{
     setData(current: Data): void;
 }>({ setData: (current: Data) => {} });
 
-const DataContextProvider = ({ children }: React.PropsWithChildren) => {
-    const [data, setDataState] = React.useState<Data>({});
+const DataContextProvider = ({
+    children,
+    initialData,
+}: React.PropsWithChildren<{ initialData?: Data }>) => {
+    const [data, setDataState] = React.useState<Data>(() => initialData ?? {});
+
+    const setData = React.useCallback((current: Data) => {
+        setDataState((prev) => (prev === current ? prev : current));
+    }, []);
+
     const actions = React.useMemo(
         () => ({
-            setData: (current: Data) => {
-                setDataState((_) => current);
-            },
+            setData,
         }),
-        [],
+        [setData],
     );
+
     return (
         <ActionContext.Provider value={actions}>
             <DataContext.Provider value={data}>{children}</DataContext.Provider>
