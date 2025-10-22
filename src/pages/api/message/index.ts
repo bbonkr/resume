@@ -1,5 +1,5 @@
 import sgMail, { MailDataRequired } from '@sendgrid/mail';
-import axiso from 'axios';
+import axios from 'axios';
 
 import { SendMessageResponseModel } from '../../../interfaces';
 import { ApiException } from '../../../libs/Errors/ApiError';
@@ -98,7 +98,7 @@ ${message}
         },
     ];
 
-    const response = await axiso.post(slackWebhookUrl, {
+    const response = await axios.post(slackWebhookUrl, {
         text: blocks ? undefined : textMessage,
         mrkdwn: true,
         blocks,
