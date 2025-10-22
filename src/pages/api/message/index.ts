@@ -46,7 +46,7 @@ const sendEmail = async (messageRequest: MessageModel): Promise<void> => {
     sgMail.setApiKey(sendGirdApiKey);
     const [response] = await sgMail.send(sgMessage);
 
-    if (response.statusCode <= 200 && response.statusCode >= 300) {
+    if (response.statusCode >= 300) {
         throw new ApiException(400, '메시지를 전송할 수 없습니다 [E103]');
     }
 };
@@ -118,7 +118,7 @@ const sendMessage = async (req: NextApiRequest, res: NextApiResponse<SendMessage
 
         const messageRequest: MessageModel = { name, email, message };
 
-        await Promise.all([sendEmail(messageRequest), sendSlackMessage(messageRequest)]);
+        await Promise.allSettled([sendEmail(messageRequest), sendSlackMessage(messageRequest)]);
 
         res.status(200).json({
             status: 200,
