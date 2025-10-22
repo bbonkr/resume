@@ -1,28 +1,28 @@
 name: Verify to Build
 
 on:
-    pull_request:
+  pull_request:
 
 jobs:
-    verify-build:
-        name: Verify to build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  verify-build:
+    name: Verify to build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
 
-            - name: Setup Node
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '18'
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
 
-            - name: install dependencies
-              run: npm install
+      - name: install dependencies
+        run: npm install
 
-            - name: lint
-              run: npm run lint
+      - name: lint
+        run: npm run lint
 
-            - name: build
-              env:
-                  NODE_ENV: production
-              run: npm run build
+      - name: build
+        env:
+          NODE_ENV: production
+        run: npm run build
