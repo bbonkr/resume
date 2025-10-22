@@ -26,7 +26,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
                 className="animate-pulse flex flex-col justify-center items-center gap-9"
             >
                 <div className=" flex flex-col md:flex-row justify-center items-center md:items-start sm:justify-center py-3 gap-12 w-full">
-                    <div className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"></div>
+                    <div className="flex shrink-0 w-300 h-300 bg-gray-300 rounded-full"></div>
 
                     <div className=" w-full flex flex-col space-y-3">
                         <div className="w-full bg-gray-300 h-8 rounded-md "></div>
@@ -139,7 +139,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
                 {isLoading ? (
                     <div
                         key="main-picture-skelecton"
-                        className="flex flex-shrink-0 w-300 h-300 bg-gray-300 rounded-full"
+                        className="flex shrink-0 w-300 h-300 bg-gray-300 rounded-full"
                     ></div>
                 ) : (
                     <MainPicture record={record} className="rounded-full flex-1 w-300 h-300" />
@@ -181,7 +181,7 @@ export const Summary = ({ record, title, isLoading }: SummaryProps) => {
                           .map((tag) => (
                               <span
                                   key={tag.tag}
-                                  className={`border-1 rounded-lg ring-2 ring-blue-100 tag ${
+                                  className={`border rounded-lg ring-2 ring-blue-100 tag ${
                                       tag.color ?? ''
                                   } ${tag.size ?? ''}`}
                               >

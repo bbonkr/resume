@@ -4,7 +4,6 @@ import Head from 'next/head';
 
 import { type GetStaticProps } from 'next';
 
-import { useDataActionContext } from '../components/DataContextProvider';
 import { Resume } from '../components/Resume';
 import { type Data } from '../interfaces';
 import { ResumeBackendDataService } from '../libs/DataService/ResumeBackendDataService';
@@ -14,13 +13,8 @@ interface HomePageProps {
 }
 
 const HomePage = ({ data }: HomePageProps) => {
-    const { setData } = useDataActionContext();
     const siteTitle = data?.site ? `${data?.site?.title} | ${data?.site?.titleEn}` : '이력사항';
     const twitterHandle = data?.me?.twitter;
-
-    React.useEffect(() => {
-        setData(data);
-    }, [setData, data]);
 
     return (
         <React.Fragment>

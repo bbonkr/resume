@@ -89,7 +89,7 @@ export const Header = () => {
 
     if (!data) {
         return (
-            <div key="header-title-skelecton" className="w-32 border-1 rounded-md">
+            <div key="header-title-skelecton" className="w-32 border rounded-md">
                 <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
                     <div className="flex-1 flex flex-col space-y-3">
                         <div className="w-full bg-gray-300 h-6 rounded-md "></div>
@@ -105,6 +105,7 @@ export const Header = () => {
                 <div
                     className="fixed top-0 left-0 right-0 bottom-0 bg-black opacity-60 z-20"
                     onClick={handleClickBackground}
+                    role="none"
                 ></div>
             )}
             <header className="fixed print:static bg-slate-50 dark:bg-slate-900 print:bg-white w-full md:shadow-lg z-20">
@@ -150,7 +151,11 @@ export const Header = () => {
                     </div>
 
                     {/* mobile menu items */}
-                    <div className="hidden modile-menu print:hidden" onBlur={handleBlur}>
+                    <div
+                        className="hidden modile-menu print:hidden"
+                        onBlur={handleBlur}
+                        role="menu"
+                    >
                         <ul className="flex flex-col gap-3 justify-center items-end px-6 mt-6">
                             {Object.values(menus)
                                 .filter((menu) => !menu.isHidden)

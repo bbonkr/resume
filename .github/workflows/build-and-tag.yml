@@ -1,73 +1,73 @@
 name: build and git tag if not exists
 
 on:
-    push:
-        branches:
-            - main
+  push:
+    branches:
+      - main
 
 env:
-    TARGET_PROJECT_PATH: ./
-    TARGET_PROJECT_FILE: package.json
+  TARGET_PROJECT_PATH: ./
+  TARGET_PROJECT_FILE: package.json
 
 jobs:
-    verify-build:
-        name: Verify to build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v4
+  verify-build:
+    name: Verify to build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
 
-            - name: Setup Node
-              uses: actions/setup-node@v3
-              with:
-                  node-version: '18'
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
 
-            - name: install dependencies
-              run: npm install
+      - name: install dependencies
+        run: npm install
 
-            - name: lint
-              run: npm run lint --if-present
+      - name: lint
+        run: npm run lint --if-present
 
-            - name: build
-              env:
-                  NODE_ENV: production
-              run: npm run build
+      - name: build
+        env:
+          NODE_ENV: production
+        run: npm run build
 
-            # - name: Get version
-            #   uses: bbonkr/get-version-action@v1
-            #   id: get_version
-            #   with:
-            #       project: '${{ env.TARGET_PROJECT_PATH }}${{ env.TARGET_PROJECT_FILE }}'
+      # - name: Get version
+      #   uses: bbonkr/get-version-action@v1
+      #   id: get_version
+      #   with:
+      #       project: '${{ env.TARGET_PROJECT_PATH }}${{ env.TARGET_PROJECT_FILE }}'
 
-            # - name: Check git tag
-            #   uses: bbonkr/git-tag-check-action@v1
-            #   id: git_tag_check
-            #   with:
-            #       github_token: ${{ secrets.GH_TOKEN }}
-            #       tag: 'v${{ steps.get_version.outputs.version }}'
+      # - name: Check git tag
+      #   uses: bbonkr/git-tag-check-action@v1
+      #   id: git_tag_check
+      #   with:
+      #       github_token: ${{ secrets.GH_TOKEN }}
+      #       tag: 'v${{ steps.get_version.outputs.version }}'
 
-            # - name: Create git tag
-            #   uses: pkgdeps/git-tag-action@v2
-            #   if: ${{ steps.git_tag_check.outputs.tag == '' }}
-            #   with:
-            #       github_token: ${{ secrets.GH_TOKEN }}
-            #       github_repo: ${{ github.repository }}
-            #       version: ${{ steps.get_version.outputs.version }}
-            #       git_commit_sha: ${{ github.sha }}
-            #       git_tag_prefix: 'v'
+      # - name: Create git tag
+      #   uses: pkgdeps/git-tag-action@v2
+      #   if: ${{ steps.git_tag_check.outputs.tag == '' }}
+      #   with:
+      #       github_token: ${{ secrets.GH_TOKEN }}
+      #       github_repo: ${{ github.repository }}
+      #       version: ${{ steps.get_version.outputs.version }}
+      #       git_commit_sha: ${{ github.sha }}
+      #       git_tag_prefix: 'v'
 
-            # - name: logging
-            #   if: ${{ steps.git_tag_check.outputs.tag != '' }}
-            #   run: |
-            #       echo "Tag ${{ steps.git_tag_check.outputs.tag }} is exists."
+      # - name: logging
+      #   if: ${{ steps.git_tag_check.outputs.tag != '' }}
+      #   run: |
+      #       echo "Tag ${{ steps.git_tag_check.outputs.tag }} is exists."
 
-            - name: Notify to slack
-              uses: 8398a7/action-slack@v3
-              with:
-                  job_name: 'build, pack & publish'
-                  status: ${{ job.status }}
-                  fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
-              env:
-                  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-              if: always() # Pick up events even if the job fails or is canceled.
+      - name: Notify to slack
+        uses: 8398a7/action-slack@v3
+        with:
+          job_name: "build, pack & publish"
+          status: ${{ job.status }}
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took,pullRequest # selectable (default: repo,message)
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always() # Pick up events even if the job fails or is canceled.
 
