@@ -34,7 +34,7 @@
         "react-markdown": "^10.1.0",
         "remark-gfm": "^4.0.1",
         "smoothscroll-polyfill": "^0.4.4",
-        "yup": "^0.32.11"
+        "yup": "^1.7.1"
     },
     "devDependencies": {
         "@eslint/js": "^9.35.0",
