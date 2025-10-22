@@ -6,6 +6,7 @@ const isProd = process.env.NODE_ENV === 'production';
 const nextConfig = {
     /* config options here */
     reactStrictMode: true,
+    reactCompiler: true,
     compiler: {
         removeConsole: isProd
             ? {

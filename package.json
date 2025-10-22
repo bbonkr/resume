@@ -45,6 +45,7 @@
         "@types/react-dom": "^19.2.2",
         "@types/smoothscroll-polyfill": "^0.3.4",
         "autoprefixer": "^10.4.21",
+        "babel-plugin-react-compiler": "^1.0.0",
         "css-loader": "^6.11.0",
         "dotenv": "^16.6.1",
         "dotenv-cli": "^7.4.4",
