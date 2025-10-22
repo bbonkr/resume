@@ -16,26 +16,42 @@ import '../components/Loading/style.css';
 const stage = process.env.NEXT_PUBLIC_ENV ?? 'dev';
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY ?? '';
 
-const Header = dynamic(import('../components/Resume/Header').then((m) => m.Header));
-const Layout = dynamic(import('../components/Resume/Layout').then((m) => m.Layout));
-const MicrosoftClarityProvider = dynamic(
-    import('../components/Layouts/MicrosoftClarityProvider').then(
-        (m) => m.MicrosoftClarityProvider,
-    ),
+// 모든 dynamic imports를 하나의 컴포넌트로 그룹화
+const DynamicComponents = dynamic(
+    async () => {
+        const [{ Header }, { Layout }, { MicrosoftClarityProvider }] = await Promise.all([
+            import('../components/Resume/Header'),
+            import('../components/Resume/Layout'),
+            import('../components/Layouts/MicrosoftClarityProvider'),
+        ]);
+
+        return {
+            default: ({ children }: React.PropsWithChildren) => (
+                <MicrosoftClarityProvider projectId={clarityProjectId} stage={stage}>
+                    <Header />
+                    <Layout className="flex flex-col justify-center items-center min-h-screen">
+                        {children}
+                    </Layout>
+                </MicrosoftClarityProvider>
+            ),
+        };
+    },
+    {
+        loading: () => <div>Loading...</div>,
+        ssr: false,
+    },
 );
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
     return (
         <React.Fragment>
-            <DataContextProvider>
+            <DataContextProvider initialData={pageProps?.data}>
                 <ThemeProvider attribute="class" defaultTheme="system">
-                    <MicrosoftClarityProvider projectId={clarityProjectId} stage={stage}>
-                        <ErrorBoundary>
-                            <Header />
-                            <Layout className="flex flex-col justify-center items-center min-h-screen">
-                                <Component {...pageProps} />
-                            </Layout>
-                        </ErrorBoundary>
-                    </MicrosoftClarityProvider>
+                    <ErrorBoundary>
+                        <DynamicComponents>
+                            <Component {...pageProps} />
+                        </DynamicComponents>
+                    </ErrorBoundary>
                 </ThemeProvider>
             </DataContextProvider>
             <Analytics

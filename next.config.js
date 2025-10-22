@@ -1,21 +1,21 @@
 const imageDomains = (process.env.IMAGE_DOMAINS || '').split(';').slice().filter(Boolean);
-
+const isProd = process.env.NODE_ENV === 'production';
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
     /* config options here */
+    reactStrictMode: true,
     compiler: {
-        removeConsole: {
-            exclude: ['error'],
-        },
-    },
-    eslint: {
-        dirs: ['src'],
+        removeConsole: isProd
+            ? {
+                  exclude: ['error'],
+              }
+            : false,
     },
     trailingSlash: false,
     images: {
-        domains: [...imageDomains],
+        remotePatterns: imageDomains.map((domain) => ({ protocol: 'https', hostname: domain })),
     },
 };
 
