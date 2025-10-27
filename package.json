@@ -46,7 +46,7 @@
         "@types/react-dom": "^19.2.2",
         "@types/smoothscroll-polyfill": "^0.3.4",
         "babel-plugin-react-compiler": "^1.0.0",
-        "css-loader": "^6.11.0",
+        "css-loader": "^7.1.2",
         "dotenv": "^16.6.1",
         "dotenv-cli": "^7.4.4",
         "eslint": "^9.35.0",
